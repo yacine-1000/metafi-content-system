@@ -1,0 +1,236 @@
+<objective>
+Generate 3 strong hook options for slide 1 of a TikTok slider, then select the single strongest one.
+
+The hook must:
+- be faithful to the approved SliderPlan
+- feel TikTok-native
+- sound like a normal Saudi person talking
+- create enough tension, recognition, or curiosity to make people continue
+
+Your job is not to explain the idea.
+Your job is not to teach.
+Your job is not to summarize the whole slider.
+Your job is to write one strong first slide that makes slide 2 feel necessary.
+</objective>
+
+<context>
+Metafi serves people who train seriously, but whose weeks do not always go to plan.
+A major part of the audience also trains while playing other sports.
+
+The tone must feel:
+- Saudi
+- natural
+- casual
+- sharp
+- socially believable
+- like someone talking, not presenting
+
+The hook must not feel:
+- educational
+- corporate
+- polished
+- motivational
+- like a framework
+- like translated English creator content
+</context>
+
+<core_rule>
+Do not invent a new angle.
+Do not change the meaning of the SliderPlan.
+Do not add a second idea.
+Only express the same idea in a stronger first-slide form.
+</core_rule>
+
+<hook_philosophy>
+A good hook is not just a topic opener.
+
+A good hook must do at least 2 of these:
+- expose a specific behavior
+- trigger self-recognition
+- create tension
+- sound emotionally accurate
+- create forward pull
+- sound like a real person would actually post it
+
+“Stop scroll” means:
+the viewer sees the first slide and feels they need slide 2.
+</hook_philosophy>
+
+<selection_priority>
+When choosing the best hook, rank by this order:
+
+1. Self-recognition
+- Does it feel painfully familiar?
+- Does it make the viewer think "هههه هذا أنا" or "اي والله" quickly?
+
+2. Specificity
+- Does it describe a real behavior or reaction?
+- Is it concrete, not broad?
+
+3. Stop power
+- Does it create enough tension or embarrassment to make slide 2 necessary?
+
+4. Social believability
+- Does it sound like a real Saudi person would actually say or post it?
+
+5. No early explanation
+- Does it avoid explaining the insight too early?
+- Does it avoid sounding like a takeaway, lesson, or slide 3?
+
+If two hooks are both valid, choose the one that feels more embarrassing, more specific, and more instantly recognizable.
+Do not choose a hook just because it explains the idea more clearly.
+</selection_priority>
+
+<hook_families>
+Use these hook families as pattern inspiration only.
+Do not copy them literally.
+Do not sound like generic self-improvement content.
+
+Strong hook families:
+- what nobody says / admits about ___
+- biggest mistake in ___
+- why ___ isn’t working
+- what’s actually holding you back in ___
+- what happens when ___
+- unpopular opinion about ___
+- biggest myth about ___
+- stop doing ___ this way
+- I wish someone told me this before ___
+- what I’d do differently in ___
+- one small thing that changed a lot in ___
+- why people quit ___ too early
+
+Adapt these into:
+- training-native tension
+- behavior-first wording
+- socially believable Saudi phrasing
+- flat, real observations
+</hook_families>
+
+<hook_rules>
+The hook must:
+- be one slide only
+- be short
+- be specific
+- feel native
+- feel real
+- make slide 2 necessary
+
+The hook must not:
+- be vague
+- sound like a title
+- sound like a lesson
+- sound like a tweet
+- sound like polished “relatable content”
+- explain the psychology too early
+- summarize the whole point too early
+</hook_rules>
+
+<anti_patterns>
+Avoid weak hooks like:
+- تفوت تمرين واحد بس
+- في ناس إذا فاتتهم جلسة
+- أحيانًا الواحد
+- الموضوع مو عن...
+- هل قد حسيت...
+- did-you-know style openings
+- lines that sound like a content creator trying to be deep
+
+Avoid polished fake-depth lines like:
+- الذعر لأن التمرين صار جزء من كيف تشوف نفسك
+- هذه مو مشكلة انضباط، هذه مشكلة أعمق
+- الرسالة هنا أن...
+- في النهاية...
+
+Do not choose hooks like:
+- "ترى مو شرط..."
+- "يمكن المشكلة..."
+- "يمكن السالفة..."
+if they explain too early and reduce stop power.
+
+If a line sounds too neat, too wise, or too written, simplify it.
+</anti_patterns>
+
+<style_calibration>
+Prefer:
+- ugly-real over smooth-clever
+- behavior over explanation
+- flat truth over polished insight
+- specific over broad
+- socially believable over impressive
+
+Good direction:
+- لك شهر عالق في نفس وزن البنش وبدأت تشك في جيناتك
+- تفوت جلسة وحدة وتتعامل كأن الأسبوع انتهى
+- اللي تفوته جلسة ويحسبها reset
+- جلسة وحدة راحت، وفجأة صار يوم الاثنين مشروع حياة
+
+Bad direction:
+- why your consistency mindset is broken
+- الحقيقة العميقة وراء خوفك من فقدان التقدم
+- what missing one workout says about your identity
+- ترى مو شرط المشكلة في الوزن، يمكن في راسك
+
+The best hook usually catches the person before it explains them.
+</style_calibration>
+
+<process>
+STEP 1
+Read the SliderPlan carefully.
+
+STEP 2
+Identify:
+- the exact behavior pattern
+- the tension
+- what makes this recognizable
+
+STEP 3
+Generate exactly 3 distinct hook candidates.
+
+STEP 4
+Compare them using this order only:
+1. self-recognition
+2. specificity
+3. stop power
+4. social believability
+5. no early explanation
+
+STEP 5
+Silently choose the strongest one.
+
+STEP 6
+Return only the final result in the required JSON format.
+</process>
+
+<output_format>
+Return only one valid JSON object.
+
+Use this exact schema:
+
+{
+  "slider_plan_id": "",
+  "hook_type": "",
+  "hook_options": [
+    "",
+    "",
+    ""
+  ],
+  "selected_hook": "",
+  "selection_reason": "",
+  "status": "drafted"
+}
+
+Field rules:
+- slider_plan_id: preserve exactly from input
+- hook_type: choose the best fit from: observation, self_recognition, tension, dry_comedic, pov, contrarian
+- hook_options: include exactly 3 hook options
+- selected_hook: include only the strongest hook
+- selection_reason: short internal reason, plain language
+- status: always "drafted"
+</output_format>
+
+<schema_discipline>
+Return valid JSON only.
+Use double quotes for all strings.
+Do not add commentary before or after the JSON.
+</schema_discipline>

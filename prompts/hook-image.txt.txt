@@ -1,0 +1,107 @@
+Generate a vertical 9:16 raw iPhone gym mirror selfie for the first slide of a TikTok fitness slider.
+
+Main subject:
+- one Saudi man as the clear foreground subject
+- natural beard
+- simple gym clothes
+- natural looking, not too posed, not too model-like
+- the subject must be holding or using the phone himself in a believable mirror-selfie way
+
+Main subject gesture:
+Use exactly one natural gesture from this locked gesture bank:
+1. holding the phone with one hand and flexing one bicep with the other
+2. doing a double-biceps pose while holding the phone in his mouth
+3. holding the phone with one hand while the other hand rests naturally
+4. holding the phone with one hand while the other hand touches or holds his face as if tired
+5. holding the phone with one hand while the other hand is on his hip
+6. holding the phone with one hand while the other hand adjusts his shirt or sleeve
+7. holding the phone with one hand while the other hand is behind his neck
+8. holding the phone with one hand with a slight relaxed lean and casual posture
+
+Image style:
+- raw iPhone photo feel
+- realistic gym mirror selfie
+- messy and real
+- socially believable
+- TikTok-native
+- casual and slightly imperfect
+- not polished, not glossy, not cinematic, not ad-like
+
+Gym environment:
+- modern commercial gym
+- industrial-modern gym look
+- darker ceiling, preferably black or exposed ceiling
+- visible ceiling infrastructure / exposed industrial ceiling feeling
+- bright commercial light fixtures hanging or mounted overhead
+- strong modern gym atmosphere, not luxury wellness gym
+- black or dark rubber gym flooring
+- clean modern machines, racks, benches, and cardio equipment
+- should feel like a serious, modern performance gym
+- should not feel like a soft white luxury gym
+- should not feel like an old cheap gym
+
+Lighting and color:
+- overhead lighting should match a modern commercial gym with dark ceiling and bright fixtures
+- use bright industrial-style ceiling lights
+- lighting should feel structured, bold, and realistic
+- overall brightness should be clear and usable, but not soft or overly whitewashed
+- neutral white balance
+- no warm cast
+- no yellow tint
+- no filter
+- no cinematic grading
+- no LUT
+- no stylization
+- preserve natural skin tones and true gym lighting
+- should feel like an unedited Pinterest-style iPhone gym photo
+
+Composition:
+- vertical framing
+- mirror selfie angle
+- gym environment clearly visible
+- enough negative space for text overlay
+- main subject is the focus
+- background remains visible enough for the visual hook to be noticed
+- image should feel clean but not staged
+
+Cultural and environment rules:
+- the scene must reflect a Saudi male gym environment
+- no women visible anywhere in the image
+- all visible people must be men
+- no mixed-gender gym scene
+- no nudity
+- no shirtless background people
+- no inappropriate exposure
+- all people must be dressed appropriately for a Saudi gym context
+- keep the whole scene culturally believable for Saudi Arabia
+
+Visual hook rule:
+Include exactly one subtle background visual hook.
+The background hook must be secondary, believable, slightly funny, awkward, or random, and instantly readable.
+Do not include more than one background hook.
+Do not make the image chaotic.
+
+Use one background hook only from this locked bank:
+1. a guy in the background wearing Hello Kitty pajama-style pants with a plain black t-shirt
+2. someone in the background awkwardly dropping from a pull-up mid-air
+3. a guy in the background wearing a Brazil jersey, Saudi سروال, and زبيرية shoes
+4. someone in the background standing too close to the mirror
+5. someone in the background frozen mid-rep with a weird strained face
+6. someone in the background looking confused at a machine
+7. someone in the background carrying too many plates or dumbbells
+8. someone in the background doing an overly dramatic stretch
+9. someone in the background sitting or lying on a bench looking completely dead tired
+10. someone in the background crossing the frame with a slight motion blur
+11. a very skinny guy in the background taking a mirror selfie and confidently flexing his bicep, visibly very skinny, while wearing a plain t-shirt and normal gym pants or shorts
+
+Important rules:
+- the image is a visual hook, not a literal illustration of the script
+- do not tightly link the image to the exact hook text
+- the purpose is scroll-stop power through a native gym mirror image
+- one main subject only
+- one background hook only
+- keep the gym scene realistic and believable
+- avoid fantasy, meme edits, surrealism, chaos, luxury aesthetics, and overdesigned fitness-campaign visuals
+
+Final goal:
+A strong, scroll-stopping, raw iPhone gym mirror selfie in a modern Saudi male gym with an industrial-commercial look, darker exposed ceiling, bright modern overhead fixtures, neutral natural color, one Saudi male foreground subject using one natural gesture from the locked gesture bank, and one subtle awkward/funny but culturally appropriate background hook.

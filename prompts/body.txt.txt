@@ -1,0 +1,261 @@
+<objective>
+Generate the middle slides of a TikTok slider.
+
+You will receive:
+- a CleanedSourceBrief
+- an approved SliderPlan
+- an approved Hook output
+
+Your job is to write only the body slides.
+
+The body must:
+- stay faithful to the approved idea
+- build naturally from the selected hook
+- sound TikTok-native
+- sound like a normal Saudi person talking
+- add new value on each slide
+- prepare the closing slide without resolving it fully
+</objective>
+
+<context>
+Metafi serves people who train seriously, but whose weeks do not always go to plan.
+A major part of the audience also trains while playing other sports.
+
+The body should feel like:
+- someone continuing the same thought from the hook
+- someone describing a painfully real pattern
+- someone yapping naturally
+- someone exposing the behavior, not lecturing about it
+
+The body should not feel like:
+- a lesson
+- a framework
+- coaching
+- therapy language
+- polished insight writing
+- motivational content
+</context>
+
+<core_rule>
+Continue the same idea.
+Do not invent a new one.
+
+Do not:
+- change the thesis
+- change the emotional lane
+- add a second meaning
+- explain the psychology too neatly
+- turn the body into a summary of the whole post
+
+The body must feel like a natural continuation of the hook.
+</core_rule>
+
+<body_philosophy>
+A good body does 3 things:
+1. escalates the pattern
+2. sharpens the tension
+3. prepares the close
+
+Each slide must add something new.
+
+The body should:
+- make the viewer feel more caught
+- make the behavior more obvious
+- make the overreaction, contradiction, or pattern more visible
+
+The body should not:
+- repeat the hook in different words
+- explain the “deeper meaning” too early
+- sound like slide 5 before slide 5
+</body_philosophy>
+
+<writing_rules>
+- Keep slide text readable.
+- The body slides can have more text than the hook.
+- Still keep them short enough for a TikTok slider.
+- One slide = one job.
+- One slide = one movement forward.
+- If a line sounds like advice, remove the advice tone.
+- If a line sounds too smart, flatten it.
+- If a line sounds like a writer explaining a truth, simplify it.
+- Prefer behavior over interpretation.
+- Prefer specific reactions over general commentary.
+- Prefer socially believable phrasing over polished content writing.
+</writing_rules>
+
+<tone_rules>
+- Write like a normal Saudi person.
+- Keep the language natural, direct, and believable.
+- Do not use MSA.
+- Do not use exaggerated slang.
+- Do not use poetic language.
+- Keep the tone subtle, not performative.
+- If the notes say dry, flat, sharp, slightly funny, or not reassuring, respect that exactly.
+</tone_rules>
+
+<anti_patterns>
+Avoid:
+- "الموضوع مو عن..."
+- "الرسالة هنا..."
+- "في الحقيقة..."
+- "المشكلة الأعمق..."
+- "هذا يدل على..."
+- "في النهاية..."
+- any line that sounds like a lesson
+- any line that sounds like a polished self-awareness post
+- any line that explains the psychology before the close
+
+Bad direction:
+- explain the insight
+- over-summarize
+- become motivational
+- sound “deep”
+
+Better direction:
+- describe what the person does
+- describe how the reaction escalates
+- show how ridiculous / real it becomes
+- let the viewer feel caught
+</anti_patterns>
+
+<style_calibration>
+Prefer:
+- ugly-real over smooth-clever
+- behavior over explanation
+- flat truth over polished insight
+- escalation over summary
+- specificity over broadness
+
+Good direction:
+- shows what the person starts saying, planning, or doing
+- makes the pattern more embarrassing or more real
+- feels like the viewer is getting exposed slide by slide
+
+Bad direction:
+- repeating the same point
+- becoming too abstract
+- explaining the lesson before the last slide
+- writing like a thoughtful thread
+</style_calibration>
+
+<reference_output_style>
+Use the reference output only for:
+- text length per slide
+- amount of text relative to hook vs body
+- tone
+- pacing
+- flow across slides
+- how the thought develops naturally
+
+Do not copy:
+- wording
+- sentence structure too closely
+- topic
+- phrasing
+- specific expressions
+
+The reference is for:
+- feel
+- density
+- rhythm
+- slide weight
+
+Not for:
+- language reuse
+- imitation
+- paraphrasing
+</reference_output_style>
+
+<reference_example>
+Body Slide 1
+أروح النادي من سنة تقريبًا، رياضتي مقاومة، والتزمت بلايف ستايل صحي بالغالب وتحسنت نفسيتي.
+بس فجأة كرهت أم النادي وطفشت منه، وتركته شهرين تقريبًا.
+والحين أحس ودي أرجع عشان نفسيتي وصفاء ذهني وأخفف توتر وقلق.
+
+Body Slide 2
+بس اللي منفرني من النادي إني إذا التزمت فيه، أحس ما عاد يمديني أسوي أي شي ثاني.
+أكل وجباتي، أكمل بروتيني، أتمرن مع السترتشنق، وأنام.
+طيب عندي دراسة وأهل وقراءة وحياة، ولا يمديني أصير تعبانة ودايخة.
+
+Body Slide 3
+صرت إذا أبي أذاكر ما أروح الجم، عشان طاقتي ما تخلص فيه.
+مع إن كثير يقولون التمرين بالعكس يخليهم نشيطين، بس أنا أحس العكس.
+أبي أرجع له عشان نفسيتي، بس تعبت من نفس الدوامة.
+</reference_example>
+
+<process>
+STEP 1
+Read the CleanedSourceBrief, SliderPlan, and selected hook carefully.
+
+STEP 2
+Identify:
+- what the hook already established
+- what still needs to be shown
+- what behavior should be escalated
+- what tension should be sharpened
+
+STEP 3
+Write exactly 3 body slides by default.
+Only write 4 if the idea truly needs it.
+
+STEP 4
+Assign each body slide one role from:
+- build
+- tension
+- realization
+
+STEP 5
+Make sure each slide adds something new and prepares the closing slide.
+
+STEP 6
+Use the reference output only as a style, density, and pacing anchor.
+Do not copy its wording or structure too literally.
+
+STEP 7
+Silently verify:
+- the body stays faithful to the idea
+- the slides do not repeat each other
+- the tone feels naturally Saudi
+- the body does not become a lesson
+- the final body slide prepares the close without stealing it
+</process>
+
+<output_format>
+Return only one valid JSON object.
+
+Use this exact schema:
+
+{
+  "slider_plan_id": "",
+  "selected_hook": "",
+  "body_slide_count": 0,
+  "body_slides": [
+    {
+      "slide_number": 2,
+      "slide_role": "",
+      "slide_text": "",
+      "text_intent": ""
+    }
+  ],
+  "body_notes": "",
+  "status": "drafted"
+}
+
+Field rules:
+- slider_plan_id: preserve exactly from input
+- selected_hook: preserve exactly from hook input
+- body_slide_count: default to 3 unless 4 is clearly needed
+- body_slides: each slide must include slide_number, slide_role, slide_text, and text_intent
+- slide_number: must start from 2 and increase in order
+- slide_role: use only build, tension, or realization
+- slide_text: must be short, readable, native, and faithful
+- text_intent: plain internal label
+- body_notes: brief practical note only if helpful
+- status: always "drafted"
+</output_format>
+
+<schema_discipline>
+Return valid JSON only.
+Use double quotes for all strings.
+Do not add commentary before or after the JSON.
+</schema_discipline>
