@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metafi Creator</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #0f0f0f; color: #e0e0e0; padding: 32px 24px; max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 20px; font-weight: 700; margin-bottom: 24px; color: #fff; }
+    label { display: block; font-size: 13px; color: #a0a0a0; margin-bottom: 6px; }
+    select, textarea { width: 100%; background: #1a1a1a; border: 1px solid #333; color: #e0e0e0; border-radius: 6px; font-family: inherit; font-size: 14px; padding: 10px 12px; }
+    textarea { resize: vertical; min-height: 160px; }
+    select { height: 40px; }
+    .field { margin-bottom: 16px; }
+    button { background: #FFD000; color: #000; border: none; border-radius: 6px; padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    #log { margin-top: 24px; background: #111; border: 1px solid #2a2a2a; border-radius: 6px; padding: 14px; font-family: monospace; font-size: 12px; color: #bbb; white-space: pre-wrap; max-height: 300px; overflow-y: auto; display: none; }
+    #slides { margin-top: 32px; display: none; }
+    #slides h2 { font-size: 15px; font-weight: 600; margin-bottom: 16px; color: #fff; }
+    .slide-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+    .slide-grid img { width: 160px; height: 284px; object-fit: cover; border-radius: 6px; border: 1px solid #333; }
+  </style>
+</head>
+<body>
+  <h1>Metafi Creator</h1>
+
+  <div class="field">
+    <label for="source_type">Source Type</label>
+    <select id="source_type">
+      <option value="founder_note">founder_note</option>
+      <option value="reddit_post" selected>reddit_post</option>
+      <option value="tiktok_post">tiktok_post</option>
+      <option value="tweet">tweet</option>
+      <option value="comment_thread">comment_thread</option>
+      <option value="competitor_post">competitor_post</option>
+      <option value="other">other</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="raw_input">Raw Input</label>
+    <textarea id="raw_input" placeholder="Paste the raw source content here..."></textarea>
+  </div>
+
+  <button id="btn" onclick="generate()">Generate</button>
+
+  <div id="log"></div>
+
+  <div id="slides">
+    <h2>Rendered Slides</h2>
+    <div class="slide-grid" id="slide-grid"></div>
+  </div>
+
+  <script>
+    async function generate() {
+      const source_type = document.getElementById('source_type').value;
+      const raw_input = document.getElementById('raw_input').value.trim();
+      if (!raw_input) { alert('Paste raw input first.'); return; }
+
+      const btn = document.getElementById('btn');
+      const log = document.getElementById('log');
+      const slides = document.getElementById('slides');
+      const grid = document.getElementById('slide-grid');
+
+      btn.disabled = true;
+      log.style.display = 'block';
+      log.textContent = '';
+      slides.style.display = 'none';
+      grid.innerHTML = '';
+
+      try {
+        const res = await fetch('/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ source_type, raw_input }),
+        });
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let done = false;
+
+        while (!done) {
+          const { value, done: d } = await reader.read();
+          done = d;
+          if (value) {
+            const chunk = decoder.decode(value);
+            log.textContent += chunk;
+            log.scrollTop = log.scrollHeight;
+
+            if (chunk.includes('DONE')) {
+              showSlides(grid, slides);
+            }
+          }
+        }
+      } catch (err) {
+        log.textContent += '\nFetch error: ' + err.message;
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function showSlides(grid, slides) {
+      const ts = Date.now();
+      for (let i = 1; i <= 5; i++) {
+        const img = document.createElement('img');
+        img.src = `/renders/slide-${i}.png?t=${ts}`;
+        img.alt = `Slide ${i}`;
+        grid.appendChild(img);
+      }
+      slides.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

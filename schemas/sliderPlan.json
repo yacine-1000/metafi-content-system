@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "slider_plan_id",
+    "raw_idea",
+    "direction_bucket",
+    "intended_effect",
+    "content_source",
+    "exploration_mode",
+    "core_tension",
+    "audience_frame",
+    "content_thesis",
+    "slider_objective",
+    "slider_progression",
+    "reference_input",
+    "notes",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "slider_plan_id": { "type": "string" },
+    "raw_idea": { "type": "string" },
+    "direction_bucket": { "type": "string" },
+    "intended_effect": { "type": "string" },
+    "content_source": { "type": "string" },
+    "exploration_mode": { "type": "string" },
+    "core_tension": { "type": "string" },
+    "audience_frame": { "type": "string" },
+    "content_thesis": { "type": "string" },
+    "slider_objective": { "type": "string" },
+    "slider_progression": {
+      "type": "string",
+      "enum": [
+        "pain_insight_reframe",
+        "observation_tension_realization",
+        "problem_breakdown",
+        "pov_progression",
+        "mistake_correction"
+      ]
+    },
+    "reference_input": { "type": "array" },
+    "notes": { "type": "string" },
+    "status": { "type": "string", "enum": ["drafted"] }
+  }
+}

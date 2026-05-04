@@ -1,0 +1,29 @@
+{
+  "slides": [
+    {
+      "slide_number": 1,
+      "image_path": "assets/hook-images/hook-01.png",
+      "text": "تفوت جلسة وحدة عشان رجولك تعبانة، وتحس إنك خربت الأسبوع كله."
+    },
+    {
+      "slide_number": 2,
+      "image_path": "assets/body-images/body-01.jpg",
+      "text": "والمشكلة إن الجدول ما فيه خيار ثاني. يا تسوي كل شي بالضبط، يا خلاص، كأنك ما سويت شي."
+    },
+    {
+      "slide_number": 3,
+      "image_path": "assets/body-images/body-02.jpg",
+      "text": "تصير يا تضغط على نفسك زيادة وتخربها بجد، يا خلاص تقول 'أجل بوقف كم يوم' وتطول السالفة."
+    },
+    {
+      "slide_number": 4,
+      "image_path": "assets/body-images/body-03.jpg",
+      "text": "مع إنك ملتزم طول الأسبوع، بس كأن الجدول يقول 'أنا ما أدري وش صار لك، بس هذا اللي لازم تسويه'."
+    },
+    {
+      "slide_number": 5,
+      "image_path": "assets/final-slide-images/final-01.png",
+      "text": "المفروض خطتك تمشي مع حياتك، مو العكس."
+    }
+  ]
+}

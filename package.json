@@ -1,0 +1,20 @@
+{
+  "name": "metafi-content-system",
+  "version": "1.0.0",
+  "scripts": {
+    "intake": "node src/phases/raw-intake.js",
+    "planning": "node src/phases/planning.js",
+    "hook": "node src/phases/hook.js",
+    "body": "node src/phases/body.js",
+    "final-slide": "node src/phases/final-slide.js",
+    "ui": "node src/ui/server.js",
+    "assembly:build": "node src/assembly/build-assembly-config.js",
+    "assemble:test": "node src/assembly/assemble-slider.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "dotenv": "^16.5.0",
+    "express": "^4.22.1",
+    "playwright": "^1.59.1"
+  }
+}

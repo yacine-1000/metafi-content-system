@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "slider_plan_id",
+    "selected_hook",
+    "final_slide_text",
+    "closing_type",
+    "brand_bridge_text",
+    "closing_notes",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "slider_plan_id": { "type": "string" },
+    "selected_hook": { "type": "string" },
+    "final_slide_text": { "type": "string" },
+    "closing_type": {
+      "type": "string",
+      "enum": ["flat_realization", "soft_reframe", "comment_question"]
+    },
+    "brand_bridge_text": { "type": "string" },
+    "closing_notes": { "type": "string" },
+    "status": { "type": "string", "enum": ["drafted"] }
+  }
+}

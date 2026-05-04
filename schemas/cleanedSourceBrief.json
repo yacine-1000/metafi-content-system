@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "source_brief_id",
+    "source_type",
+    "raw_source_excerpt",
+    "cleaned_summary",
+    "core_pattern",
+    "emotional_signal",
+    "useful_phrases",
+    "audience_relevance",
+    "content_potential",
+    "notes",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "source_brief_id": { "type": "string" },
+    "source_type": {
+      "type": "string",
+      "enum": ["reddit_post", "tiktok_post", "tweet", "comment_thread", "founder_note", "competitor_post", "other"]
+    },
+    "raw_source_excerpt": { "type": "string" },
+    "cleaned_summary": { "type": "string" },
+    "core_pattern": { "type": "string" },
+    "emotional_signal": { "type": "string" },
+    "useful_phrases": { "type": "array", "items": { "type": "string" } },
+    "audience_relevance": { "type": "string" },
+    "content_potential": {
+      "type": "string",
+      "enum": ["identity_slider", "tension_slider", "decision_pain_slider", "worldview_slider", "self_recognition_slider"]
+    },
+    "notes": { "type": "string" },
+    "status": { "type": "string", "enum": ["drafted"] }
+  }
+}
