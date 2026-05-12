@@ -9,6 +9,34 @@ const hookOutput      = JSON.parse(fs.readFileSync(path.join(ROOT, 'test-outputs
 const bodyOutput      = JSON.parse(fs.readFileSync(path.join(ROOT, 'test-outputs/bodyOutput.json'), 'utf8'));
 const finalSlideOutput = JSON.parse(fs.readFileSync(path.join(ROOT, 'test-outputs/finalSlideOutput.json'), 'utf8'));
 
+const errors = [];
+
+if (!hookOutput.selected_hook || !hookOutput.selected_hook.trim()) {
+  errors.push('hookOutput.selected_hook is missing or empty');
+}
+
+if (!Array.isArray(bodyOutput.body_slides)) {
+  errors.push('bodyOutput.body_slides is missing or not an array');
+} else if (bodyOutput.body_slides.length !== 3) {
+  errors.push(`bodyOutput.body_slides must have exactly 3 items, got ${bodyOutput.body_slides.length}`);
+} else {
+  bodyOutput.body_slides.forEach((slide, i) => {
+    if (!slide.slide_text || !slide.slide_text.trim()) {
+      errors.push(`bodyOutput.body_slides[${i}] missing or empty slide_text`);
+    }
+  });
+}
+
+if (!finalSlideOutput.final_slide_text || !finalSlideOutput.final_slide_text.trim()) {
+  errors.push('finalSlideOutput.final_slide_text is missing or empty');
+}
+
+if (errors.length > 0) {
+  console.error('Assembly validation failed:');
+  for (const e of errors) console.error(` - ${e}`);
+  process.exit(1);
+}
+
 const IMAGE_PATHS = {
   1: 'assets/hook-images/hook-01.png',
   2: 'assets/body-images/body-01.jpg',
@@ -30,5 +58,6 @@ const slides = [
 const config = { slides };
 
 const outPath = path.join(ROOT, 'test-inputs/assembly-config.json');
+fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, JSON.stringify(config, null, 2), 'utf8');
 console.log(`✓ assembly-config.json written (${slides.length} slides)`);

@@ -7,12 +7,16 @@
     "hook": "node src/phases/hook.js",
     "body": "node src/phases/body.js",
     "final-slide": "node src/phases/final-slide.js",
+    "caption": "node src/phases/caption.js",
     "ui": "node src/ui/server.js",
     "assembly:build": "node src/assembly/build-assembly-config.js",
-    "assemble:test": "node src/assembly/assemble-slider.js"
+    "assemble:test": "node src/assembly/assemble-slider.js",
+    "assemble:styles": "node src/assembly/assemble-slider.js --styles",
+    "upload:latest": "node src/upload/upload-to-supabase.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
+    "@supabase/supabase-js": "^2.105.4",
     "dotenv": "^16.5.0",
     "express": "^4.22.1",
     "playwright": "^1.59.1"

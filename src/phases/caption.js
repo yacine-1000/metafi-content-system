@@ -5,17 +5,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
 
-const REQUIRED_FIELDS = [
-  'slider_plan_id',
-  'selected_hook',
-  'final_slide_text',
-  'closing_type',
-  'brand_bridge_text',
-  'closing_notes',
-  'status',
-];
-
-const VALID_CLOSING_TYPES = ['flat_realization', 'soft_reframe', 'comment_question'];
+const REQUIRED_FIELDS = ['caption', 'hashtags', 'caption_notes', 'status'];
 
 function validate(obj) {
   const errors = [];
@@ -28,8 +18,23 @@ function validate(obj) {
     if (!(field in obj)) errors.push(`Missing field: ${field}`);
   }
 
-  if ('closing_type' in obj && !VALID_CLOSING_TYPES.includes(obj.closing_type)) {
-    errors.push(`Invalid closing_type: "${obj.closing_type}"`);
+  if ('caption' in obj && typeof obj.caption === 'string' && !obj.caption.trim()) {
+    errors.push('caption must not be empty');
+  }
+
+  if ('hashtags' in obj) {
+    if (!Array.isArray(obj.hashtags)) {
+      errors.push('hashtags must be an array');
+    } else {
+      if (obj.hashtags.length < 5 || obj.hashtags.length > 8) {
+        errors.push(`hashtags must have 5–8 items, got ${obj.hashtags.length}`);
+      }
+      obj.hashtags.forEach((tag, i) => {
+        if (typeof tag !== 'string' || !tag.startsWith('#')) {
+          errors.push(`hashtags[${i}] must be a string starting with #`);
+        }
+      });
+    }
   }
 
   return errors;
@@ -43,17 +48,19 @@ async function run() {
   }
 
   const root = path.join(__dirname, '..', '..');
-  const promptPath = path.join(root, 'prompts', 'final-slide.txt');
-  const planPath = path.join(root, 'test-outputs', 'sliderPlan.json');
-  const hookPath = path.join(root, 'test-outputs', 'hookOutput.json');
-  const bodyPath = path.join(root, 'test-outputs', 'bodyOutput.json');
-  const outputPath = path.join(root, 'test-outputs', 'finalSlideOutput.json');
+  const promptPath    = path.join(root, 'prompts', 'caption.txt');
+  const planPath      = path.join(root, 'test-outputs', 'sliderPlan.json');
+  const hookPath      = path.join(root, 'test-outputs', 'hookOutput.json');
+  const bodyPath      = path.join(root, 'test-outputs', 'bodyOutput.json');
+  const finalPath     = path.join(root, 'test-outputs', 'finalSlideOutput.json');
+  const outputPath    = path.join(root, 'test-outputs', 'captionOutput.json');
 
   for (const [label, p] of [
-    ['prompts/final-slide.txt', promptPath],
+    ['prompts/caption.txt', promptPath],
     ['test-outputs/sliderPlan.json', planPath],
     ['test-outputs/hookOutput.json', hookPath],
     ['test-outputs/bodyOutput.json', bodyPath],
+    ['test-outputs/finalSlideOutput.json', finalPath],
   ]) {
     if (!fs.existsSync(p)) {
       console.error(`Error: Missing file at ${label}`);
@@ -61,17 +68,18 @@ async function run() {
     }
   }
 
-  const prompt = fs.readFileSync(promptPath, 'utf8');
-  const plan = fs.readFileSync(planPath, 'utf8').trim();
-  const hook = fs.readFileSync(hookPath, 'utf8').trim();
-  const body = fs.readFileSync(bodyPath, 'utf8').trim();
+  const prompt     = fs.readFileSync(promptPath, 'utf8');
+  const plan       = fs.readFileSync(planPath, 'utf8').trim();
+  const hook       = fs.readFileSync(hookPath, 'utf8').trim();
+  const body       = fs.readFileSync(bodyPath, 'utf8').trim();
+  const finalSlide = fs.readFileSync(finalPath, 'utf8').trim();
 
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({
     model: 'gemini-2.5-flash',
     generationConfig: {
       responseMimeType: 'application/json',
-      temperature: 0.2,
+      temperature: 0.3,
     },
   });
 
@@ -87,7 +95,11 @@ ${hook}
 
 <body_output>
 ${body}
-</body_output>`;
+</body_output>
+
+<final_slide_output>
+${finalSlide}
+</final_slide_output>`;
 
   console.log('Sending to Gemini...');
 
@@ -97,7 +109,7 @@ ${body}
   let parsed;
   try {
     parsed = JSON.parse(text);
-  } catch (err) {
+  } catch {
     console.error('Model returned invalid JSON:\n');
     console.error(text);
     process.exit(1);
@@ -106,9 +118,7 @@ ${body}
   const errors = validate(parsed);
   if (errors.length > 0) {
     console.error('Output failed validation:');
-    for (const error of errors) {
-      console.error(` - ${error}`);
-    }
+    for (const error of errors) console.error(` - ${error}`);
     process.exit(1);
   }
 
@@ -116,9 +126,9 @@ ${body}
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, output, 'utf8');
 
-  console.log('\n--- finalSlideOutput ---\n');
+  console.log('\n--- captionOutput ---\n');
   console.log(output);
-  console.log('\nSaved → test-outputs/finalSlideOutput.json');
+  console.log('\nSaved → test-outputs/captionOutput.json');
 }
 
 run().catch((err) => {

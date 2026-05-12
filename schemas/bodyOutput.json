@@ -13,7 +13,7 @@
   "properties": {
     "slider_plan_id": { "type": "string" },
     "selected_hook": { "type": "string" },
-    "body_slide_count": { "type": "integer", "minimum": 3, "maximum": 4 },
+    "body_slide_count": { "type": "integer", "const": 3 },
     "body_slides": {
       "type": "array",
       "items": {
@@ -21,7 +21,7 @@
         "required": ["slide_number", "slide_role", "slide_text", "text_intent"],
         "additionalProperties": false,
         "properties": {
-          "slide_number": { "type": "integer", "minimum": 2 },
+          "slide_number": { "type": "integer", "minimum": 2, "maximum": 4 },
           "slide_role": {
             "type": "string",
             "enum": ["build", "tension", "realization"]

@@ -6,53 +6,196 @@
   <title>Metafi Creator</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #0f0f0f; color: #e0e0e0; padding: 32px 24px; max-width: 860px; margin: 0 auto; }
-    h1 { font-size: 20px; font-weight: 700; margin-bottom: 24px; color: #fff; }
+    body { font-family: system-ui, sans-serif; background: #0f0f0f; color: #e0e0e0; }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      position: fixed; top: 0; left: 0; width: 220px; height: 100vh;
+      background: #111; border-right: 1px solid #1e1e1e;
+      display: flex; flex-direction: column;
+    }
+    .sidebar-logo {
+      padding: 24px 20px 20px; text-align: center;
+      border-bottom: 1px solid #1e1e1e;
+    }
+    .sidebar-logo img { max-width: 130px; height: auto; display: block; margin: 0 auto; }
+    .sidebar-nav { padding: 16px 12px; }
+    .sidebar-tab {
+      display: flex; align-items: center; gap: 9px;
+      width: 100%; padding: 9px 12px; border-radius: 6px;
+      font-size: 13px; font-weight: 600; color: #555;
+      cursor: pointer; border: none; background: none; text-align: left;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-tab .tab-icon { font-size: 14px; }
+    .sidebar-tab.active {
+      background: linear-gradient(135deg, #7FFFD4, #5271FF);
+      color: #000;
+    }
+    .sidebar-tab:not(.active):hover { background: #1a1a1a; color: #bbb; }
+
+    /* ── Main content ── */
+    #main { margin-left: 220px; padding: 36px 36px 60px; max-width: 900px; }
+
+    h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; color: #fff; }
+    .subtitle { font-size: 13px; color: #555; margin-bottom: 32px; }
+    .section-label { font-size: 11px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
     label { display: block; font-size: 13px; color: #a0a0a0; margin-bottom: 6px; }
-    select, textarea { width: 100%; background: #1a1a1a; border: 1px solid #333; color: #e0e0e0; border-radius: 6px; font-family: inherit; font-size: 14px; padding: 10px 12px; }
+    select, textarea {
+      width: 100%; background: #1a1a1a; border: 1px solid #333;
+      color: #e0e0e0; border-radius: 6px; font-family: inherit;
+      font-size: 14px; padding: 10px 12px;
+    }
     textarea { resize: vertical; min-height: 160px; }
     select { height: 40px; }
     .field { margin-bottom: 16px; }
-    button { background: #FFD000; color: #000; border: none; border-radius: 6px; padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer; }
-    button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── Generate button with gradient ── */
+    button#btn {
+      background: linear-gradient(135deg, #7FFFD4, #5271FF);
+      color: #000; border: none; border-radius: 6px;
+      padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer;
+    }
+    button#btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── Status bar ── */
+    #status-bar { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
+    #status-bar .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    #status-bar[data-state="idle"] { color: #444; }
+    #status-bar[data-state="idle"] .dot { background: #333; }
+    #status-bar[data-state="generating"] { color: #aaa; }
+    #status-bar[data-state="generating"] .dot { background: #7FFFD4; }
+    #status-bar[data-state="ready"] { color: #5cb85c; }
+    #status-bar[data-state="ready"] .dot { background: #5cb85c; }
+    #status-bar[data-state="failed"] { color: #c0392b; }
+    #status-bar[data-state="failed"] .dot { background: #c0392b; }
+
+    /* ── Log ── */
     #log { margin-top: 24px; background: #111; border: 1px solid #2a2a2a; border-radius: 6px; padding: 14px; font-family: monospace; font-size: 12px; color: #bbb; white-space: pre-wrap; max-height: 300px; overflow-y: auto; display: none; }
+
+    /* ── Slides ── */
     #slides { margin-top: 32px; display: none; }
-    #slides h2 { font-size: 15px; font-weight: 600; margin-bottom: 16px; color: #fff; }
     .slide-grid { display: flex; gap: 10px; flex-wrap: wrap; }
     .slide-grid img { width: 160px; height: 284px; object-fit: cover; border-radius: 6px; border: 1px solid #333; }
+
+    /* ── Post info ── */
+    #post-info { margin-top: 20px; display: none; }
+    #post-info .saved-label { font-size: 11px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    #post-info .saved-path { font-family: monospace; font-size: 13px; color: #FFD000; margin-bottom: 4px; }
+    #post-info .saved-meta { font-family: monospace; font-size: 11px; color: #555; }
+
+    /* ── Caption ── */
+    #caption-block { margin-top: 20px; display: none; }
+    #caption-block .label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    #caption-text { font-size: 14px; color: #e0e0e0; white-space: pre-wrap; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; padding: 12px 14px; line-height: 1.6; }
+    #hashtags-text { margin-top: 8px; font-size: 13px; color: #888; word-break: break-word; }
+
+    /* ── Upload links ── */
+    #upload-block { margin-top: 20px; display: none; }
+    #upload-block .upload-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    #upload-block .upload-badge { font-size: 11px; font-weight: 700; color: #0f0f0f; background: #5cb85c; border-radius: 4px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+    #upload-block .upload-bucket { font-size: 11px; color: #555; font-family: monospace; }
+    .upload-links { display: flex; flex-direction: column; gap: 6px; }
+    .upload-links a { font-size: 12px; font-family: monospace; color: #7FFFD4; text-decoration: none; word-break: break-all; }
+    .upload-links a:hover { text-decoration: underline; }
+    .upload-link-label { font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; margin-top: 10px; }
+
+    /* ── History ── */
+    #history { margin-top: 40px; }
+    .post-row { display: flex; align-items: center; gap: 16px; padding: 10px 14px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
+    .post-row:hover { border-color: #444; }
+    .post-row .pid { font-family: monospace; font-size: 12px; color: #FFD000; flex: 1; }
+    .post-row .meta { font-size: 11px; color: #666; }
+    .post-row .status { font-size: 11px; color: #555; }
   </style>
 </head>
 <body>
-  <h1>Metafi Creator</h1>
 
-  <div class="field">
-    <label for="source_type">Source Type</label>
-    <select id="source_type">
-      <option value="founder_note">founder_note</option>
-      <option value="reddit_post" selected>reddit_post</option>
-      <option value="tiktok_post">tiktok_post</option>
-      <option value="tweet">tweet</option>
-      <option value="comment_thread">comment_thread</option>
-      <option value="competitor_post">competitor_post</option>
-      <option value="other">other</option>
-    </select>
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div class="sidebar-logo">
+      <img src="/assets/brand/metafi-full-logo.png" alt="Metafi" />
+    </div>
+    <nav class="sidebar-nav">
+      <button class="sidebar-tab active">
+        <span class="tab-icon">⚡</span> Generations
+      </button>
+    </nav>
   </div>
 
-  <div class="field">
-    <label for="raw_input">Raw Input</label>
-    <textarea id="raw_input" placeholder="Paste the raw source content here..."></textarea>
-  </div>
+  <!-- Main -->
+  <div id="main">
+    <h1>Metafi Creator</h1>
+    <p class="subtitle">Paste an idea → generate TikTok slider → review slides + caption</p>
 
-  <button id="btn" onclick="generate()">Generate</button>
+    <div class="section-label">1 · Input</div>
 
-  <div id="log"></div>
+    <div class="field">
+      <label for="source_type">Source Type</label>
+      <select id="source_type">
+        <option value="founder_note">founder_note</option>
+        <option value="reddit_post" selected>reddit_post</option>
+        <option value="tiktok_post">tiktok_post</option>
+        <option value="tweet">tweet</option>
+        <option value="comment_thread">comment_thread</option>
+        <option value="competitor_post">competitor_post</option>
+        <option value="other">other</option>
+      </select>
+    </div>
 
-  <div id="slides">
-    <h2>Rendered Slides</h2>
-    <div class="slide-grid" id="slide-grid"></div>
+    <div class="field">
+      <label for="raw_input">Raw Input</label>
+      <textarea id="raw_input" placeholder="Paste the raw source content here..."></textarea>
+    </div>
+
+    <button id="btn" onclick="generate()">Generate</button>
+    <div id="status-bar" data-state="idle"><span class="dot"></span><span id="status-text">Idle</span></div>
+
+    <div class="section-label" id="log-label" style="display:none;margin-top:24px;">2 · Generation Log</div>
+    <div id="log"></div>
+
+    <div id="history">
+      <div class="section-label" style="margin-top:40px;">5 · Recent Posts</div>
+      <div id="post-list"></div>
+    </div>
+
+    <div id="slides">
+      <div class="section-label" style="margin-top:32px;">3 · Rendered Slides</div>
+      <div class="slide-grid" id="slide-grid"></div>
+      <div id="post-info">
+        <div class="saved-label">Saved to</div>
+        <div class="saved-path" id="output-path">—</div>
+        <div class="saved-meta">id: <span id="post-id">—</span> &nbsp;·&nbsp; status: <span id="post-status">—</span></div>
+      </div>
+      <div class="section-label" id="caption-label" style="margin-top:24px;display:none;">4 · Caption</div>
+      <div id="caption-block">
+        <div class="label">Caption</div>
+        <div id="caption-text"></div>
+        <div id="hashtags-text"></div>
+      </div>
+
+      <div class="section-label" id="upload-label" style="margin-top:24px;display:none;">5 · Supabase Links</div>
+      <div id="upload-block">
+        <div class="upload-header">
+          <span class="upload-badge">Uploaded</span>
+          <span class="upload-bucket" id="upload-bucket"></span>
+        </div>
+        <div class="upload-link-label">Slides</div>
+        <div class="upload-links" id="upload-slide-links"></div>
+        <div class="upload-link-label" id="caption-url-label" style="display:none;">Caption</div>
+        <div class="upload-links" id="upload-caption-link"></div>
+      </div>
+    </div>
   </div>
 
   <script>
+    const STATUS_LABELS = { idle: 'Idle', generating: 'Generating...', ready: 'Ready for review', failed: 'Failed' };
+    function setStatus(state) {
+      const bar = document.getElementById('status-bar');
+      bar.setAttribute('data-state', state);
+      document.getElementById('status-text').textContent = STATUS_LABELS[state] || state;
+    }
+
     async function generate() {
       const source_type = document.getElementById('source_type').value;
       const raw_input = document.getElementById('raw_input').value.trim();
@@ -64,7 +207,9 @@
       const grid = document.getElementById('slide-grid');
 
       btn.disabled = true;
+      setStatus('generating');
       log.style.display = 'block';
+      document.getElementById('log-label').style.display = 'block';
       log.textContent = '';
       slides.style.display = 'none';
       grid.innerHTML = '';
@@ -79,6 +224,8 @@
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let done = false;
+        let savedPostId = null;
+        let gotDone = false;
 
         while (!done) {
           const { value, done: d } = await reader.read();
@@ -88,27 +235,134 @@
             log.textContent += chunk;
             log.scrollTop = log.scrollHeight;
 
-            if (chunk.includes('DONE')) {
-              showSlides(grid, slides);
+            const savedLine = chunk.split('\n').find((l) => l.startsWith('POST_SAVED:'));
+            if (savedLine) {
+              try {
+                const data = JSON.parse(savedLine.slice('POST_SAVED:'.length));
+                savedPostId = data.post_id;
+              } catch {}
+            }
+            if (chunk.includes('DONE') && savedPostId) {
+              gotDone = true;
+              setStatus('ready');
+              showSlides(grid, slides, savedPostId);
+              await showPostDetail(savedPostId);
+              loadHistory();
             }
           }
         }
+        if (!gotDone) setStatus('failed');
       } catch (err) {
         log.textContent += '\nFetch error: ' + err.message;
+        setStatus('failed');
       } finally {
         btn.disabled = false;
       }
     }
 
-    function showSlides(grid, slides) {
+    async function showPostDetail(postId) {
+      try {
+        const data = await fetch(`/posts/${postId}`).then((r) => r.json());
+        document.getElementById('post-id').textContent = data.post_id || postId;
+        document.getElementById('output-path').textContent = `outputs/posts/${data.post_id || postId}`;
+        document.getElementById('post-status').textContent = data.status || '—';
+        document.getElementById('post-info').style.display = 'block';
+
+        const captionBlock = document.getElementById('caption-block');
+        if (data.caption) {
+          document.getElementById('caption-text').textContent = data.caption;
+          document.getElementById('hashtags-text').textContent = Array.isArray(data.hashtags) ? data.hashtags.join(' ') : '';
+          captionBlock.style.display = 'block';
+          document.getElementById('caption-label').style.display = 'block';
+        } else {
+          captionBlock.style.display = 'none';
+          document.getElementById('caption-label').style.display = 'none';
+        }
+
+        const uploadBlock = document.getElementById('upload-block');
+        const uploadLabel = document.getElementById('upload-label');
+        if (data.status === 'uploaded' && Array.isArray(data.slide_urls) && data.slide_urls.length) {
+          document.getElementById('upload-bucket').textContent =
+            data.supabase ? `${data.supabase.bucket} / ${data.supabase.base_path}` : '';
+
+          const slideLinks = document.getElementById('upload-slide-links');
+          slideLinks.innerHTML = '';
+          data.slide_urls.forEach((url, i) => {
+            const a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.textContent = `slide-${i + 1}.png`;
+            slideLinks.appendChild(a);
+          });
+
+          const captionLinkWrap = document.getElementById('upload-caption-link');
+          const captionUrlLabel = document.getElementById('caption-url-label');
+          captionLinkWrap.innerHTML = '';
+          if (data.caption_url) {
+            const a = document.createElement('a');
+            a.href = data.caption_url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.textContent = 'caption.txt';
+            captionLinkWrap.appendChild(a);
+            captionUrlLabel.style.display = 'block';
+          } else {
+            captionUrlLabel.style.display = 'none';
+          }
+
+          uploadBlock.style.display = 'block';
+          uploadLabel.style.display = 'block';
+        } else {
+          uploadBlock.style.display = 'none';
+          uploadLabel.style.display = 'none';
+        }
+      } catch {}
+    }
+
+    async function loadHistory() {
+      const list = document.getElementById('post-list');
+      try {
+        const posts = await fetch('/posts').then((r) => r.json());
+        list.innerHTML = '';
+        if (!posts.length) {
+          list.innerHTML = '<p style="font-size:13px;color:#555;">No posts yet.</p>';
+          return;
+        }
+        for (const p of posts) {
+          const row = document.createElement('div');
+          row.className = 'post-row';
+          const when = p.created_at ? new Date(p.created_at).toLocaleString() : '—';
+          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status">${p.status}</span>`;
+          row.addEventListener('click', () => viewPost(p.post_id));
+          list.appendChild(row);
+        }
+      } catch {
+        list.innerHTML = '<p style="font-size:13px;color:#555;">Could not load history.</p>';
+      }
+    }
+
+    async function viewPost(postId) {
+      const slides = document.getElementById('slides');
+      const grid = document.getElementById('slide-grid');
+      grid.innerHTML = '';
+      showSlides(grid, slides, postId);
+      await showPostDetail(postId);
+      setStatus('ready');
+      slides.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    loadHistory();
+
+    function showSlides(grid, slidesEl, postId) {
       const ts = Date.now();
       for (let i = 1; i <= 5; i++) {
         const img = document.createElement('img');
-        img.src = `/renders/slide-${i}.png?t=${ts}`;
+        img.src = `/outputs/posts/${postId}/slides/slide-${i}.png?t=${ts}`;
         img.alt = `Slide ${i}`;
         grid.appendChild(img);
       }
-      slides.style.display = 'block';
+      slidesEl.style.display = 'block';
     }
   </script>
 </body>

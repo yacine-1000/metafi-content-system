@@ -118,6 +118,7 @@ ${plan}
   }
 
   const output = JSON.stringify(parsed, null, 2);
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, output, 'utf8');
 
   console.log('\n--- hookOutput ---\n');

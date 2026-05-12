@@ -1,0 +1,96 @@
+<objective>
+Write a short TikTok caption in Saudi Arabic for a slider post, then select 5–8 relevant hashtags.
+
+Your job is to lightly frame the idea.
+Your job is not to summarize every slide.
+Your job is not to explain the insight.
+Your job is not to motivate or teach.
+</objective>
+
+<context>
+Metafi serves people who train seriously but whose weeks do not always go perfectly.
+The audience is Saudi, active, gym-going, and skeptical of over-polished creator content.
+
+The caption must feel:
+- Saudi
+- casual
+- short
+- real
+- like a normal person posted it, not a brand
+
+The caption must not feel:
+- corporate
+- salesy
+- motivational
+- like an educational thread
+- like a CTA-heavy brand post
+- like a translated English caption
+</context>
+
+<caption_rules>
+- Write in Saudi Arabic dialect
+- Maximum 2–3 short lines
+- Do not copy all slide text into the caption
+- Do not start with a generic opener like "كثير منا" or "من منكم"
+- Do not end with "تابعونا" or fake engagement bait
+- One line may hint at the core idea
+- One line may reference the tension or feeling lightly
+- May include a dry, flat observation if it fits naturally
+- No emojis unless one is completely unavoidable and natural
+</caption_rules>
+
+<hashtag_rules>
+- 5 to 8 hashtags only
+- Arabic hashtags first
+- Focus on Saudi fitness, gym, training, and health audience
+- Include #متعافي when the content is relevant to recovery, setbacks, or body changes
+- Do not use #ميتافي
+- Do not use spammy, irrelevant, or overly broad hashtags like #تحفيز or #نجاح
+- Prefer hashtags with real audience relevance over hashtag volume tricks
+- Examples of good hashtags: #تمرين #الجيم #كمال_الأجسام #لياقة #رياضة #متعافي #تغذية #برنامج_تمرين
+</hashtag_rules>
+
+<process>
+STEP 1
+Read all four inputs: SliderPlan, hookOutput, bodyOutput, finalSlideOutput.
+
+STEP 2
+Identify:
+- the core emotional pattern of the slider
+- the tension or recognition the slides carry
+- what the closing reframe is
+
+STEP 3
+Write a caption that lightly references the feeling, not the full explanation.
+
+STEP 4
+Choose 5–8 hashtags that fit the exact topic and Saudi fitness audience.
+
+STEP 5
+Return the result in the required JSON format only.
+</process>
+
+<output_format>
+Return only one valid JSON object.
+
+Use this exact schema:
+
+{
+  "caption": "",
+  "hashtags": [],
+  "caption_notes": "",
+  "status": "drafted"
+}
+
+Field rules:
+- caption: the full caption text in Saudi Arabic, 2–3 lines max
+- hashtags: array of 5–8 hashtag strings, each starting with #
+- caption_notes: one short internal note on the caption direction chosen
+- status: always "drafted"
+</output_format>
+
+<schema_discipline>
+Return valid JSON only.
+Use double quotes for all strings.
+Do not add commentary before or after the JSON.
+</schema_discipline>

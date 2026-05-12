@@ -19,11 +19,73 @@ function imageToDataUrl(imgPath) {
   return `data:${mime};base64,${buf.toString('base64')}`;
 }
 
-function buildHtml(dataUrl, text) {
+const STYLES = {
+  'style-a': {
+    fontFamily: '"Segoe UI", Tahoma, Arial, sans-serif',
+    fontSize: '55px',
+    lineHeight: '0.95',
+    maxWidth: '820px',
+    textShadow: [
+      '2px 0 0 #000',
+      '-2px 0 0 #000',
+      '0 2px 0 #000',
+      '0 -2px 0 #000',
+      '2px 2px 0 #000',
+      '-2px 2px 0 #000',
+      '2px -2px 0 #000',
+      '-2px -2px 0 #000',
+    ].join(', '),
+  },
+  'style-b': {
+    fontFamily: '"Segoe UI", Tahoma, Arial, sans-serif',
+    fontSize: '55px',
+    lineHeight: '1.02',
+    maxWidth: '820px',
+    textShadow: [
+      '-1px -1px 0 rgba(0,0,0,0.75)',
+       '1px -1px 0 rgba(0,0,0,0.75)',
+      '-1px  1px 0 rgba(0,0,0,0.75)',
+       '1px  1px 0 rgba(0,0,0,0.75)',
+    ].join(', '),
+  },
+  'style-c': {
+    fontFamily: 'Tahoma, Arial, sans-serif',
+    fontSize: '58px',
+    lineHeight: '1',
+    maxWidth: '800px',
+    textShadow: '0 2px 3px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.55)',
+  },
+  'style-d': {
+    fontFamily: "'Almarai', 'Cairo', sans-serif",
+    fontSize: '85px',
+    lineHeight: '1.2',
+    maxWidth: '900px',
+    top: '25%',
+    textShadow: [
+      '2px 2px 0 #000',
+      '-2px -2px 0 #000',
+      '2px -2px 0 #000',
+      '-2px 2px 0 #000',
+      '0px 2px 0 #000',
+      '2px 0px 0 #000',
+      '0px -2px 0 #000',
+      '-2px 0px 0 #000',
+      '4px 4px 10px rgba(0,0,0,0.5)',
+    ].join(', '),
+    googleFontsUrl: 'https://fonts.googleapis.com/css2?family=Almarai:wght@700;800&family=Cairo:wght@700;800&display=swap',
+  },
+};
+
+function buildHtml(dataUrl, text, style) {
+  const s = style || STYLES['style-a'];
+  const fontLink = s.googleFontsUrl
+    ? `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="${s.googleFontsUrl}" rel="stylesheet">`
+    : '';
   return `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
+${fontLink}
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -42,29 +104,21 @@ function buildHtml(dataUrl, text) {
   }
   .text-block {
     position: absolute;
-    top: 28%;
+    top: ${s.top || '28%'};
     left: 50%;
     transform: translateX(-50%);
-    max-width: 780px;
+    max-width: ${s.maxWidth};
     color: #ffffff;
-    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
-    font-size: 55px;
-    font-weight: 700;
-    line-height: 1.12;
+    font-family: ${s.fontFamily};
+    font-size: ${s.fontSize};
+    font-weight: 800;
+    line-height: ${s.lineHeight};
     text-align: center;
     direction: rtl;
     white-space: pre-line;
     letter-spacing: normal;
     -webkit-text-stroke: 0;
-    text-shadow:
-      -1px -1px 0 rgba(0,0,0,0.95),
-       0px -1px 0 rgba(0,0,0,0.95),
-       1px -1px 0 rgba(0,0,0,0.95),
-      -1px  0px 0 rgba(0,0,0,0.95),
-       1px  0px 0 rgba(0,0,0,0.95),
-      -1px  1px 0 rgba(0,0,0,0.95),
-       0px  1px 0 rgba(0,0,0,0.95),
-       1px  1px 0 rgba(0,0,0,0.95);
+    text-shadow: ${s.textShadow};
   }
 </style>
 </head>
@@ -75,6 +129,39 @@ function buildHtml(dataUrl, text) {
 </html>`;
 }
 
+async function renderSlides(config, outDir, style, label) {
+  fs.mkdirSync(outDir, { recursive: true });
+  const browser = await chromium.launch();
+
+  for (const slide of config.slides) {
+    const imgAbsPath = path.join(ROOT, slide.image_path);
+
+    if (!fs.existsSync(imgAbsPath)) {
+      console.warn(`[${label}] Image not found, skipping slide ${slide.slide_number}: ${imgAbsPath}`);
+      continue;
+    }
+
+    const dataUrl = imageToDataUrl(imgAbsPath);
+    const html = buildHtml(dataUrl, slide.text, style);
+
+    const page = await browser.newPage();
+    await page.setViewportSize({ width: 1080, height: 1920 });
+    await page.setContent(html, { waitUntil: 'domcontentloaded' });
+    if (style && style.googleFontsUrl) {
+      await page.evaluate(() => document.fonts.ready);
+    }
+    await page.waitForTimeout(300);
+
+    const outPath = path.join(outDir, `slide-${slide.slide_number}.png`);
+    await page.screenshot({ path: outPath, clip: { x: 0, y: 0, width: 1080, height: 1920 } });
+    await page.close();
+
+    console.log(`[${label}] ✓ slide-${slide.slide_number}.png`);
+  }
+
+  await browser.close();
+}
+
 async function main() {
   if (!fs.existsSync(CONFIG_PATH)) {
     console.error(`Config not found: ${CONFIG_PATH}`);
@@ -82,38 +169,21 @@ async function main() {
   }
 
   const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
+  const stylesMode = process.argv.includes('--styles');
 
-  if (!fs.existsSync(RENDERS_DIR)) {
-    fs.mkdirSync(RENDERS_DIR, { recursive: true });
-  }
-
-  const browser = await chromium.launch();
-
-  for (const slide of config.slides) {
-    const imgAbsPath = path.join(ROOT, slide.image_path);
-
-    if (!fs.existsSync(imgAbsPath)) {
-      console.warn(`Image not found, skipping slide ${slide.slide_number}: ${imgAbsPath}`);
-      continue;
+  if (stylesMode) {
+    for (const [name, style] of Object.entries(STYLES)) {
+      const outDir = path.join(RENDERS_DIR, name);
+      console.log(`\n--- ${name} ---`);
+      await renderSlides(config, outDir, style, name);
+      console.log(`--- ${name} done ---`);
     }
-
-    const dataUrl = imageToDataUrl(imgAbsPath);
-    const html = buildHtml(dataUrl, slide.text);
-
-    const page = await browser.newPage();
-    await page.setViewportSize({ width: 1080, height: 1920 });
-    await page.setContent(html, { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(300);
-
-    const outPath = path.join(RENDERS_DIR, `slide-${slide.slide_number}.png`);
-    await page.screenshot({ path: outPath, clip: { x: 0, y: 0, width: 1080, height: 1920 } });
-    await page.close();
-
-    console.log(`✓ slide-${slide.slide_number}.png`);
+    console.log(`\nDone — 4 style folders written to renders/`);
+  } else {
+    fs.mkdirSync(RENDERS_DIR, { recursive: true });
+    await renderSlides(config, RENDERS_DIR, STYLES['style-a'], 'default');
+    console.log(`\nDone — ${config.slides.length} slides written to renders/`);
   }
-
-  await browser.close();
-  console.log(`\nDone — ${config.slides.length} slides written to renders/`);
 }
 
 main().catch((err) => {
