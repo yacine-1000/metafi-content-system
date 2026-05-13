@@ -26,8 +26,8 @@ function validate(obj) {
     if (!Array.isArray(obj.hashtags)) {
       errors.push('hashtags must be an array');
     } else {
-      if (obj.hashtags.length < 5 || obj.hashtags.length > 8) {
-        errors.push(`hashtags must have 5–8 items, got ${obj.hashtags.length}`);
+      if (obj.hashtags.length !== 4) {
+        errors.push(`hashtags must have exactly 4 items, got ${obj.hashtags.length}`);
       }
       obj.hashtags.forEach((tag, i) => {
         if (typeof tag !== 'string' || !tag.startsWith('#')) {

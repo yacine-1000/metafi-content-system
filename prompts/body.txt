@@ -1,223 +1,168 @@
 <objective>
-Generate the middle slides of a TikTok slider.
+Generate the 3 middle slides of a TikTok slider.
 
 You will receive:
 - a CleanedSourceBrief
 - an approved SliderPlan
 - an approved Hook output
 
-Your job is to write only the body slides.
+Your job is to write only body slides 2, 3, and 4.
 
-The body must:
-- stay faithful to the approved idea
-- build naturally from the selected hook
-- sound TikTok-native
-- sound like a normal Saudi person talking
-- add new value on each slide
-- prepare the closing slide without resolving it fully
+The body must continue the hook using clear, complete, natural sentences.
 </objective>
 
 <context>
-Metafi serves people who train seriously, but whose weeks do not always go to plan.
-A major part of the audience also trains while playing other sports.
+Metafi serves people who train, but whose weeks do not always go to plan.
+A major part of the audience also plays other sports.
 
-The body should feel like:
-- someone continuing the same thought from the hook
-- someone describing a painfully real pattern
-- someone yapping naturally
-- someone exposing the behavior, not lecturing about it
+The body should feel like a normal Saudi person clearly describing a real situation.
 
-The body should not feel like:
+It should not feel like:
 - a lesson
 - a framework
-- coaching
-- therapy language
-- polished insight writing
-- motivational content
+- a motivational post
+- a coach talking
+- a brand explaining itself
+- a writer trying to sound clever
 </context>
 
 <core_rule>
-Continue the same idea.
-Do not invent a new one.
+Do not optimize for shortness.
+Optimize for clear, complete, natural sentences.
 
-Do not:
-- change the thesis
-- change the emotional lane
-- add a second meaning
-- explain the psychology too neatly
-- turn the body into a summary of the whole post
+Short fragments often make the output sound goofy or fake.
 
-The body must feel like a natural continuation of the hook.
+Bad style:
+"رجولك مكسرة"
+"بس الجدول ما يدري"
+"أسبوعك مو ثابت"
+
+Better style:
+"رجولك للحين متأثرة من المباراة، بس الجدول يتعامل معك كأنك كنت مرتاح."
+"المشكلة مو إنك غير ملتزم. المشكلة إن الجدول ثابت، وأسبوعك الحقيقي مو ثابت."
+
+Each slide can be 1–2 complete sentences.
 </core_rule>
 
-<body_philosophy>
-A good body does 3 things:
-1. escalates the pattern
-2. sharpens the tension
-3. prepares the close
+<scenario_rule>
+Use one concrete situation only.
 
-Each slide must add something new.
+Do not combine multiple examples in one post.
+Do not write “or” chains like:
+- "نوم أو سفر أو كورة"
+- "كورة أو تنس أو دوام"
+- "قلة نوم أو سفر"
 
-The body should:
-- make the viewer feel more caught
-- make the behavior more obvious
-- make the overreaction, contradiction, or pattern more visible
+The body must continue the exact situation chosen by the planning phase and hook.
 
-The body should not:
-- repeat the hook in different words
-- explain the “deeper meaning” too early
-- sound like slide 5 before slide 5
-</body_philosophy>
+Bad:
+"جسمك تعبان من قلة النوم أو السفر، بس الجدول يتعامل معك كأنك مرتاح."
+
+Good:
+"جسمك للحين متأثر من السفر، بس الجدول يتعامل معك كأنك كنت مرتاح أمس."
+
+Good:
+"جسمك صاحي بالغصب بعد أربع ساعات نوم، بس الجدول يتعامل معك كأن نومك كان طبيعي."
+
+Good:
+"رجولك للحين متأثرة من مباراة أمس، بس الجدول يتعامل معك كأنك كنت مرتاح."
+</scenario_rule>
+
+<body_roles>
+Write exactly 3 body slides:
+
+Slide 2 = explain what makes the situation annoying.
+Slide 3 = show the uncomfortable choice, confusion, or friction clearly.
+Slide 4 = give the simple realization without sounding like a lesson.
+
+The slides should move forward naturally.
+Do not repeat the hook.
+Do not rush to the final closing thought.
+</body_roles>
 
 <writing_rules>
-- Keep slide text readable.
-- The body slides can have more text than the hook.
-- Still keep them short enough for a TikTok slider.
-- One slide = one job.
-- One slide = one movement forward.
-- If a line sounds like advice, remove the advice tone.
-- If a line sounds too smart, flatten it.
-- If a line sounds like a writer explaining a truth, simplify it.
-- Prefer behavior over interpretation.
-- Prefer specific reactions over general commentary.
-- Prefer socially believable phrasing over polished content writing.
+- Use simple Saudi Arabic.
+- Use complete sentences.
+- Stay close to the raw idea, SliderPlan, and selected hook.
+- Make the situation specific.
+- Use normal words that people actually say.
+- Express the thought clearly; do not compress it into slogans.
+- Each slide should be understandable on its own.
+- Each slide should connect naturally to the next.
+- If the sentence feels too clever, make it more normal.
+- If the sentence feels too short and vague, complete the thought.
 </writing_rules>
 
-<tone_rules>
-- Write like a normal Saudi person.
-- Keep the language natural, direct, and believable.
-- Do not use MSA.
-- Do not use exaggerated slang.
-- Do not use poetic language.
-- Keep the tone subtle, not performative.
-- If the notes say dry, flat, sharp, slightly funny, or not reassuring, respect that exactly.
-</tone_rules>
-
-<anti_patterns>
+<avoid>
 Avoid:
-- "الموضوع مو عن..."
-- "الرسالة هنا..."
-- "في الحقيقة..."
-- "المشكلة الأعمق..."
-- "هذا يدل على..."
-- "في النهاية..."
-- any line that sounds like a lesson
-- any line that sounds like a polished self-awareness post
-- any line that explains the psychology before the close
+- broken slogan fragments
+- goofy TikTok slang
+- exaggerated slang
+- MSA / formal Arabic
+- poetic wording
+- corporate language
+- product pitch
+- motivational advice
+- therapy language
+- consultant language
+- abstract framework words
+- combining multiple situations in one slide
 
-Bad direction:
-- explain the insight
-- over-summarize
-- become motivational
-- sound “deep”
+Do not use:
+- "الحل"
+- "السر"
+- "غير حياتك"
+- "ابدأ الآن"
+- "المشكلة الأعمق"
+- "هذا يدل على"
+- "في الحقيقة"
+- "الرسالة هنا"
+- "في النهاية"
+- "Metafi"
+- "متعافي"
+</avoid>
 
-Better direction:
-- describe what the person does
-- describe how the reaction escalates
-- show how ridiculous / real it becomes
-- let the viewer feel caught
-</anti_patterns>
+<target_style_examples>
+Good body style:
 
-<style_calibration>
-Prefer:
-- ugly-real over smooth-clever
-- behavior over explanation
-- flat truth over polished insight
-- escalation over summary
-- specificity over broadness
+"رجولك للحين متأثرة من المباراة، بس الجدول يتعامل معك كأنك كنت مرتاح أمس."
 
-Good direction:
-- shows what the person starts saying, planning, or doing
-- makes the pattern more embarrassing or more real
-- feels like the viewer is getting exposed slide by slide
+"فتحتار بين إنك تضغط على نفسك وتتمرن بنفس الشدة، أو تترك التمرين وتحس إن الأسبوع خرب."
 
-Bad direction:
-- repeating the same point
-- becoming too abstract
-- explaining the lesson before the last slide
-- writing like a thoughtful thread
-</style_calibration>
+"المشكلة مو إنك غير ملتزم. المشكلة إن الجدول ثابت، وأسبوعك الحقيقي مو ثابت."
 
-<reference_output_style>
-Use the reference output only for:
-- text length per slide
-- amount of text relative to hook vs body
-- tone
-- pacing
-- flow across slides
-- how the thought develops naturally
+"كتفك وذراعك أصلاً مستهلكة من اللعب، بس الجدول يتعامل كأنك كنت مرتاح طول اليوم."
 
-Do not copy:
-- wording
-- sentence structure too closely
-- topic
-- phrasing
-- specific expressions
+"نومك تغير، أكلك تغير، ومشاويرك زادت، بس الخطة تطلب منك تكمل من نفس المكان."
 
-The reference is for:
-- feel
-- density
-- rhythm
-- slide weight
+"جسمك صاحي بالغصب بعد أربع ساعات نوم، بس الجدول يتعامل معك كأن نومك كان طبيعي."
 
-Not for:
-- language reuse
-- imitation
-- paraphrasing
-</reference_output_style>
-
-<reference_example>
-Body Slide 1
-أروح النادي من سنة تقريبًا، رياضتي مقاومة، والتزمت بلايف ستايل صحي بالغالب وتحسنت نفسيتي.
-بس فجأة كرهت أم النادي وطفشت منه، وتركته شهرين تقريبًا.
-والحين أحس ودي أرجع عشان نفسيتي وصفاء ذهني وأخفف توتر وقلق.
-
-Body Slide 2
-بس اللي منفرني من النادي إني إذا التزمت فيه، أحس ما عاد يمديني أسوي أي شي ثاني.
-أكل وجباتي، أكمل بروتيني، أتمرن مع السترتشنق، وأنام.
-طيب عندي دراسة وأهل وقراءة وحياة، ولا يمديني أصير تعبانة ودايخة.
-
-Body Slide 3
-صرت إذا أبي أذاكر ما أروح الجم، عشان طاقتي ما تخلص فيه.
-مع إن كثير يقولون التمرين بالعكس يخليهم نشيطين، بس أنا أحس العكس.
-أبي أرجع له عشان نفسيتي، بس تعبت من نفس الدوامة.
-</reference_example>
+"رجعت من السفر أمس، وجسمك للحين مو راجع لطبيعته، بس الخطة تطلب منك تكمل من نفس المكان."
+</target_style_examples>
 
 <process>
 STEP 1
-Read the CleanedSourceBrief, SliderPlan, and selected hook carefully.
+Read the CleanedSourceBrief, SliderPlan, and selected hook.
 
 STEP 2
-Identify:
-- what the hook already established
-- what still needs to be shown
-- what behavior should be escalated
-- what tension should be sharpened
+Identify the one exact real-life situation from the plan.
 
 STEP 3
-Write exactly 3 body slides by default.
-Only write 4 if the idea truly needs it.
+Write exactly 3 body slides:
+- slide 2: annoying reality
+- slide 3: confusion/friction
+- slide 4: simple realization
 
 STEP 4
-Assign each body slide one role from:
-- build
-- tension
-- realization
-
-STEP 5
-Make sure each slide adds something new and prepares the closing slide.
-
-STEP 6
-Use the reference output only as a style, density, and pacing anchor.
-Do not copy its wording or structure too literally.
-
-STEP 7
 Silently verify:
-- the body stays faithful to the idea
-- the slides do not repeat each other
-- the tone feels naturally Saudi
-- the body does not become a lesson
-- the final body slide prepares the close without stealing it
+- each slide uses complete natural sentences
+- the body uses one concrete situation only
+- there are no “or” chains
+- no goofy shortcuts
+- no fake-smart language
+- no product pitch
+- no repeated hook
+- exactly 3 body slides
 </process>
 
 <output_format>
@@ -228,7 +173,7 @@ Use this exact schema:
 {
   "slider_plan_id": "",
   "selected_hook": "",
-  "body_slide_count": 0,
+  "body_slide_count": 3,
   "body_slides": [
     {
       "slide_number": 2,
@@ -244,12 +189,12 @@ Use this exact schema:
 Field rules:
 - slider_plan_id: preserve exactly from input
 - selected_hook: preserve exactly from hook input
-- body_slide_count: default to 3 unless 4 is clearly needed
-- body_slides: each slide must include slide_number, slide_role, slide_text, and text_intent
-- slide_number: must start from 2 and increase in order
+- body_slide_count: always 3
+- body_slides: exactly 3 items
+- slide_number: must be exactly 2, 3, 4
 - slide_role: use only build, tension, or realization
-- slide_text: must be short, readable, native, and faithful
-- text_intent: plain internal label
+- slide_text: must be natural, clear, specific, and complete
+- text_intent: short internal label
 - body_notes: brief practical note only if helpful
 - status: always "drafted"
 </output_format>

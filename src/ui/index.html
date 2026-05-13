@@ -100,6 +100,11 @@
     .upload-links a:hover { text-decoration: underline; }
     .upload-link-label { font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; margin-top: 10px; }
 
+    /* ── Upload error ── */
+    #upload-error { margin-top: 16px; display: none; background: #1a0808; border: 1px solid #5c1a1a; border-radius: 6px; padding: 12px 14px; }
+    #upload-error .err-title { font-size: 11px; font-weight: 700; color: #c0392b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    #upload-error .err-msg { font-size: 12px; font-family: monospace; color: #e07070; word-break: break-word; }
+
     /* ── History ── */
     #history { margin-top: 40px; }
     .post-row { display: flex; align-items: center; gap: 16px; padding: 10px 14px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
@@ -166,6 +171,10 @@
         <div class="saved-label">Saved to</div>
         <div class="saved-path" id="output-path">—</div>
         <div class="saved-meta">id: <span id="post-id">—</span> &nbsp;·&nbsp; status: <span id="post-status">—</span></div>
+      </div>
+      <div id="upload-error">
+        <div class="err-title">Upload Failed — Post saved locally</div>
+        <div class="err-msg" id="upload-error-msg"></div>
       </div>
       <div class="section-label" id="caption-label" style="margin-top:24px;display:none;">4 · Caption</div>
       <div id="caption-block">
@@ -316,6 +325,14 @@
         } else {
           uploadBlock.style.display = 'none';
           uploadLabel.style.display = 'none';
+        }
+
+        const uploadError = document.getElementById('upload-error');
+        if (data.status === 'upload_failed') {
+          document.getElementById('upload-error-msg').textContent = data.upload_error || 'Unknown upload error';
+          uploadError.style.display = 'block';
+        } else {
+          uploadError.style.display = 'none';
         }
       } catch {}
     }

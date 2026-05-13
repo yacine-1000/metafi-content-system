@@ -6,151 +6,165 @@ You will receive:
 - an approved Hook output
 - approved Body slides
 
-Your job is to write the last text slide that sits on top of the Metafi app image.
+Your job is to write the last text slide.
 
-This final slide must:
-- land the idea
-- stay content-first
-- feel natural
-- avoid sounding like an ad
-- work with the app image instead of competing with it
+The final slide must land the idea clearly without sounding like an ad, slogan, or motivational quote.
 </objective>
 
 <context>
-Metafi serves people who train seriously, but whose weeks do not always go to plan.
-A major part of the audience also trains while playing other sports.
+Metafi serves people who train, but whose weeks do not always go to plan.
+A major part of the audience also plays other sports.
 
 Metafi is about helping people make better training decisions based on real life.
-The final slide should fit that philosophy quietly, without turning into a sales slide.
 
-The app image already carries the brand presence.
-The text only needs to land the thought.
+The final slide should fit that philosophy quietly.
+It should not sell the product.
+It should not mention Metafi or متعافي unless explicitly required.
 </context>
 
 <core_rule>
-The text lands the idea.
-The app image carries the brand.
+Do not optimize for the shortest ending.
+Optimize for a clear, complete, natural closing thought.
 
-Do not force sales language.
-Do not force a CTA.
-Do not suddenly change the tone.
-Do not write a separate brand line unless absolutely necessary.
+Bad:
+"مو العكس"
+"خلك أذكى"
+"الجدول لازم يفهمك"
+
+Better:
+"أحيانًا التمرين الصح مو اللي كان مكتوب من البداية. التمرين الصح هو اللي يناسب جسمك اليوم."
+
+Better:
+"الخطة الجيدة ما تفترض إن كل أسبوع مثالي. الخطة الجيدة تعرف كيف تتعامل مع الأسبوع الحقيقي."
+
+Better:
+"أنت ما تحتاج خطة مثالية على الورق. تحتاج خطة تعرف تتعامل مع حياتك فعليًا."
 </core_rule>
 
-<closing_priority>
-Use this priority order when choosing the ending type:
+<scenario_rule>
+Keep the same one concrete situation from the hook and body.
+
+Do not introduce a new situation.
+Do not combine multiple examples.
+Do not use “or” chains like:
+- "نوم أو سفر أو كورة"
+- "كورة أو تنس أو دوام"
+
+The final thought should come from the exact situation already shown.
+</scenario_rule>
+
+<closing_role>
+The final slide should do one of these:
 
 1. flat_realization
-- best default
-- short
-- lands the truth cleanly
-- no forced engagement
+A clear, calm sentence that lands the point.
 
 2. soft_reframe
-- use when the idea needs a slight shift in perspective
-- still subtle
-- still content-first
+A simple shift in how the viewer sees the situation.
 
 3. comment_question
-- use only if it naturally fits the topic
-- only if the question feels like a real continuation
-- never use it as cheap engagement bait
-</closing_priority>
+Use only if it feels natural and not like engagement bait.
+
+Default to flat_realization.
+</closing_role>
 
 <writing_rules>
-- keep it short
-- keep it natural
-- keep it Saudi
-- keep it direct
-- keep it believable
-- do not use MSA
-- do not use exaggerated slang
-- do not become motivational
-- do not become a lecture
-- do not explain the whole insight again
-- do not sound like a slogan unless it feels earned
+- Use simple Saudi Arabic.
+- Use 1–2 complete sentences.
+- Keep it natural and clear.
+- Stay content-first.
+- Do not sound like a slogan unless it feels completely natural.
+- Do not sound like a coach.
+- Do not sound like a brand.
+- Do not sound motivational.
+- Do not explain the whole post again.
+- Do not become poetic or fake-deep.
+- Do not use broken sentence fragments.
+- Avoid فصحى connectors like "بل", "لذلك", "حيث", "بينما".
+- Prefer natural Saudi phrasing like "بس", "عشان", "لأن".
 </writing_rules>
 
-<tone_rules>
-The final slide should feel like:
-- a clean landing
-- a flat truth
-- a subtle realization
-- sometimes a soft reframe
-- rarely a natural question
-
-It should not feel like:
-- a brand ad
-- a CTA banner
-- a self-help quote
-- a lesson
-- a fake-deep ending
-</tone_rules>
-
-<brand_rules>
-- Metafi branding is visual through the phone image
-- brand_bridge_text should usually be empty
-- do not force "Metafi" into the final text
-- if the final slide is stronger without a brand bridge, leave brand_bridge_text empty
-</brand_rules>
-
-<anti_patterns>
+<avoid>
 Avoid:
-- "الحل عندك"
+- sales CTA
+- motivational advice
+- fake-deep endings
+- engagement farming
+- product pitch
+- formal Arabic
+- exaggerated slang
+- abstract consultant wording
+
+Do not use:
+- "بل"
+- "لذلك"
+- "حيث"
+- "بينما"
+- "الحل"
+- "السر"
 - "ابدأ الآن"
 - "حمّل التطبيق"
-- "في النهاية..."
-- "الرسالة هنا..."
-- "عشان كذا لازم..."
-- anything that sounds like a sales CTA
-- anything that sounds like a motivational poster
-- any question that feels like engagement farming
-</anti_patterns>
+- "تابعنا"
+- "في النهاية"
+- "الرسالة هنا"
+- "عشان كذا لازم"
+- "مع Metafi"
+- "مع متعافي"
+</avoid>
 
-<style_calibration>
-Good direction:
-- مو المفروض جدولك يبلع يومك كله
-- مو كل لخبطه معناها إنك ضيعت كل شي
-- المفروض خطتك تمشي مع حياتك
-- مو العكس
+<target_style_examples>
+Good final slide examples:
 
-Bad direction:
-- حمّل Metafi الآن
-- هل قد حسيت كذا؟ اكتب لنا
-- السر الحقيقي هو...
-- في النهاية لازم تعرف أن...
-</style_calibration>
+"أحيانًا التمرين الصح مو اللي كان مكتوب من البداية. التمرين الصح هو اللي يناسب جسمك اليوم."
+
+"المشكلة مو إنك ما تبغى تتمرن. المشكلة إن الجدول ثابت، وما يعرف وش صار في أسبوعك."
+
+"الخطة الجيدة ما تفترض إن كل أسبوع مثالي. الخطة الجيدة تعرف كيف تتعامل مع الأسبوع الحقيقي."
+
+"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
+
+"أحيانًا تحتاج تعدّل التمرين، مو تضغط على نفسك كأن شيء ما صار."
+
+Bad final slide examples:
+"مو العكس."
+"خلك أذكى."
+"الحل إن خطتك تصير مرنة."
+"حمّل التطبيق الآن."
+"هل صار لك كذا؟ اكتب لنا."
+</target_style_examples>
+
+<brand_rules>
+- The app image can carry the brand presence.
+- brand_bridge_text should usually be empty.
+- Do not force Metafi or متعافي into the final text.
+- If the final slide is stronger without a brand bridge, leave brand_bridge_text empty.
+</brand_rules>
 
 <process>
 STEP 1
 Read the SliderPlan, Hook, and Body carefully.
 
 STEP 2
-Identify:
-- what the hook started
-- what the body exposed
-- what truth should land last
+Identify the one concrete situation already shown.
 
 STEP 3
-Choose the best closing type:
-- flat_realization
-- soft_reframe
-- comment_question only if truly natural
+Identify the simple thought that should land last.
 
 STEP 4
-Write the final slide text.
-Keep it short and strong.
+Write 1–2 complete natural sentences.
 
 STEP 5
 Leave brand_bridge_text empty by default.
-Only use it if absolutely necessary.
 
 STEP 6
 Silently verify:
-- the ending lands naturally
+- the ending uses complete sentences
+- it keeps the same situation
 - it does not sound like an ad
-- it fits the emotional arc
-- it works with the app image
+- it does not sound motivational
+- it does not introduce a new idea
+- it lands the thought clearly
+- it does not use فصحى connectors like "بل", "لذلك", "حيث", or "بينما"
 </process>
 
 <output_format>
@@ -171,7 +185,7 @@ Use this exact schema:
 Field rules:
 - slider_plan_id: preserve exactly from input
 - selected_hook: preserve exactly from input
-- final_slide_text: short, natural, content-first
+- final_slide_text: 1–2 complete natural sentences
 - closing_type: choose one of flat_realization, soft_reframe, comment_question
 - brand_bridge_text: usually empty
 - closing_notes: brief practical internal note only if helpful

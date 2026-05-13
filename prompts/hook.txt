@@ -1,205 +1,150 @@
 <objective>
-Generate 3 strong hook options for slide 1 of a TikTok slider, then select the single strongest one.
+Generate 3 hook options for slide 1 of a TikTok slider, then select the strongest one.
 
-The hook must:
-- be faithful to the approved SliderPlan
-- feel TikTok-native
-- sound like a normal Saudi person talking
-- create enough tension, recognition, or curiosity to make people continue
+You will receive an approved SliderPlan.
 
-Your job is not to explain the idea.
-Your job is not to teach.
-Your job is not to summarize the whole slider.
-Your job is to write one strong first slide that makes slide 2 feel necessary.
+Your job is to write the first slide only.
+
+The hook must open with one concrete real situation.
+It should make the viewer understand the moment immediately.
+It should make slide 2 feel necessary.
 </objective>
 
 <context>
-Metafi serves people who train seriously, but whose weeks do not always go to plan.
-A major part of the audience also trains while playing other sports.
+Metafi serves people who train, but whose weeks do not always go to plan.
+A major part of the audience also plays other sports.
 
-The tone must feel:
-- Saudi
-- natural
-- casual
-- sharp
-- socially believable
-- like someone talking, not presenting
+The best hook should feel like a normal Saudi person describing something that actually happened.
 
-The hook must not feel:
-- educational
-- corporate
-- polished
-- motivational
-- like a framework
-- like translated English creator content
+It should not feel like:
+- a title
+- a lesson
+- a question
+- a tweet
+- a brand message
+- a motivational post
+- a coach explaining the point
 </context>
 
 <core_rule>
-Do not invent a new angle.
-Do not change the meaning of the SliderPlan.
-Do not add a second idea.
-Only express the same idea in a stronger first-slide form.
+Use one concrete situation only.
+
+Do not combine multiple examples in one hook.
+Do not write “or” chains like:
+- "نوم أو سفر أو كورة"
+- "كورة أو تنس أو دوام"
+- "قلة نوم أو سفر"
+
+Bad:
+"تتمرن وأنت عارف إنك ما نمت زين، أو توك راجع من سفر."
+
+Good:
+"نمت أربع ساعات، واليوم فتحت جدولك وطلع لك تمرين قوي."
+
+Good:
+"رجعت من السفر أمس، واليوم فتحت جدولك وطلع لك تمرين ثقيل."
+
+Good:
+"أمس لعبت كورة ساعتين، واليوم فتحت جدولك وطلع لك تمرين رجل."
 </core_rule>
 
-<hook_philosophy>
-A good hook is not just a topic opener.
+<writing_standard>
+Do not optimize for the shortest possible hook.
+Optimize for a clear, complete, natural sentence.
 
-A good hook must do at least 2 of these:
-- expose a specific behavior
-- trigger self-recognition
-- create tension
-- sound emotionally accurate
-- create forward pull
-- sound like a real person would actually post it
+Avoid broken slogan shortcuts.
+Avoid goofy phrasing.
+Avoid overly clever lines.
 
-“Stop scroll” means:
-the viewer sees the first slide and feels they need slide 2.
-</hook_philosophy>
+Bad:
+"رجولك مكسرة"
+"بس الجدول ما يدري"
+"أسبوعك مو ثابت"
 
-<selection_priority>
-When choosing the best hook, rank by this order:
-
-1. Self-recognition
-- Does it feel painfully familiar?
-- Does it make the viewer think "هههه هذا أنا" or "اي والله" quickly?
-
-2. Specificity
-- Does it describe a real behavior or reaction?
-- Is it concrete, not broad?
-
-3. Stop power
-- Does it create enough tension or embarrassment to make slide 2 necessary?
-
-4. Social believability
-- Does it sound like a real Saudi person would actually say or post it?
-
-5. No early explanation
-- Does it avoid explaining the insight too early?
-- Does it avoid sounding like a takeaway, lesson, or slide 3?
-
-If two hooks are both valid, choose the one that feels more embarrassing, more specific, and more instantly recognizable.
-Do not choose a hook just because it explains the idea more clearly.
-</selection_priority>
-
-<hook_families>
-Use these hook families as pattern inspiration only.
-Do not copy them literally.
-Do not sound like generic self-improvement content.
-
-Strong hook families:
-- what nobody says / admits about ___
-- biggest mistake in ___
-- why ___ isn’t working
-- what’s actually holding you back in ___
-- what happens when ___
-- unpopular opinion about ___
-- biggest myth about ___
-- stop doing ___ this way
-- I wish someone told me this before ___
-- what I’d do differently in ___
-- one small thing that changed a lot in ___
-- why people quit ___ too early
-
-Adapt these into:
-- training-native tension
-- behavior-first wording
-- socially believable Saudi phrasing
-- flat, real observations
-</hook_families>
+Better:
+"أمس لعبت كورة ساعتين، واليوم فتحت جدولك وطلع لك تمرين رجل."
+"رجعت من السفر أمس، واليوم جدولك يتعامل معك كأن أسبوعك كان طبيعي."
+"نمت أربع ساعات، واليوم الخطة تطلب منك تتمرن بنفس الشدة."
+</writing_standard>
 
 <hook_rules>
 The hook must:
 - be one slide only
-- be short
+- use simple Saudi Arabic
 - be specific
-- feel native
-- feel real
-- make slide 2 necessary
+- be clear
+- use 1–2 complete sentences
+- start from the situation, not the lesson
+- create enough curiosity for slide 2
 
 The hook must not:
-- be vague
-- sound like a title
-- sound like a lesson
-- sound like a tweet
-- sound like polished “relatable content”
-- explain the psychology too early
-- summarize the whole point too early
+- ask an educational question
+- explain the full insight
+- mention the solution
+- mention Metafi or متعافي
+- sound like a coach
+- sound like an ad
+- sound like a content creator trying to be deep
 </hook_rules>
 
-<anti_patterns>
-Avoid weak hooks like:
-- تفوت تمرين واحد بس
-- في ناس إذا فاتتهم جلسة
-- أحيانًا الواحد
-- الموضوع مو عن...
-- هل قد حسيت...
-- did-you-know style openings
-- lines that sound like a content creator trying to be deep
+<avoid>
+Avoid:
+- "هل قد حسيت"
+- "هل تعلم"
+- "ترى مو شرط"
+- "يمكن المشكلة"
+- "الموضوع مو عن"
+- "في ناس"
+- "أحيانًا الواحد"
+- "الحل"
+- "السر"
+- "غير حياتك"
+- "ابدأ الآن"
+- polished fake-depth language
+- abstract psychology
+</avoid>
 
-Avoid polished fake-depth lines like:
-- الذعر لأن التمرين صار جزء من كيف تشوف نفسك
-- هذه مو مشكلة انضباط، هذه مشكلة أعمق
-- الرسالة هنا أن...
-- في النهاية...
+<target_style_examples>
+Good hook options:
 
-Do not choose hooks like:
-- "ترى مو شرط..."
-- "يمكن المشكلة..."
-- "يمكن السالفة..."
-if they explain too early and reduce stop power.
+"أمس لعبت كورة ساعتين، واليوم فتحت جدولك وطلع لك تمرين رجل."
 
-If a line sounds too neat, too wise, or too written, simplify it.
-</anti_patterns>
+"لعبت تنس أمس، واليوم جدولك كاتب لك تمرين صدر وكتف."
 
-<style_calibration>
-Prefer:
-- ugly-real over smooth-clever
-- behavior over explanation
-- flat truth over polished insight
-- specific over broad
-- socially believable over impressive
+"نمت أربع ساعات، واليوم الخطة تطلب منك تتمرن بنفس الشدة."
 
-Good direction:
-- لك شهر عالق في نفس وزن البنش وبدأت تشك في جيناتك
-- تفوت جلسة وحدة وتتعامل كأن الأسبوع انتهى
-- اللي تفوته جلسة ويحسبها reset
-- جلسة وحدة راحت، وفجأة صار يوم الاثنين مشروع حياة
+"رجعت من السفر أمس، واليوم فتحت جدولك وطلع لك تمرين ثقيل."
 
-Bad direction:
-- why your consistency mindset is broken
-- الحقيقة العميقة وراء خوفك من فقدان التقدم
-- what missing one workout says about your identity
-- ترى مو شرط المشكلة في الوزن، يمكن في راسك
+"طلعت من الدوام متأخر، ووصلت النادي وأنت مستنزف قبل ما تبدأ."
+</target_style_examples>
 
-The best hook usually catches the person before it explains them.
-</style_calibration>
+<selection_priority>
+Choose the hook that is:
+1. most specific
+2. easiest to understand immediately
+3. most relatable to the audience
+4. most naturally Saudi
+5. least explanatory
+
+Do not choose the hook that sounds smartest.
+Choose the hook that feels most real.
+</selection_priority>
 
 <process>
 STEP 1
 Read the SliderPlan carefully.
 
 STEP 2
-Identify:
-- the exact behavior pattern
-- the tension
-- what makes this recognizable
+Identify the one concrete situation chosen in the plan.
 
 STEP 3
-Generate exactly 3 distinct hook candidates.
+Generate exactly 3 hook options.
 
 STEP 4
-Compare them using this order only:
-1. self-recognition
-2. specificity
-3. stop power
-4. social believability
-5. no early explanation
+Choose the strongest one.
 
 STEP 5
-Silently choose the strongest one.
-
-STEP 6
-Return only the final result in the required JSON format.
+Return only the required JSON.
 </process>
 
 <output_format>
@@ -222,10 +167,10 @@ Use this exact schema:
 
 Field rules:
 - slider_plan_id: preserve exactly from input
-- hook_type: choose the best fit from: observation, self_recognition, tension, dry_comedic, pov, contrarian
-- hook_options: include exactly 3 hook options
-- selected_hook: include only the strongest hook
-- selection_reason: short internal reason, plain language
+- hook_type: choose one from: observation, self_recognition, tension, dry_comedic, pov, contrarian
+- hook_options: exactly 3 options
+- selected_hook: strongest hook only
+- selection_reason: short internal reason
 - status: always "drafted"
 </output_format>
 

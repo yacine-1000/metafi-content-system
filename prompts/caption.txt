@@ -1,73 +1,167 @@
 <objective>
-Write a short TikTok caption in Saudi Arabic for a slider post, then select 5–8 relevant hashtags.
+Write a short TikTok caption in Saudi Arabic for a slider post, then select exactly 4 relevant hashtags.
 
-Your job is to lightly frame the idea.
+Your job is to support the post, not explain it.
 Your job is not to summarize every slide.
-Your job is not to explain the insight.
-Your job is not to motivate or teach.
+Your job is not to motivate, teach, or sell.
 </objective>
 
 <context>
-Metafi serves people who train seriously but whose weeks do not always go perfectly.
-The audience is Saudi, active, gym-going, and skeptical of over-polished creator content.
+Metafi serves people who train, but whose weeks do not always go to plan.
+A major part of the audience also plays other sports.
 
-The caption must feel:
-- Saudi
-- casual
-- short
-- real
-- like a normal person posted it, not a brand
+The caption should feel like a normal Saudi person adding a simple note under the post.
 
-The caption must not feel:
-- corporate
-- salesy
-- motivational
-- like an educational thread
-- like a CTA-heavy brand post
-- like a translated English caption
+It should not feel like:
+- a brand caption
+- a motivational caption
+- an educational thread
+- a CTA
+- translated English
+- a creator trying too hard
 </context>
 
+<core_rule>
+Keep the caption natural, specific, and complete.
+
+Do not optimize for cleverness.
+Do not write vague punchlines.
+Do not repeat all slide text.
+
+The caption should lightly connect to the same concrete situation used in the post.
+
+Bad:
+"خلك ذكي في تمرينك."
+"الالتزام يبدأ من القرار."
+"لا تخلي الظروف توقفك."
+
+Better:
+"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
+
+Better:
+"أحيانًا المشكلة مو في التزامك، المشكلة إن الخطة ما تعرف وش صار في أسبوعك."
+
+Better:
+"إذا لعبت كورة أمس، طبيعي تمرين الرجل اليوم يحتاج يتعامل مع الواقع."
+</core_rule>
+
+<scenario_rule>
+Use the same one concrete situation from the post.
+
+Do not introduce a new situation.
+Do not combine examples.
+Do not write “or” chains like:
+- "نوم أو سفر أو كورة"
+- "كورة أو تنس أو دوام"
+- "قلة نوم أو سفر"
+
+If the post is about football, caption should stay around football/leg day.
+If the post is about sleep, caption should stay around sleep.
+If the post is about travel, caption should stay around travel.
+</scenario_rule>
+
 <caption_rules>
-- Write in Saudi Arabic dialect
-- Maximum 2–3 short lines
-- Do not copy all slide text into the caption
-- Do not start with a generic opener like "كثير منا" or "من منكم"
-- Do not end with "تابعونا" or fake engagement bait
-- One line may hint at the core idea
-- One line may reference the tension or feeling lightly
-- May include a dry, flat observation if it fits naturally
-- No emojis unless one is completely unavoidable and natural
+- Write in simple Saudi Arabic.
+- 1–2 complete sentences max.
+- Can be one line or two short lines.
+- Keep it natural and calm.
+- No emojis unless absolutely natural.
+- Do not copy the final slide exactly.
+- Do not explain the whole post.
+- Do not sound like advice from a coach.
+- Do not sound like a brand.
+- Do not ask for comments.
+- Do not use fake engagement bait.
 </caption_rules>
 
+<avoid>
+Do not use:
+- "تابعونا"
+- "اكتب لنا"
+- "وش رأيك؟"
+- "الحل"
+- "السر"
+- "ابدأ الآن"
+- "غير حياتك"
+- "خلك أقوى"
+- "لا تستسلم"
+- "مع Metafi"
+- "مع متعافي"
+- "بل"
+- "لذلك"
+- "حيث"
+- "بينما"
+
+Avoid overly broad hashtags:
+- #تحفيز
+- #نجاح
+- #اكسبلور
+- #ترند
+</avoid>
+
 <hashtag_rules>
-- 5 to 8 hashtags only
-- Arabic hashtags first
-- Focus on Saudi fitness, gym, training, and health audience
-- Include #متعافي when the content is relevant to recovery, setbacks, or body changes
-- Do not use #ميتافي
-- Do not use spammy, irrelevant, or overly broad hashtags like #تحفيز or #نجاح
-- Prefer hashtags with real audience relevance over hashtag volume tricks
-- Examples of good hashtags: #تمرين #الجيم #كمال_الأجسام #لياقة #رياضة #متعافي #تغذية #برنامج_تمرين
+- Use exactly 4 hashtags.
+- The first 2 hashtags are fixed core hashtags:
+  1. #تمارين
+  2. #النادي
+- The last 2 hashtags must be personalized based on the exact post topic.
+- Personalized hashtags should match the concrete situation, sport, body area, recovery issue, or training theme.
+- Do not use generic spam hashtags.
+- Do not use #اكسبلور, #ترند, #تحفيز, or #نجاح.
+- Include #متعافي only as one of the 2 personalized hashtags if it truly fits the post.
+- Do not use #ميتافي.
+
+Good examples:
+Football + leg day:
+["#تمارين", "#النادي", "#كورة", "#تمرين_رجل"]
+
+Sleep + hard workout:
+["#تمارين", "#النادي", "#نوم", "#تعافي"]
+
+Tennis + upper body:
+["#تمارين", "#النادي", "#تنس", "#لياقة"]
+
+Travel + return to training:
+["#تمارين", "#النادي", "#تعافي", "#برنامج_تمرين"]
 </hashtag_rules>
+
+<target_style_examples>
+Good captions:
+
+"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
+
+"إذا لعبت كورة أمس، طبيعي تمرين الرجل اليوم يحتاج يتعامل مع الواقع."
+
+"أحيانًا المشكلة مو في التزامك، المشكلة إن الخطة ما تعرف وش صار في أسبوعك."
+
+"الخطة اللي تتجاهل يومك الحقيقي بتخليك تحس إنك أنت المشكلة."
+
+Bad captions:
+
+"ابدأ اليوم وغيّر حياتك."
+"السر في الالتزام الذكي."
+"تابعونا للمزيد من النصائح."
+"مع متعافي، تمرينك يصير أذكى."
+</target_style_examples>
 
 <process>
 STEP 1
-Read all four inputs: SliderPlan, hookOutput, bodyOutput, finalSlideOutput.
+Read SliderPlan, hookOutput, bodyOutput, and finalSlideOutput.
 
 STEP 2
-Identify:
-- the core emotional pattern of the slider
-- the tension or recognition the slides carry
-- what the closing reframe is
+Identify the one concrete situation used in the post.
 
 STEP 3
-Write a caption that lightly references the feeling, not the full explanation.
+Write a natural caption that supports the same situation without repeating the slides.
 
 STEP 4
-Choose 5–8 hashtags that fit the exact topic and Saudi fitness audience.
+Choose exactly 4 hashtags:
+- first: #تمارين
+- second: #النادي
+- third and fourth: personalized to the exact post topic
 
 STEP 5
-Return the result in the required JSON format only.
+Return valid JSON only.
 </process>
 
 <output_format>
@@ -83,9 +177,9 @@ Use this exact schema:
 }
 
 Field rules:
-- caption: the full caption text in Saudi Arabic, 2–3 lines max
-- hashtags: array of 5–8 hashtag strings, each starting with #
-- caption_notes: one short internal note on the caption direction chosen
+- caption: Saudi Arabic, 1–2 complete sentences max
+- hashtags: array of exactly 4 hashtag strings. First two must be "#تمارين" and "#النادي". Last two must be personalized to the post.
+- caption_notes: one short internal note
 - status: always "drafted"
 </output_format>
 

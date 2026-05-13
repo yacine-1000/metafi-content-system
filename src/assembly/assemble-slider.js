@@ -8,8 +8,18 @@ const ROOT = path.resolve(__dirname, '../../');
 const CONFIG_PATH = path.join(ROOT, 'test-inputs', 'assembly-config.json');
 const RENDERS_DIR = path.join(ROOT, 'renders');
 
+const FONT_PATH = fs.existsSync(path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf'))
+  ? path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf')
+  : null;
+
+const FONT_FILE_URL = FONT_PATH ? 'file:///' + FONT_PATH.replace(/\\/g, '/') : null;
+
 function escapeHtml(str) {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function normalizeText(str) {
+  return str.replace(/[\r\n]+/g, ' ').replace(/  +/g, ' ').trim();
 }
 
 function imageToDataUrl(imgPath) {
@@ -21,19 +31,30 @@ function imageToDataUrl(imgPath) {
 
 const STYLES = {
   'style-a': {
-    fontFamily: '"Segoe UI", Tahoma, Arial, sans-serif',
-    fontSize: '55px',
-    lineHeight: '0.95',
-    maxWidth: '820px',
+    fontFamily: '"Monasabat", "Tahoma", Arial, sans-serif',
+    fontWeight: '400',
+    fontSize: '56px',
+    lineHeight: '1.24',
+    maxWidth: '940px',
+    width: '90%',
+    top: '21%',
     textShadow: [
-      '2px 0 0 #000',
-      '-2px 0 0 #000',
-      '0 2px 0 #000',
-      '0 -2px 0 #000',
-      '2px 2px 0 #000',
-      '-2px 2px 0 #000',
-      '2px -2px 0 #000',
-      '-2px -2px 0 #000',
+      '4px 0 0 #000',
+      '-4px 0 0 #000',
+      '0 4px 0 #000',
+      '0 -4px 0 #000',
+      '4px 4px 0 #000',
+      '-4px 4px 0 #000',
+      '4px -4px 0 #000',
+      '-4px -4px 0 #000',
+      '3px 0 0 #000',
+      '-3px 0 0 #000',
+      '0 3px 0 #000',
+      '0 -3px 0 #000',
+      '3px 3px 0 #000',
+      '-3px 3px 0 #000',
+      '3px -3px 0 #000',
+      '-3px -3px 0 #000',
     ].join(', '),
   },
   'style-b': {
@@ -81,12 +102,16 @@ function buildHtml(dataUrl, text, style) {
   const fontLink = s.googleFontsUrl
     ? `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="${s.googleFontsUrl}" rel="stylesheet">`
     : '';
+  const fontFace = FONT_FILE_URL
+    ? `@font-face { font-family: "Monasabat"; src: url("${FONT_FILE_URL}") format("truetype"); font-weight: 400; font-style: normal; }`
+    : '';
   return `<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 ${fontLink}
 <style>
+  ${fontFace}
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     width: 1080px;
@@ -107,15 +132,19 @@ ${fontLink}
     top: ${s.top || '28%'};
     left: 50%;
     transform: translateX(-50%);
+    width: ${s.width || 'auto'};
     max-width: ${s.maxWidth};
     color: #ffffff;
     font-family: ${s.fontFamily};
     font-size: ${s.fontSize};
-    font-weight: 800;
+    font-weight: ${s.fontWeight || '800'};
     line-height: ${s.lineHeight};
     text-align: center;
     direction: rtl;
-    white-space: pre-line;
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: normal;
+    text-wrap: balance;
     letter-spacing: normal;
     -webkit-text-stroke: 0;
     text-shadow: ${s.textShadow};
@@ -142,7 +171,7 @@ async function renderSlides(config, outDir, style, label) {
     }
 
     const dataUrl = imageToDataUrl(imgAbsPath);
-    const html = buildHtml(dataUrl, slide.text, style);
+    const html = buildHtml(dataUrl, normalizeText(slide.text), style);
 
     const page = await browser.newPage();
     await page.setViewportSize({ width: 1080, height: 1920 });

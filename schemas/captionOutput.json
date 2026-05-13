@@ -7,8 +7,8 @@
     "caption": { "type": "string", "minLength": 1 },
     "hashtags": {
       "type": "array",
-      "minItems": 5,
-      "maxItems": 8,
+      "minItems": 4,
+      "maxItems": 4,
       "items": { "type": "string", "pattern": "^#" }
     },
     "caption_notes": { "type": "string" },

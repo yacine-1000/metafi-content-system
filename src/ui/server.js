@@ -4,8 +4,10 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
+const { createClient } = require('@supabase/supabase-js');
 
 const ROOT = path.resolve(__dirname, '../../');
+require('dotenv').config({ path: path.join(ROOT, '.env') });
 const RENDERS_DIR = path.join(ROOT, 'renders');
 const RAW_SOURCE_PATH = path.join(ROOT, 'test-inputs', 'raw-source.txt');
 const MANUAL_INPUT_PATH = path.join(ROOT, 'test-inputs', 'manual-input.json');
@@ -85,6 +87,55 @@ function savePostFolder() {
   );
 
   return postId;
+}
+
+async function uploadPost(postId, log) {
+  const { SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_BUCKET } = process.env;
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !SUPABASE_BUCKET) {
+    throw new Error('Missing env vars: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_BUCKET');
+  }
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+  const postDir = path.join(ROOT, 'outputs', 'posts', postId);
+  const bucket = SUPABASE_BUCKET;
+  const slideFiles = ['slide-1.png', 'slide-2.png', 'slide-3.png', 'slide-4.png', 'slide-5.png'];
+
+  const uploads = [
+    ...slideFiles.map((f) => ({
+      local: path.join(postDir, 'slides', f),
+      remote: `posts/${postId}/slides/${f}`,
+      contentType: 'image/png',
+    })),
+    { local: path.join(postDir, 'caption.txt'),          remote: `posts/${postId}/caption.txt`,          contentType: 'text/plain' },
+    { local: path.join(postDir, 'publish-package.json'), remote: `posts/${postId}/publish-package.json`, contentType: 'application/json' },
+  ];
+
+  for (const { local, remote, contentType } of uploads) {
+    const body = fs.readFileSync(local);
+    const { error } = await supabase.storage.from(bucket).upload(remote, body, { contentType, upsert: true });
+    if (error) throw new Error(`Upload failed for ${remote}: ${error.message}`);
+    log(`✓ ${remote}\n`);
+  }
+
+  const uploadedAt = new Date().toISOString();
+  const slideUrls = slideFiles.map((f) =>
+    `${SUPABASE_URL}/storage/v1/object/public/${bucket}/posts/${postId}/slides/${f}`
+  );
+  const captionUrl = `${SUPABASE_URL}/storage/v1/object/public/${bucket}/posts/${postId}/caption.txt`;
+
+  const pkgPath = path.join(postDir, 'publish-package.json');
+  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+  pkg.status = 'uploaded';
+  pkg.slide_urls = slideUrls;
+  pkg.caption_url = captionUrl;
+  pkg.supabase = { bucket, base_path: `posts/${postId}`, uploaded_at: uploadedAt };
+  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+
+  const metaPath = path.join(postDir, 'metadata.json');
+  const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+  meta.status = 'uploaded';
+  meta.uploaded_at = uploadedAt;
+  fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
 }
 
 const app = express();
@@ -207,6 +258,21 @@ app.post('/generate', async (req, res) => {
   if (postId) {
     const outputPath = `outputs/posts/${postId}`;
     log(`\nPOST_SAVED:${JSON.stringify({ post_id: postId, output_path: outputPath })}\n`);
+
+    log(`\n--- upload ---\n`);
+    try {
+      await uploadPost(postId, log);
+      log(`--- upload done ---\n`);
+    } catch (uploadErr) {
+      log(`\nUpload failed: ${uploadErr.message}\n`);
+      try {
+        const metaPath = path.join(ROOT, 'outputs', 'posts', postId, 'metadata.json');
+        const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+        meta.status = 'upload_failed';
+        meta.upload_error = uploadErr.message;
+        fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
+      } catch {}
+    }
   }
 
   log('\nDONE\n');
