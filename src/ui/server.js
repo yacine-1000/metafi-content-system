@@ -6,6 +6,7 @@ const fs = require('fs');
 const { spawn } = require('child_process');
 const { createClient } = require('@supabase/supabase-js');
 const { createPostMetadata, createPublishPackage, markUploadSuccess, markUploadFailed } = require('../lib/postMetadata');
+const { upsertContentPost } = require('../lib/supabasePostStore');
 
 const ROOT = path.resolve(__dirname, '../../');
 require('dotenv').config({ path: path.join(ROOT, '.env') });
@@ -111,7 +112,7 @@ function savePostFolder(strategy_metadata) {
   const pkg = { ...createPublishPackage({ postId, caption, hashtags, createdAt, slideCount: 5 }), strategy_metadata };
   fs.writeFileSync(path.join(postDir, 'publish-package.json'), JSON.stringify(pkg, null, 2), 'utf8');
 
-  return postId;
+  return { postId, metadata, pkg, postDir };
 }
 
 async function uploadPost(postId, log) {
@@ -151,10 +152,15 @@ async function uploadPost(postId, log) {
   const uploadInput = { uploadedAt, bucket, basePath: `posts/${postId}`, slideUrls, captionUrl };
 
   const pkgPath = path.join(postDir, 'publish-package.json');
-  fs.writeFileSync(pkgPath, JSON.stringify(markUploadSuccess(JSON.parse(fs.readFileSync(pkgPath, 'utf8')), uploadInput), null, 2));
+  const updatedPkg = markUploadSuccess(JSON.parse(fs.readFileSync(pkgPath, 'utf8')), uploadInput);
+  fs.writeFileSync(pkgPath, JSON.stringify(updatedPkg, null, 2));
 
   const metaPath = path.join(postDir, 'metadata.json');
-  fs.writeFileSync(metaPath, JSON.stringify(markUploadSuccess(JSON.parse(fs.readFileSync(metaPath, 'utf8')), uploadInput), null, 2));
+  const updatedMeta = markUploadSuccess(JSON.parse(fs.readFileSync(metaPath, 'utf8')), uploadInput);
+  fs.writeFileSync(metaPath, JSON.stringify(updatedMeta, null, 2));
+
+  const dbr = await upsertContentPost({ postId, metadata: updatedMeta, publishPackage: updatedPkg, localPath: postDir, sourceType: 'portal' });
+  if (!dbr.skipped && !dbr.ok) console.warn(`[db] upload sync failed for ${postId}:`, dbr.error);
 }
 
 const app = express();
@@ -223,7 +229,7 @@ app.get('/posts/:postId', (req, res) => {
   res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, buffer_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
 });
 
-app.patch('/posts/:postId/review', (req, res) => {
+app.patch('/posts/:postId/review', async (req, res) => {
   const VALID = ['approved', 'needs_edit', 'pending'];
   const { review } = req.body || {};
   if (!VALID.includes(review)) return res.status(400).json({ error: `review must be one of: ${VALID.join(', ')}` });
@@ -236,26 +242,33 @@ app.patch('/posts/:postId/review', (req, res) => {
   if (!fs.existsSync(metaPath)) return res.status(404).json({ error: 'metadata.json missing' });
 
   const now = new Date().toISOString();
+  let updatedMeta = null;
   try {
     const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
     meta.statuses = { ...(meta.statuses || {}), review };
     meta.updated_at = now;
     fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2), 'utf8');
+    updatedMeta = meta;
   } catch (e) { return res.status(500).json({ error: `metadata write failed: ${e.message}` }); }
 
+  let updatedPkg = null;
   if (fs.existsSync(pkgPath)) {
     try {
       const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
       pkg.statuses = { ...(pkg.statuses || {}), review };
       pkg.updated_at = now;
       fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), 'utf8');
+      updatedPkg = pkg;
     } catch {}
   }
+
+  const dbr = await upsertContentPost({ postId: req.params.postId, metadata: updatedMeta, publishPackage: updatedPkg, localPath: postDir, sourceType: 'portal' });
+  if (!dbr.skipped && !dbr.ok) console.warn(`[db] review sync failed for ${req.params.postId}:`, dbr.error);
 
   res.json({ ok: true, post_id: req.params.postId, review });
 });
 
-app.patch('/posts/:postId/buffer', (req, res) => {
+app.patch('/posts/:postId/buffer', async (req, res) => {
   const VALID = ['not_started', 'sent', 'scheduled'];
   const { buffer } = req.body || {};
   if (!VALID.includes(buffer)) return res.status(400).json({ error: `buffer must be one of: ${VALID.join(', ')}` });
@@ -268,21 +281,28 @@ app.patch('/posts/:postId/buffer', (req, res) => {
   if (!fs.existsSync(metaPath)) return res.status(404).json({ error: 'metadata.json missing' });
 
   const now = new Date().toISOString();
+  let updatedMeta = null;
   try {
     const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
     meta.statuses = { ...(meta.statuses || {}), buffer };
     meta.updated_at = now;
     fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2), 'utf8');
+    updatedMeta = meta;
   } catch (e) { return res.status(500).json({ error: `metadata write failed: ${e.message}` }); }
 
+  let updatedPkg = null;
   if (fs.existsSync(pkgPath)) {
     try {
       const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
       pkg.statuses = { ...(pkg.statuses || {}), buffer };
       pkg.updated_at = now;
       fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), 'utf8');
+      updatedPkg = pkg;
     } catch {}
   }
+
+  const dbr = await upsertContentPost({ postId: req.params.postId, metadata: updatedMeta, publishPackage: updatedPkg, localPath: postDir, sourceType: 'portal' });
+  if (!dbr.skipped && !dbr.ok) console.warn(`[db] buffer sync failed for ${req.params.postId}:`, dbr.error);
 
   res.json({ ok: true, post_id: req.params.postId, buffer });
 });
@@ -345,8 +365,19 @@ app.post('/generate', async (req, res) => {
 
   let postId = null;
   try {
-    postId = savePostFolder(strategy_metadata);
+    const saved = savePostFolder(strategy_metadata);
+    postId = saved.postId;
     log(`\nSaved → outputs/posts/${postId}/\n`);
+    const dbResult = await upsertContentPost({
+      postId,
+      sourceType: source_type || 'portal',
+      rawInput: raw_input,
+      metadata: saved.metadata,
+      publishPackage: saved.pkg,
+      localPath: saved.postDir,
+    });
+    if (dbResult.skipped) { /* env not configured, skip silently */ }
+    else if (!dbResult.ok) console.warn(`[db] upsert failed for ${postId}:`, dbResult.error);
   } catch (err) {
     log(`\nWARN: could not save post folder: ${err.message}\n`);
   }
