@@ -28,6 +28,19 @@ const STRATEGY_DEFAULTS = {
   expected_signal: '',
 };
 
+function resolveStatuses(meta, pkgStatuses) {
+  if (meta && meta.statuses) return meta.statuses;
+  if (pkgStatuses) return pkgStatuses;
+  const s = (meta && meta.status) || 'unknown';
+  return {
+    generation: (s === 'generated' || s === 'uploaded' || s === 'upload_failed') ? 'completed' : 'unknown',
+    review: 'unknown',
+    upload: s === 'uploaded' ? 'uploaded' : s === 'upload_failed' ? 'failed' : 'unknown',
+    buffer: 'unknown',
+    publish: 'unknown',
+  };
+}
+
 function savePostFolder(strategy_metadata) {
   const now = new Date();
   const pad = (n) => String(n).padStart(2, '0');
@@ -146,7 +159,7 @@ app.get('/posts', (_req, res) => {
     if (fs.existsSync(metaPath)) {
       try { return JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch {}
     }
-    return { post_id: name, status: 'unknown', created_at: null, slide_count: 5 };
+    return { post_id: name, status: 'unknown', statuses: { generation: 'unknown', review: 'unknown', upload: 'unknown', buffer: 'unknown', publish: 'unknown' }, created_at: null, slide_count: 5 };
   });
   res.json(posts);
 });
@@ -167,6 +180,7 @@ app.get('/posts/:postId', (req, res) => {
   let caption_url = null;
   let supabase = null;
   let strategy_metadata = null;
+  let pkgStatuses = null;
   const pkgPath = path.join(postDir, 'publish-package.json');
   if (fs.existsSync(pkgPath)) {
     try {
@@ -177,10 +191,16 @@ app.get('/posts/:postId', (req, res) => {
       caption_url = pkg.caption_url || null;
       supabase = pkg.supabase || null;
       strategy_metadata = pkg.strategy_metadata || null;
+      pkgStatuses = pkg.statuses || null;
     } catch {}
   }
 
-  res.json({ ...meta, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
+  const statuses = resolveStatuses(meta, pkgStatuses);
+  const derivedStatus = statuses.upload === 'uploaded' ? 'uploaded' :
+    statuses.upload === 'failed' ? 'upload_failed' :
+    statuses.generation === 'completed' ? 'generated' : (meta.status || 'unknown');
+
+  res.json({ ...meta, status: derivedStatus, statuses, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
 });
 
 app.get('/', (_req, res) => {

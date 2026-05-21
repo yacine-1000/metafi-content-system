@@ -125,6 +125,15 @@
     .post-row .pid { font-family: monospace; font-size: 12px; color: #FFD000; flex: 1; }
     .post-row .meta { font-size: 11px; color: #666; }
     .post-row .status { font-size: 11px; color: #555; }
+
+    /* ── Status chips ── */
+    .status-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+    .status-chip { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
+    .sc-completed  { background: #1a2e1a; color: #5cb85c;  border: 1px solid #2a4a2a; }
+    .sc-uploaded   { background: #1a2a3e; color: #7FFFD4;  border: 1px solid #1c3a50; }
+    .sc-pending    { background: #2a2210; color: #b8860b;  border: 1px solid #3a3010; }
+    .sc-failed     { background: #2e1a1a; color: #c0392b;  border: 1px solid #4a2a2a; }
+    .sc-unknown, .sc-not_started { background: #1a1a1a; color: #444; border: 1px solid #222; }
   </style>
 </head>
 <body>
@@ -293,6 +302,7 @@
         <div class="saved-label">Saved to</div>
         <div class="saved-path" id="output-path">—</div>
         <div class="saved-meta">id: <span id="post-id">—</span> &nbsp;·&nbsp; status: <span id="post-status">—</span></div>
+        <div id="post-statuses" class="status-chips" style="margin-top:8px;"></div>
       </div>
       <div id="strategy-summary">
         <div class="strat-label">Strategy</div>
@@ -325,6 +335,15 @@
   </div>
 
   <script>
+    const STATUS_DIMS = ['generation', 'review', 'upload', 'buffer', 'publish'];
+    const DIM_SHORT   = { generation: 'gen', review: 'rev', upload: 'upl', buffer: 'buf', publish: 'pub' };
+    function renderStatusChips(statuses) {
+      return STATUS_DIMS.map(d => {
+        const v = (statuses && statuses[d]) || 'unknown';
+        return `<span class="status-chip sc-${v}" title="${d}:${v}">${DIM_SHORT[d]}:${v}</span>`;
+      }).join('');
+    }
+
     const STATUS_LABELS = { idle: 'Idle', generating: 'Generating...', ready: 'Ready for review', failed: 'Failed' };
     function setStatus(state) {
       const bar = document.getElementById('status-bar');
@@ -415,6 +434,7 @@
         document.getElementById('post-id').textContent = data.post_id || postId;
         document.getElementById('output-path').textContent = `outputs/posts/${data.post_id || postId}`;
         document.getElementById('post-status').textContent = data.status || '—';
+        document.getElementById('post-statuses').innerHTML = renderStatusChips(data.statuses);
         document.getElementById('post-info').style.display = 'block';
 
         const captionBlock = document.getElementById('caption-block');
@@ -508,7 +528,7 @@
           const row = document.createElement('div');
           row.className = 'post-row';
           const when = p.created_at ? new Date(p.created_at).toLocaleString() : '—';
-          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status">${p.status}</span>`;
+          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status-chips">${renderStatusChips(p.statuses)}</span>`;
           row.addEventListener('click', () => viewPost(p.post_id));
           list.appendChild(row);
         }
