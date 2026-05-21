@@ -6,3 +6,7 @@ renders/
 test-outputs/
 
 .claude/
+
+.claude/
+outputs/debug/
+outputs/jobs/
