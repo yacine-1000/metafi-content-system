@@ -28,6 +28,14 @@ const STRATEGY_DEFAULTS = {
   expected_signal: '',
 };
 
+function computeReadiness(statuses) {
+  const s = statuses || {};
+  if (s.review !== 'approved') return 'not_ready_review_required';
+  if (s.upload === 'uploaded') return 'already_uploaded';
+  if (s.upload === 'failed') return 'ready_to_retry_upload';
+  return 'ready_to_upload';
+}
+
 function resolveStatuses(meta, pkgStatuses) {
   if (meta && meta.statuses) return meta.statuses;
   if (pkgStatuses) return pkgStatuses;
@@ -156,10 +164,11 @@ app.get('/posts', (_req, res) => {
     .reverse();
   const posts = folders.map((name) => {
     const metaPath = path.join(postsDir, name, 'metadata.json');
+    let m = { post_id: name, status: 'unknown', statuses: { generation: 'unknown', review: 'unknown', upload: 'unknown', buffer: 'unknown', publish: 'unknown' }, created_at: null, slide_count: 5 };
     if (fs.existsSync(metaPath)) {
-      try { return JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch {}
+      try { m = JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch {}
     }
-    return { post_id: name, status: 'unknown', statuses: { generation: 'unknown', review: 'unknown', upload: 'unknown', buffer: 'unknown', publish: 'unknown' }, created_at: null, slide_count: 5 };
+    return { ...m, upload_readiness: computeReadiness(m.statuses) };
   });
   res.json(posts);
 });
@@ -199,8 +208,9 @@ app.get('/posts/:postId', (req, res) => {
   const derivedStatus = statuses.upload === 'uploaded' ? 'uploaded' :
     statuses.upload === 'failed' ? 'upload_failed' :
     statuses.generation === 'completed' ? 'generated' : (meta.status || 'unknown');
+  const upload_readiness = computeReadiness(statuses);
 
-  res.json({ ...meta, status: derivedStatus, statuses, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
+  res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
 });
 
 app.patch('/posts/:postId/review', (req, res) => {

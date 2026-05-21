@@ -135,6 +135,13 @@
     .sc-failed     { background: #2e1a1a; color: #c0392b;  border: 1px solid #4a2a2a; }
     .sc-unknown, .sc-not_started { background: #1a1a1a; color: #444; border: 1px solid #222; }
 
+    /* ── Upload readiness chip ── */
+    .readiness-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.04em; margin-top: 8px; }
+    .ur-ready_to_upload         { background: #1a2e1a; color: #5cb85c;  border: 1px solid #2a4a2a; }
+    .ur-ready_to_retry_upload   { background: #2a2210; color: #b8860b;  border: 1px solid #3a3010; }
+    .ur-already_uploaded        { background: #1a2a3e; color: #7FFFD4;  border: 1px solid #1c3a50; }
+    .ur-not_ready_review_required { background: #1a1a1a; color: #555;   border: 1px solid #2a2a2a; }
+
     /* ── Review action buttons ── */
     .rev-btn { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; border: 1px solid #333; background: #1a1a1a; color: #bbb; cursor: pointer; }
     .rev-btn:hover { background: #252525; color: #fff; }
@@ -309,6 +316,7 @@
         <div class="saved-path" id="output-path">—</div>
         <div class="saved-meta">id: <span id="post-id">—</span> &nbsp;·&nbsp; status: <span id="post-status">—</span></div>
         <div id="post-statuses" class="status-chips" style="margin-top:8px;"></div>
+        <div id="post-readiness"></div>
         <div id="review-actions" style="display:none;margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
           <button class="rev-btn" onclick="setReview('approved')">Approve</button>
           <button class="rev-btn" onclick="setReview('needs_edit')">Needs Edit</button>
@@ -363,6 +371,17 @@
         loadHistory();
       } catch (err) { alert('Request failed: ' + err.message); }
       finally { btns.forEach(b => b.disabled = false); }
+    }
+
+    const READINESS_LABELS = {
+      ready_to_upload: 'Ready to upload',
+      ready_to_retry_upload: 'Ready to retry upload',
+      already_uploaded: 'Uploaded',
+      not_ready_review_required: 'Review required',
+    };
+    function readinessChip(r) {
+      const label = READINESS_LABELS[r] || r || '—';
+      return `<span class="readiness-chip ur-${r || 'not_ready_review_required'}">${label}</span>`;
     }
 
     const STATUS_DIMS = ['generation', 'review', 'upload', 'buffer', 'publish'];
@@ -466,8 +485,13 @@
         document.getElementById('output-path').textContent = `outputs/posts/${_currentPostId}`;
         document.getElementById('post-status').textContent = data.status || '—';
         document.getElementById('post-statuses').innerHTML = renderStatusChips(data.statuses);
+        document.getElementById('post-readiness').innerHTML = readinessChip(data.upload_readiness);
         document.getElementById('review-actions').style.display = 'flex';
         document.getElementById('post-info').style.display = 'block';
+
+        const canUpload = data.upload_readiness === 'ready_to_upload' || data.upload_readiness === 'ready_to_retry_upload';
+        const uploadBlock = document.getElementById('upload-block');
+        const uploadLabel = document.getElementById('upload-label');
 
         const captionBlock = document.getElementById('caption-block');
         if (data.caption) {
@@ -480,9 +504,7 @@
           document.getElementById('caption-label').style.display = 'none';
         }
 
-        const uploadBlock = document.getElementById('upload-block');
-        const uploadLabel = document.getElementById('upload-label');
-        if (data.status === 'uploaded' && Array.isArray(data.slide_urls) && data.slide_urls.length) {
+        if (canUpload && data.status === 'uploaded' && Array.isArray(data.slide_urls) && data.slide_urls.length) {
           document.getElementById('upload-bucket').textContent =
             data.supabase ? `${data.supabase.bucket} / ${data.supabase.base_path}` : '';
 
@@ -560,7 +582,7 @@
           const row = document.createElement('div');
           row.className = 'post-row';
           const when = p.created_at ? new Date(p.created_at).toLocaleString() : '—';
-          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status-chips">${renderStatusChips(p.statuses)}</span>`;
+          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status-chips">${renderStatusChips(p.statuses)}</span>${readinessChip(p.upload_readiness)}`;
           row.addEventListener('click', () => viewPost(p.post_id));
           list.appendChild(row);
         }
