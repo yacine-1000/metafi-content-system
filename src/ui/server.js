@@ -203,6 +203,38 @@ app.get('/posts/:postId', (req, res) => {
   res.json({ ...meta, status: derivedStatus, statuses, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
 });
 
+app.patch('/posts/:postId/review', (req, res) => {
+  const VALID = ['approved', 'needs_edit', 'pending'];
+  const { review } = req.body || {};
+  if (!VALID.includes(review)) return res.status(400).json({ error: `review must be one of: ${VALID.join(', ')}` });
+
+  const postDir = path.join(ROOT, 'outputs', 'posts', req.params.postId);
+  if (!fs.existsSync(postDir)) return res.status(404).json({ error: 'not found' });
+
+  const metaPath = path.join(postDir, 'metadata.json');
+  const pkgPath  = path.join(postDir, 'publish-package.json');
+  if (!fs.existsSync(metaPath)) return res.status(404).json({ error: 'metadata.json missing' });
+
+  const now = new Date().toISOString();
+  try {
+    const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+    meta.statuses = { ...(meta.statuses || {}), review };
+    meta.updated_at = now;
+    fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2), 'utf8');
+  } catch (e) { return res.status(500).json({ error: `metadata write failed: ${e.message}` }); }
+
+  if (fs.existsSync(pkgPath)) {
+    try {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+      pkg.statuses = { ...(pkg.statuses || {}), review };
+      pkg.updated_at = now;
+      fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), 'utf8');
+    } catch {}
+  }
+
+  res.json({ ok: true, post_id: req.params.postId, review });
+});
+
 app.get('/', (_req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
