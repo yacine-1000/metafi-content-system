@@ -14,7 +14,7 @@ const RENDERS_DIR = path.join(ROOT, 'renders');
 const RAW_SOURCE_PATH = path.join(ROOT, 'test-inputs', 'raw-source.txt');
 const MANUAL_INPUT_PATH = path.join(ROOT, 'test-inputs', 'manual-input.json');
 
-const PIPELINE = ['intake', 'planning', 'hook', 'body', 'final-slide', 'assembly:build', 'assemble:test', 'caption'];
+const PIPELINE = ['intake', 'planning', 'hook', 'body', 'final-slide', 'assembly:build', 'assemble:test', 'caption', 'strategy-check'];
 
 const STRATEGY_DEFAULTS = {
   sprint_phase: 'days_1_15_find_signal',
