@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "strategy_score",
+    "score_breakdown",
+    "drift_risk",
+    "metafi_fit",
+    "primary_pain",
+    "fix_required",
+    "issues",
+    "improvement_suggestions",
+    "reasoning_summary",
+    "status"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "strategy_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "score_breakdown": {
+      "type": "object",
+      "required": [
+        "core_pain_fit",
+        "real_life_specificity",
+        "metafi_differentiation",
+        "tone_fit",
+        "product_restraint"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "core_pain_fit":          { "type": "number", "minimum": 0, "maximum": 30 },
+        "real_life_specificity":  { "type": "number", "minimum": 0, "maximum": 20 },
+        "metafi_differentiation": { "type": "number", "minimum": 0, "maximum": 20 },
+        "tone_fit":               { "type": "number", "minimum": 0, "maximum": 15 },
+        "product_restraint":      { "type": "number", "minimum": 0, "maximum": 15 }
+      }
+    },
+    "drift_risk":   { "type": "string", "enum": ["low", "medium", "high"] },
+    "metafi_fit":   { "type": "string", "enum": ["strong", "usable", "needs_fix", "reject"] },
+    "primary_pain": { "type": "string" },
+    "fix_required": { "type": "boolean" },
+    "issues":                  { "type": "array", "items": { "type": "string" } },
+    "improvement_suggestions": { "type": "array", "items": { "type": "string" } },
+    "reasoning_summary": { "type": "string" },
+    "status": { "type": "string", "enum": ["checked"] }
+  }
+}
