@@ -106,10 +106,16 @@ function savePostFolder(strategy_metadata) {
 
   const createdAt = now.toISOString();
 
-  const metadata = { ...createPostMetadata({ postId, createdAt, slideCount: 5 }), strategy_metadata };
+  let strategyCheck = null;
+  const strategyCheckPath = path.join(ROOT, 'test-outputs', 'strategyCheck.json');
+  if (fs.existsSync(strategyCheckPath)) {
+    try { strategyCheck = JSON.parse(fs.readFileSync(strategyCheckPath, 'utf8')); } catch {}
+  }
+
+  const metadata = { ...createPostMetadata({ postId, createdAt, slideCount: 5, strategyCheck }), strategy_metadata };
   fs.writeFileSync(path.join(postDir, 'metadata.json'), JSON.stringify(metadata, null, 2), 'utf8');
 
-  const pkg = { ...createPublishPackage({ postId, caption, hashtags, createdAt, slideCount: 5 }), strategy_metadata };
+  const pkg = { ...createPublishPackage({ postId, caption, hashtags, createdAt, slideCount: 5, strategyCheck }), strategy_metadata };
   fs.writeFileSync(path.join(postDir, 'publish-package.json'), JSON.stringify(pkg, null, 2), 'utf8');
 
   return { postId, metadata, pkg, postDir };
@@ -179,7 +185,7 @@ app.get('/posts', (_req, res) => {
     .reverse();
   const posts = folders.map((name) => {
     const metaPath = path.join(postsDir, name, 'metadata.json');
-    let m = { post_id: name, status: 'unknown', statuses: { generation: 'unknown', review: 'unknown', upload: 'unknown', buffer: 'unknown', publish: 'unknown' }, created_at: null, slide_count: 5 };
+    let m = { post_id: name, status: 'unknown', statuses: { generation: 'unknown', review: 'unknown', upload: 'unknown', buffer: 'unknown', publish: 'unknown', strategy: 'not_checked' }, created_at: null, slide_count: 5 };
     if (fs.existsSync(metaPath)) {
       try { m = JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch {}
     }

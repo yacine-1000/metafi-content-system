@@ -4,7 +4,13 @@ function baseStatuses() {
   return { generation: 'completed', review: 'pending', upload: 'not_started', buffer: 'not_started', publish: 'not_started' };
 }
 
-function createPostMetadata({ postId, jobId, rawInput, createdAt, slideCount, hasCaption, paths } = {}) {
+function strategyStatus(sc) {
+  if (!sc) return 'not_checked';
+  if (sc.fix_required === false && sc.strategy_score >= 70) return 'passed';
+  return 'needs_fix';
+}
+
+function createPostMetadata({ postId, jobId, rawInput, createdAt, slideCount, hasCaption, paths, strategyCheck } = {}) {
   const now = createdAt || new Date().toISOString();
   return {
     post_id: postId,
@@ -12,7 +18,7 @@ function createPostMetadata({ postId, jobId, rawInput, createdAt, slideCount, ha
     created_at: now,
     updated_at: now,
     source: { raw_input: rawInput || null },
-    statuses: baseStatuses(),
+    statuses: { ...baseStatuses(), strategy: strategyStatus(strategyCheck || null) },
     assets: {
       slide_count: slideCount,
       slides_path: 'slides/',
@@ -20,11 +26,12 @@ function createPostMetadata({ postId, jobId, rawInput, createdAt, slideCount, ha
       publish_package_path: 'publish-package.json',
     },
     paths: paths || {},
+    strategy: strategyCheck || null,
     errors: [],
   };
 }
 
-function createPublishPackage({ postId, jobId, caption, hashtags, createdAt, slideCount } = {}) {
+function createPublishPackage({ postId, jobId, caption, hashtags, createdAt, slideCount, strategyCheck } = {}) {
   const now = createdAt || new Date().toISOString();
   const slides = Array.from({ length: slideCount || 0 }, (_, i) => `slides/slide-${i + 1}.png`);
   return {
@@ -32,10 +39,11 @@ function createPublishPackage({ postId, jobId, caption, hashtags, createdAt, sli
     job_id: jobId || null,
     created_at: now,
     updated_at: now,
-    statuses: baseStatuses(),
+    statuses: { ...baseStatuses(), strategy: strategyStatus(strategyCheck || null) },
     caption: caption,
     hashtags: hashtags,
     assets: { slides, caption_path: 'caption.txt' },
+    strategy: strategyCheck || null,
     supabase: null,
     buffer: null,
     publish: null,

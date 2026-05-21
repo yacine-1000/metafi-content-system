@@ -18,6 +18,7 @@ const PHASE_ENV = {
   'body':        { METAFI_CLEANED_SOURCE_INPUT:  p('cleanedSourceBrief.json'), METAFI_SLIDER_PLAN_INPUT:   p('sliderPlan.json'), METAFI_HOOK_INPUT:  p('hookOutput.json'), METAFI_BODY_OUTPUT:        p('bodyOutput.json') },
   'final-slide': { METAFI_SLIDER_PLAN_INPUT:     p('sliderPlan.json'),         METAFI_HOOK_INPUT:          p('hookOutput.json'), METAFI_BODY_INPUT:  p('bodyOutput.json'), METAFI_FINAL_SLIDE_OUTPUT: p('finalSlideOutput.json') },
   'caption':        { METAFI_SLIDER_PLAN_INPUT: p('sliderPlan.json'), METAFI_HOOK_INPUT: p('hookOutput.json'), METAFI_BODY_INPUT: p('bodyOutput.json'), METAFI_FINAL_SLIDE_INPUT: p('finalSlideOutput.json'), METAFI_CAPTION_OUTPUT: p('captionOutput.json') },
+  'strategy-check': { METAFI_CLEANED_SOURCE_INPUT: p('cleanedSourceBrief.json'), METAFI_SLIDER_PLAN_INPUT: p('sliderPlan.json'), METAFI_HOOK_INPUT: p('hookOutput.json'), METAFI_BODY_INPUT: p('bodyOutput.json'), METAFI_FINAL_SLIDE_INPUT: p('finalSlideOutput.json'), METAFI_CAPTION_INPUT: p('captionOutput.json'), METAFI_STRATEGY_CHECK_OUTPUT: p('strategyCheck.json') },
   'assembly-build': { METAFI_SLIDER_PLAN_INPUT: p('sliderPlan.json'), METAFI_HOOK_INPUT: p('hookOutput.json'), METAFI_BODY_INPUT: p('bodyOutput.json'), METAFI_FINAL_SLIDE_INPUT: p('finalSlideOutput.json'), METAFI_CAPTION_INPUT: p('captionOutput.json'), METAFI_ASSEMBLY_CONFIG_OUTPUT: p('assembly-config.json') },
   'assemble-test':  { METAFI_ASSEMBLY_CONFIG_INPUT: p('assembly-config.json'), METAFI_RENDERS_DIR: path.join(root, 'outputs', 'jobs', jobId, 'renders') },
 };
@@ -30,7 +31,8 @@ const steps = [
   { name: 'final-slide',    cmd: 'npm', args: ['run', 'final-slide'] },
   { name: 'assembly-build', cmd: 'npm', args: ['run', 'assembly:build'] },
   { name: 'assemble-test',  cmd: 'npm', args: ['run', 'assemble:test'] },
-  { name: 'caption',        cmd: 'npm', args: ['run', 'caption'] },
+  { name: 'caption',         cmd: 'npm', args: ['run', 'caption'] },
+  { name: 'strategy-check', cmd: 'npm', args: ['run', 'strategy-check'] },
 ];
 
 for (const step of steps) {

@@ -16,7 +16,9 @@
     "pipeline": "node src/pipeline/runPipeline.js",
     "check:post-metadata": "node scripts/checkPostMetadata.js",
     "check:job-isolation": "node scripts/checkJobIsolation.js",
-    "check:v1": "node scripts/checkV1.js"
+    "strategy-check": "node src/phases/strategy-check.js",
+    "check:v1": "node scripts/checkV1.js",
+    "check:v2": "node scripts/checkV2.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.0",

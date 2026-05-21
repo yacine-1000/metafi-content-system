@@ -133,7 +133,19 @@
     .sc-uploaded   { background: #1a2a3e; color: #7FFFD4;  border: 1px solid #1c3a50; }
     .sc-pending    { background: #2a2210; color: #b8860b;  border: 1px solid #3a3010; }
     .sc-failed     { background: #2e1a1a; color: #c0392b;  border: 1px solid #4a2a2a; }
-    .sc-unknown, .sc-not_started { background: #1a1a1a; color: #444; border: 1px solid #222; }
+    .sc-unknown, .sc-not_started, .sc-not_checked { background: #1a1a1a; color: #444; border: 1px solid #222; }
+    .sc-passed   { background: #1a2e1a; color: #5cb85c; border: 1px solid #2a4a2a; }
+    .sc-needs_fix { background: #2a2210; color: #b8860b; border: 1px solid #3a3010; }
+
+    /* ── Strategy block ── */
+    #strategy-block { margin-top: 12px; display: none; background: #111b22; border: 1px solid #1c3040; border-radius: 6px; padding: 10px 14px; }
+    #strategy-block .sb-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    #strategy-block .sb-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+    #strategy-block .sb-item { display: flex; flex-direction: column; gap: 2px; }
+    #strategy-block .sb-key { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.06em; }
+    #strategy-block .sb-val { font-size: 12px; color: #7FFFD4; font-family: monospace; }
+    #strategy-block .sb-issues { margin-top: 6px; }
+    #strategy-block .sb-issue { font-size: 11px; color: #e07070; padding: 2px 0; }
 
     /* ── Upload readiness chip ── */
     .readiness-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.04em; margin-top: 8px; }
@@ -379,6 +391,17 @@
         <div class="upload-link-label" id="caption-url-label" style="display:none;">Caption</div>
         <div class="upload-links" id="upload-caption-link"></div>
       </div>
+      <div id="strategy-block">
+        <div class="sb-label">Strategy Check</div>
+        <div class="sb-row">
+          <span class="sb-item"><span class="sb-key">Status</span><span class="sb-val" id="sb-status">—</span></span>
+          <span class="sb-item"><span class="sb-key">Score</span><span class="sb-val" id="sb-score">—</span></span>
+          <span class="sb-item"><span class="sb-key">Drift</span><span class="sb-val" id="sb-drift">—</span></span>
+          <span class="sb-item"><span class="sb-key">Fit</span><span class="sb-val" id="sb-fit">—</span></span>
+        </div>
+        <div id="sb-issues" class="sb-issues"></div>
+      </div>
+    </div>
     </div>
   </div>
 
@@ -447,8 +470,8 @@
       return `<span class="readiness-chip ur-${r || 'not_ready_review_required'}">${label}</span>`;
     }
 
-    const STATUS_DIMS = ['generation', 'review', 'upload', 'buffer', 'publish'];
-    const DIM_SHORT   = { generation: 'gen', review: 'rev', upload: 'upl', buffer: 'buf', publish: 'pub' };
+    const STATUS_DIMS = ['generation', 'review', 'upload', 'buffer', 'publish', 'strategy'];
+    const DIM_SHORT   = { generation: 'gen', review: 'rev', upload: 'upl', buffer: 'buf', publish: 'pub', strategy: 'str' };
     function renderStatusChips(statuses) {
       return STATUS_DIMS.map(d => {
         const v = (statuses && statuses[d]) || 'unknown';
@@ -566,6 +589,20 @@
           } else { baUrls.innerHTML = '<span style="font-size:11px;color:#444;">No URLs yet</span>'; }
           baEl.style.display = 'block';
         } else { baEl.style.display = 'none'; }
+
+        const sc = data.strategy || null;
+        const sbEl = document.getElementById('strategy-block');
+        const strStatus = (data.statuses && data.statuses.strategy) || 'not_checked';
+        document.getElementById('sb-status').textContent = strStatus;
+        document.getElementById('sb-score').textContent  = sc ? sc.strategy_score : '—';
+        document.getElementById('sb-drift').textContent  = sc ? (sc.drift_risk || '—') : '—';
+        document.getElementById('sb-fit').textContent    = sc ? (sc.metafi_fit  || '—') : '—';
+        const sbIssues = document.getElementById('sb-issues');
+        sbIssues.innerHTML = '';
+        if (sc && Array.isArray(sc.issues) && sc.issues.length) {
+          sc.issues.slice(0, 3).forEach(iss => { const d = document.createElement('div'); d.className = 'sb-issue'; d.textContent = iss; sbIssues.appendChild(d); });
+        }
+        sbEl.style.display = 'block';
 
         document.getElementById('post-info').style.display = 'block';
 
