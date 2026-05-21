@@ -4,3 +4,5 @@ node_modules/
 outputs/
 renders/
 test-outputs/
+
+.claude/
