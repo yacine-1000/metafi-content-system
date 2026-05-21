@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { callGeminiJson } = require('../lib/callGeminiJson');
+const { resolvePath, ensureParentDir } = require('../lib/pathResolver');
 
 const REQUIRED_FIELDS = [
   'source_brief_id',
@@ -66,7 +67,7 @@ async function run() {
   const root = path.join(__dirname, '..', '..');
   const promptPath = path.join(root, 'prompts', 'raw-intake.txt');
   const inputPath = path.join(root, 'test-inputs', 'raw-source.txt');
-  const outputPath = path.join(root, 'test-outputs', 'cleanedSourceBrief.json');
+  const outputPath = resolvePath(root, 'METAFI_CLEANED_SOURCE_OUTPUT', 'test-outputs/cleanedSourceBrief.json');
 
   if (!fs.existsSync(promptPath)) { console.error(`Error: Missing prompt file at ${promptPath}`); process.exit(1); }
   if (!fs.existsSync(inputPath)) { console.error(`Error: Missing input file at ${inputPath}`); process.exit(1); }
@@ -89,8 +90,7 @@ async function run() {
   }
 
   const output = JSON.stringify(parsed, null, 2);
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, output, 'utf8');
+  fs.writeFileSync(ensureParentDir(outputPath), output, 'utf8');
 
   console.log('\n--- cleanedSourceBrief ---\n');
   console.log(output);
