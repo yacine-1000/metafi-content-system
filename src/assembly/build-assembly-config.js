@@ -2,12 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const { resolvePath, ensureParentDir } = require('../lib/pathResolver');
 
 const ROOT = path.resolve(__dirname, '../../');
 
-const hookOutput      = JSON.parse(fs.readFileSync(path.join(ROOT, 'test-outputs/hookOutput.json'), 'utf8'));
-const bodyOutput      = JSON.parse(fs.readFileSync(path.join(ROOT, 'test-outputs/bodyOutput.json'), 'utf8'));
-const finalSlideOutput = JSON.parse(fs.readFileSync(path.join(ROOT, 'test-outputs/finalSlideOutput.json'), 'utf8'));
+const hookOutput       = JSON.parse(fs.readFileSync(resolvePath(ROOT, 'METAFI_HOOK_INPUT',        'test-outputs/hookOutput.json'),       'utf8'));
+const bodyOutput       = JSON.parse(fs.readFileSync(resolvePath(ROOT, 'METAFI_BODY_INPUT',        'test-outputs/bodyOutput.json'),       'utf8'));
+const finalSlideOutput = JSON.parse(fs.readFileSync(resolvePath(ROOT, 'METAFI_FINAL_SLIDE_INPUT', 'test-outputs/finalSlideOutput.json'), 'utf8'));
 
 const errors = [];
 
@@ -57,7 +58,6 @@ const slides = [
 
 const config = { slides };
 
-const outPath = path.join(ROOT, 'test-inputs/assembly-config.json');
-fs.mkdirSync(path.dirname(outPath), { recursive: true });
-fs.writeFileSync(outPath, JSON.stringify(config, null, 2), 'utf8');
+const outPath = resolvePath(ROOT, 'METAFI_ASSEMBLY_CONFIG_OUTPUT', 'test-inputs/assembly-config.json');
+fs.writeFileSync(ensureParentDir(outPath), JSON.stringify(config, null, 2), 'utf8');
 console.log(`✓ assembly-config.json written (${slides.length} slides)`);

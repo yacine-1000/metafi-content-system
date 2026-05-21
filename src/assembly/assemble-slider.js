@@ -3,10 +3,11 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
+const { resolvePath } = require('../lib/pathResolver');
 
 const ROOT = path.resolve(__dirname, '../../');
-const CONFIG_PATH = path.join(ROOT, 'test-inputs', 'assembly-config.json');
-const RENDERS_DIR = path.join(ROOT, 'renders');
+const CONFIG_PATH = resolvePath(ROOT, 'METAFI_ASSEMBLY_CONFIG_INPUT', 'test-inputs/assembly-config.json');
+const RENDERS_DIR = resolvePath(ROOT, 'METAFI_RENDERS_DIR', 'renders');
 
 const FONT_PATH = fs.existsSync(path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf'))
   ? path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf')
