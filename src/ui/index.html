@@ -105,6 +105,19 @@
     #upload-error .err-title { font-size: 11px; font-weight: 700; color: #c0392b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
     #upload-error .err-msg { font-size: 12px; font-family: monospace; color: #e07070; word-break: break-word; }
 
+    /* ── Strategy metadata ── */
+    .strategy-section { margin-bottom: 16px; }
+    .strategy-section > summary { cursor: pointer; font-size: 11px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin-top: 12px; }
+    .strategy-grid .field { margin-bottom: 0; }
+    .strategy-full { margin-top: 12px; }
+    #strategy-summary { margin-top: 14px; background: #111b22; border: 1px solid #1c3040; border-radius: 6px; padding: 10px 14px; display: none; }
+    #strategy-summary .strat-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    #strategy-summary .strat-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    #strategy-summary .strat-item { display: flex; flex-direction: column; gap: 2px; }
+    #strategy-summary .strat-key { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.06em; }
+    #strategy-summary .strat-val { font-size: 12px; color: #7FFFD4; font-family: monospace; }
+
     /* ── History ── */
     #history { margin-top: 40px; }
     .post-row { display: flex; align-items: center; gap: 16px; padding: 10px 14px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
@@ -153,6 +166,115 @@
       <textarea id="raw_input" placeholder="Paste the raw source content here..."></textarea>
     </div>
 
+    <details class="strategy-section">
+      <summary>Strategy Metadata (optional)</summary>
+      <div class="strategy-grid">
+        <div class="field">
+          <label for="sm_sprint_phase">Sprint Phase</label>
+          <select id="sm_sprint_phase">
+            <option value="days_1_15_find_signal" selected>days_1_15_find_signal</option>
+            <option value="days_16_30_lock_message">days_16_30_lock_message</option>
+            <option value="days_31_45_build_engine">days_31_45_build_engine</option>
+            <option value="days_46_60_global_travel">days_46_60_global_travel</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_activity_category">Activity Category</label>
+          <select id="sm_activity_category">
+            <option value="sport">sport</option>
+            <option value="movement">movement</option>
+            <option value="gym">gym</option>
+            <option value="general" selected>general</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_specific_activity">Specific Activity</label>
+          <select id="sm_specific_activity">
+            <option value="football">football</option>
+            <option value="running">running</option>
+            <option value="tennis">tennis</option>
+            <option value="padel">padel</option>
+            <option value="swimming">swimming</option>
+            <option value="pilates">pilates</option>
+            <option value="yoga">yoga</option>
+            <option value="general_gym">general_gym</option>
+            <option value="none" selected>none</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_pain_hypothesis">Pain Hypothesis</label>
+          <select id="sm_pain_hypothesis">
+            <option value="sport_yesterday_vs_today_plan">sport_yesterday_vs_today_plan</option>
+            <option value="sport_tomorrow_vs_today_plan">sport_tomorrow_vs_today_plan</option>
+            <option value="missed_session_week_broken">missed_session_week_broken</option>
+            <option value="soreness_fatigue_plan_unchanged">soreness_fatigue_plan_unchanged</option>
+            <option value="limited_time_plan_too_long">limited_time_plan_too_long</option>
+            <option value="decision_confusion_push_or_reduce">decision_confusion_push_or_reduce</option>
+            <option value="bridge_fitness_reframe">bridge_fitness_reframe</option>
+            <option value="none" selected>none</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_message_hypothesis">Message Hypothesis</label>
+          <select id="sm_message_hypothesis">
+            <option value="pain_led">pain_led</option>
+            <option value="decision_led">decision_led</option>
+            <option value="sport_load">sport_load</option>
+            <option value="confidence">confidence</option>
+            <option value="none" selected>none</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_content_pillar">Content Pillar</label>
+          <select id="sm_content_pillar">
+            <option value="changed_week_pain" selected>changed_week_pain</option>
+            <option value="training_meaning">training_meaning</option>
+            <option value="bridge_fitness">bridge_fitness</option>
+            <option value="product_logic">product_logic</option>
+            <option value="proof_pdf_buyers">proof_pdf_buyers</option>
+            <option value="founder_building_in_public">founder_building_in_public</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_content_ring">Content Ring</label>
+          <select id="sm_content_ring">
+            <option value="core" selected>core</option>
+            <option value="bridge">bridge</option>
+            <option value="broad_reach">broad_reach</option>
+            <option value="proof">proof</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_carousel_archetype">Carousel Archetype</label>
+          <select id="sm_carousel_archetype">
+            <option value="pov_situation">pov_situation</option>
+            <option value="pain_mirror" selected>pain_mirror</option>
+            <option value="decision_dilemma">decision_dilemma</option>
+            <option value="training_meaning">training_meaning</option>
+            <option value="bridge_fitness_reframe">bridge_fitness_reframe</option>
+            <option value="product_logic">product_logic</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sm_cta_goal">CTA Goal</label>
+          <select id="sm_cta_goal">
+            <option value="comments" selected>comments</option>
+            <option value="saves">saves</option>
+            <option value="dms">dms</option>
+            <option value="profile_visits">profile_visits</option>
+            <option value="signup_intent">signup_intent</option>
+            <option value="awareness">awareness</option>
+          </select>
+        </div>
+      </div>
+      <div class="strategy-full">
+        <div class="field">
+          <label for="sm_expected_signal">Expected Signal</label>
+          <textarea id="sm_expected_signal" style="min-height:70px;" placeholder="What engagement or behavior signal are you expecting?"></textarea>
+        </div>
+      </div>
+    </details>
+
     <button id="btn" onclick="generate()">Generate</button>
     <div id="status-bar" data-state="idle"><span class="dot"></span><span id="status-text">Idle</span></div>
 
@@ -172,6 +294,11 @@
         <div class="saved-path" id="output-path">—</div>
         <div class="saved-meta">id: <span id="post-id">—</span> &nbsp;·&nbsp; status: <span id="post-status">—</span></div>
       </div>
+      <div id="strategy-summary">
+        <div class="strat-label">Strategy</div>
+        <div class="strat-row" id="strat-row"></div>
+      </div>
+
       <div id="upload-error">
         <div class="err-title">Upload Failed — Post saved locally</div>
         <div class="err-msg" id="upload-error-msg"></div>
@@ -224,10 +351,23 @@
       grid.innerHTML = '';
 
       try {
+        const strategy_metadata = {
+          sprint_phase: document.getElementById('sm_sprint_phase').value,
+          activity_category: document.getElementById('sm_activity_category').value,
+          specific_activity: document.getElementById('sm_specific_activity').value,
+          pain_hypothesis: document.getElementById('sm_pain_hypothesis').value,
+          message_hypothesis: document.getElementById('sm_message_hypothesis').value,
+          content_pillar: document.getElementById('sm_content_pillar').value,
+          content_ring: document.getElementById('sm_content_ring').value,
+          carousel_archetype: document.getElementById('sm_carousel_archetype').value,
+          cta_goal: document.getElementById('sm_cta_goal').value,
+          expected_signal: document.getElementById('sm_expected_signal').value.trim(),
+        };
+
         const res = await fetch('/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ source_type, raw_input }),
+          body: JSON.stringify({ source_type, raw_input, strategy_metadata }),
         });
 
         const reader = res.body.getReader();
@@ -333,6 +473,24 @@
           uploadError.style.display = 'block';
         } else {
           uploadError.style.display = 'none';
+        }
+
+        const stratSummary = document.getElementById('strategy-summary');
+        const sm = data.strategy_metadata;
+        if (sm) {
+          const fields = [
+            ['sprint_phase', sm.sprint_phase],
+            ['activity', sm.specific_activity],
+            ['pain', sm.pain_hypothesis],
+            ['message', sm.message_hypothesis],
+            ['archetype', sm.carousel_archetype],
+          ];
+          document.getElementById('strat-row').innerHTML = fields
+            .map(([k, v]) => `<span class="strat-item"><span class="strat-key">${k}</span><span class="strat-val">${v || '—'}</span></span>`)
+            .join('');
+          stratSummary.style.display = 'block';
+        } else {
+          stratSummary.style.display = 'none';
         }
       } catch {}
     }

@@ -14,7 +14,20 @@ const MANUAL_INPUT_PATH = path.join(ROOT, 'test-inputs', 'manual-input.json');
 
 const PIPELINE = ['intake', 'planning', 'hook', 'body', 'final-slide', 'assembly:build', 'assemble:test', 'caption'];
 
-function savePostFolder() {
+const STRATEGY_DEFAULTS = {
+  sprint_phase: 'days_1_15_find_signal',
+  activity_category: 'general',
+  specific_activity: 'none',
+  pain_hypothesis: 'none',
+  message_hypothesis: 'none',
+  content_pillar: 'changed_week_pain',
+  content_ring: 'core',
+  carousel_archetype: 'pain_mirror',
+  cta_goal: 'comments',
+  expected_signal: '',
+};
+
+function savePostFolder(strategy_metadata) {
   const now = new Date();
   const pad = (n) => String(n).padStart(2, '0');
   const stamp =
@@ -69,6 +82,7 @@ function savePostFolder() {
       platform: 'tiktok',
       type: 'photo_carousel',
       status: 'ready_for_review',
+      strategy_metadata,
       slide_paths: slidePaths,
       slide_urls: [],
       caption,
@@ -82,7 +96,7 @@ function savePostFolder() {
 
   fs.writeFileSync(
     path.join(postDir, 'metadata.json'),
-    JSON.stringify({ post_id: postId, status: 'ready_for_review', created_at: createdAt, slide_count: 5 }, null, 2),
+    JSON.stringify({ post_id: postId, status: 'ready_for_review', created_at: createdAt, slide_count: 5, strategy_metadata }, null, 2),
     'utf8',
   );
 
@@ -177,6 +191,7 @@ app.get('/posts/:postId', (req, res) => {
   let slide_urls = [];
   let caption_url = null;
   let supabase = null;
+  let strategy_metadata = null;
   const pkgPath = path.join(postDir, 'publish-package.json');
   if (fs.existsSync(pkgPath)) {
     try {
@@ -186,10 +201,11 @@ app.get('/posts/:postId', (req, res) => {
       slide_urls = Array.isArray(pkg.slide_urls) ? pkg.slide_urls : [];
       caption_url = pkg.caption_url || null;
       supabase = pkg.supabase || null;
+      strategy_metadata = pkg.strategy_metadata || null;
     } catch {}
   }
 
-  res.json({ ...meta, caption, hashtags, slide_urls, caption_url, supabase });
+  res.json({ ...meta, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
 });
 
 app.get('/', (_req, res) => {
@@ -209,7 +225,8 @@ function runStep(step, log) {
 }
 
 app.post('/generate', async (req, res) => {
-  const { source_type = 'other', raw_input = '' } = req.body;
+  const { source_type = 'other', raw_input = '', strategy_metadata: rawMeta = {} } = req.body;
+  const strategy_metadata = { ...STRATEGY_DEFAULTS, ...rawMeta };
 
   if (!raw_input.trim()) {
     return res.status(400).json({ error: 'raw_input is required' });
@@ -227,7 +244,7 @@ app.post('/generate', async (req, res) => {
   try {
     fs.mkdirSync(path.dirname(RAW_SOURCE_PATH), { recursive: true });
     fs.writeFileSync(RAW_SOURCE_PATH, `[source_type: ${source_type}]\n\n${raw_input.trim()}`, 'utf8');
-    fs.writeFileSync(MANUAL_INPUT_PATH, JSON.stringify({ source_type, raw_input }, null, 2), 'utf8');
+    fs.writeFileSync(MANUAL_INPUT_PATH, JSON.stringify({ source_type, raw_input, strategy_metadata }, null, 2), 'utf8');
     log(`inputs written\n`);
   } catch (err) {
     log(`ERROR writing inputs: ${err.message}\n`);
@@ -249,7 +266,7 @@ app.post('/generate', async (req, res) => {
 
   let postId = null;
   try {
-    postId = savePostFolder();
+    postId = savePostFolder(strategy_metadata);
     log(`\nSaved → outputs/posts/${postId}/\n`);
   } catch (err) {
     log(`\nWARN: could not save post folder: ${err.message}\n`);
