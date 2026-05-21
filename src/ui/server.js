@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
 const { createClient } = require('@supabase/supabase-js');
+const { createPostMetadata, createPublishPackage, markUploadSuccess, markUploadFailed } = require('../lib/postMetadata');
 
 const ROOT = path.resolve(__dirname, '../../');
 require('dotenv').config({ path: path.join(ROOT, '.env') });
@@ -72,33 +73,13 @@ function savePostFolder(strategy_metadata) {
   const captionTxtPath = path.join(postDir, 'caption.txt');
   fs.writeFileSync(captionTxtPath, `${caption}\n\n${hashtags.join(' ')}`, 'utf8');
 
-  const slidePaths = Array.from({ length: 5 }, (_, i) => `slides/slide-${i + 1}.png`);
   const createdAt = now.toISOString();
 
-  fs.writeFileSync(
-    path.join(postDir, 'publish-package.json'),
-    JSON.stringify({
-      post_id: postId,
-      platform: 'tiktok',
-      type: 'photo_carousel',
-      status: 'ready_for_review',
-      strategy_metadata,
-      slide_paths: slidePaths,
-      slide_urls: [],
-      caption,
-      hashtags,
-      caption_path: 'caption.txt',
-      created_at: createdAt,
-      publish: { provider: null, platform_post_id: null, published_at: null, error: null },
-    }, null, 2),
-    'utf8',
-  );
+  const metadata = { ...createPostMetadata({ postId, createdAt, slideCount: 5 }), strategy_metadata };
+  fs.writeFileSync(path.join(postDir, 'metadata.json'), JSON.stringify(metadata, null, 2), 'utf8');
 
-  fs.writeFileSync(
-    path.join(postDir, 'metadata.json'),
-    JSON.stringify({ post_id: postId, status: 'ready_for_review', created_at: createdAt, slide_count: 5, strategy_metadata }, null, 2),
-    'utf8',
-  );
+  const pkg = { ...createPublishPackage({ postId, caption, hashtags, createdAt, slideCount: 5 }), strategy_metadata };
+  fs.writeFileSync(path.join(postDir, 'publish-package.json'), JSON.stringify(pkg, null, 2), 'utf8');
 
   return postId;
 }
@@ -137,19 +118,13 @@ async function uploadPost(postId, log) {
   );
   const captionUrl = `${SUPABASE_URL}/storage/v1/object/public/${bucket}/posts/${postId}/caption.txt`;
 
+  const uploadInput = { uploadedAt, bucket, basePath: `posts/${postId}`, slideUrls, captionUrl };
+
   const pkgPath = path.join(postDir, 'publish-package.json');
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-  pkg.status = 'uploaded';
-  pkg.slide_urls = slideUrls;
-  pkg.caption_url = captionUrl;
-  pkg.supabase = { bucket, base_path: `posts/${postId}`, uploaded_at: uploadedAt };
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+  fs.writeFileSync(pkgPath, JSON.stringify(markUploadSuccess(JSON.parse(fs.readFileSync(pkgPath, 'utf8')), uploadInput), null, 2));
 
   const metaPath = path.join(postDir, 'metadata.json');
-  const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
-  meta.status = 'uploaded';
-  meta.uploaded_at = uploadedAt;
-  fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
+  fs.writeFileSync(metaPath, JSON.stringify(markUploadSuccess(JSON.parse(fs.readFileSync(metaPath, 'utf8')), uploadInput), null, 2));
 }
 
 const app = express();
@@ -284,10 +259,7 @@ app.post('/generate', async (req, res) => {
       log(`\nUpload failed: ${uploadErr.message}\n`);
       try {
         const metaPath = path.join(ROOT, 'outputs', 'posts', postId, 'metadata.json');
-        const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
-        meta.status = 'upload_failed';
-        meta.upload_error = uploadErr.message;
-        fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
+        fs.writeFileSync(metaPath, JSON.stringify(markUploadFailed(JSON.parse(fs.readFileSync(metaPath, 'utf8')), uploadErr.message), null, 2));
       } catch {}
     }
   }

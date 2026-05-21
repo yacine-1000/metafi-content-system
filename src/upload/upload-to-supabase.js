@@ -4,6 +4,7 @@ require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
+const { markUploadSuccess, markUploadFailed } = require('../lib/postMetadata');
 
 const ROOT = path.resolve(__dirname, '../../');
 const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
@@ -77,26 +78,16 @@ async function main() {
   );
   const captionUrl = publicUrl(SUPABASE_URL, SUPABASE_BUCKET, `posts/${postId}/caption.txt`);
 
-  // Update publish-package.json
+  const uploadInput = { uploadedAt, bucket: SUPABASE_BUCKET, basePath: `posts/${postId}`, slideUrls, captionUrl };
+
   const pkgPath = path.join(postDir, 'publish-package.json');
-  const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-  pkg.status = 'uploaded';
-  pkg.slide_urls = slideUrls;
-  pkg.caption_url = captionUrl;
-  pkg.supabase = {
-    bucket: SUPABASE_BUCKET,
-    base_path: `posts/${postId}`,
-    uploaded_at: uploadedAt,
-  };
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+  const updatedPkg = markUploadSuccess(JSON.parse(fs.readFileSync(pkgPath, 'utf8')), uploadInput);
+  fs.writeFileSync(pkgPath, JSON.stringify(updatedPkg, null, 2));
   console.log('✓ publish-package.json updated');
 
-  // Update metadata.json
   const metaPath = path.join(postDir, 'metadata.json');
-  const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
-  meta.status = 'uploaded';
-  meta.uploaded_at = uploadedAt;
-  fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2));
+  const updatedMeta = markUploadSuccess(JSON.parse(fs.readFileSync(metaPath, 'utf8')), uploadInput);
+  fs.writeFileSync(metaPath, JSON.stringify(updatedMeta, null, 2));
   console.log('✓ metadata.json updated');
 
   console.log(`\nDone — ${postId} uploaded to ${SUPABASE_BUCKET}`);
@@ -104,5 +95,13 @@ async function main() {
 
 main().catch((err) => {
   console.error(err.message);
+  try {
+    const postId = latestPost();
+    const metaPath = path.join(POSTS_DIR, postId, 'metadata.json');
+    if (fs.existsSync(metaPath)) {
+      const updated = markUploadFailed(JSON.parse(fs.readFileSync(metaPath, 'utf8')), err.message);
+      fs.writeFileSync(metaPath, JSON.stringify(updated, null, 2));
+    }
+  } catch {}
   process.exit(1);
 });
