@@ -1,9 +1,8 @@
 'use strict';
-require('dotenv').config();
 
-const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
+const { callGeminiJson } = require('../lib/callGeminiJson');
 
 const REQUIRED_FIELDS = [
   'source_brief_id',
@@ -60,75 +59,32 @@ function validate(obj) {
     errors.push('useful_phrases must be an array');
   }
 
-  return errors;
+  return errors.length > 0 ? errors : null;
 }
 
 async function run() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    console.error('Error: GEMINI_API_KEY not set in .env');
-    process.exit(1);
-  }
-
   const root = path.join(__dirname, '..', '..');
   const promptPath = path.join(root, 'prompts', 'raw-intake.txt');
   const inputPath = path.join(root, 'test-inputs', 'raw-source.txt');
   const outputPath = path.join(root, 'test-outputs', 'cleanedSourceBrief.json');
 
-  if (!fs.existsSync(promptPath)) {
-    console.error(`Error: Missing prompt file at ${promptPath}`);
-    process.exit(1);
-  }
-
-  if (!fs.existsSync(inputPath)) {
-    console.error(`Error: Missing input file at ${inputPath}`);
-    process.exit(1);
-  }
+  if (!fs.existsSync(promptPath)) { console.error(`Error: Missing prompt file at ${promptPath}`); process.exit(1); }
+  if (!fs.existsSync(inputPath)) { console.error(`Error: Missing input file at ${inputPath}`); process.exit(1); }
 
   const prompt = fs.readFileSync(promptPath, 'utf8');
   const rawSource = fs.readFileSync(inputPath, 'utf8').trim();
+  if (!rawSource) { console.error('Error: test-inputs/raw-source.txt is empty'); process.exit(1); }
 
-  if (!rawSource) {
-    console.error('Error: test-inputs/raw-source.txt is empty');
-    process.exit(1);
-  }
-
-  const genAI = new GoogleGenerativeAI(apiKey);
-
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-2.5-flash',
-    generationConfig: {
-      responseMimeType: 'application/json',
-      temperature: 0.2,
-    },
-  });
-
-  const message = `${prompt}
-
-<raw_source>
-${rawSource}
-</raw_source>`;
+  const message = `${prompt}\n\n<raw_source>\n${rawSource}\n</raw_source>`;
 
   console.log('Sending to Gemini...');
 
-  const result = await model.generateContent(message);
-  const text = result.response.text();
-
   let parsed;
   try {
-    parsed = JSON.parse(text);
+    parsed = await callGeminiJson({ root, phaseName: 'raw-intake', message, validate, temperature: 0.2, maxAttempts: 3 });
   } catch (err) {
-    console.error('Model returned invalid JSON:\n');
-    console.error(text);
-    process.exit(1);
-  }
-
-  const errors = validate(parsed);
-  if (errors.length > 0) {
-    console.error('Output failed validation:');
-    for (const error of errors) {
-      console.error(` - ${error}`);
-    }
+    console.error('raw-intake failed:', err.message);
+    if (err.validationErrors) err.validationErrors.forEach(e => console.error(` - ${e}`));
     process.exit(1);
   }
 

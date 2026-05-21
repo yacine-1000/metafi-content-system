@@ -1,9 +1,8 @@
 'use strict';
-require('dotenv').config();
 
-const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
 const path = require('path');
+const { callGeminiJson } = require('../lib/callGeminiJson');
 
 const REQUIRED_FIELDS = ['caption', 'hashtags', 'caption_notes', 'status'];
 
@@ -37,16 +36,10 @@ function validate(obj) {
     }
   }
 
-  return errors;
+  return errors.length > 0 ? errors : null;
 }
 
 async function run() {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) {
-    console.error('Error: GEMINI_API_KEY not set in .env');
-    process.exit(1);
-  }
-
   const root = path.join(__dirname, '..', '..');
   const promptPath    = path.join(root, 'prompts', 'caption.txt');
   const planPath      = path.join(root, 'test-outputs', 'sliderPlan.json');
@@ -74,15 +67,6 @@ async function run() {
   const body       = fs.readFileSync(bodyPath, 'utf8').trim();
   const finalSlide = fs.readFileSync(finalPath, 'utf8').trim();
 
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({
-    model: 'gemini-2.5-flash',
-    generationConfig: {
-      responseMimeType: 'application/json',
-      temperature: 0.3,
-    },
-  });
-
   const message = `${prompt}
 
 <slider_plan>
@@ -103,22 +87,12 @@ ${finalSlide}
 
   console.log('Sending to Gemini...');
 
-  const result = await model.generateContent(message);
-  const text = result.response.text();
-
   let parsed;
   try {
-    parsed = JSON.parse(text);
-  } catch {
-    console.error('Model returned invalid JSON:\n');
-    console.error(text);
-    process.exit(1);
-  }
-
-  const errors = validate(parsed);
-  if (errors.length > 0) {
-    console.error('Output failed validation:');
-    for (const error of errors) console.error(` - ${error}`);
+    parsed = await callGeminiJson({ root, phaseName: 'caption', message, validate, temperature: 0.3, maxAttempts: 3 });
+  } catch (err) {
+    console.error('caption failed:', err.message);
+    if (err.validationErrors) err.validationErrors.forEach(e => console.error(` - ${e}`));
     process.exit(1);
   }
 

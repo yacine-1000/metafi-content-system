@@ -12,7 +12,8 @@
     "assembly:build": "node src/assembly/build-assembly-config.js",
     "assemble:test": "node src/assembly/assemble-slider.js",
     "assemble:styles": "node src/assembly/assemble-slider.js --styles",
-    "upload:latest": "node src/upload/upload-to-supabase.js"
+    "upload:latest": "node src/upload/upload-to-supabase.js",
+    "pipeline": "npm run intake && npm run planning && npm run hook && npm run body && npm run final-slide && npm run assembly:build && npm run assemble:test && npm run caption"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
