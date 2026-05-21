@@ -147,6 +147,22 @@
     .rev-btn:hover { background: #252525; color: #fff; }
     .rev-btn:disabled { opacity: 0.4; cursor: not-allowed; }
     .rev-reset { color: #666; }
+
+    /* ── Buffer readiness chip ── */
+    .br-ready_for_buffer           { background: #1a2e1a; color: #5cb85c;  border: 1px solid #2a4a2a; }
+    .br-sent_to_buffer             { background: #1a2a3e; color: #7FFFD4;  border: 1px solid #1c3a50; }
+    .br-scheduled                  { background: #1e1630; color: #9b8dff;  border: 1px solid #2e2250; }
+    .br-not_ready_review_required,
+    .br-not_ready_upload_required  { background: #1a1a1a; color: #555;     border: 1px solid #2a2a2a; }
+
+    /* ── Buffer assets ── */
+    #buffer-assets { margin-top: 10px; background: #111b22; border: 1px solid #1c3040; border-radius: 6px; padding: 10px 14px; display: none; }
+    #buffer-assets .ba-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    #buffer-assets .ba-caption { font-size: 13px; color: #e0e0e0; white-space: pre-wrap; margin-bottom: 8px; word-break: break-word; }
+    #buffer-assets .ba-copy { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 3px; border: 1px solid #333; background: #1a1a1a; color: #7FFFD4; cursor: pointer; margin-bottom: 10px; }
+    #buffer-assets .ba-urls { display: flex; flex-direction: column; gap: 4px; }
+    #buffer-assets .ba-urls a { font-size: 11px; font-family: monospace; color: #7FFFD4; text-decoration: none; word-break: break-all; }
+    #buffer-assets .ba-urls a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -322,6 +338,19 @@
           <button class="rev-btn" onclick="setReview('needs_edit')">Needs Edit</button>
           <button class="rev-btn rev-reset" onclick="setReview('pending')">Reset Review</button>
         </div>
+        <div id="post-buffer-readiness" style="margin-top:8px;"></div>
+        <div id="buffer-actions" style="display:none;margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+          <button class="rev-btn" onclick="setBuffer('sent')">Mark Sent to Buffer</button>
+          <button class="rev-btn" onclick="setBuffer('scheduled')">Mark Scheduled</button>
+          <button class="rev-btn rev-reset" onclick="setBuffer('not_started')">Reset Buffer</button>
+        </div>
+        <div id="buffer-assets">
+          <div class="ba-label">Buffer Assets</div>
+          <div id="ba-caption" class="ba-caption"></div>
+          <button class="ba-copy" onclick="copyCaption()">Copy Caption</button>
+          <div class="ba-label" style="margin-top:4px;">Slide URLs</div>
+          <div id="ba-urls" class="ba-urls"></div>
+        </div>
       </div>
       <div id="strategy-summary">
         <div class="strat-label">Strategy</div>
@@ -371,6 +400,40 @@
         loadHistory();
       } catch (err) { alert('Request failed: ' + err.message); }
       finally { btns.forEach(b => b.disabled = false); }
+    }
+
+    const BUFFER_READINESS_LABELS = {
+      ready_for_buffer: 'Ready for Buffer',
+      not_ready_review_required: 'Review required',
+      not_ready_upload_required: 'Upload required',
+      sent_to_buffer: 'Sent to Buffer',
+      scheduled: 'Scheduled',
+    };
+    function bufferReadinessChip(r) {
+      const label = BUFFER_READINESS_LABELS[r] || r || '—';
+      return `<span class="readiness-chip br-${r || 'not_ready_review_required'}">${label}</span>`;
+    }
+
+    async function setBuffer(value) {
+      if (!_currentPostId) return;
+      const btns = document.querySelectorAll('#buffer-actions .rev-btn');
+      btns.forEach(b => b.disabled = true);
+      try {
+        const r = await fetch(`/posts/${_currentPostId}/buffer`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ buffer: value }),
+        });
+        if (!r.ok) { const e = await r.json(); alert(e.error || 'Buffer update failed'); return; }
+        await showPostDetail(_currentPostId);
+        loadHistory();
+      } catch (err) { alert('Request failed: ' + err.message); }
+      finally { btns.forEach(b => b.disabled = false); }
+    }
+
+    function copyCaption() {
+      const text = document.getElementById('ba-caption').textContent;
+      if (text) navigator.clipboard.writeText(text).catch(() => {});
     }
 
     const READINESS_LABELS = {
@@ -487,6 +550,23 @@
         document.getElementById('post-statuses').innerHTML = renderStatusChips(data.statuses);
         document.getElementById('post-readiness').innerHTML = readinessChip(data.upload_readiness);
         document.getElementById('review-actions').style.display = 'flex';
+        document.getElementById('post-buffer-readiness').innerHTML = bufferReadinessChip(data.buffer_readiness);
+        document.getElementById('buffer-actions').style.display = 'flex';
+
+        const baEl = document.getElementById('buffer-assets');
+        const showAssets = data.buffer_readiness === 'ready_for_buffer' || data.buffer_readiness === 'sent_to_buffer' || data.buffer_readiness === 'scheduled';
+        if (showAssets) {
+          const fullCaption = [data.caption, Array.isArray(data.hashtags) ? data.hashtags.join(' ') : ''].filter(Boolean).join('\n\n');
+          document.getElementById('ba-caption').textContent = fullCaption || '—';
+          const baUrls = document.getElementById('ba-urls');
+          baUrls.innerHTML = '';
+          const urls = (data.supabase && Array.isArray(data.supabase.slide_urls)) ? data.supabase.slide_urls : [];
+          if (urls.length) {
+            urls.forEach((url, i) => { const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = `slide-${i+1}.png`; baUrls.appendChild(a); });
+          } else { baUrls.innerHTML = '<span style="font-size:11px;color:#444;">No URLs yet</span>'; }
+          baEl.style.display = 'block';
+        } else { baEl.style.display = 'none'; }
+
         document.getElementById('post-info').style.display = 'block';
 
         const canUpload = data.upload_readiness === 'ready_to_upload' || data.upload_readiness === 'ready_to_retry_upload';
@@ -582,7 +662,7 @@
           const row = document.createElement('div');
           row.className = 'post-row';
           const when = p.created_at ? new Date(p.created_at).toLocaleString() : '—';
-          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status-chips">${renderStatusChips(p.statuses)}</span>${readinessChip(p.upload_readiness)}`;
+          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status-chips">${renderStatusChips(p.statuses)}</span>${readinessChip(p.upload_readiness)}${bufferReadinessChip(p.buffer_readiness)}`;
           row.addEventListener('click', () => viewPost(p.post_id));
           list.appendChild(row);
         }

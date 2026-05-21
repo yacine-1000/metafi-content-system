@@ -28,6 +28,15 @@ const STRATEGY_DEFAULTS = {
   expected_signal: '',
 };
 
+function computeBufferReadiness(statuses) {
+  const s = statuses || {};
+  if (s.review !== 'approved') return 'not_ready_review_required';
+  if (s.upload !== 'uploaded') return 'not_ready_upload_required';
+  if (s.buffer === 'scheduled') return 'scheduled';
+  if (s.buffer === 'sent') return 'sent_to_buffer';
+  return 'ready_for_buffer';
+}
+
 function computeReadiness(statuses) {
   const s = statuses || {};
   if (s.review !== 'approved') return 'not_ready_review_required';
@@ -168,7 +177,7 @@ app.get('/posts', (_req, res) => {
     if (fs.existsSync(metaPath)) {
       try { m = JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch {}
     }
-    return { ...m, upload_readiness: computeReadiness(m.statuses) };
+    return { ...m, upload_readiness: computeReadiness(m.statuses), buffer_readiness: computeBufferReadiness(m.statuses) };
   });
   res.json(posts);
 });
@@ -209,8 +218,9 @@ app.get('/posts/:postId', (req, res) => {
     statuses.upload === 'failed' ? 'upload_failed' :
     statuses.generation === 'completed' ? 'generated' : (meta.status || 'unknown');
   const upload_readiness = computeReadiness(statuses);
+  const buffer_readiness = computeBufferReadiness(statuses);
 
-  res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
+  res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, buffer_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata });
 });
 
 app.patch('/posts/:postId/review', (req, res) => {
@@ -243,6 +253,38 @@ app.patch('/posts/:postId/review', (req, res) => {
   }
 
   res.json({ ok: true, post_id: req.params.postId, review });
+});
+
+app.patch('/posts/:postId/buffer', (req, res) => {
+  const VALID = ['not_started', 'sent', 'scheduled'];
+  const { buffer } = req.body || {};
+  if (!VALID.includes(buffer)) return res.status(400).json({ error: `buffer must be one of: ${VALID.join(', ')}` });
+
+  const postDir = path.join(ROOT, 'outputs', 'posts', req.params.postId);
+  if (!fs.existsSync(postDir)) return res.status(404).json({ error: 'not found' });
+
+  const metaPath = path.join(postDir, 'metadata.json');
+  const pkgPath  = path.join(postDir, 'publish-package.json');
+  if (!fs.existsSync(metaPath)) return res.status(404).json({ error: 'metadata.json missing' });
+
+  const now = new Date().toISOString();
+  try {
+    const meta = JSON.parse(fs.readFileSync(metaPath, 'utf8'));
+    meta.statuses = { ...(meta.statuses || {}), buffer };
+    meta.updated_at = now;
+    fs.writeFileSync(metaPath, JSON.stringify(meta, null, 2), 'utf8');
+  } catch (e) { return res.status(500).json({ error: `metadata write failed: ${e.message}` }); }
+
+  if (fs.existsSync(pkgPath)) {
+    try {
+      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+      pkg.statuses = { ...(pkg.statuses || {}), buffer };
+      pkg.updated_at = now;
+      fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2), 'utf8');
+    } catch {}
+  }
+
+  res.json({ ok: true, post_id: req.params.postId, buffer });
 });
 
 app.get('/', (_req, res) => {
