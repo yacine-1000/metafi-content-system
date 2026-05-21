@@ -13,7 +13,7 @@
     "assemble:test": "node src/assembly/assemble-slider.js",
     "assemble:styles": "node src/assembly/assemble-slider.js --styles",
     "upload:latest": "node src/upload/upload-to-supabase.js",
-    "pipeline": "npm run intake && npm run planning && npm run hook && npm run body && npm run final-slide && npm run assembly:build && npm run assemble:test && npm run caption"
+    "pipeline": "node src/pipeline/runPipeline.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.0",
