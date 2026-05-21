@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { callGeminiJson } = require('../lib/callGeminiJson');
+const { resolvePath, ensureParentDir } = require('../lib/pathResolver');
 
 const REQUIRED_FIELDS = [
   'slider_plan_id',
@@ -95,8 +96,8 @@ function validate(obj) {
 async function run() {
   const root = path.join(__dirname, '..', '..');
   const promptPath = path.join(root, 'prompts', 'planning.txt');
-  const inputPath = path.join(root, 'test-outputs', 'cleanedSourceBrief.json');
-  const outputPath = path.join(root, 'test-outputs', 'sliderPlan.json');
+  const inputPath = resolvePath(root, 'METAFI_CLEANED_SOURCE_INPUT', 'test-outputs/cleanedSourceBrief.json');
+  const outputPath = resolvePath(root, 'METAFI_SLIDER_PLAN_OUTPUT', 'test-outputs/sliderPlan.json');
 
   if (!fs.existsSync(promptPath)) {
     console.error(`Error: Missing prompt file at ${promptPath}`);
@@ -170,8 +171,7 @@ Style rules for generated fields:
   }
 
   const output = JSON.stringify(parsed, null, 2);
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, output, 'utf8');
+  fs.writeFileSync(ensureParentDir(outputPath), output, 'utf8');
 
   console.log('\n--- sliderPlan ---\n');
   console.log(output);

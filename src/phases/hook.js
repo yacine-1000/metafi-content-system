@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { callGeminiJson } = require('../lib/callGeminiJson');
+const { resolvePath, ensureParentDir } = require('../lib/pathResolver');
 
 const REQUIRED_FIELDS = [
   'slider_plan_id',
@@ -51,8 +52,8 @@ function validate(obj) {
 async function run() {
   const root = path.join(__dirname, '..', '..');
   const promptPath = path.join(root, 'prompts', 'hook.txt');
-  const inputPath = path.join(root, 'test-outputs', 'sliderPlan.json');
-  const outputPath = path.join(root, 'test-outputs', 'hookOutput.json');
+  const inputPath = resolvePath(root, 'METAFI_SLIDER_PLAN_INPUT', 'test-outputs/sliderPlan.json');
+  const outputPath = resolvePath(root, 'METAFI_HOOK_OUTPUT', 'test-outputs/hookOutput.json');
 
   if (!fs.existsSync(promptPath)) {
     console.error(`Error: Missing prompt file at ${promptPath}`);
@@ -90,8 +91,7 @@ ${plan}
   }
 
   const output = JSON.stringify(parsed, null, 2);
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, output, 'utf8');
+  fs.writeFileSync(ensureParentDir(outputPath), output, 'utf8');
 
   console.log('\n--- hookOutput ---\n');
   console.log(output);

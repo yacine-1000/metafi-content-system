@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { callGeminiJson } = require('../lib/callGeminiJson');
+const { resolvePath, ensureParentDir } = require('../lib/pathResolver');
 
 const REQUIRED_FIELDS = ['caption', 'hashtags', 'caption_notes', 'status'];
 
@@ -42,11 +43,11 @@ function validate(obj) {
 async function run() {
   const root = path.join(__dirname, '..', '..');
   const promptPath    = path.join(root, 'prompts', 'caption.txt');
-  const planPath      = path.join(root, 'test-outputs', 'sliderPlan.json');
-  const hookPath      = path.join(root, 'test-outputs', 'hookOutput.json');
-  const bodyPath      = path.join(root, 'test-outputs', 'bodyOutput.json');
-  const finalPath     = path.join(root, 'test-outputs', 'finalSlideOutput.json');
-  const outputPath    = path.join(root, 'test-outputs', 'captionOutput.json');
+  const planPath      = resolvePath(root, 'METAFI_SLIDER_PLAN_INPUT',   'test-outputs/sliderPlan.json');
+  const hookPath      = resolvePath(root, 'METAFI_HOOK_INPUT',          'test-outputs/hookOutput.json');
+  const bodyPath      = resolvePath(root, 'METAFI_BODY_INPUT',          'test-outputs/bodyOutput.json');
+  const finalPath     = resolvePath(root, 'METAFI_FINAL_SLIDE_INPUT',   'test-outputs/finalSlideOutput.json');
+  const outputPath    = resolvePath(root, 'METAFI_CAPTION_OUTPUT', 'test-outputs/captionOutput.json');
 
   for (const [label, p] of [
     ['prompts/caption.txt', promptPath],
@@ -97,8 +98,7 @@ ${finalSlide}
   }
 
   const output = JSON.stringify(parsed, null, 2);
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, output, 'utf8');
+  fs.writeFileSync(ensureParentDir(outputPath), output, 'utf8');
 
   console.log('\n--- captionOutput ---\n');
   console.log(output);
