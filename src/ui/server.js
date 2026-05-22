@@ -18,13 +18,6 @@ const PIPELINE = ['intake', 'planning', 'hook', 'body', 'final-slide', 'assembly
 
 const STRATEGY_DEFAULTS = {
   sprint_phase: 'days_1_15_find_signal',
-  activity_category: 'general',
-  specific_activity: 'none',
-  pain_hypothesis: 'none',
-  message_hypothesis: 'none',
-  content_pillar: 'changed_week_pain',
-  content_ring: 'core',
-  carousel_archetype: 'pain_mirror',
   cta_goal: 'comments',
   expected_signal: '',
 };
@@ -330,7 +323,7 @@ function runStep(step, log) {
 }
 
 app.post('/generate', async (req, res) => {
-  const { source_type = 'other', raw_input = '', strategy_metadata: rawMeta = {} } = req.body;
+  const { source_type = 'other', raw_input = '', strategy_metadata: rawMeta = {}, content_format = 'auto' } = req.body;
   const strategy_metadata = { ...STRATEGY_DEFAULTS, ...rawMeta };
 
   if (!raw_input.trim()) {
@@ -348,8 +341,8 @@ app.post('/generate', async (req, res) => {
 
   try {
     fs.mkdirSync(path.dirname(RAW_SOURCE_PATH), { recursive: true });
-    fs.writeFileSync(RAW_SOURCE_PATH, `[source_type: ${source_type}]\n\n${raw_input.trim()}`, 'utf8');
-    fs.writeFileSync(MANUAL_INPUT_PATH, JSON.stringify({ source_type, raw_input, strategy_metadata }, null, 2), 'utf8');
+    fs.writeFileSync(RAW_SOURCE_PATH, `[source_type: ${source_type}]\n[content_format: ${content_format}]\n\n${raw_input.trim()}`, 'utf8');
+    fs.writeFileSync(MANUAL_INPUT_PATH, JSON.stringify({ source_type, raw_input, strategy_metadata, content_format }, null, 2), 'utf8');
     log(`inputs written\n`);
   } catch (err) {
     log(`ERROR writing inputs: ${err.message}\n`);

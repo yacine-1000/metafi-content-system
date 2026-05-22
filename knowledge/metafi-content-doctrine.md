@@ -5,9 +5,32 @@
 - A training plan that adapts to your week.
 - You always know exactly what to train.
 
-## 2. Metafi Content Territory
+## 2. Core Principle
 
-Content should focus on:
+- Every post should belong inside Metafi's content world.
+- Not every post must directly explain Metafi's core message.
+- General fitness content is allowed when useful, relatable, and training-related.
+
+## 3. Content Types
+
+### direct_metafi
+Explicitly about adaptive training, changed weeks, plan mismatch, or uncertainty about what to train next. Closest to Metafi's core message.
+
+### sports_gym
+Sports + gym overlap: football, padel, tennis, running, soreness, fatigue, recovery, and how sport activity affects gym training.
+
+### gym_life_relatable
+Relatable gym moments: awkward situations, inconsistency, confusion, low energy, feeling off, embarrassment, or everyday routine friction.
+
+### general_fitness
+Useful training, recovery, consistency, or gym habit content. Allowed if it is practical, relatable, and connected to training reality. Does not need to mention Metafi or adaptive planning.
+
+### off_brand
+Unrelated lifestyle, fake motivation, hard product pitch, generic "buy our app," empty hype, or content with no useful training angle. Not allowed.
+
+## 4. Metafi Content Territory
+
+Preferred topics for direct_metafi and sports_gym posts:
 
 - Changed-week training problems
 - Gym plans breaking when life changes
@@ -18,30 +41,28 @@ Content should focus on:
 - Recovery/load confusion
 - Consistency without burnout
 
-## 3. Strong Post Signals
+## 5. Strong Post Signals
 
 A strong post usually includes:
 
 - A specific real-life situation
-- A clear training conflict
-- A moment where the plan no longer fits
+- A clear training conflict or friction point
 - Simple human language
-- A realization that the issue is the static plan, not the person
+- Practical relevance to the audience's training life
 
-## 4. Drift Risks
+## 6. Drift Risks
 
-Reject or flag content that feels like:
+Flag or reject only when content is:
 
-- Generic gym motivation
-- Generic fitness education
-- Bodybuilding tips
-- Discipline content
-- Productivity advice
-- Generic app advertising
-- Vague wellness content
-- Hard product pitch
+- Unrelated to training reality (lifestyle, wellness fluff)
+- Uselessly generic with no practical angle
+- Robotic, hollow, or empty motivation
+- A hard product pitch or generic app advertisement
+- Pure hype with no training substance
 
-## 5. Tone Rules
+Do not treat general_fitness as drift by default. Judge usefulness and relatability first.
+
+## 7. Tone Rules
 
 - Simple Saudi Arabic.
 - Clear, complete sentences.
@@ -51,7 +72,14 @@ Reject or flag content that feels like:
 - No therapy language.
 - No hype.
 
-## 6. Scoring Rubric
+## 8. Scoring Guidance
+
+1. Classify content_type first.
+2. Determine whether content_type is allowed (off_brand = not allowed).
+3. Score quality and alignment within the content type.
+4. A moderate score does not automatically mean reject if allowed = true.
+
+## 9. Scoring Rubric
 
 | Dimension               | Points |
 |-------------------------|--------|
@@ -61,7 +89,7 @@ Reject or flag content that feels like:
 | Tone fit                | 15     |
 | Product restraint       | 15     |
 
-## 7. Score Meaning
+## 10. Score Meaning
 
 | Score    | Verdict      |
 |----------|--------------|

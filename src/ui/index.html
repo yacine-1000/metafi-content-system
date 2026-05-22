@@ -3,419 +3,689 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Metafi Creator</title>
+  <title>Metafi Content OS</title>
   <style>
+    :root {
+      --bg: #060C11;
+      --navy: #0B1722;
+      --card: #101D2A;
+      --raised: #122434;
+      --border: #1F282F;
+      --border-muted: #3A4C4F;
+      --mint: #30D098;
+      --mint-soft: #90F8C0;
+      --text: #F5F5F5;
+      --text-sec: #9BA3A8;
+      --text-muted: #5F6B70;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #0f0f0f; color: #e0e0e0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); }
 
     /* ── Sidebar ── */
     #sidebar {
-      position: fixed; top: 0; left: 0; width: 220px; height: 100vh;
-      background: #111; border-right: 1px solid #1e1e1e;
-      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; width: 240px; height: 100vh;
+      background: var(--navy); border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; z-index: 100;
     }
     .sidebar-logo {
-      padding: 24px 20px 20px; text-align: center;
-      border-bottom: 1px solid #1e1e1e;
+      padding: 28px 20px 22px;
+      border-bottom: 1px solid var(--border);
     }
-    .sidebar-logo img { max-width: 130px; height: auto; display: block; margin: 0 auto; }
-    .sidebar-nav { padding: 16px 12px; }
+    .sidebar-logo-text {
+      font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: 0.01em;
+    }
+    .sidebar-logo-sub {
+      font-size: 11px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.04em;
+    }
+    .sidebar-nav { padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
     .sidebar-tab {
-      display: flex; align-items: center; gap: 9px;
-      width: 100%; padding: 9px 12px; border-radius: 6px;
-      font-size: 13px; font-weight: 600; color: #555;
+      display: flex; align-items: center; gap: 10px;
+      width: 100%; padding: 9px 14px; border-radius: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text-muted);
       cursor: pointer; border: none; background: none; text-align: left;
       transition: background 0.15s, color 0.15s;
     }
-    .sidebar-tab .tab-icon { font-size: 14px; }
-    .sidebar-tab.active {
-      background: linear-gradient(135deg, #7FFFD4, #5271FF);
-      color: #000;
+    .sidebar-tab .tab-icon { font-size: 15px; flex-shrink: 0; }
+    .sidebar-tab.active { background: rgba(48,208,152,0.07); color: var(--mint); font-weight: 600; border-left: 3px solid var(--mint); border-radius: 0 8px 8px 0; padding-left: 11px; }
+    .sidebar-tab:not(.active):hover { background: var(--card); color: var(--text); }
+
+    /* ── Main ── */
+    #main { margin-left: 240px; padding: 36px 40px 80px; }
+
+    /* ── Section switching ── */
+    .app-section { display: none; }
+    .app-section.active { display: block; }
+
+    /* ── Page header ── */
+    .page-header { margin-bottom: 28px; }
+    .page-title { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+    .page-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px; margin-bottom: 20px;
     }
-    .sidebar-tab:not(.active):hover { background: #1a1a1a; color: #bbb; }
+    .card-title {
+      font-size: 11px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px;
+    }
 
-    /* ── Main content ── */
-    #main { margin-left: 220px; padding: 36px 36px 60px; max-width: 900px; }
-
-    h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; color: #fff; }
-    .subtitle { font-size: 13px; color: #555; margin-bottom: 32px; }
-    .section-label { font-size: 11px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
-    label { display: block; font-size: 13px; color: #a0a0a0; margin-bottom: 6px; }
+    /* ── Form elements ── */
+    .section-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    label { display: block; font-size: 12px; color: var(--text-sec); margin-bottom: 6px; font-weight: 500; }
     select, textarea {
-      width: 100%; background: #1a1a1a; border: 1px solid #333;
-      color: #e0e0e0; border-radius: 6px; font-family: inherit;
-      font-size: 14px; padding: 10px 12px;
+      width: 100%; background: var(--raised); border: 1px solid var(--border);
+      color: var(--text); border-radius: 8px; font-family: inherit;
+      font-size: 13px; padding: 10px 12px; transition: border-color 0.15s;
     }
+    select:focus, textarea:focus { outline: none; border-color: var(--mint); }
     textarea { resize: vertical; min-height: 160px; }
     select { height: 40px; }
     .field { margin-bottom: 16px; }
 
-    /* ── Generate button with gradient ── */
-    button#btn {
-      background: linear-gradient(135deg, #7FFFD4, #5271FF);
-      color: #000; border: none; border-radius: 6px;
-      padding: 10px 24px; font-size: 14px; font-weight: 700; cursor: pointer;
-    }
-    button#btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    /* ── Generate button ── */
+    button#btn:hover { opacity: 0.88; }
+    button#btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     /* ── Status bar ── */
     #status-bar { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; }
     #status-bar .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    #status-bar[data-state="idle"] { color: #444; }
-    #status-bar[data-state="idle"] .dot { background: #333; }
-    #status-bar[data-state="generating"] { color: #aaa; }
-    #status-bar[data-state="generating"] .dot { background: #7FFFD4; }
-    #status-bar[data-state="ready"] { color: #5cb85c; }
-    #status-bar[data-state="ready"] .dot { background: #5cb85c; }
-    #status-bar[data-state="failed"] { color: #c0392b; }
-    #status-bar[data-state="failed"] .dot { background: #c0392b; }
+    #status-bar[data-state="idle"] { color: var(--text-muted); }
+    #status-bar[data-state="idle"] .dot { background: var(--border-muted); }
+    #status-bar[data-state="generating"] { color: var(--text-sec); }
+    #status-bar[data-state="generating"] .dot { background: var(--mint); }
+    #status-bar[data-state="ready"] { color: var(--mint); }
+    #status-bar[data-state="ready"] .dot { background: var(--mint); }
+    #status-bar[data-state="failed"] { color: #e05050; }
+    #status-bar[data-state="failed"] .dot { background: #e05050; }
 
     /* ── Log ── */
-    #log { margin-top: 24px; background: #111; border: 1px solid #2a2a2a; border-radius: 6px; padding: 14px; font-family: monospace; font-size: 12px; color: #bbb; white-space: pre-wrap; max-height: 300px; overflow-y: auto; display: none; }
+    #log { margin-top: 16px; background: var(--navy); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-family: monospace; font-size: 11px; color: var(--text-sec); white-space: pre-wrap; max-height: 260px; overflow-y: auto; }
 
     /* ── Slides ── */
-    #slides { margin-top: 32px; display: none; }
+    #slides { margin-top: 24px; display: none; }
     .slide-grid { display: flex; gap: 10px; flex-wrap: wrap; }
-    .slide-grid img { width: 160px; height: 284px; object-fit: cover; border-radius: 6px; border: 1px solid #333; }
+    .slide-grid img { width: 160px; height: 284px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
 
     /* ── Post info ── */
     #post-info { margin-top: 20px; display: none; }
-    #post-info .saved-label { font-size: 11px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-    #post-info .saved-path { font-family: monospace; font-size: 13px; color: #FFD000; margin-bottom: 4px; }
-    #post-info .saved-meta { font-family: monospace; font-size: 11px; color: #555; }
+    #post-info .saved-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    #post-info .saved-path { font-family: monospace; font-size: 12px; color: #FFD000; margin-bottom: 4px; }
+    #post-info .saved-meta { font-family: monospace; font-size: 11px; color: var(--text-muted); }
 
     /* ── Caption ── */
     #caption-block { margin-top: 20px; display: none; }
-    #caption-block .label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-    #caption-text { font-size: 14px; color: #e0e0e0; white-space: pre-wrap; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; padding: 12px 14px; line-height: 1.6; }
-    #hashtags-text { margin-top: 8px; font-size: 13px; color: #888; word-break: break-word; }
+    #caption-block .label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    #caption-text { font-size: 14px; color: var(--text); white-space: pre-wrap; background: var(--raised); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; line-height: 1.6; }
+    #hashtags-text { margin-top: 8px; font-size: 12px; color: var(--text-sec); word-break: break-word; }
 
     /* ── Upload links ── */
     #upload-block { margin-top: 20px; display: none; }
     #upload-block .upload-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    #upload-block .upload-badge { font-size: 11px; font-weight: 700; color: #0f0f0f; background: #5cb85c; border-radius: 4px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.06em; }
-    #upload-block .upload-bucket { font-size: 11px; color: #555; font-family: monospace; }
+    #upload-block .upload-badge { font-size: 10px; font-weight: 700; color: #060C11; background: var(--mint); border-radius: 4px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+    #upload-block .upload-bucket { font-size: 11px; color: var(--text-muted); font-family: monospace; }
     .upload-links { display: flex; flex-direction: column; gap: 6px; }
-    .upload-links a { font-size: 12px; font-family: monospace; color: #7FFFD4; text-decoration: none; word-break: break-all; }
+    .upload-links a { font-size: 12px; font-family: monospace; color: var(--mint); text-decoration: none; word-break: break-all; }
     .upload-links a:hover { text-decoration: underline; }
-    .upload-link-label { font-size: 11px; color: #444; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; margin-top: 10px; }
+    .upload-link-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; margin-top: 10px; }
 
     /* ── Upload error ── */
-    #upload-error { margin-top: 16px; display: none; background: #1a0808; border: 1px solid #5c1a1a; border-radius: 6px; padding: 12px 14px; }
-    #upload-error .err-title { font-size: 11px; font-weight: 700; color: #c0392b; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
-    #upload-error .err-msg { font-size: 12px; font-family: monospace; color: #e07070; word-break: break-word; }
+    #upload-error { margin-top: 16px; display: none; background: #150808; border: 1px solid #4a1a1a; border-radius: 8px; padding: 12px 14px; }
+    #upload-error .err-title { font-size: 11px; font-weight: 700; color: #e05050; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    #upload-error .err-msg { font-size: 12px; font-family: monospace; color: #c07070; word-break: break-word; }
 
-    /* ── Strategy metadata ── */
+    /* ── Strategy metadata (input form) ── */
     .strategy-section { margin-bottom: 16px; }
-    .strategy-section > summary { cursor: pointer; font-size: 11px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .strategy-section > summary { cursor: pointer; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
     .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px; margin-top: 12px; }
     .strategy-grid .field { margin-bottom: 0; }
     .strategy-full { margin-top: 12px; }
-    #strategy-summary { margin-top: 14px; background: #111b22; border: 1px solid #1c3040; border-radius: 6px; padding: 10px 14px; display: none; }
-    #strategy-summary .strat-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+
+    /* ── Strategy summary (post detail) ── */
+    #strategy-summary { margin-top: 14px; background: var(--raised); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; display: none; }
+    #strategy-summary .strat-label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
     #strategy-summary .strat-row { display: flex; gap: 16px; flex-wrap: wrap; }
     #strategy-summary .strat-item { display: flex; flex-direction: column; gap: 2px; }
-    #strategy-summary .strat-key { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.06em; }
-    #strategy-summary .strat-val { font-size: 12px; color: #7FFFD4; font-family: monospace; }
+    #strategy-summary .strat-key { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    #strategy-summary .strat-val { font-size: 12px; color: var(--mint); font-family: monospace; }
 
-    /* ── History ── */
-    #history { margin-top: 40px; }
-    .post-row { display: flex; align-items: center; gap: 16px; padding: 10px 14px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; margin-bottom: 8px; cursor: pointer; }
-    .post-row:hover { border-color: #444; }
-    .post-row .pid { font-family: monospace; font-size: 12px; color: #FFD000; flex: 1; }
-    .post-row .meta { font-size: 11px; color: #666; }
-    .post-row .status { font-size: 11px; color: #555; }
+    /* ── Library toolbar ── */
+    .lib-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .lib-search { flex: 1; min-width: 180px; background: var(--card); border: 1px solid var(--border); color: var(--text); border-radius: 8px; font-family: inherit; font-size: 13px; padding: 9px 14px; transition: border-color 0.15s; }
+    .lib-search:focus { outline: none; border-color: var(--mint); }
+    .lib-search::placeholder { color: var(--text-muted); }
+    .lib-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+    .lib-filter { font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--raised); color: var(--text-muted); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+    .lib-filter:hover { border-color: var(--border-muted); color: var(--text-sec); }
+    .lib-filter.active { background: var(--mint); color: #060C11; border-color: var(--mint); }
+
+    /* ── Library table ── */
+    .lib-table { width: 100%; border-collapse: separate; border-spacing: 0 4px; }
+    .lib-thead { display: grid; grid-template-columns: 2fr 2fr 2fr 1fr; gap: 0 16px; padding: 0 16px 8px; }
+    .lib-th { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .lib-th:last-child { text-align: right; }
+    .lib-trow { display: grid; grid-template-columns: 2fr 2fr 2fr 1fr; gap: 0 16px; align-items: center; padding: 11px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 4px; cursor: pointer; transition: border-color 0.15s, background 0.15s; min-height: 68px; }
+    .lib-trow:hover { border-color: var(--border-muted); background: var(--raised); }
+    .lr-post-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+    .lr-post-id { font-family: monospace; font-size: 10px; color: var(--text-muted); }
+    .lr-post-date { font-size: 10px; color: var(--text-muted); }
+    .lr-strat-label { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+    .lr-strat-label.sl-passed  { color: var(--mint); }
+    .lr-strat-label.sl-fix     { color: #c9970a; }
+    .lr-strat-label.sl-blocked { color: #e05050; }
+    .lr-strat-label.sl-none    { color: var(--text-muted); }
+    .lr-strat-meta { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+    .lr-wf-item { font-size: 11px; color: var(--text-sec); line-height: 1.7; }
+    .lr-wf-item .wf-key { color: var(--text-muted); }
+    .lr-action { display: flex; justify-content: flex-end; }
+    .na-pill { display: inline-flex; align-items: center; font-size: 11px; font-weight: 700; padding: 5px 13px; border-radius: 20px; white-space: nowrap; }
+    .na-review    { background: #0d2218; color: var(--mint-soft); border: 1px solid #1a3a2a; }
+    .na-edit      { background: #200e0e; color: #e07070; border: 1px solid #3a1a1a; }
+    .na-upload    { background: #0d2218; color: var(--mint); border: 1px solid #1a3a2a; }
+    .na-buffer    { background: #0d1830; color: var(--mint-soft); border: 1px solid #1a3050; }
+    .na-scheduled { background: #1a1228; color: #9b8dff; border: 1px solid #2e2250; }
+    .na-published { background: #0d2218; color: var(--mint); border: 1px solid #1a3a2a; }
+    .na-blocked   { background: #200e0e; color: #e05050; border: 1px solid #3a1a1a; }
+    .na-default   { background: var(--raised); color: var(--text-muted); border: 1px solid var(--border); }
 
     /* ── Status chips ── */
     .status-chips { display: flex; gap: 4px; flex-wrap: wrap; }
     .status-chip { font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; }
-    .sc-completed  { background: #1a2e1a; color: #5cb85c;  border: 1px solid #2a4a2a; }
-    .sc-uploaded   { background: #1a2a3e; color: #7FFFD4;  border: 1px solid #1c3a50; }
-    .sc-pending    { background: #2a2210; color: #b8860b;  border: 1px solid #3a3010; }
-    .sc-failed     { background: #2e1a1a; color: #c0392b;  border: 1px solid #4a2a2a; }
-    .sc-unknown, .sc-not_started, .sc-not_checked { background: #1a1a1a; color: #444; border: 1px solid #222; }
-    .sc-passed   { background: #1a2e1a; color: #5cb85c; border: 1px solid #2a4a2a; }
-    .sc-needs_fix { background: #2a2210; color: #b8860b; border: 1px solid #3a3010; }
-    .sc-blocked   { background: #2e1010; color: #e05050; border: 1px solid #4a1a1a; }
+    .sc-completed  { background: #0d2218; color: #30D098;  border: 1px solid #1a3a2a; }
+    .sc-uploaded   { background: #0d1e30; color: var(--mint-soft); border: 1px solid #1a3040; }
+    .sc-pending    { background: #221a08; color: #c9970a;  border: 1px solid #3a2e10; }
+    .sc-failed     { background: #200e0e; color: #e05050;  border: 1px solid #3a1a1a; }
+    .sc-unknown, .sc-not_started, .sc-not_checked { background: var(--raised); color: var(--text-muted); border: 1px solid var(--border); }
+    .sc-passed    { background: #0d2218; color: #30D098; border: 1px solid #1a3a2a; }
+    .sc-needs_fix { background: #221a08; color: #c9970a; border: 1px solid #3a2e10; }
+    .sc-blocked   { background: #200e0e; color: #e05050; border: 1px solid #3a1a1a; }
+    .sc-approved  { background: #0d2218; color: #30D098; border: 1px solid #1a3a2a; }
+    .sc-needs_edit { background: #221a08; color: #c9970a; border: 1px solid #3a2e10; }
 
     /* ── Strategy block ── */
-    #strategy-block { margin-top: 12px; display: none; background: #111b22; border: 1px solid #1c3040; border-radius: 6px; padding: 10px 14px; }
-    #strategy-block .sb-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+    #strategy-block { margin-top: 12px; display: none; background: var(--raised); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    #strategy-block .sb-label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
     #strategy-block .sb-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
     #strategy-block .sb-item { display: flex; flex-direction: column; gap: 2px; }
-    #strategy-block .sb-key { font-size: 10px; color: #555; text-transform: uppercase; letter-spacing: 0.06em; }
-    #strategy-block .sb-val { font-size: 12px; color: #7FFFD4; font-family: monospace; }
+    #strategy-block .sb-key { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    #strategy-block .sb-val { font-size: 12px; color: var(--mint); font-family: monospace; }
     #strategy-block .sb-issues { margin-top: 6px; }
     #strategy-block .sb-issue { font-size: 11px; color: #e07070; padding: 2px 0; }
     #strategy-block .sb-advisory { margin-top: 6px; }
-    #strategy-block .sb-advisory-note { font-size: 11px; color: #a0c4d8; padding: 2px 0; }
+    #strategy-block .sb-advisory-note { font-size: 11px; color: #7ab8cc; padding: 2px 0; }
 
-    /* ── Upload readiness chip ── */
-    .readiness-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.04em; margin-top: 8px; }
-    .ur-ready_to_upload         { background: #1a2e1a; color: #5cb85c;  border: 1px solid #2a4a2a; }
-    .ur-ready_to_retry_upload   { background: #2a2210; color: #b8860b;  border: 1px solid #3a3010; }
-    .ur-already_uploaded        { background: #1a2a3e; color: #7FFFD4;  border: 1px solid #1c3a50; }
-    .ur-not_ready_review_required { background: #1a1a1a; color: #555;   border: 1px solid #2a2a2a; }
+    /* ── Compact strategy summary ── */
+    .sb-summary-row { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 6px; }
+    .sb-sum-item { display: flex; flex-direction: column; gap: 2px; }
+    .sb-sum-key { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .sb-sum-val { font-size: 13px; color: var(--mint); font-weight: 600; }
+    .sb-details { margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px; }
+    .sb-details > summary { font-size: 11px; color: var(--text-muted); cursor: pointer; list-style: none; padding: 2px 0; }
+    .sb-details > summary::-webkit-details-marker { display: none; }
+
+    /* ── Developer details block ── */
+    .dev-details-block { margin-top: 14px; }
+    .dev-details-block > summary { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; cursor: pointer; list-style: none; padding: 8px 0; }
+    .dev-details-block > summary::-webkit-details-marker { display: none; }
+
+    /* ── Readiness chips ── */
+    .readiness-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 5px; letter-spacing: 0.04em; margin-top: 8px; }
+    .ur-ready_to_upload         { background: #0d2218; color: #30D098;  border: 1px solid #1a3a2a; }
+    .ur-ready_to_retry_upload   { background: #221a08; color: #c9970a;  border: 1px solid #3a2e10; }
+    .ur-already_uploaded        { background: #0d1e30; color: var(--mint-soft); border: 1px solid #1a3040; }
+    .ur-not_ready_review_required { background: var(--raised); color: var(--text-muted); border: 1px solid var(--border); }
 
     /* ── Review action buttons ── */
-    .rev-btn { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 4px; border: 1px solid #333; background: #1a1a1a; color: #bbb; cursor: pointer; }
-    .rev-btn:hover { background: #252525; color: #fff; }
-    .rev-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-    .rev-reset { color: #666; }
+    .rev-btn { font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 6px; border: 1px solid var(--border-muted); background: var(--raised); color: var(--text-sec); cursor: pointer; transition: background 0.15s, color 0.15s; }
+    .rev-btn:hover { background: var(--card); color: var(--text); border-color: var(--mint); }
+    .rev-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+    .rev-reset { color: var(--text-muted); }
 
-    /* ── Buffer readiness chip ── */
-    .br-ready_for_buffer           { background: #1a2e1a; color: #5cb85c;  border: 1px solid #2a4a2a; }
-    .br-sent_to_buffer             { background: #1a2a3e; color: #7FFFD4;  border: 1px solid #1c3a50; }
-    .br-scheduled                  { background: #1e1630; color: #9b8dff;  border: 1px solid #2e2250; }
+    /* ── Buffer readiness chips ── */
+    .br-ready_for_buffer          { background: #0d2218; color: #30D098; border: 1px solid #1a3a2a; }
+    .br-sent_to_buffer            { background: #0d1e30; color: var(--mint-soft); border: 1px solid #1a3040; }
+    .br-scheduled                 { background: #1a1228; color: #9b8dff; border: 1px solid #2e2250; }
     .br-not_ready_review_required,
-    .br-not_ready_upload_required  { background: #1a1a1a; color: #555;     border: 1px solid #2a2a2a; }
+    .br-not_ready_upload_required { background: var(--raised); color: var(--text-muted); border: 1px solid var(--border); }
 
     /* ── Buffer assets ── */
-    #buffer-assets { margin-top: 10px; background: #111b22; border: 1px solid #1c3040; border-radius: 6px; padding: 10px 14px; display: none; }
-    #buffer-assets .ba-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
-    #buffer-assets .ba-caption { font-size: 13px; color: #e0e0e0; white-space: pre-wrap; margin-bottom: 8px; word-break: break-word; }
-    #buffer-assets .ba-copy { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 3px; border: 1px solid #333; background: #1a1a1a; color: #7FFFD4; cursor: pointer; margin-bottom: 10px; }
+    #buffer-assets { margin-top: 10px; background: var(--raised); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: none; }
+    #buffer-assets .ba-label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    #buffer-assets .ba-caption { font-size: 13px; color: var(--text); white-space: pre-wrap; margin-bottom: 8px; word-break: break-word; }
+    #buffer-assets .ba-copy { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--border-muted); background: var(--card); color: var(--mint); cursor: pointer; margin-bottom: 10px; }
     #buffer-assets .ba-urls { display: flex; flex-direction: column; gap: 4px; }
-    #buffer-assets .ba-urls a { font-size: 11px; font-family: monospace; color: #7FFFD4; text-decoration: none; word-break: break-all; }
+    #buffer-assets .ba-urls a { font-size: 11px; font-family: monospace; color: var(--mint); text-decoration: none; word-break: break-all; }
     #buffer-assets .ba-urls a:hover { text-decoration: underline; }
+
+    /* ── Format selector (inline in cmd-bar) ── */
+    .cmd-format-wrap { position: relative; display: flex; align-items: center; gap: 3px; flex-shrink: 0; align-self: center; padding: 4px 10px 4px 12px; border-left: 1px solid var(--border); cursor: pointer; }
+    .cmd-format-label { font-size: 12px; font-weight: 500; color: var(--text-muted); white-space: nowrap; pointer-events: none; }
+    .cmd-format-chevron { font-size: 9px; color: var(--text-muted); pointer-events: none; }
+    .cmd-format-wrap select { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; padding: 0; border: none; background: transparent; border-radius: 0; }
+    .cmd-format-wrap:hover .cmd-format-label,
+    .cmd-format-wrap:hover .cmd-format-chevron { color: var(--text-sec); }
+
+    /* ── Create command surface ── */
+    #create-section { margin: -36px -40px -80px; min-height: 100vh; flex-direction: column; }
+    #create-section.active { display: flex; }
+    .cmd-canvas { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 40px 60px; position: relative; min-height: 70vh; }
+    .cmd-glow { position: absolute; width: 700px; height: 320px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(48,208,152,0.05) 0%, transparent 70%); pointer-events: none; top: 50%; left: 50%; transform: translate(-50%, -60%); }
+    .cmd-title { font-size: 28px; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 28px; text-align: center; max-width: 560px; line-height: 1.3; }
+    .cmd-bar { display: flex; align-items: flex-end; gap: 10px; background: var(--raised); border: 1px solid var(--border); border-radius: 999px; padding: 14px 14px 14px 18px; width: 100%; max-width: 700px; transition: border-color 0.2s, box-shadow 0.2s; }
+    .cmd-bar:focus-within { border-color: var(--border-muted); box-shadow: 0 0 0 3px rgba(48,208,152,0.06); }
+    .cmd-icon-btn { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-size: 17px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: color 0.15s, border-color 0.15s; line-height: 1; }
+    .cmd-icon-btn:disabled { opacity: 0.35; cursor: default; }
+    .cmd-icon-btn:not(:disabled):hover { color: var(--text-sec); border-color: var(--border-muted); }
+    .cmd-textarea { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: inherit; font-size: 15px; line-height: 1.5; resize: none; min-height: 32px; max-height: 220px; overflow-y: auto; padding: 4px 0 4px 6px; align-self: center; }
+    .cmd-textarea::placeholder { color: var(--text-muted); }
+    .cmd-send-btn { flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; border: none; background: var(--mint); color: #060C11; font-size: 22px; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.15s; }
+    .cmd-send-btn:hover { opacity: 0.85; }
+    .cmd-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* ── Progress ring ── */
+    #progress-card { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 36px; }
+    .prog-ring-wrap { position: relative; width: 80px; height: 80px; }
+    .prog-ring-svg { width: 80px; height: 80px; transform: rotate(-90deg); }
+    .prog-ring-bg { fill: none; stroke: var(--border); stroke-width: 6; }
+    .prog-ring-fill { fill: none; stroke: var(--mint); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 213.6; stroke-dashoffset: 213.6; transition: stroke-dashoffset 0.4s ease; }
+    .prog-ring-inner { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .prog-pct { font-size: 14px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+    .prog-step { font-size: 12px; color: var(--text-muted); text-align: center; max-width: 200px; }
+    .prog-step.failed { color: #e05050; }
+
+    /* ── Failure card ── */
+    #fail-card { display: flex; align-items: center; gap: 12px; margin-top: 16px; background: #120808; border: 1px solid #3a1a1a; border-radius: 10px; padding: 12px 18px; max-width: 400px; }
+    .fail-msg { font-size: 13px; color: #e07070; flex: 1; }
+    .fail-log-btn { font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 6px; border: 1px solid #3a2222; background: #1a0a0a; color: #c07070; cursor: pointer; white-space: nowrap; }
+    .fail-log-btn:hover { border-color: #e05050; color: #e05050; }
+
+    /* ── Dev log ── */
+    #log-wrap { margin-top: 12px; width: 100%; max-width: 700px; }
+    #log { background: var(--navy); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-family: monospace; font-size: 11px; color: var(--text-sec); white-space: pre-wrap; max-height: 240px; overflow-y: auto; }
+
+    /* ── Output section ── */
+    .cmd-output { width: 100%; max-width: 780px; padding: 0 40px 80px; margin: 0 auto; }
+    .output-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .output-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 14px; }
+    .output-card-title { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+
+    /* ── Placeholder cards ── */
+    .placeholder-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 48px 32px; text-align: center; color: var(--text-muted);
+    }
+    .placeholder-card .ph-icon { font-size: 32px; margin-bottom: 12px; }
+    .placeholder-card .ph-title { font-size: 15px; font-weight: 600; color: var(--text-sec); margin-bottom: 6px; }
+    .placeholder-card .ph-sub { font-size: 13px; }
+
+    /* ── Dashboard stats row ── */
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+    .stat-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .stat-val { font-size: 26px; font-weight: 700; color: var(--text); }
+    .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
   </style>
 </head>
 <body>
 
   <!-- Sidebar -->
   <div id="sidebar">
-    <div class="sidebar-logo">
-      <img src="/assets/brand/metafi-full-logo.png" alt="Metafi" />
+    <div class="sidebar-logo" style="display:flex;justify-content:center;">
+      <img src="/assets/brand/metafi-full-logo.png" alt="Metafi" style="width:96px;display:block;" />
     </div>
     <nav class="sidebar-nav">
-      <button class="sidebar-tab active">
-        <span class="tab-icon">⚡</span> Generations
+      <button class="sidebar-tab" data-section="dashboard" onclick="switchSection('dashboard')">
+        <span class="tab-icon">◈</span> Dashboard
+      </button>
+      <button class="sidebar-tab active" data-section="create" onclick="switchSection('create')">
+        <span class="tab-icon">+</span> Create
+      </button>
+      <button class="sidebar-tab" data-section="library" onclick="switchSection('library')">
+        <span class="tab-icon">▤</span> Library
+      </button>
+      <button class="sidebar-tab" data-section="insights" onclick="switchSection('insights')">
+        <span class="tab-icon">◎</span> Insights
+      </button>
+      <button class="sidebar-tab" data-section="settings" onclick="switchSection('settings')">
+        <span class="tab-icon">⚙</span> Settings
       </button>
     </nav>
   </div>
 
-  <!-- Main -->
+  <!-- Main workspace -->
   <div id="main">
-    <h1>Metafi Creator</h1>
-    <p class="subtitle">Paste an idea → generate TikTok slider → review slides + caption</p>
 
-    <div class="section-label">1 · Input</div>
-
-    <div class="field">
-      <label for="source_type">Source Type</label>
-      <select id="source_type">
-        <option value="founder_note">founder_note</option>
-        <option value="reddit_post" selected>reddit_post</option>
-        <option value="tiktok_post">tiktok_post</option>
-        <option value="tweet">tweet</option>
-        <option value="comment_thread">comment_thread</option>
-        <option value="competitor_post">competitor_post</option>
-        <option value="other">other</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label for="raw_input">Raw Input</label>
-      <textarea id="raw_input" placeholder="Paste the raw source content here..."></textarea>
-    </div>
-
-    <details class="strategy-section">
-      <summary>Strategy Metadata (optional)</summary>
-      <div class="strategy-grid">
-        <div class="field">
-          <label for="sm_sprint_phase">Sprint Phase</label>
-          <select id="sm_sprint_phase">
-            <option value="days_1_15_find_signal" selected>days_1_15_find_signal</option>
-            <option value="days_16_30_lock_message">days_16_30_lock_message</option>
-            <option value="days_31_45_build_engine">days_31_45_build_engine</option>
-            <option value="days_46_60_global_travel">days_46_60_global_travel</option>
-          </select>
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="app-section">
+      <div class="page-header">
+        <div class="page-title">Dashboard</div>
+        <div class="page-sub">Overview of your content pipeline</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Total Posts</div>
+          <div class="stat-val" id="dash-total">—</div>
+          <div class="stat-sub">all time</div>
         </div>
-        <div class="field">
-          <label for="sm_activity_category">Activity Category</label>
-          <select id="sm_activity_category">
-            <option value="sport">sport</option>
-            <option value="movement">movement</option>
-            <option value="gym">gym</option>
-            <option value="general" selected>general</option>
-          </select>
+        <div class="stat-card">
+          <div class="stat-label">Pending Review</div>
+          <div class="stat-val" id="dash-pending">—</div>
+          <div class="stat-sub">awaiting approval</div>
         </div>
-        <div class="field">
-          <label for="sm_specific_activity">Specific Activity</label>
-          <select id="sm_specific_activity">
-            <option value="football">football</option>
-            <option value="running">running</option>
-            <option value="tennis">tennis</option>
-            <option value="padel">padel</option>
-            <option value="swimming">swimming</option>
-            <option value="pilates">pilates</option>
-            <option value="yoga">yoga</option>
-            <option value="general_gym">general_gym</option>
-            <option value="none" selected>none</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="sm_pain_hypothesis">Pain Hypothesis</label>
-          <select id="sm_pain_hypothesis">
-            <option value="sport_yesterday_vs_today_plan">sport_yesterday_vs_today_plan</option>
-            <option value="sport_tomorrow_vs_today_plan">sport_tomorrow_vs_today_plan</option>
-            <option value="missed_session_week_broken">missed_session_week_broken</option>
-            <option value="soreness_fatigue_plan_unchanged">soreness_fatigue_plan_unchanged</option>
-            <option value="limited_time_plan_too_long">limited_time_plan_too_long</option>
-            <option value="decision_confusion_push_or_reduce">decision_confusion_push_or_reduce</option>
-            <option value="bridge_fitness_reframe">bridge_fitness_reframe</option>
-            <option value="none" selected>none</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="sm_message_hypothesis">Message Hypothesis</label>
-          <select id="sm_message_hypothesis">
-            <option value="pain_led">pain_led</option>
-            <option value="decision_led">decision_led</option>
-            <option value="sport_load">sport_load</option>
-            <option value="confidence">confidence</option>
-            <option value="none" selected>none</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="sm_content_pillar">Content Pillar</label>
-          <select id="sm_content_pillar">
-            <option value="changed_week_pain" selected>changed_week_pain</option>
-            <option value="training_meaning">training_meaning</option>
-            <option value="bridge_fitness">bridge_fitness</option>
-            <option value="product_logic">product_logic</option>
-            <option value="proof_pdf_buyers">proof_pdf_buyers</option>
-            <option value="founder_building_in_public">founder_building_in_public</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="sm_content_ring">Content Ring</label>
-          <select id="sm_content_ring">
-            <option value="core" selected>core</option>
-            <option value="bridge">bridge</option>
-            <option value="broad_reach">broad_reach</option>
-            <option value="proof">proof</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="sm_carousel_archetype">Carousel Archetype</label>
-          <select id="sm_carousel_archetype">
-            <option value="pov_situation">pov_situation</option>
-            <option value="pain_mirror" selected>pain_mirror</option>
-            <option value="decision_dilemma">decision_dilemma</option>
-            <option value="training_meaning">training_meaning</option>
-            <option value="bridge_fitness_reframe">bridge_fitness_reframe</option>
-            <option value="product_logic">product_logic</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="sm_cta_goal">CTA Goal</label>
-          <select id="sm_cta_goal">
-            <option value="comments" selected>comments</option>
-            <option value="saves">saves</option>
-            <option value="dms">dms</option>
-            <option value="profile_visits">profile_visits</option>
-            <option value="signup_intent">signup_intent</option>
-            <option value="awareness">awareness</option>
-          </select>
+        <div class="stat-card">
+          <div class="stat-label">Uploaded</div>
+          <div class="stat-val" id="dash-uploaded">—</div>
+          <div class="stat-sub">in Supabase</div>
         </div>
       </div>
-      <div class="strategy-full">
-        <div class="field">
-          <label for="sm_expected_signal">Expected Signal</label>
-          <textarea id="sm_expected_signal" style="min-height:70px;" placeholder="What engagement or behavior signal are you expecting?"></textarea>
-        </div>
-      </div>
-    </details>
-
-    <button id="btn" onclick="generate()">Generate</button>
-    <div id="status-bar" data-state="idle"><span class="dot"></span><span id="status-text">Idle</span></div>
-
-    <div class="section-label" id="log-label" style="display:none;margin-top:24px;">2 · Generation Log</div>
-    <div id="log"></div>
-
-    <div id="history">
-      <div class="section-label" style="margin-top:40px;">5 · Recent Posts</div>
-      <div id="post-list"></div>
-    </div>
-
-    <div id="slides">
-      <div class="section-label" style="margin-top:32px;">3 · Rendered Slides</div>
-      <div class="slide-grid" id="slide-grid"></div>
-      <div id="post-info">
-        <div class="saved-label">Saved to</div>
-        <div class="saved-path" id="output-path">—</div>
-        <div class="saved-meta">id: <span id="post-id">—</span> &nbsp;·&nbsp; status: <span id="post-status">—</span></div>
-        <div id="post-statuses" class="status-chips" style="margin-top:8px;"></div>
-        <div id="post-readiness"></div>
-        <div id="review-actions" style="display:none;margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
-          <button class="rev-btn" onclick="setReview('approved')">Approve</button>
-          <button class="rev-btn" onclick="setReview('needs_edit')">Needs Edit</button>
-          <button class="rev-btn rev-reset" onclick="setReview('pending')">Reset Review</button>
-        </div>
-        <div id="post-buffer-readiness" style="margin-top:8px;"></div>
-        <div id="buffer-actions" style="display:none;margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
-          <button class="rev-btn" onclick="setBuffer('sent')">Mark Sent to Buffer</button>
-          <button class="rev-btn" onclick="setBuffer('scheduled')">Mark Scheduled</button>
-          <button class="rev-btn rev-reset" onclick="setBuffer('not_started')">Reset Buffer</button>
-        </div>
-        <div id="buffer-assets">
-          <div class="ba-label">Buffer Assets</div>
-          <div id="ba-caption" class="ba-caption"></div>
-          <button class="ba-copy" onclick="copyCaption()">Copy Caption</button>
-          <div class="ba-label" style="margin-top:4px;">Slide URLs</div>
-          <div id="ba-urls" class="ba-urls"></div>
-        </div>
-      </div>
-      <div id="strategy-summary">
-        <div class="strat-label">Strategy</div>
-        <div class="strat-row" id="strat-row"></div>
-      </div>
-
-      <div id="upload-error">
-        <div class="err-title">Upload Failed — Post saved locally</div>
-        <div class="err-msg" id="upload-error-msg"></div>
-      </div>
-      <div class="section-label" id="caption-label" style="margin-top:24px;display:none;">4 · Caption</div>
-      <div id="caption-block">
-        <div class="label">Caption</div>
-        <div id="caption-text"></div>
-        <div id="hashtags-text"></div>
-      </div>
-
-      <div class="section-label" id="upload-label" style="margin-top:24px;display:none;">5 · Supabase Links</div>
-      <div id="upload-block">
-        <div class="upload-header">
-          <span class="upload-badge">Uploaded</span>
-          <span class="upload-bucket" id="upload-bucket"></span>
-        </div>
-        <div class="upload-link-label">Slides</div>
-        <div class="upload-links" id="upload-slide-links"></div>
-        <div class="upload-link-label" id="caption-url-label" style="display:none;">Caption</div>
-        <div class="upload-links" id="upload-caption-link"></div>
-      </div>
-      <div id="strategy-block">
-        <div class="sb-label">Strategy Check</div>
-        <div class="sb-row">
-          <span class="sb-item"><span class="sb-key">Status</span><span class="sb-val" id="sb-status">—</span></span>
-          <span class="sb-item"><span class="sb-key">Allowed</span><span class="sb-val" id="sb-allowed">—</span></span>
-          <span class="sb-item"><span class="sb-key">Score</span><span class="sb-val" id="sb-score">—</span></span>
-          <span class="sb-item"><span class="sb-key">Drift</span><span class="sb-val" id="sb-drift">—</span></span>
-          <span class="sb-item"><span class="sb-key">Fit</span><span class="sb-val" id="sb-fit">—</span></span>
-        </div>
-        <div class="sb-row">
-          <span class="sb-item"><span class="sb-key">Type</span><span class="sb-val" id="sb-type">—</span></span>
-          <span class="sb-item"><span class="sb-key">Relationship</span><span class="sb-val" id="sb-relationship">—</span></span>
-        </div>
-        <div id="sb-issues" class="sb-issues"></div>
-        <div id="sb-advisory" class="sb-advisory"></div>
+      <div class="placeholder-card">
+        <div class="ph-icon">◈</div>
+        <div class="ph-title">Dashboard coming soon</div>
+        <div class="ph-sub">Post analytics and pipeline health will appear here.</div>
       </div>
     </div>
+
+    <!-- Create Section -->
+    <div id="create-section" class="app-section active">
+
+      <!-- Command canvas -->
+      <div class="cmd-canvas">
+        <div class="cmd-glow"></div>
+        <h1 class="cmd-title">What should we turn into content today?</h1>
+        <div class="cmd-bar">
+          <textarea class="cmd-textarea" id="raw_input" placeholder="Paste a raw idea…" rows="1" oninput="autoExpand(this)"></textarea>
+          <div class="cmd-format-wrap" title="Content format">
+            <span class="cmd-format-label" id="cmd-format-label">Auto</span>
+            <span class="cmd-format-chevron">▾</span>
+            <select id="content_format" onchange="updateFormatLabel(this)">
+              <option value="auto">Auto</option>
+              <option value="pov">POV</option>
+              <option value="hot_take">Hot Take</option>
+              <option value="pain_mirror">Pain Mirror</option>
+              <option value="micro_story">Micro Story</option>
+              <option value="educational">Educational</option>
+            </select>
+          </div>
+          <button id="btn" class="cmd-send-btn" onclick="generate()" title="Generate">
+            <svg viewBox="0 0 28 20" width="15" height="11" fill="none" stroke="#060C11" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2,16 14,4 26,16"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Hidden compat fields -->
+        <select id="source_type" style="display:none;"><option value="other" selected>other</option></select>
+        <select id="sm_sprint_phase" style="display:none;"><option value="days_1_15_find_signal" selected>days_1_15_find_signal</option></select>
+        <select id="sm_cta_goal" style="display:none;"><option value="comments" selected>comments</option></select>
+        <textarea id="sm_expected_signal" style="display:none;"></textarea>
+        <div id="status-bar" data-state="idle" style="display:none;"><span class="dot"></span><span id="status-text">Idle</span></div>
+        <div id="prog-bar-fill" style="display:none;"></div>
+        <div class="section-label" id="log-label" style="display:none;"></div>
+
+        <!-- Progress ring -->
+        <div id="progress-card" style="display:none;">
+          <div class="prog-ring-wrap">
+            <svg class="prog-ring-svg" viewBox="0 0 80 80">
+              <circle class="prog-ring-bg" cx="40" cy="40" r="34"/>
+              <circle class="prog-ring-fill" id="prog-ring-fill" cx="40" cy="40" r="34"/>
+            </svg>
+            <div class="prog-ring-inner">
+              <span class="prog-pct" id="prog-pct">3%</span>
+            </div>
+          </div>
+          <div class="prog-step" id="prog-step">Starting…</div>
+        </div>
+
+        <!-- Failure card (shown only on error) -->
+        <div id="fail-card" style="display:none;">
+          <span class="fail-msg">Generation failed</span>
+          <button class="fail-log-btn" onclick="toggleDevLog()">View developer log</button>
+        </div>
+
+        <!-- Dev log (hidden by default, revealed on failure) -->
+        <div id="log-wrap" style="display:none;">
+          <div id="log"></div>
+        </div>
+      </div>
+
+      <!-- Latest output (minimal — full detail lives in Library) -->
+      <div id="slides" style="display:none;" class="cmd-output">
+        <div class="output-label">Latest output</div>
+        <div class="output-card">
+          <div class="output-card-title">Slides</div>
+          <div class="slide-grid" id="slide-grid"></div>
+        </div>
+        <div id="gen-caption-card" style="display:none;" class="output-card">
+          <div class="output-card-title">Caption</div>
+          <div id="gen-caption-text" style="font-size:14px;color:var(--text);white-space:pre-wrap;line-height:1.6;"></div>
+          <div id="gen-hashtags-text" style="margin-top:8px;font-size:12px;color:var(--text-sec);word-break:break-word;"></div>
+        </div>
+        <div id="gen-strategy-card" style="display:none;" class="output-card">
+          <div class="output-card-title">Strategy</div>
+          <div class="sb-summary-row">
+            <span class="sb-sum-item"><span class="sb-sum-key">Status</span><span class="sb-sum-val" id="gen-sb-status">—</span></span>
+            <span class="sb-sum-item"><span class="sb-sum-key">Allowed</span><span class="sb-sum-val" id="gen-sb-allowed">—</span></span>
+            <span class="sb-sum-item"><span class="sb-sum-key">Score</span><span class="sb-sum-val" id="gen-sb-score">—</span></span>
+            <span class="sb-sum-item"><span class="sb-sum-key">Fit</span><span class="sb-sum-val" id="gen-sb-fit">—</span></span>
+          </div>
+        </div>
+        <div id="gen-lib-link" style="display:none;margin-top:8px;">
+          <button class="rev-btn" id="gen-review-btn" style="padding:8px 18px;border-color:var(--mint);color:var(--mint);">Review in Library →</button>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Library Section -->
+    <div id="library-section" class="app-section">
+
+      <!-- List view -->
+      <div id="lib-list">
+        <div class="page-header">
+          <div class="page-title">Library</div>
+          <div class="page-sub">All generated posts — click any row to open</div>
+        </div>
+        <div class="lib-toolbar">
+          <input class="lib-search" id="lib-search" type="text" placeholder="Search posts..." oninput="filterLibrary()" />
+        </div>
+        <div class="lib-filters" id="lib-filters">
+          <button class="lib-filter active" data-filter="all" onclick="setLibFilter('all')">All</button>
+          <button class="lib-filter" data-filter="Review" onclick="setLibFilter('Review')">Needs Review</button>
+          <button class="lib-filter" data-filter="Edit" onclick="setLibFilter('Edit')">Needs Edit</button>
+          <button class="lib-filter" data-filter="Upload" onclick="setLibFilter('Upload')">Ready to Upload</button>
+          <button class="lib-filter" data-filter="Send to Buffer" onclick="setLibFilter('Send to Buffer')">Ready for Buffer</button>
+          <button class="lib-filter" data-filter="Scheduled" onclick="setLibFilter('Scheduled')">Scheduled</button>
+          <button class="lib-filter" data-filter="Published" onclick="setLibFilter('Published')">Published</button>
+          <button class="lib-filter" data-filter="Fix strategy" onclick="setLibFilter('Fix strategy')">Blocked</button>
+        </div>
+        <div id="history" style="margin-top:16px;">
+          <div class="lib-thead">
+            <div class="lib-th">Post</div>
+            <div class="lib-th">Strategy</div>
+            <div class="lib-th">Workflow</div>
+            <div class="lib-th" style="text-align:right;">Next</div>
+          </div>
+          <div id="post-list"></div>
+        </div>
+      </div>
+
+      <!-- Detail view -->
+      <div id="lib-detail" style="display:none;">
+        <div class="page-header" style="display:flex;align-items:center;gap:14px;margin-bottom:28px;">
+          <button class="rev-btn" onclick="showLibList()" style="flex-shrink:0;">← Library</button>
+          <div>
+            <div class="page-title">Post Review</div>
+            <div id="post-id" style="font-family:monospace;font-size:12px;color:var(--text-muted);margin-top:2px;"></div>
+          </div>
+        </div>
+
+        <!-- Slides -->
+        <div class="card">
+          <div class="card-title">Slides</div>
+          <div class="slide-grid" id="lib-slide-grid"></div>
+        </div>
+
+        <!-- Caption -->
+        <div id="caption-block" style="display:none;" class="card">
+          <div class="card-title" id="caption-label">Caption</div>
+          <div id="caption-text" style="font-size:14px;color:var(--text);white-space:pre-wrap;line-height:1.6;background:var(--raised);border:1px solid var(--border);border-radius:8px;padding:12px 14px;"></div>
+          <div id="hashtags-text" style="margin-top:8px;font-size:12px;color:var(--text-sec);word-break:break-word;"></div>
+        </div>
+
+        <!-- Review -->
+        <div id="post-info" style="display:none;" class="card">
+          <div class="card-title">Review</div>
+          <div id="post-readiness"></div>
+          <div id="review-actions" style="display:none;gap:8px;flex-wrap:wrap;margin-top:12px;">
+            <button class="rev-btn" onclick="setReview('approved')">Approve</button>
+            <button class="rev-btn" onclick="setReview('needs_edit')">Needs edit</button>
+            <button class="rev-btn rev-reset" onclick="setReview('pending')">Reset</button>
+          </div>
+        </div>
+
+        <!-- Strategy Check -->
+        <div id="strategy-block" style="display:none;" class="card">
+          <div class="card-title">Strategy Check</div>
+          <div class="sb-summary-row">
+            <span class="sb-sum-item"><span class="sb-sum-key">Status</span><span class="sb-sum-val" id="sb-status">—</span></span>
+            <span class="sb-sum-item"><span class="sb-sum-key">Allowed</span><span class="sb-sum-val" id="sb-allowed">—</span></span>
+            <span class="sb-sum-item"><span class="sb-sum-key">Score</span><span class="sb-sum-val" id="sb-score">—</span></span>
+            <span class="sb-sum-item"><span class="sb-sum-key">Drift</span><span class="sb-sum-val" id="sb-drift">—</span></span>
+            <span class="sb-sum-item"><span class="sb-sum-key">Fit</span><span class="sb-sum-val" id="sb-fit">—</span></span>
+          </div>
+          <details class="sb-details">
+            <summary>▸ More details</summary>
+            <div style="margin-top:10px;display:flex;gap:16px;flex-wrap:wrap;margin-bottom:6px;">
+              <span class="sb-sum-item"><span class="sb-sum-key">Type</span><span class="sb-sum-val" id="sb-type">—</span></span>
+              <span class="sb-sum-item"><span class="sb-sum-key">Relationship</span><span class="sb-sum-val" id="sb-relationship">—</span></span>
+            </div>
+            <div id="sb-issues" class="sb-issues"></div>
+            <div id="sb-advisory" class="sb-advisory"></div>
+          </details>
+        </div>
+
+        <!-- Buffer -->
+        <div class="card">
+          <div class="card-title">Buffer</div>
+          <div id="post-buffer-readiness"></div>
+          <div id="buffer-actions" style="display:none;gap:8px;flex-wrap:wrap;margin-top:12px;">
+            <button class="rev-btn" onclick="setBuffer('ready_for_buffer')">Send to Buffer</button>
+            <button class="rev-btn rev-reset" onclick="setBuffer('not_started')">Reset</button>
+          </div>
+          <div id="buffer-assets" style="display:none;margin-top:12px;">
+            <div class="ba-label">Caption + slides for Buffer</div>
+            <pre id="ba-caption" class="ba-caption" style="font-size:13px;color:var(--text);white-space:pre-wrap;margin-bottom:8px;word-break:break-word;background:none;border:none;padding:0;font-family:inherit;"></pre>
+            <button class="ba-copy" onclick="copyCaption()">Copy caption</button>
+            <div class="ba-urls" id="ba-urls"></div>
+          </div>
+        </div>
+
+        <!-- Developer details (collapsed) -->
+        <details class="dev-details-block card" style="margin-bottom:0;">
+          <summary>Developer Details</summary>
+          <div style="margin-top:12px;">
+            <div style="margin-bottom:10px;">
+              <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;">Output path</div>
+              <div id="output-path" style="font-family:monospace;font-size:12px;color:var(--text-sec);"></div>
+            </div>
+            <div style="margin-bottom:10px;">
+              <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:3px;">Status</div>
+              <div id="post-status" style="font-family:monospace;font-size:12px;color:var(--text-sec);"></div>
+            </div>
+            <div style="margin-bottom:14px;">
+              <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">Stage statuses</div>
+              <div id="post-statuses" style="display:flex;gap:4px;flex-wrap:wrap;"></div>
+            </div>
+            <div id="upload-block" style="display:none;margin-bottom:10px;">
+              <div id="upload-label" style="font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Supabase Upload</div>
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <span class="upload-badge">Uploaded</span>
+                <span class="upload-bucket" id="upload-bucket"></span>
+              </div>
+              <div class="upload-links" id="upload-slide-links"></div>
+              <div class="upload-link-label" id="caption-url-label" style="display:none;">Caption</div>
+              <div class="upload-links" id="upload-caption-link"></div>
+            </div>
+            <div id="upload-error" style="display:none;">
+              <div class="err-title">Upload Failed</div>
+              <div class="err-msg" id="upload-error-msg"></div>
+            </div>
+            <div id="strategy-summary" style="display:none;margin-top:14px;">
+              <div class="strat-label">Strategy Metadata</div>
+              <div class="strat-row" id="strat-row"></div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+    </div>
+
+    <!-- Insights Section -->
+    <div id="insights-section" class="app-section">
+      <div class="page-header">
+        <div class="page-title">Insights</div>
+        <div class="page-sub">Content performance and strategy signals</div>
+      </div>
+      <div class="placeholder-card">
+        <div class="ph-icon">◎</div>
+        <div class="ph-title">Insights coming soon</div>
+        <div class="ph-sub">Strategy scores, content type breakdown, and drift trends will appear here.</div>
+      </div>
+    </div>
+
+    <!-- Settings Section -->
+    <div id="settings-section" class="app-section">
+      <div class="page-header">
+        <div class="page-title">Settings</div>
+        <div class="page-sub">Workspace configuration</div>
+      </div>
+      <div class="placeholder-card">
+        <div class="ph-icon">⚙</div>
+        <div class="ph-title">Settings coming soon</div>
+        <div class="ph-sub">Supabase connection, sprint phase, and output preferences will appear here.</div>
+      </div>
+    </div>
+
   </div>
 
   <script>
     let _currentPostId = null;
+
+    function autoExpand(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 220) + 'px';
+    }
+
+    function toggleDevLog() {
+      const w = document.getElementById('log-wrap');
+      w.style.display = w.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function showLibList() {
+      document.getElementById('lib-detail').style.display = 'none';
+      document.getElementById('lib-list').style.display = '';
+    }
+
+    function switchSection(name) {
+      document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.sidebar-tab').forEach(b => b.classList.remove('active'));
+      const sec = document.getElementById(name + '-section');
+      if (sec) sec.classList.add('active');
+      const btn = document.querySelector(`.sidebar-tab[data-section="${name}"]`);
+      if (btn) btn.classList.add('active');
+      if (name === 'library') { showLibList(); loadHistory(); }
+      if (name === 'dashboard') loadDashboard();
+    }
+
+    async function loadDashboard() {
+      try {
+        const posts = await fetch('/posts').then(r => r.json());
+        document.getElementById('dash-total').textContent = posts.length;
+        document.getElementById('dash-pending').textContent = posts.filter(p => p.statuses && p.statuses.review === 'pending').length;
+        document.getElementById('dash-uploaded').textContent = posts.filter(p => p.statuses && p.statuses.upload === 'uploaded').length;
+      } catch {}
+    }
 
     async function setReview(value) {
       if (!_currentPostId) return;
@@ -495,8 +765,39 @@
       document.getElementById('status-text').textContent = STATUS_LABELS[state] || state;
     }
 
+    function estimateProgress(logText) {
+      if (logText.includes('DONE'))               return { pct: 100, step: 'Complete' };
+      if (logText.includes('strategyCheck'))      return { pct: 83,  step: 'Strategy check done' };
+      if (logText.includes('captionOutput'))      return { pct: 75,  step: 'Caption written' };
+      if (logText.includes('assemble:test') || logText.includes('/renders/')) return { pct: 67, step: 'Slides rendered' };
+      if (logText.includes('assembly-config'))    return { pct: 60,  step: 'Assembly configured' };
+      if (logText.includes('finalSlideOutput'))   return { pct: 55,  step: 'Final slide written' };
+      if (logText.includes('bodyOutput'))         return { pct: 50,  step: 'Body written' };
+      if (logText.includes('hookOutput'))         return { pct: 45,  step: 'Hook written' };
+      if (logText.includes('sliderPlan'))         return { pct: 33,  step: 'Content planned' };
+      if (logText.includes('cleanedSourceBrief')) return { pct: 17,  step: 'Source extracted' };
+      return { pct: 3, step: 'Starting…' };
+    }
+
+    function updateProgressFromLog(logText) {
+      const { pct, step } = estimateProgress(logText);
+      document.getElementById('prog-pct').textContent = pct + '%';
+      document.getElementById('prog-bar-fill').style.width = pct + '%';
+      const ring = document.getElementById('prog-ring-fill');
+      if (ring) ring.style.strokeDashoffset = (213.6 * (1 - pct / 100)).toFixed(1);
+      const stepEl = document.getElementById('prog-step');
+      stepEl.className = 'prog-step';
+      stepEl.textContent = step;
+    }
+
+    const FORMAT_LABELS = { auto: 'Auto', pov: 'POV', hot_take: 'Hot Take', pain_mirror: 'Pain Mirror', micro_story: 'Micro Story', educational: 'Educational' };
+    function updateFormatLabel(sel) {
+      document.getElementById('cmd-format-label').textContent = FORMAT_LABELS[sel.value] || 'Auto';
+    }
+
     async function generate() {
       const source_type = document.getElementById('source_type').value;
+      const content_format = document.getElementById('content_format').value || 'auto';
       const raw_input = document.getElementById('raw_input').value.trim();
       if (!raw_input) { alert('Paste raw input first.'); return; }
 
@@ -504,25 +805,24 @@
       const log = document.getElementById('log');
       const slides = document.getElementById('slides');
       const grid = document.getElementById('slide-grid');
+      const progressCard = document.getElementById('progress-card');
 
       btn.disabled = true;
       setStatus('generating');
-      log.style.display = 'block';
-      document.getElementById('log-label').style.display = 'block';
       log.textContent = '';
       slides.style.display = 'none';
       grid.innerHTML = '';
+      document.getElementById('gen-caption-card').style.display = 'none';
+      document.getElementById('gen-strategy-card').style.display = 'none';
+      document.getElementById('gen-lib-link').style.display = 'none';
+      progressCard.style.display = 'block';
+      document.getElementById('fail-card').style.display = 'none';
+      document.getElementById('log-wrap').style.display = 'none';
+      updateProgressFromLog('');
 
       try {
         const strategy_metadata = {
           sprint_phase: document.getElementById('sm_sprint_phase').value,
-          activity_category: document.getElementById('sm_activity_category').value,
-          specific_activity: document.getElementById('sm_specific_activity').value,
-          pain_hypothesis: document.getElementById('sm_pain_hypothesis').value,
-          message_hypothesis: document.getElementById('sm_message_hypothesis').value,
-          content_pillar: document.getElementById('sm_content_pillar').value,
-          content_ring: document.getElementById('sm_content_ring').value,
-          carousel_archetype: document.getElementById('sm_carousel_archetype').value,
           cta_goal: document.getElementById('sm_cta_goal').value,
           expected_signal: document.getElementById('sm_expected_signal').value.trim(),
         };
@@ -530,7 +830,7 @@
         const res = await fetch('/generate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ source_type, raw_input, strategy_metadata }),
+          body: JSON.stringify({ source_type, raw_input, strategy_metadata, content_format }),
         });
 
         const reader = res.body.getReader();
@@ -546,6 +846,7 @@
             const chunk = decoder.decode(value);
             log.textContent += chunk;
             log.scrollTop = log.scrollHeight;
+            updateProgressFromLog(log.textContent);
 
             const savedLine = chunk.split('\n').find((l) => l.startsWith('POST_SAVED:'));
             if (savedLine) {
@@ -558,15 +859,25 @@
               gotDone = true;
               setStatus('ready');
               showSlides(grid, slides, savedPostId);
-              await showPostDetail(savedPostId);
+              await showCreatePreview(savedPostId);
               loadHistory();
             }
           }
         }
-        if (!gotDone) setStatus('failed');
+        if (!gotDone) {
+          setStatus('failed');
+          const stepEl = document.getElementById('prog-step');
+          stepEl.className = 'prog-step failed';
+          stepEl.textContent = 'Generation failed';
+          document.getElementById('fail-card').style.display = 'flex';
+        }
       } catch (err) {
         log.textContent += '\nFetch error: ' + err.message;
         setStatus('failed');
+        const stepEl = document.getElementById('prog-step');
+        stepEl.className = 'prog-step failed';
+        stepEl.textContent = 'Generation failed';
+        document.getElementById('fail-card').style.display = 'flex';
       } finally {
         btn.disabled = false;
       }
@@ -595,7 +906,7 @@
           const urls = (data.supabase && Array.isArray(data.supabase.slide_urls)) ? data.supabase.slide_urls : [];
           if (urls.length) {
             urls.forEach((url, i) => { const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = `slide-${i+1}.png`; baUrls.appendChild(a); });
-          } else { baUrls.innerHTML = '<span style="font-size:11px;color:#444;">No URLs yet</span>'; }
+          } else { baUrls.innerHTML = '<span style="font-size:11px;color:var(--text-muted);">No URLs yet</span>'; }
           baEl.style.display = 'block';
         } else { baEl.style.display = 'none'; }
 
@@ -688,10 +999,8 @@
         if (sm) {
           const fields = [
             ['sprint_phase', sm.sprint_phase],
-            ['activity', sm.specific_activity],
-            ['pain', sm.pain_hypothesis],
-            ['message', sm.message_hypothesis],
-            ['archetype', sm.carousel_archetype],
+            ['cta_goal', sm.cta_goal],
+            ['expected_signal', sm.expected_signal],
           ];
           document.getElementById('strat-row').innerHTML = fields
             .map(([k, v]) => `<span class="strat-item"><span class="strat-key">${k}</span><span class="strat-val">${v || '—'}</span></span>`)
@@ -703,36 +1012,168 @@
       } catch {}
     }
 
+    let _allPosts = [];
+    let _libFilter = 'all';
+
+    function getNextAction(p) {
+      const s = p.statuses || {};
+      const sc = p.strategy || null;
+      if (sc && sc.allowed === false) return 'Fix strategy';
+      if (s.publish === 'published') return 'Published';
+      if (s.buffer === 'scheduled') return 'Scheduled';
+      if (s.buffer === 'sent') return 'Scheduled';
+      if (s.review === 'needs_edit') return 'Edit';
+      if (s.review === 'pending') return 'Review';
+      if (s.review === 'approved' && s.upload !== 'uploaded') return 'Upload';
+      if (s.upload === 'uploaded' && (!s.buffer || s.buffer === 'not_started')) return 'Send to Buffer';
+      return 'Check status';
+    }
+
+    function naClass(action) {
+      const map = { 'Review': 'na-review', 'Edit': 'na-edit', 'Upload': 'na-upload', 'Send to Buffer': 'na-buffer', 'Scheduled': 'na-scheduled', 'Published': 'na-published', 'Fix strategy': 'na-blocked' };
+      return map[action] || 'na-default';
+    }
+
+    function humanReviewStatus(s) {
+      const map = { approved: 'Approved', needs_edit: 'Needs edit', pending: 'Pending' };
+      return map[(s && s.review)] || '—';
+    }
+    function humanUploadStatus(s) {
+      if (!s) return '—';
+      if (s.upload === 'uploaded') return 'Uploaded';
+      if (s.upload === 'failed') return 'Failed';
+      return 'Not uploaded';
+    }
+    function humanBufferStatus(s) {
+      if (!s) return '—';
+      if (s.buffer === 'sent') return 'Sent';
+      if (s.buffer === 'scheduled') return 'Scheduled';
+      if (s.buffer === 'not_started') return 'Not sent';
+      return '—';
+    }
+    function humanStrategyLabel(p) {
+      const sc = p.strategy || null;
+      const st = p.statuses && p.statuses.strategy;
+      if (!sc && !st) return { label: 'Not checked', cls: 'sl-none' };
+      if (sc && sc.allowed === false) return { label: 'Blocked', cls: 'sl-blocked' };
+      if (sc && sc.fix_required) return { label: 'Needs fix', cls: 'sl-fix' };
+      if (st === 'passed' || (sc && sc.fix_required === false)) return { label: 'Passed', cls: 'sl-passed' };
+      if (st === 'needs_fix') return { label: 'Needs fix', cls: 'sl-fix' };
+      if (st === 'blocked') return { label: 'Blocked', cls: 'sl-blocked' };
+      return { label: 'Not checked', cls: 'sl-none' };
+    }
+    function getStrategySummary(p) {
+      const sc = p.strategy || null;
+      if (!sc) return '';
+      const parts = [sc.content_type, sc.content_relationship, sc.strategy_score != null ? 'Score ' + sc.strategy_score : null].filter(Boolean);
+      return parts.join(' · ');
+    }
+
+    // keep old names as aliases so any legacy calls don't break
+    function humanReview(s) { return humanReviewStatus(s); }
+    function humanUpload(s) { return humanUploadStatus(s); }
+    function humanBuffer(s) { return humanBufferStatus(s); }
+
+    function postTitle(p) {
+      if (p.caption && p.caption.trim()) {
+        const line = p.caption.split('\n')[0].trim();
+        if (line) return line.length > 70 ? line.slice(0, 70) + '…' : line;
+      }
+      return null;
+    }
+
+    function renderPostCard(p) {
+      const action = getNextAction(p);
+      const when = p.created_at ? new Date(p.created_at).toLocaleString() : '—';
+      const strat = humanStrategyLabel(p);
+      const stratMeta = getStrategySummary(p);
+      const title = postTitle(p);
+      const postCol = title
+        ? `<div class="lr-post-title">${title}</div><div class="lr-post-id">${p.post_id} &nbsp;·&nbsp; ${when}</div>`
+        : `<div class="lr-post-title" style="color:var(--text-sec);font-weight:400;font-family:monospace;font-size:12px;">${p.post_id}</div><div class="lr-post-date">${when}</div>`;
+      return `
+        <div class="lib-trow" onclick="viewPost('${p.post_id}')">
+          <div style="min-width:0;">${postCol}</div>
+          <div>
+            <div class="lr-strat-label ${strat.cls}">${strat.label}</div>
+            <div class="lr-strat-meta">${stratMeta || '—'}</div>
+          </div>
+          <div>
+            <div class="lr-wf-item"><span class="wf-key">Review &nbsp;</span>${humanReviewStatus(p.statuses)}</div>
+            <div class="lr-wf-item"><span class="wf-key">Upload &nbsp;</span>${humanUploadStatus(p.statuses)}</div>
+            <div class="lr-wf-item"><span class="wf-key">Buffer &nbsp;</span>${humanBufferStatus(p.statuses)}</div>
+          </div>
+          <div class="lr-action">
+            <span class="na-pill ${naClass(action)}">${action}</span>
+          </div>
+        </div>`;
+    }
+
+    function setLibFilter(f) {
+      _libFilter = f;
+      document.querySelectorAll('.lib-filter').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+      renderLibrary();
+    }
+
+    function filterLibrary() { renderLibrary(); }
+
+    function renderLibrary() {
+      const list = document.getElementById('post-list');
+      const query = (document.getElementById('lib-search') && document.getElementById('lib-search').value.toLowerCase()) || '';
+      let posts = _allPosts;
+      if (_libFilter !== 'all') posts = posts.filter(p => getNextAction(p) === _libFilter);
+      if (query) posts = posts.filter(p => p.post_id.toLowerCase().includes(query));
+      if (!posts.length) {
+        list.innerHTML = '<p style="font-size:13px;color:var(--text-muted);padding:16px 0;">No posts match.</p>';
+        return;
+      }
+      list.innerHTML = posts.map(renderPostCard).join('');
+    }
+
     async function loadHistory() {
       const list = document.getElementById('post-list');
       try {
         const posts = await fetch('/posts').then((r) => r.json());
-        list.innerHTML = '';
+        _allPosts = posts;
         if (!posts.length) {
-          list.innerHTML = '<p style="font-size:13px;color:#555;">No posts yet.</p>';
+          list.innerHTML = '<p style="font-size:13px;color:var(--text-muted);padding:16px 0;">No posts yet.</p>';
           return;
         }
-        for (const p of posts) {
-          const row = document.createElement('div');
-          row.className = 'post-row';
-          const when = p.created_at ? new Date(p.created_at).toLocaleString() : '—';
-          row.innerHTML = `<span class="pid">${p.post_id}</span><span class="meta">${when}</span><span class="status-chips">${renderStatusChips(p.statuses)}</span>${readinessChip(p.upload_readiness)}${bufferReadinessChip(p.buffer_readiness)}`;
-          row.addEventListener('click', () => viewPost(p.post_id));
-          list.appendChild(row);
-        }
+        renderLibrary();
       } catch {
-        list.innerHTML = '<p style="font-size:13px;color:#555;">Could not load history.</p>';
+        list.innerHTML = '<p style="font-size:13px;color:var(--text-muted);">Could not load history.</p>';
       }
     }
 
     async function viewPost(postId) {
-      const slides = document.getElementById('slides');
-      const grid = document.getElementById('slide-grid');
+      switchSection('library');
+      document.getElementById('lib-list').style.display = 'none';
+      document.getElementById('lib-detail').style.display = 'block';
+      const grid = document.getElementById('lib-slide-grid');
       grid.innerHTML = '';
-      showSlides(grid, slides, postId);
+      showSlides(grid, null, postId);
       await showPostDetail(postId);
-      setStatus('ready');
-      slides.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('lib-detail').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function showCreatePreview(postId) {
+      try {
+        const data = await fetch(`/posts/${postId}`).then(r => r.json());
+        if (data.caption) {
+          document.getElementById('gen-caption-text').textContent = data.caption;
+          document.getElementById('gen-hashtags-text').textContent = Array.isArray(data.hashtags) ? data.hashtags.join(' ') : '';
+          document.getElementById('gen-caption-card').style.display = 'block';
+        }
+        const sc = data.strategy || null;
+        const strStatus = (data.statuses && data.statuses.strategy) || 'not_checked';
+        document.getElementById('gen-sb-status').textContent = strStatus;
+        document.getElementById('gen-sb-allowed').textContent = sc ? (sc.allowed === true ? 'yes' : sc.allowed === false ? 'no' : '—') : '—';
+        document.getElementById('gen-sb-score').textContent = sc ? (sc.strategy_score ?? '—') : '—';
+        document.getElementById('gen-sb-fit').textContent = sc ? (sc.metafi_fit || '—') : '—';
+        document.getElementById('gen-strategy-card').style.display = 'block';
+        document.getElementById('gen-review-btn').onclick = () => viewPost(postId);
+        document.getElementById('gen-lib-link').style.display = 'block';
+      } catch {}
     }
 
     loadHistory();
@@ -745,7 +1186,7 @@
         img.alt = `Slide ${i}`;
         grid.appendChild(img);
       }
-      slidesEl.style.display = 'block';
+      if (slidesEl) slidesEl.style.display = 'block';
     }
   </script>
 </body>
