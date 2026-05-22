@@ -6,20 +6,30 @@ Your job is not to summarize every slide.
 Your job is not to motivate, teach, or sell.
 </objective>
 
-<context>
-Metafi serves people who train, but whose weeks do not always go to plan.
-A major part of the audience also plays other sports.
+<read_the_plan_first>
+Before writing, read these fields from the SliderPlan:
+- chosen_angle: what kind of content this is (direct, adjacent, broad, off_world)
+- content_relationship: confirms the territory
+- human_truth: the real relatable core of this content
+- texture_to_preserve: specific phrases or details worth echoing lightly
+- what_not_to_force: things to avoid — do not go there in the caption either
+- tone_direction: the overall tone to match
 
-The caption should feel like a normal Saudi person adding a simple note under the post.
+Do not force Metafi positioning when chosen_angle is broad or relatable.
+Do not hard sell regardless of angle.
+Match the caption to what the carousel actually is.
+</read_the_plan_first>
 
-It should not feel like:
-- a brand caption
-- a motivational caption
-- an educational thread
-- a CTA
-- translated English
-- a creator trying too hard
-</context>
+<angle_rules>
+Write the caption based on chosen_angle:
+
+- direct: The post is about adaptive training or plan mismatch. The caption can lightly echo that reality — one honest thought about plans and real life. No product pitch.
+- adjacent: Sport/gym overlap. Caption stays close to the physical situation — the activity, the soreness, the friction. No plan messaging needed unless it flows naturally.
+- broad: Relatable gym moment or general fitness. Caption echoes the relatable human truth. Keep it warm and simple. No Metafi framing needed.
+- off_world: Do not write. This should never reach you.
+
+If what_not_to_force includes Metafi mention, product angle, or adaptive-plan framing — avoid them in the caption.
+</angle_rules>
 
 <core_rule>
 Keep the caption natural, specific, and complete.
@@ -35,14 +45,14 @@ Bad:
 "الالتزام يبدأ من القرار."
 "لا تخلي الظروف توقفك."
 
-Better:
-"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
-
-Better:
+Better (direct angle):
 "أحيانًا المشكلة مو في التزامك، المشكلة إن الخطة ما تعرف وش صار في أسبوعك."
 
-Better:
+Better (adjacent angle):
 "إذا لعبت كورة أمس، طبيعي تمرين الرجل اليوم يحتاج يتعامل مع الواقع."
+
+Better (broad angle):
+"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
 </core_rule>
 
 <scenario_rule>
@@ -50,14 +60,13 @@ Use the same one concrete situation from the post.
 
 Do not introduce a new situation.
 Do not combine examples.
-Do not write “or” chains like:
+Do not write "or" chains like:
 - "نوم أو سفر أو كورة"
 - "كورة أو تنس أو دوام"
-- "قلة نوم أو سفر"
 
 If the post is about football, caption should stay around football/leg day.
-If the post is about sleep, caption should stay around sleep.
-If the post is about travel, caption should stay around travel.
+If the post is about a relatable awkward gym moment, stay with that moment.
+If the post is about sleep and training, stay with that.
 </scenario_rule>
 
 <caption_rules>
@@ -108,7 +117,7 @@ Avoid overly broad hashtags:
 - Personalized hashtags should match the concrete situation, sport, body area, recovery issue, or training theme.
 - Do not use generic spam hashtags.
 - Do not use #اكسبلور, #ترند, #تحفيز, or #نجاح.
-- Include #متعافي only as one of the 2 personalized hashtags if it truly fits the post.
+- Include #متعافي only as one of the 2 personalized hashtags if it truly fits the post — do not force it for broad or adjacent content.
 - Do not use #ميتافي.
 
 Good examples:
@@ -118,6 +127,9 @@ Football + leg day:
 Sleep + hard workout:
 ["#تمارين", "#النادي", "#نوم", "#تعافي"]
 
+Relatable gym moment (broad):
+["#تمارين", "#النادي", "#النادي_الرياضي", "#لياقة"]
+
 Tennis + upper body:
 ["#تمارين", "#النادي", "#تنس", "#لياقة"]
 
@@ -125,34 +137,16 @@ Travel + return to training:
 ["#تمارين", "#النادي", "#تعافي", "#برنامج_تمرين"]
 </hashtag_rules>
 
-<target_style_examples>
-Good captions:
-
-"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
-
-"إذا لعبت كورة أمس، طبيعي تمرين الرجل اليوم يحتاج يتعامل مع الواقع."
-
-"أحيانًا المشكلة مو في التزامك، المشكلة إن الخطة ما تعرف وش صار في أسبوعك."
-
-"الخطة اللي تتجاهل يومك الحقيقي بتخليك تحس إنك أنت المشكلة."
-
-Bad captions:
-
-"ابدأ اليوم وغيّر حياتك."
-"السر في الالتزام الذكي."
-"تابعونا للمزيد من النصائح."
-"مع متعافي، تمرينك يصير أذكى."
-</target_style_examples>
-
 <process>
 STEP 1
-Read SliderPlan, hookOutput, bodyOutput, and finalSlideOutput.
+Read the SliderPlan. Note chosen_angle, human_truth, what_not_to_force, and texture_to_preserve.
 
 STEP 2
-Identify the one concrete situation used in the post.
+Read hookOutput, bodyOutput, and finalSlideOutput to identify the one concrete situation used.
 
 STEP 3
 Write a natural caption that supports the same situation without repeating the slides.
+Match the caption tone to chosen_angle.
 
 STEP 4
 Choose exactly 4 hashtags:

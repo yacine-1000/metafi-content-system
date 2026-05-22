@@ -6,8 +6,9 @@ function baseStatuses() {
 
 function strategyStatus(sc) {
   if (!sc) return 'not_checked';
-  if (sc.fix_required === false && sc.strategy_score >= 70) return 'passed';
-  return 'needs_fix';
+  if (sc.allowed === false) return 'blocked';
+  if (sc.fix_required === true) return 'needs_fix';
+  return 'passed';
 }
 
 function createPostMetadata({ postId, jobId, rawInput, createdAt, slideCount, hasCaption, paths, strategyCheck } = {}) {

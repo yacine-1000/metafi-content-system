@@ -2,6 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "required": [
+    "content_type",
+    "content_relationship",
+    "allowed",
     "strategy_score",
     "score_breakdown",
     "drift_risk",
@@ -10,11 +13,23 @@
     "fix_required",
     "issues",
     "improvement_suggestions",
+    "advisory_notes",
     "reasoning_summary",
     "status"
   ],
   "additionalProperties": false,
   "properties": {
+    "content_type": {
+      "type": "string",
+      "enum": ["direct_metafi", "sports_gym", "gym_life_relatable", "general_fitness", "off_brand"]
+    },
+    "content_relationship": {
+      "type": "string",
+      "enum": ["direct", "adjacent", "broad", "off_world"]
+    },
+    "allowed": {
+      "type": "boolean"
+    },
     "strategy_score": {
       "type": "number",
       "minimum": 0,
@@ -44,6 +59,7 @@
     "fix_required": { "type": "boolean" },
     "issues":                  { "type": "array", "items": { "type": "string" } },
     "improvement_suggestions": { "type": "array", "items": { "type": "string" } },
+    "advisory_notes":          { "type": "array", "items": { "type": "string" } },
     "reasoning_summary": { "type": "string" },
     "status": { "type": "string", "enum": ["checked"] }
   }

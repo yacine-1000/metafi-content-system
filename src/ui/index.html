@@ -136,6 +136,7 @@
     .sc-unknown, .sc-not_started, .sc-not_checked { background: #1a1a1a; color: #444; border: 1px solid #222; }
     .sc-passed   { background: #1a2e1a; color: #5cb85c; border: 1px solid #2a4a2a; }
     .sc-needs_fix { background: #2a2210; color: #b8860b; border: 1px solid #3a3010; }
+    .sc-blocked   { background: #2e1010; color: #e05050; border: 1px solid #4a1a1a; }
 
     /* ── Strategy block ── */
     #strategy-block { margin-top: 12px; display: none; background: #111b22; border: 1px solid #1c3040; border-radius: 6px; padding: 10px 14px; }
@@ -146,6 +147,8 @@
     #strategy-block .sb-val { font-size: 12px; color: #7FFFD4; font-family: monospace; }
     #strategy-block .sb-issues { margin-top: 6px; }
     #strategy-block .sb-issue { font-size: 11px; color: #e07070; padding: 2px 0; }
+    #strategy-block .sb-advisory { margin-top: 6px; }
+    #strategy-block .sb-advisory-note { font-size: 11px; color: #a0c4d8; padding: 2px 0; }
 
     /* ── Upload readiness chip ── */
     .readiness-chip { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.04em; margin-top: 8px; }
@@ -395,11 +398,17 @@
         <div class="sb-label">Strategy Check</div>
         <div class="sb-row">
           <span class="sb-item"><span class="sb-key">Status</span><span class="sb-val" id="sb-status">—</span></span>
+          <span class="sb-item"><span class="sb-key">Allowed</span><span class="sb-val" id="sb-allowed">—</span></span>
           <span class="sb-item"><span class="sb-key">Score</span><span class="sb-val" id="sb-score">—</span></span>
           <span class="sb-item"><span class="sb-key">Drift</span><span class="sb-val" id="sb-drift">—</span></span>
           <span class="sb-item"><span class="sb-key">Fit</span><span class="sb-val" id="sb-fit">—</span></span>
         </div>
+        <div class="sb-row">
+          <span class="sb-item"><span class="sb-key">Type</span><span class="sb-val" id="sb-type">—</span></span>
+          <span class="sb-item"><span class="sb-key">Relationship</span><span class="sb-val" id="sb-relationship">—</span></span>
+        </div>
         <div id="sb-issues" class="sb-issues"></div>
+        <div id="sb-advisory" class="sb-advisory"></div>
       </div>
     </div>
     </div>
@@ -593,14 +602,22 @@
         const sc = data.strategy || null;
         const sbEl = document.getElementById('strategy-block');
         const strStatus = (data.statuses && data.statuses.strategy) || 'not_checked';
-        document.getElementById('sb-status').textContent = strStatus;
-        document.getElementById('sb-score').textContent  = sc ? sc.strategy_score : '—';
-        document.getElementById('sb-drift').textContent  = sc ? (sc.drift_risk || '—') : '—';
-        document.getElementById('sb-fit').textContent    = sc ? (sc.metafi_fit  || '—') : '—';
+        document.getElementById('sb-status').textContent       = strStatus;
+        document.getElementById('sb-allowed').textContent      = sc ? (sc.allowed === true ? 'yes' : sc.allowed === false ? 'no' : '—') : '—';
+        document.getElementById('sb-score').textContent        = sc ? sc.strategy_score : '—';
+        document.getElementById('sb-drift').textContent        = sc ? (sc.drift_risk || '—') : '—';
+        document.getElementById('sb-fit').textContent          = sc ? (sc.metafi_fit  || '—') : '—';
+        document.getElementById('sb-type').textContent         = sc ? (sc.content_type || '—') : '—';
+        document.getElementById('sb-relationship').textContent = sc ? (sc.content_relationship || '—') : '—';
         const sbIssues = document.getElementById('sb-issues');
         sbIssues.innerHTML = '';
         if (sc && Array.isArray(sc.issues) && sc.issues.length) {
           sc.issues.slice(0, 3).forEach(iss => { const d = document.createElement('div'); d.className = 'sb-issue'; d.textContent = iss; sbIssues.appendChild(d); });
+        }
+        const sbAdvisory = document.getElementById('sb-advisory');
+        sbAdvisory.innerHTML = '';
+        if (sc && Array.isArray(sc.advisory_notes) && sc.advisory_notes.length) {
+          sc.advisory_notes.slice(0, 3).forEach(note => { const d = document.createElement('div'); d.className = 'sb-advisory-note'; d.textContent = note; sbAdvisory.appendChild(d); });
         }
         sbEl.style.display = 'block';
 

@@ -11,16 +11,49 @@ Your job is to write the last text slide.
 The final slide must land the idea clearly without sounding like an ad, slogan, or motivational quote.
 </objective>
 
-<context>
-Metafi serves people who train, but whose weeks do not always go to plan.
-A major part of the audience also plays other sports.
+<read_the_plan_first>
+Before writing, read these fields from the SliderPlan:
+- chosen_angle: what kind of content this is (direct, adjacent, broad, off_world)
+- content_relationship: confirms the territory
+- human_truth: the real relatable core of this content
+- texture_to_preserve: phrases or details worth keeping in the close
+- what_not_to_force: directions to avoid — do not go there
+- tone_direction: the overall tone to maintain
+- slide_roles[4]: the role and purpose of slide 5 — write to match this
 
-Metafi is about helping people make better training decisions based on real life.
+Do not force Metafi's core message unless chosen_angle is "direct."
+Do not force a product pitch unless the plan explicitly calls for it.
+Follow the plan's direction for this specific content.
+</read_the_plan_first>
 
-The final slide should fit that philosophy quietly.
-It should not sell the product.
-It should not mention Metafi or متعافي unless explicitly required.
-</context>
+<angle_rules>
+Choose a closing style based on chosen_angle:
+
+- direct: The post is about plan mismatch or adaptive training. The final slide can land the idea that plans should adapt to real life — a calm honest thought, not a sales pitch.
+- adjacent: Sport/gym overlap. Close on the physical reality or the honest friction — what the viewer takes away from the situation. No product angle needed.
+- broad: Relatable gym moment or general fitness. Close with a simple human truth, a relatable observation, or a light practical question. No plan messaging needed.
+- off_world: Do not write. This should never reach you.
+
+If what_not_to_force includes product pitch, Metafi mention, or adaptive-plan framing — avoid them in the close.
+</angle_rules>
+
+<closing_styles>
+The final slide should do one of these. Match the style to what the plan and content naturally call for:
+
+1. flat_realization
+A clear, calm sentence that lands the honest point. Default choice.
+Use for: direct and adjacent angles, or broad content with a clear landing.
+
+2. soft_reframe
+A simple shift in how the viewer sees the situation — not a lesson, just a different way to look at it.
+Use for: relatable gym-life moments, situations where the viewer might judge themselves unfairly.
+
+3. comment_question
+A practical or honest question that invites the viewer to relate — not engagement bait, not "comment below."
+Use for: broad content where a natural question opens the thought further.
+
+Default to flat_realization when unsure.
+</closing_styles>
 
 <core_rule>
 Do not optimize for the shortest ending.
@@ -38,7 +71,7 @@ Better:
 "الخطة الجيدة ما تفترض إن كل أسبوع مثالي. الخطة الجيدة تعرف كيف تتعامل مع الأسبوع الحقيقي."
 
 Better:
-"أنت ما تحتاج خطة مثالية على الورق. تحتاج خطة تعرف تتعامل مع حياتك فعليًا."
+"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
 </core_rule>
 
 <scenario_rule>
@@ -46,34 +79,18 @@ Keep the same one concrete situation from the hook and body.
 
 Do not introduce a new situation.
 Do not combine multiple examples.
-Do not use “or” chains like:
-- "نوم أو سفر أو كورة"
-- "كورة أو تنس أو دوام"
+Do not use "or" chains.
 
 The final thought should come from the exact situation already shown.
 </scenario_rule>
-
-<closing_role>
-The final slide should do one of these:
-
-1. flat_realization
-A clear, calm sentence that lands the point.
-
-2. soft_reframe
-A simple shift in how the viewer sees the situation.
-
-3. comment_question
-Use only if it feels natural and not like engagement bait.
-
-Default to flat_realization.
-</closing_role>
 
 <writing_rules>
 - Use simple Saudi Arabic.
 - Use 1–2 complete sentences.
 - Keep it natural and clear.
 - Stay content-first.
-- Do not sound like a slogan unless it feels completely natural.
+- Use texture_to_preserve where it fits naturally.
+- Do not sound like a slogan.
 - Do not sound like a coach.
 - Do not sound like a brand.
 - Do not sound motivational.
@@ -112,43 +129,23 @@ Do not use:
 - "مع متعافي"
 </avoid>
 
-<target_style_examples>
-Good final slide examples:
-
-"أحيانًا التمرين الصح مو اللي كان مكتوب من البداية. التمرين الصح هو اللي يناسب جسمك اليوم."
-
-"المشكلة مو إنك ما تبغى تتمرن. المشكلة إن الجدول ثابت، وما يعرف وش صار في أسبوعك."
-
-"الخطة الجيدة ما تفترض إن كل أسبوع مثالي. الخطة الجيدة تعرف كيف تتعامل مع الأسبوع الحقيقي."
-
-"مو كل يوم يناسبه نفس التمرين، لأن جسمك وظروفك ما تكون نفس الشيء كل يوم."
-
-"أحيانًا تحتاج تعدّل التمرين، مو تضغط على نفسك كأن شيء ما صار."
-
-Bad final slide examples:
-"مو العكس."
-"خلك أذكى."
-"الحل إن خطتك تصير مرنة."
-"حمّل التطبيق الآن."
-"هل صار لك كذا؟ اكتب لنا."
-</target_style_examples>
-
 <brand_rules>
 - The app image can carry the brand presence.
 - brand_bridge_text should usually be empty.
 - Do not force Metafi or متعافي into the final text.
 - If the final slide is stronger without a brand bridge, leave brand_bridge_text empty.
+- For direct angle posts, a quiet closing thought about adaptive training is enough — it does not need to name the product.
 </brand_rules>
 
 <process>
 STEP 1
-Read the SliderPlan, Hook, and Body carefully.
+Read the SliderPlan. Note chosen_angle, human_truth, what_not_to_force, tone_direction, and slide_roles[4].
 
 STEP 2
-Identify the one concrete situation already shown.
+Read the hook and body. Identify the one concrete situation already shown.
 
 STEP 3
-Identify the simple thought that should land last.
+Choose the closing style that fits: flat_realization, soft_reframe, or comment_question.
 
 STEP 4
 Write 1–2 complete natural sentences.
@@ -164,7 +161,7 @@ Silently verify:
 - it does not sound motivational
 - it does not introduce a new idea
 - it lands the thought clearly
-- it does not use فصحى connectors like "بل", "لذلك", "حيث", or "بينما"
+- no فصحى connectors
 </process>
 
 <output_format>

@@ -2,7 +2,7 @@
 Generate the 3 middle slides of a TikTok slider.
 
 You will receive:
-- a CleanedSourceBrief
+- a CleanedSourceBrief (source notes)
 - an approved SliderPlan
 - an approved Hook output
 
@@ -11,20 +11,31 @@ Your job is to write only body slides 2, 3, and 4.
 The body must continue the hook using clear, complete, natural sentences.
 </objective>
 
-<context>
-Metafi serves people who train, but whose weeks do not always go to plan.
-A major part of the audience also plays other sports.
+<read_the_plan_first>
+Before writing, read these fields from the SliderPlan:
+- chosen_angle: what kind of content this is (direct, adjacent, broad, off_world)
+- content_relationship: confirms the territory
+- human_truth: the real relatable core of this content
+- texture_to_preserve: specific phrases, details, or tone elements worth keeping
+- what_not_to_force: directions to avoid in every slide — do not go there
+- tone_direction: the overall tone to maintain
+- slide_roles: read the purpose and key_point for slides 2, 3, and 4 — write to match each one
 
-The body should feel like a normal Saudi person clearly describing a real situation.
+Do not force adaptive-plan messaging unless chosen_angle is "direct."
+Do not turn every post into a lesson.
+Follow the plan's direction for this specific content.
+</read_the_plan_first>
 
-It should not feel like:
-- a lesson
-- a framework
-- a motivational post
-- a coach talking
-- a brand explaining itself
-- a writer trying to sound clever
-</context>
+<angle_rules>
+Write body slides based on chosen_angle:
+
+- direct: The post is about plan mismatch or adaptive training. Slides may reference the friction between real life and a fixed plan.
+- adjacent: Sport/gym overlap. Slides develop the physical reality — soreness, fatigue, recovery conflict — without forcing a product angle.
+- broad: Relatable gym moment or general fitness. Slides develop the situation, the friction or confusion, and a simple honest landing. No plan messaging needed.
+- off_world: Do not write. This should never reach you.
+
+If what_not_to_force includes "static plan bad → adaptive plan good" or "Metafi core message" — do not write those slides.
+</angle_rules>
 
 <core_rule>
 Do not optimize for shortness.
@@ -48,32 +59,25 @@ Each slide can be 1–2 complete sentences.
 Use one concrete situation only.
 
 Do not combine multiple examples in one post.
-Do not write “or” chains like:
+Do not write "or" chains like:
 - "نوم أو سفر أو كورة"
 - "كورة أو تنس أو دوام"
 - "قلة نوم أو سفر"
 
-The body must continue the exact situation chosen by the planning phase and hook.
-
-Bad:
-"جسمك تعبان من قلة النوم أو السفر، بس الجدول يتعامل معك كأنك مرتاح."
-
-Good:
-"جسمك للحين متأثر من السفر، بس الجدول يتعامل معك كأنك كنت مرتاح أمس."
-
-Good:
-"جسمك صاحي بالغصب بعد أربع ساعات نوم، بس الجدول يتعامل معك كأن نومك كان طبيعي."
-
-Good:
-"رجولك للحين متأثرة من مباراة أمس، بس الجدول يتعامل معك كأنك كنت مرتاح."
+The body must continue the exact situation from the hook and plan.
 </scenario_rule>
 
 <body_roles>
-Write exactly 3 body slides:
+Write exactly 3 body slides for slide numbers 2, 3, and 4.
 
-Slide 2 = explain what makes the situation annoying.
-Slide 3 = show the uncomfortable choice, confusion, or friction clearly.
-Slide 4 = give the simple realization without sounding like a lesson.
+Use the slide_roles from the SliderPlan as your guide for what each slide should do and land on.
+Map each slide to one of these output role labels: build, tension, realization.
+
+- build: developing the situation, adding detail or context
+- tension: friction, discomfort, uncomfortable choice, or confusion
+- realization: simple honest landing — not a lesson, not advice, just a clear thought
+
+Choose the label that best matches the slide_role purpose from the plan.
 
 The slides should move forward naturally.
 Do not repeat the hook.
@@ -83,7 +87,8 @@ Do not rush to the final closing thought.
 <writing_rules>
 - Use simple Saudi Arabic.
 - Use complete sentences.
-- Stay close to the raw idea, SliderPlan, and selected hook.
+- Stay close to the SliderPlan and selected hook.
+- Use texture_to_preserve where it fits naturally.
 - Make the situation specific.
 - Use normal words that people actually say.
 - Express the thought clearly; do not compress it into slogans.
@@ -97,7 +102,6 @@ Do not rush to the final closing thought.
 Avoid:
 - broken slogan fragments
 - goofy TikTok slang
-- exaggerated slang
 - MSA / formal Arabic
 - poetic wording
 - corporate language
@@ -107,6 +111,7 @@ Avoid:
 - consultant language
 - abstract framework words
 - combining multiple situations in one slide
+- "static plan bad → adaptive plan good" formula unless the plan explicitly chose direct angle
 
 Do not use:
 - "الحل"
@@ -122,42 +127,21 @@ Do not use:
 - "متعافي"
 </avoid>
 
-<target_style_examples>
-Good body style:
-
-"رجولك للحين متأثرة من المباراة، بس الجدول يتعامل معك كأنك كنت مرتاح أمس."
-
-"فتحتار بين إنك تضغط على نفسك وتتمرن بنفس الشدة، أو تترك التمرين وتحس إن الأسبوع خرب."
-
-"المشكلة مو إنك غير ملتزم. المشكلة إن الجدول ثابت، وأسبوعك الحقيقي مو ثابت."
-
-"كتفك وذراعك أصلاً مستهلكة من اللعب، بس الجدول يتعامل كأنك كنت مرتاح طول اليوم."
-
-"نومك تغير، أكلك تغير، ومشاويرك زادت، بس الخطة تطلب منك تكمل من نفس المكان."
-
-"جسمك صاحي بالغصب بعد أربع ساعات نوم، بس الجدول يتعامل معك كأن نومك كان طبيعي."
-
-"رجعت من السفر أمس، وجسمك للحين مو راجع لطبيعته، بس الخطة تطلب منك تكمل من نفس المكان."
-</target_style_examples>
-
 <process>
 STEP 1
-Read the CleanedSourceBrief, SliderPlan, and selected hook.
+Read the SliderPlan. Note chosen_angle, human_truth, texture_to_preserve, what_not_to_force, tone_direction, and slide_roles for slides 2, 3, 4.
 
 STEP 2
-Identify the one exact real-life situation from the plan.
+Read the selected hook. Continue directly from where it left off.
 
 STEP 3
-Write exactly 3 body slides:
-- slide 2: annoying reality
-- slide 3: confusion/friction
-- slide 4: simple realization
+Write exactly 3 body slides following the slide_roles from the plan.
 
 STEP 4
 Silently verify:
 - each slide uses complete natural sentences
 - the body uses one concrete situation only
-- there are no “or” chains
+- there are no "or" chains
 - no goofy shortcuts
 - no fake-smart language
 - no product pitch

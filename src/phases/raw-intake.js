@@ -6,60 +6,30 @@ const { callGeminiJson } = require('../lib/callGeminiJson');
 const { resolvePath, ensureParentDir } = require('../lib/pathResolver');
 
 const REQUIRED_FIELDS = [
-  'source_brief_id',
-  'source_type',
-  'raw_source_excerpt',
-  'cleaned_summary',
-  'core_pattern',
-  'emotional_signal',
-  'useful_phrases',
-  'audience_relevance',
-  'content_potential',
-  'notes',
+  'source_summary',
+  'situation',
+  'human_tension',
+  'concrete_details',
+  'source_phrases',
+  'emotional_signals',
+  'training_context',
+  'possible_meanings',
+  'do_not_force',
   'status',
 ];
 
-const VALID_SOURCE_TYPES = [
-  'reddit_post',
-  'tiktok_post',
-  'tweet',
-  'comment_thread',
-  'founder_note',
-  'competitor_post',
-  'other',
-];
-
-const VALID_CONTENT_POTENTIALS = [
-  'identity_slider',
-  'tension_slider',
-  'decision_pain_slider',
-  'worldview_slider',
-  'self_recognition_slider',
-];
+const ARRAY_FIELDS = ['concrete_details', 'source_phrases', 'emotional_signals', 'training_context', 'possible_meanings', 'do_not_force'];
 
 function validate(obj) {
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return ['Output is not a JSON object'];
   const errors = [];
-
-  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) {
-    return ['Output is not a JSON object'];
-  }
-
   for (const field of REQUIRED_FIELDS) {
     if (!(field in obj)) errors.push(`Missing field: ${field}`);
   }
-
-  if ('source_type' in obj && !VALID_SOURCE_TYPES.includes(obj.source_type)) {
-    errors.push(`Invalid source_type: "${obj.source_type}"`);
+  for (const field of ARRAY_FIELDS) {
+    if (field in obj && !Array.isArray(obj[field])) errors.push(`${field} must be an array`);
   }
-
-  if ('content_potential' in obj && !VALID_CONTENT_POTENTIALS.includes(obj.content_potential)) {
-    errors.push(`Invalid content_potential: "${obj.content_potential}"`);
-  }
-
-  if ('useful_phrases' in obj && !Array.isArray(obj.useful_phrases)) {
-    errors.push('useful_phrases must be an array');
-  }
-
+  if ('status' in obj && obj.status !== 'extracted') errors.push(`status must be "extracted"`);
   return errors.length > 0 ? errors : null;
 }
 
@@ -76,7 +46,7 @@ async function run() {
   const rawSource = fs.readFileSync(inputPath, 'utf8').trim();
   if (!rawSource) { console.error('Error: test-inputs/raw-source.txt is empty'); process.exit(1); }
 
-  const message = `${prompt}\n\n<raw_source>\n${rawSource}\n</raw_source>`;
+  const message = prompt.replace('{{RAW_SOURCE}}', rawSource);
 
   console.log('Sending to Gemini...');
 

@@ -10,13 +10,17 @@ const SCORE_FIELDS = ['core_pain_fit', 'real_life_specificity', 'metafi_differen
 function validate(obj) {
   if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return ['Output is not a JSON object'];
   const errors = [];
-  const required = ['strategy_score', 'score_breakdown', 'drift_risk', 'metafi_fit', 'primary_pain', 'fix_required', 'issues', 'improvement_suggestions', 'reasoning_summary', 'status'];
+  const required = ['content_type', 'content_relationship', 'allowed', 'strategy_score', 'score_breakdown', 'drift_risk', 'metafi_fit', 'primary_pain', 'fix_required', 'issues', 'improvement_suggestions', 'advisory_notes', 'reasoning_summary', 'status'];
   for (const f of required) if (!(f in obj)) errors.push(`Missing field: ${f}`);
+  if (!['direct_metafi', 'sports_gym', 'gym_life_relatable', 'general_fitness', 'off_brand'].includes(obj.content_type)) errors.push(`Invalid content_type: "${obj.content_type}"`);
+  if (!['direct', 'adjacent', 'broad', 'off_world'].includes(obj.content_relationship)) errors.push(`Invalid content_relationship: "${obj.content_relationship}"`);
+  if ('allowed' in obj && typeof obj.allowed !== 'boolean') errors.push('allowed must be a boolean');
   if (!['low', 'medium', 'high'].includes(obj.drift_risk)) errors.push(`Invalid drift_risk: "${obj.drift_risk}"`);
   if (!['strong', 'usable', 'needs_fix', 'reject'].includes(obj.metafi_fit)) errors.push(`Invalid metafi_fit: "${obj.metafi_fit}"`);
   if (obj.status !== 'checked') errors.push(`status must be "checked"`);
   if (!Array.isArray(obj.issues)) errors.push('issues must be an array');
   if (!Array.isArray(obj.improvement_suggestions)) errors.push('improvement_suggestions must be an array');
+  if (!Array.isArray(obj.advisory_notes)) errors.push('advisory_notes must be an array');
   if (obj.score_breakdown && typeof obj.score_breakdown === 'object') {
     const sum = SCORE_FIELDS.reduce((acc, k) => acc + (Number(obj.score_breakdown[k]) || 0), 0);
     if (sum !== Number(obj.strategy_score)) errors.push(`strategy_score ${obj.strategy_score} does not equal sum of score_breakdown (${sum})`);

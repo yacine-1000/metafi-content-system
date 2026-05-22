@@ -1,36 +1,42 @@
 <objective>
 Generate 3 hook options for slide 1 of a TikTok slider, then select the strongest one.
 
-You will receive an approved SliderPlan.
+You will receive an approved SliderPlan. Read it carefully before writing anything.
 
-Your job is to write the first slide only.
-
-The hook must open with one concrete real situation.
-It should make the viewer understand the moment immediately.
-It should make slide 2 feel necessary.
+Your job is to write the first slide only — based on what the plan actually chose, not on a generic template.
 </objective>
 
-<context>
-Metafi serves people who train, but whose weeks do not always go to plan.
-A major part of the audience also plays other sports.
+<read_the_plan_first>
+Before writing, read these fields from the SliderPlan:
+- chosen_angle: tells you what kind of content this is (direct, adjacent, broad, off_world)
+- content_relationship: same as chosen_angle — confirms the territory
+- human_truth: the real relatable core of this content
+- texture_to_preserve: specific phrases, details, or tone elements from the source worth keeping
+- what_not_to_force: directions to avoid — do not write hooks that go there
+- tone_direction: the overall tone planned for this post
+- slide_roles[0]: the role and purpose of slide 1 — write to match this
 
-The best hook should feel like a normal Saudi person describing something that actually happened.
+Do not default to Metafi's core message unless chosen_angle is "direct".
+Do not write generic gym motivation unless chosen_angle is "broad" and that fits the human_truth.
+Follow the plan.
+</read_the_plan_first>
 
-It should not feel like:
-- a title
-- a lesson
-- a question
-- a tweet
-- a brand message
-- a motivational post
-- a coach explaining the point
-</context>
+<angle_rules>
+Write the hook based on chosen_angle:
+
+- direct: The post is about adaptive training, plan mismatch, or uncertainty about what to train next. The hook can reference a specific mismatch between what the body is doing and what the plan says.
+- adjacent: Sport/gym overlap — soreness, fatigue, recovery, sport affecting gym. The hook starts from the sport or activity, not from the app or plan.
+- broad: Relatable gym moment, routine friction, general fitness situation. The hook opens on a recognizable moment — no plan messaging needed.
+- off_world: Do not write. This should never reach you.
+
+If what_not_to_force includes "adaptive plan messaging" or "Metafi core message" — do not write a hook about plans, schedules, or apps.
+</angle_rules>
 
 <core_rule>
 Use one concrete situation only.
 
 Do not combine multiple examples in one hook.
-Do not write “or” chains like:
+Do not write "or" chains like:
 - "نوم أو سفر أو كورة"
 - "كورة أو تنس أو دوام"
 - "قلة نوم أو سفر"
@@ -42,10 +48,10 @@ Good:
 "نمت أربع ساعات، واليوم فتحت جدولك وطلع لك تمرين قوي."
 
 Good:
-"رجعت من السفر أمس، واليوم فتحت جدولك وطلع لك تمرين ثقيل."
+"أمس لعبت كورة ساعتين، واليوم فتحت جدولك وطلع لك تمرين رجل."
 
 Good:
-"أمس لعبت كورة ساعتين، واليوم فتحت جدولك وطلع لك تمرين رجل."
+"وصلت النادي وأنت مستنزف قبل ما تبدأ."
 </core_rule>
 
 <writing_standard>
@@ -55,36 +61,29 @@ Optimize for a clear, complete, natural sentence.
 Avoid broken slogan shortcuts.
 Avoid goofy phrasing.
 Avoid overly clever lines.
+Avoid abstract or poetic language.
 
-Bad:
-"رجولك مكسرة"
-"بس الجدول ما يدري"
-"أسبوعك مو ثابت"
-
-Better:
-"أمس لعبت كورة ساعتين، واليوم فتحت جدولك وطلع لك تمرين رجل."
-"رجعت من السفر أمس، واليوم جدولك يتعامل معك كأن أسبوعك كان طبيعي."
-"نمت أربع ساعات، واليوم الخطة تطلب منك تتمرن بنفس الشدة."
+Use texture_to_preserve from the plan where it fits naturally.
 </writing_standard>
 
 <hook_rules>
 The hook must:
 - be one slide only
 - use simple Saudi Arabic
-- be specific
-- be clear
+- be specific to the situation in the plan
 - use 1–2 complete sentences
-- start from the situation, not the lesson
+- start from the situation, not the lesson or the conclusion
 - create enough curiosity for slide 2
 
 The hook must not:
 - ask an educational question
 - explain the full insight
 - mention the solution
-- mention Metafi or متعافي
+- mention Metafi or متعافي (unless chosen_angle is "direct" and the plan explicitly calls for it)
 - sound like a coach
 - sound like an ad
 - sound like a content creator trying to be deep
+- use generic gym motivation if the plan chose a specific real situation
 </hook_rules>
 
 <avoid>
@@ -104,23 +103,9 @@ Avoid:
 - abstract psychology
 </avoid>
 
-<target_style_examples>
-Good hook options:
-
-"أمس لعبت كورة ساعتين، واليوم فتحت جدولك وطلع لك تمرين رجل."
-
-"لعبت تنس أمس، واليوم جدولك كاتب لك تمرين صدر وكتف."
-
-"نمت أربع ساعات، واليوم الخطة تطلب منك تتمرن بنفس الشدة."
-
-"رجعت من السفر أمس، واليوم فتحت جدولك وطلع لك تمرين ثقيل."
-
-"طلعت من الدوام متأخر، ووصلت النادي وأنت مستنزف قبل ما تبدأ."
-</target_style_examples>
-
 <selection_priority>
 Choose the hook that is:
-1. most specific
+1. most specific to what the plan actually chose
 2. easiest to understand immediately
 3. most relatable to the audience
 4. most naturally Saudi
@@ -132,16 +117,16 @@ Choose the hook that feels most real.
 
 <process>
 STEP 1
-Read the SliderPlan carefully.
+Read the SliderPlan. Note chosen_angle, human_truth, texture_to_preserve, what_not_to_force, and slide_roles[0].
 
 STEP 2
-Identify the one concrete situation chosen in the plan.
+Identify the one concrete situation the plan is built around.
 
 STEP 3
-Generate exactly 3 hook options.
+Generate exactly 3 hook options that match the chosen_angle and slide_roles[0] purpose.
 
 STEP 4
-Choose the strongest one.
+Choose the strongest one using selection_priority.
 
 STEP 5
 Return only the required JSON.
