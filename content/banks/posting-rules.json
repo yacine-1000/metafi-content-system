@@ -1,0 +1,53 @@
+{
+  "version": "v1",
+  "accounts_count": 1,
+  "daily_generation_goal_per_account": 1,
+  "total_daily_posts": 1,
+  "posting_tool": "buffer",
+  "generation_mode": "daily_batch",
+  "variation_mode": "use_master_script_as_is",
+  "llm_variation_enabled": false,
+  "account_strategy": {
+    "accounts_share_same_daily_topics": true,
+    "variation_by_account": false,
+    "variation_fields": [
+      "topic_variation",
+      "text_hook",
+      "slide_copy",
+      "caption",
+      "visual_asset"
+    ],
+    "same_fields_across_accounts": [
+      "pillar_id",
+      "topic_id",
+      "script_template_id",
+      "cta_type"
+    ]
+  },
+  "output_package_fields": [
+    "post_id",
+    "account",
+    "pillar_id",
+    "topic_id",
+    "master_script_id",
+    "hook_type",
+    "hook_text",
+    "visual_hook_type",
+    "slide_count",
+    "cta_type",
+    "cta_slide",
+    "slides",
+    "caption"
+  ],
+  "rules": {
+    "use_only_active_pillars": true,
+    "use_only_active_hooks": true,
+    "use_only_active_visual_hooks": true,
+    "cta_type": "app_icon_home_screen",
+    "asset_banks": {
+      "hook_slide": "visual_hooks",
+      "body_slides": "body_slides",
+      "cta_app_slide": "app_icon_home_screen"
+    }
+  }
+}

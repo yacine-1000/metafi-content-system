@@ -1,0 +1,11 @@
+{
+  "version": "v1",
+  "default_cta_type": "app_icon_home_screen",
+  "allowed_cta_types": ["app_icon_home_screen"],
+  "disallowed_cta_types": ["hard_product_pitch", "food_supplement_cta"],
+  "rules": {
+    "slide_1_allowed": false,
+    "placement": "script_decides",
+    "must_feel_subtle": true
+  }
+}
