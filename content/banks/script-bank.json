@@ -1,0 +1,199 @@
+{
+  "version": "v1",
+  "script_templates": [
+    {
+      "id": "comparison",
+      "allowed_text_hook_type": "comparison",
+      "allowed_pillars": ["p2", "p1", "p3", "p4"],
+      "slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "role": "hook_comparison",
+          "requires_text_hook": true,
+          "requires_visual_hook": true,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "visual_hooks"
+        },
+        {
+          "slide_number": 2,
+          "role": "old_way",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 3,
+          "role": "better_way",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 4,
+          "role": "why_it_works",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 5,
+          "role": "takeaway",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": true,
+          "asset_bank": "app_icon_home_screen"
+        }
+      ]
+    },
+    {
+      "id": "listicle",
+      "allowed_text_hook_type": "listicle",
+      "allowed_pillars": ["p2", "p1", "p3"],
+      "slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "role": "hook_list",
+          "requires_text_hook": true,
+          "requires_visual_hook": true,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "visual_hooks"
+        },
+        {
+          "slide_number": 2,
+          "role": "item_1",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 3,
+          "role": "item_2",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 4,
+          "role": "item_3",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 5,
+          "role": "summary",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": true,
+          "asset_bank": "app_icon_home_screen"
+        }
+      ]
+    },
+    {
+      "id": "how_to",
+      "allowed_text_hook_type": "how_to",
+      "allowed_pillars": ["p2", "p1", "p3"],
+      "slide_count": 4,
+      "slides": [
+        {
+          "slide_number": 1,
+          "role": "hook_how_to",
+          "requires_text_hook": true,
+          "requires_visual_hook": true,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "visual_hooks"
+        },
+        {
+          "slide_number": 2,
+          "role": "step_1",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 3,
+          "role": "step_2",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 4,
+          "role": "apply_today",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": true,
+          "asset_bank": "app_icon_home_screen"
+        }
+      ]
+    },
+    {
+      "id": "identity_callout",
+      "allowed_text_hook_type": "identity_callout",
+      "allowed_pillars": ["p2", "p1", "p4"],
+      "slide_count": 4,
+      "slides": [
+        {
+          "slide_number": 1,
+          "role": "hook_identity",
+          "requires_text_hook": true,
+          "requires_visual_hook": true,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "visual_hooks"
+        },
+        {
+          "slide_number": 2,
+          "role": "recognize_problem",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": false,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 3,
+          "role": "new_standard",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": false,
+          "asset_bank": "body_slides"
+        },
+        {
+          "slide_number": 4,
+          "role": "identity_takeaway",
+          "requires_text_hook": false,
+          "requires_visual_hook": false,
+          "allows_cta": true,
+          "can_be_app_slide": true,
+          "asset_bank": "app_icon_home_screen"
+        }
+      ]
+    }
+  ]
+}

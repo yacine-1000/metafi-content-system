@@ -1,0 +1,38 @@
+{
+  "version": "v1",
+  "visual_hooks": [
+    {
+      "id": "physique_proof",
+      "label": "Physique Proof",
+      "priority": 1,
+      "active": true,
+      "usage": "Use when the post needs body proof, transformation signal, or athletic credibility.",
+      "image_source_type": "owned_or_generated_body_visual"
+    },
+    {
+      "id": "weird_outfit_character",
+      "label": "Weird Outfit Character",
+      "priority": 2,
+      "active": true,
+      "usage": "Use for scroll-stopping character posts with unusual gym or sport styling.",
+      "image_source_type": "generated_character_visual"
+    },
+    {
+      "id": "collage",
+      "label": "Collage",
+      "priority": 3,
+      "active": true,
+      "usage": "Use when comparing choices, showing multiple weekly constraints, or stacking examples.",
+      "image_source_type": "assembled_multi_image_visual"
+    },
+    {
+      "id": "basic_pinterest_gym_image",
+      "label": "Basic Pinterest Gym Image",
+      "priority": 4,
+      "active": true,
+      "usage": "Use for simple gym aesthetic posts when the topic does not require proof or a character.",
+      "image_source_type": "curated_gym_reference"
+    }
+  ],
+  "disallowed_visuals": ["food", "supplement"]
+}
