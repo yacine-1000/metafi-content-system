@@ -1,0 +1,340 @@
+{
+  "source_set_id": "SET-016",
+  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Pilates + Gym",
+  "topic": "Combining Pilates with Gym",
+  "scripts": [
+    {
+      "script_id": "SET-016-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Routine / Schedule",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تسوين بيالتس وتبين تدخلين الحديد، ال تعاملينهم كأنهم شيئين منفصلين. الحديد المفروض يخدم جسمك، مو يخليك مشدودة\n‏أو تعبانة في البيالتس."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏تمارين القوة تساعدك في الثبات، التحكم، قوة العضالت، وتحمل الجسم. يعني مو بس تبنين عضل؛ تبنين جسم أقوى ويتحرك\n‏بسالسة أكثر.\n‏ت بدون خطة. لو حطيتي رجل ثقيل أو تمرين علوي قوي قبل حصة بيالتس، غالبًا بتدخلين الحصة"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏لكن المشكلة تبدأ إذا تمرن ِ\n‏وجسمك مستهلك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏خلي تمارين الحديد الثقيلة بعيدة عن أيام البيالتس القوية. والأيام القريبة من البيالتس تكون أخف، تركيزها على الحركة،\n‏التكنيك، الكور، والتحكم."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏تمارين مثل السكوات، اللنجز، السحب، وتمارين الكتف والكور ممكن تفيدك كثير. بس الأهم تختارين وزن مناسب وتحافظين\n‏على أداء نظيف بدون ما تجهدين جسمك زيادة."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏الهدف إن الحديد يقويك للبيالتس، مو يخليك أثقل أو أقل مرونة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-016-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تسوينها لما تجمعين بين بيالتس وحديد تخرب عليك الاستفادة من الاثنين. أولها إنك تفصلين بينهم تمامًا وتتوقعين\n‏جسمك بيتحمل الضغط بدون ترتيب."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثاني هو تمرين الرجل الثقيل قبل حصة البيالتس مباشرة. كذا بتدخلين الحصة وعضالتك مستهلكة ومنهكة وما راح\n‏تقدرين تتحكمين بحركتك صح."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثالث إنك تركزين بس على زيادة الأوزان وتنسين المرونة والتكنيك. تمارين القوة المفروض تخدم ثباتك وتحكمك في\n‏البيالتس، مو تيبّس جسمك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الصح إنك تبعدين الأيام الثقيلة عن حصص البيالتس القوية وتختارين أوزان مناسبة. تبي تفاصيل أكثر لتنسيق جدولك؟ تابعي\n‏الحساب."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-016-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء فرقت معي يوم دمجت بيالتس وحديد في جهازي الأسبوعي. هالأشياء خلت جسمي يتحرك بسالسة وبدون تعب\n‏مستمر."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول شيء، صرت أخلي تمارين الحديد تخدم البيالتس مو تعانده. يعني أتمرن حديد عشان أقوي الكور والثبات، مو بس عشان\n‏أشيل أوزان خيالية."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني شيء، رتبت شدة التمارين وصرت أخلي أيام الحديد الخفيفة هي القريبة من البيالتس. التركيز فيها يكون على جودة\n‏الحركة والتكنيك النظيف."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالث شيء، ركزت على أساسيات القوة مثل السكوات والسحب بوزن مناسب بدون إجهاد زايد. إذا تبين تطورين مرونتك\n‏وقوتك سوا، شيكي على البوستات الجاية."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-016-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تجمعين بين بيالتس وحديد في جدولك الأسبوعي بدون ما تجهدين عضالتك؟ الطريقة أسهل مما تتوقعين لو رتبتيها صح."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول خطوة، ال تلعبين تمرين علوي قوي أو رجل ثقيلة بيوم البيالتس أو قبله مباشرة. جسمك يحتاج يدخل حصة البيالتس وهو\n‏بكامل تركيزه وقوته."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني خطوة، اختاري تمارين أساسية مثل اللنجز، السكوات، وتمارين الكور بوزن معتدل. الهدف هنا هو تقوية المفاصل وزيادة\n‏تحمل العضالت."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏بكذا تضمنين إن الحديد يعطيك الثبات والتحكم اللي يخليك تبدعين بالبيالتس. جربيها هالأسبوع وقولي لي وش يفرق معك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-016-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تحبين الـ بيالتس وحديد وتبين تدخلينهم سوا، ال تعاملينهم كأنهم حرب ضد جسمك. الحديد المفروض يقوي حركتك، مو\n‏يخليك مشدودة وتعبانة طول الوقت."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏كثير بنات يدخلون حصة البيالتس بعضالت مجهدة لأنهم لعبوا حديد ثقيل قبلها بيوم. الترتيب الغلط هو اللي يضيع عليك متعة\n‏واستفادة الاثنين."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏عشان كذا، خلي تمارين القوة الثقيلة في أيام بعيدة عن البيالتس. وخلي الأيام القريبة خفيفة وتركز على التكنيك، التحكم،\n‏والكور."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تمارين السحب والسكوات بوزن مناسب بتعطيك ثبات وقوة خرافية في حصتك الجاية. جربيها وبتحسين بفرق كبير في\n‏مرونتك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-016-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة تخرب مرونتك هي إنك تجمعين بيالتس وحديد بدون خطة واضحة. الحديد مو عشان يخليك أثقل، بل عشان يخدم\n‏ثباتك وقوتك في البيالتس."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الاعتقاد إنك لازم تجهدين نفسك في الاثنين هو اللي يسبب لك الإصابات والتعب المستمر. التوازن هو السر اللي يخلي جسمك\n‏يتحرك بسالسة أكبر."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وقفي تمارين الحديد شديدة الصعوبة في الأيام القريبة من البيالتس. استبدليها بتمارين تركز على الحركة والتكنيك النظيف\n‏وبأوزان تقدرين تتحكمين فيها."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الهدف النهائي هو جسم قوي ومرن بنفس الوقت، مو عضالت متيبسة ومجهدة. تابعينا لمعلومات أكثر عن تنظيم التمارين."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-016-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏يوم قررت أدمج بيالتس وحديد في جهازي، كنت أحسب إن زيادة التمرين هي الحل الأفضل. النتيجة كانت إني أدخل حصص\n‏البيالتس وأنا عضالتي مهدودة تمامًا."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏عرفت وقتها إن المشكلة مو بالتمارين نفسها، بل بجدولي اللي كان عشوائي ومزدحم. كنت ألعب تمارين رجل قوية قبل\n‏البيالتس وهذا كان يدمر أدائي."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏غيرت خطتي وصرت أخلي الحديد الثقيل بعيد عن البيالتس، وأركز على تمارين السكوات والكتف بأوزان مناسبة وتحكم\n‏عالي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏هذا التغيير البسيط هو اللي اعطاني القوة والثبات اللي كنت أحتاجها بدون ما أفقد مرونتي."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-016-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش تحسين بجسمك ثقيل وتعبان لما تحاولين تجمعين بين بيالتس وحديد في نفس الأسبوع؟ الجواب ببساطة هو غياب التنسيق\n‏بين التمرينين."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الحديد والبيالتس يكملون بعض لو ترتبوا صح، لكن تمرين واحد ثقيل بوقت غلط ممكن يخرب عليك الاثنين."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏جربي تخففين الأوزان في الأيام القريبة من البيالتس وركزي على الكور، التحكم، والتكنيك النظيف في تمارين السكوات\n‏والسحب."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏هذا التعديل البسيط بيعطيك ثبات أكبر وقوة عضلية تخدم حركتك في البيالتس بدل ما تعيقها."
+        }
+      ]
+    }
+  ]
+}

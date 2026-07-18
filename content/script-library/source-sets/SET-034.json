@@ -1,0 +1,370 @@
+{
+  "source_set_id": "SET-034",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Back",
+  "topic": "Back Exercise Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-034-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ تمارين تخلي ظهرك عريض ومرسوم مثل الدرع (آخر واحد أساسي)"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏‎Behind-the-neck lat pulldown 2/10‎عادي ج ًدا وفيه أقوى منه"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏‎Barbell row 4/10‎مو سيء"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏‎Lat pulldown 7/10‎يعطيك مدى حركي ممتاز ويستهدف عضالت الظهر مباشرة بس فيه أفضل"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏‎Single-arm cable row 8/10‎تمرين مظلوم ويحافظ على التوتر طول الحركة بس فيه أفضل"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏‎Chest-supported row 10/10‎تمرين فخم بشكل ال تسمع للي يقول ماله داعي"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-034-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تسويها باختيار تمارين الظهر تمنعك من العرض المرسوم"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الأول: تلعب ‎Behind-the-neck lat pulldown‎ وتتوقع منه نتيجة خرافية وهو تقييمه ما يتعدى 2/10."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الثاني: تعتمد على ‎Barbell row‎ كأنه التمرين الأساسي الوحيد وهو تمرين عادي بـ 4/10."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الثالث: تسحب على تمرين بطل ومسنود مثل ‎Chest-supported row‎ وتسمع للي يقول ماله داعي."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي تتطور فعلاً ركز على الأقوى وسجل أوزانك أول بأول."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-034-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء لازم تنتبه لها لو تبي ظهر عريض ومرسوم زي الدرع"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏-١ رتب تمارينك حسب فعاليتها مو شهرتها، وجرب الـ ‎Lat pulldown‎ العادي لأنه يعطيك مدى حركي ممتاز."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏-٢ دخل تمارين الـ ‎Single-arm cable row‎ بجداولك لأنها تحافظ على التوتر طول الحركة ومظلومة بالتقييم."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏-٣ ال تضيع وقتك بتمارين تقييمها ضعيف مثل السحب خلف الرقبة ‎Behind-the-neck lat pulldown.‎"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏المهم دايمًا تسجل أوزانك وتتطور فيها عشان تشوف النتيجة اللي ترضيك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-034-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تختار أفضل تمارين الظهر عشان تبني العرض والسمك الصح؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ابدأ بالتمرين الفخم ‎Chest-supported row‎ لأنه يعطيك ثبات كامل ويستحق 10/10."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏استبدل السحب خلف الرقبة بالـ ‎Lat pulldown‎ العادي عشان مدى حركي أفضل واستهداف مباشر."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏نوع بالزوايا بتمارين قوية ومظلومة مثل ‎Single-arm cable row‎ عشان تحافظ على التوتر."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏السر كله يكمل بأنك تسجل أوزانك وتضمن إنك قاعد تتطور مع الوقت."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-034-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا أنت تتمرن ظهر وتبيه يصير عريض وبارز بس مو قاعد تشوف النتيجة اللي تبيها"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ترى المشكلة غالبًا باختيارك للتمارين، تمرين زي ‎Barbell row‎ مو سيء بس ما يكفي لحاله."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وتمرين مثل ‎Behind-the-neck lat pulldown‎ تراه عادي ج ًدا وضياع وقت مقارنة بالبدائل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ركز على ‎Chest-supported row‎ والـ ‎Lat pulldown‎ العادي ووفر جهدك لألقوى."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وال تنسى تسجل أوزانك بكل تمرين عشان تضمن التطور المستمر."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-034-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة تسويها بجدول الظهر هي إنك تلعب أي تمرين تشوفه قدامك بالصالون"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏مو كل التمارين تعطي نفس النتيجة، السحب خلف الرقبة ‎Behind-the-neck lat pulldown‎ تقييمه عندي 2/10وفيه\n‏أقوى منه بكثير."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وال تسمع للي يقولك الـ ‎Chest-supported row‎ ماله داعي، تراه أفضل تمرين ظهر ممكن تلعبه بـ 10/10."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏العبرة مو بكثرة التمارين، العبرة بالاختيار الصح وتسجيل الأوزان عشان تتطور."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-034-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب أن كل تمارين الظهر تعطي نفس النتيجة لين جربت أقيمها بالفعالية"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏شفت تمارين تاخذ هيبة على الفاضي مثل ‎Behind-the-neck lat pulldown‎ وهو تمرين عادي وما يستاهل."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وبالمقابل فيه تمارين مظلومة زي ‎Single-arm cable row‎ يحافظ على التوتر طول الحركة ويستحق 8/10."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏والتمرين اللي غير اللعبة فعلاً هو الـ ‎Chest-supported row‎ اللي كثير ناس يقللون من قيمته وهو بطل."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الخالصة: اختر تمارينك بذكاء وسجل أوزانك عشان تضمن التطور."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-034-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ قاعد تدور على التمارين الأساسية اللي تبني لك ظهر عريض ومرسوم مثل الدرع"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ليش تلعب ‎Behind-the-neck lat pulldown‎ وهو تمرين ضعيف وممكن تستبدله بالـ ‎Lat pulldown‎ العادي بمدى\n‏حركي أفضل؟"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وليه تسحب على الـ ‎Chest-supported row‎ الفخم والـ ‎Single-arm cable row‎ اللي يحافظ على التوتر؟"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏العب التمارين القوية وخلك من التمارين العادية، وسجل أوزانك عشان تشوف الفرق بنفسك."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+{
+  "source_set_id": "SET-027",
+  "pillar": "Body Transformation / Aesthetic Progress",
+  "subtopic": "Before and After",
+  "topic": "Body Transformation Habits",
+  "scripts": [
+    {
+      "script_id": "SET-027-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Transformation",
+      "original_slide_count": 9,
+      "final_slide_count": 10,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏السر اللي خلى جسمي يروح من"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏لكذا ب ٩ شهور.. احفظ المقطع وتابع"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. 1قبل كل شي، حاول تتخطى وركز على نفسك"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. 2تمرن يومين بالأسبوع، كل ما ارتحت اكثر = بنيت عضل اكثر"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. 3خل عندك جدول واضح وذكي يتعدّل حسب أسبوعك ونشاطك"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏. 4خل أكلك صحي ونظيف"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "‏. 5بدا التمرين؟ حاول تقلل كالم وسواليف ولو معك خويك زيد له"
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "‏. 6لعبو عليك وقالو تمرن ٤ جلسات لكل تمرين (خلها جلستين للفشل)"
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "‏. 7خلصت حديد؟ سو كارديو ربع ساعة هللا ال يهينك"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-027-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أغالط بالتمرين تحرمك من تطور الجسم اللي تتمناه"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الأولى: تحسب إن كثرة الأيام تبني عضل وتتمرن فوق طاقتك. الصح هو يومين بالاسبوع بجدول مرن عشان تعطي جسمك\n‏فرصة يستشفي ويبني."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الثانية: تلعب ٤ جلسات عادية وتضيع وقتك بالسوالف مع خوياك. ركز بجلستين قوية توصل فيها للفشل العضلي وقفل جوالك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الثالثة: تهمل أكلك وتنسى الكارديو بعد الحديد. نظف خياراتك بالوجبات، وعطها ربع ساعة كارديو قبل ما تطلع من الصالة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-027-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ قواعد أساسية غيرت جسمي بالكامل خالل ٩ شهور بس"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أوالً: ركز على راحتك النفسية والجسدية. تمرين يومين بالاسبوع بجدول ذكي ومرن كافي وزيادة لالستشفاء وبناء العضل."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانياً: التمرين جودة مو كمية. انسى سالفة الـ ٤ جلسات، والعب جلستين بتركيز عالي للفشل العضلي بدون ما تضيع وقتك\n‏بالسواليف."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالثاً: أكلك لازم يكون صحي ونظيف. وقفل تمرين الحديد بربع ساعة كارديو خفيفة وبتشوف الفرق بنفسك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-027-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تبني عضل وتطور جسمك بأقل مجهود ووقت؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول شي، ركز على نفسك وريح بالك. ابدأ تمرن يومين بس بالأسبوع عشان تعطي جسمك فرصة حقيقية للبناء والاستشفاء."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏رتب لك جدول تمرين ذكي ومرن يتعدل مع ظروف أسبوعك. وبدل ما تلعب ٤ جلسات تسليك، ركز بجلستين قوية توصل\n‏فيها للفشل العضلي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏قفل على السوالف وقت التمرين ونظف وجباتك اليومية. وقبل ما تطلع من النادي، عطها ربع ساعة كارديو سريعة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-027-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تحس إنك تكرف بالنادي وتتعب بدون نتيجة واضحة على جسمك"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ترى مو بكثرة الأيام، ريح جسمك وتمرن يومين بس بالاسبوع. العضالت تحتاج استشفاء عشان تطلع وتكبر."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏خل جدولك مرن وذكي، وبدل ما تلعب ٤ جلسات ضايعة بين السوالف والضحك، ركز بجلستين صح للفشل العضلي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏اضبط أكلك وخليه صحي ونظيف. وال تخلص حديد وتطلع على طول، عطها ربع ساعة كارديو تنهي فيها يومك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-027-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر كذبة بتمارين الحديد هي إنك لازم تلعب ٤ جلسات لكل تمرين"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏لعبوا عليك وقالوا كثرة الجلسات هي اللي تبني عضل. جلستين قوية توصل فيها للفشل العضلي بتركيز كامل تسوى تمرينك\n‏كله."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وال تضغط نفسك باليومية، تمرين يومين بالاسبوع بجدول مرن يعطي جسمك استشفاء كامل ويبني لك عضل أفضل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الزبدة: ركز بنفسك، قلل كالم وقت التمرين، نظف أكلك، وسو ربع ساعة كارديو بعد الحديد وبتشوف النتيجة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-027-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب إن بناء الجسم يحتاج كرف ٦ أيام بالاسبوع وجلسات ما تنتهي"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏لكن الحقيقة اللي غيرت جسمي بـ ٩ شهور هي الراحة الذكية. صرت أتمرن يومين بس بالاسبوع بجدول مرن ومريح."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وبدل ما أضيع وقتي بالسوالف وألعب ٤ جلسات خفيفة، ركزت بجلستين ثقيلة للفشل العضلي بدون تشتيت."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ضبطت أكلي وخليته صحي ونظيف، وصرت أنهي تمرين الحديد بـ ١٥ دقيقة كارديو وبس."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-027-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش جسمك ما يتطور مع إنك ملتزم بالنادي كل يوم؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏لأنك ما تعطي جسمك وقت كافي يرتاح ويبني عضل. جرب تتمرن يومين بس بالاسبوع بجدول مرن وبتالحظ الفرق بنفسك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وبدل ما تلعب ٤ جلسات باردة وتضيع وقتك بالكالم مع خويك، ركز بجلستين حامية للفشل العضلي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏نظف أكلك وخليه صحي، وال تنسى تنهي تمرين الحديد بـ ١٥ دقيقة كارديو سريعة."
+        }
+      ]
+    }
+  ]
+}

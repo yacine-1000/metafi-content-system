@@ -1,0 +1,352 @@
+{
+  "source_set_id": "SET-019",
+  "pillar": "Changed Week / What Should I Train Today?",
+  "subtopic": "Personalized Plan",
+  "topic": "Personalized Training for Mixed Weekly Load",
+  "scripts": [
+    {
+      "script_id": "SET-019-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Comparison",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏جدول خويك ممكن يناسبه إذا كان يتمرن نادي بس بس إذا أنت تتمرن نادي وتلعب رياضات بنفس الأسبوع جسمك عليه حمل\n‏مختلف"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏يمكن خويك عنده أربع أيام نادي وأنت عندك نادي ومعه رياضة بعد الدوام ومباراة مع الشباب ونوم سيء فطبيعي نفس\n‏الجدول ما يعطيكم نفس الإحساس"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏المشكلة مو إن الجدول سيء يمكن ممتاز له بس لما تحطه فوق أسبوعك أنت يصير يتعامل معك كأنك تعيش نفس حياته وأنت\n‏ما تعيش نفس حياته"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏إذا أنت دايم متعب ال تستعجل وتقول المشكلة فيك"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏قبل تمشي على جدول من خويك أو من تيك توك اسأل نفسك هل يعرف إني ألعب رياضات؟ هل يعرف كيف كان نومي؟ هل\n‏يعرف وش صار في أسبوعي؟ إذا الجواب ال ال تستغرب إذا احتجت تعدله من أول أسبوع"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-019-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أغالط تسويها لما تنسخ جدول تمرين خويك وتتوقع نفس النتيجة."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أواًل: تفترض إن أسبوعك وحمل جسمك نفس أسبوعه ونشاطه بالضبط."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانيًا: تتجاهل الرياضات الثانية اللي تلعبها مع النادي وتأثير نومك السيء على استشفائك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ً\n‏ثالثا: تلوم نفسك وتستسلم لما تحس بتعب مستمر وضغط مو طبيعي على جسمك."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الزبدة: الجدول مو سيء، بس مو مفصل على تفاصيل حياتك ولازم تعدله عشان يناسبك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-019-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أسئلة اسأل نفسك قبل تنسخ جدول تمرين من تيك توك أو من خويك."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أواًل: هل هو يدري عن الرياضات الثانية اللي تلعبها بعد الدوام أو بالويكند؟"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانيًا: هل جودة نومك وطاقتك اليومية تسمح لك تشيل نفس الحمل اللي هو يشيله؟"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ً\n‏ثالثا: هل الجدول هذا مصمم لواحد يعيش نفس أسلوب حياتك ويومك بالضبط؟"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏إذا إجابتك \"ال\"، عادي ج ًدا تعدل على الجدول من أول أسبوع عشان يمشي مع طاقتك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-019-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تعرف إن جدول تمرين خويك قاعد يضرك ويسبب لك إجهاد؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏إذا كنت تحس بتعب مستمر وخمول طول الوقت، مو شرط المشكلة فيك أنت أو بجيناتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏قارن حمل أسبوعك بيومه؛ ممكن هو يتمرن نادي وبس، وأنت عندك كورة مع الشباب ورياضات ثانية ونومك ملخبط."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏كل اللي تحتاجه إنك تعدل على الجدول من البداية وتخليه يناسب طاقتك ونشاطك الفعلي."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-019-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا كنت تتمرن نادي وتلعب رياضات ثانية بنفس الأسبوع، ركز معي شوي."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏غلط كبير تمشي على نفس جدول خويك اللي ما عنده أي نشاط ثاني غير الجيم."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏حمل جسمك ويومك مختلف تمامًا، ونومك وتعب دوامك يفرقون بالاستشفاء بشكل ما تتخيله."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ال تلوم جسمك وتقول ليش أنا دايم متكسر، الجدول ببساطة مو مصمم لشخص يعيش حياتك."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏عدل الجدول من أول أسبوع وال تردد، خله يناسب طاقتك ونشاطك أنت مو نشاط خويك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-019-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة هي إنك تاخذ جدول تمرين \"ممتاز\" وتلصقه بأسبوعك بدون تفكير."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الجدول ممكن يكون بطل وخرافي، بس لشخص ينام كويس وما عنده أي نشاط غير النادي."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏لما تحطه فوق أسبوعك المليان مباريات ونوم ملخبط، طبيعي يتحول لضغط وتعب مستمر."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تعبك هذا مو معناه إنك ضعيف، معناه إن الجدول يتعامل معك كأنك تعيش حياة شخص ثاني."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-019-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كثير ناس يحسبون المشكلة فيهم وبجسمهم لما يتعبون من جدول خويك \"الرهيب\"."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الحقيقة إن خويك يمكن يتمرن نادي وبس، بينما أنت تجمع بين النادي ورياضة ثانية بعد الدوام."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏لما تنسخ جدول شخص ثاني، أنت تنسخ حمله التدريبي وتنسى جودة نومك وأسلوب حياتك المختلف."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الطبيعي إنك تعدل الجدول من أول أسبوع عشان يمشي مع يومك الفعلي، مو تحاول تعيش حياة خويك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-019-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليه نفس الجدول يعطي خويك نتائج بطلة وأنت يخليك دايم تعبان ومتكسر؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏لأن جسمك عليه حمل مختلف تمامًا؛ أنت عندك رياضات ثانية، نومك يمكن ملخبط، وعندك التزامات أكثر."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الجدول لما تنسخه يتعامل معك كأنك تعيش نفس حياة صاحبه بالضبط وتملك نفس طاقته."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ال تظن إن المشكلة فيك، ببساطة خذ الجدول وعدله من البداية ليناسب تفاصيل أسبوعك أنت."
+        }
+      ]
+    }
+  ]
+}

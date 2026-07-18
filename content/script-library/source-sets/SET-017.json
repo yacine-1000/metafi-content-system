@@ -1,0 +1,340 @@
+{
+  "source_set_id": "SET-017",
+  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Running + Gym",
+  "topic": "Combining Running with Gym",
+  "scripts": [
+    {
+      "script_id": "SET-017-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Routine / Schedule",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تركض وتبي تدخل الحديد، ال تعاملهم كأنهم شيئين منفصلين. الحديد المفروض يخدم ركضك، مو يثقل رجولك أو يخرب جريتك."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏تمارين القوة تساعدك في الثبات، قوة الرجل، تحمل المفاصل، وتقليل الإصابات. يعني مو بس تبني عضل؛ تبني جسم يركض بكفاءة\n‏أفضل ولمدة أطول."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏لكن المشكلة تبدأ إذا تمرنت بدون خطة. لو حطيت رجل ثقيل قبل تمرين سرعة أو ركضة طويلة، غالبًا بتدخل الجري ورجولك مستهلكة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏خل تمارين الرجل الثقيلة بعيدة عن أيام الجري القوية أو الطويلة. والأيام القريبة من الجري تكون أخف، تركيزها على الحركة، الكور،\n‏الثبات، والتكنيك."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏تمارين مثل السكوات، اللنجز، ‎RDL‎، وتمارين السمانة والكور ممكن تفيدك كثير. بس الأهم تختار وزن مناسب وتحافظ على أداء نظيف\n‏بدون ما تجهد جسمك زيادة."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏الهدف إن الحديد يقويك للجري، مو يخليك أبطأ أو رجولك ثقيلة. إذا رتبت الجدول صح، بتاخذ قوة وثبات من النادي وتترجمها ركض\n‏أفضل وتحمل أعلى."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تضيع تمرينك وتخلي رجولك دايم ثقيلة كـ ‎Hybrid Athlete.‎"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الغلطة الأولى هي إنك تلعب رجل ثقيل قبل يوم جري طويل أو تمرين سرعة. كذا تدخل جريتك وجسمك مستهلك تمامًا وما تقدر تقدم\n‏أداء صح."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلطة الثانية إنك تعامل الحديد والركض كأنهم رياضتين منفصلة وتضغط نفسك بالاثنين. تمارين القوة المفروض تخدم جريتك وتقوي\n‏مفاصلك، مو تعطلها وتثقل رجولك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الغلطة الثالثة إهمال تمارين الثبات والكور والتركيز بس على الأوزان العالية. رتب جدولك صح، وخل أيام الجري القوي بعيدة عن\n‏السكوات الثقيل عشان تضمن أعلى كفاءة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ نصايح فرقت معي كثير وبتساعدك تتطور كـ ‎Hybrid Athlete‎ بدون ما تنهك نفسك."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول شي، تمارين القوة مو هدفها بس بناء العضل، هي أساس لحماية مفاصلك وزيادة ثباتك بالركض. بس الأهم تختار وزن مناسب\n‏يحافظ على أداء نظيف بدون إجهاد زايد."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني شي، باعد بين يوم الرجل الثقيل وأيام الجري الطويل. خل الأيام القريبة من الجري خفيفة، ويكون تركيزها على الكور، الحركة،\n‏والتكنيك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏آخر شي، تمارين مثل السكوات، اللنجز، والـ ‎RDL‎ هي أفضل صديق لك. إذا رتبت جدولك صح، بتاخذ القوة من النادي وتترجمها\n‏لركض أسرع وأسهل."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تجمع بين الحديد والجري وتتطور كـ ‎Hybrid Athlete‎ بدون ما تهلك رجولك؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السر كله في ترتيب جدولك بذكاء. ال تلعب حصة رجل ثقيلة قبل تمرين سرعة أو ركضة طويلة عشان ما تدخل الجري وأنت مستهلك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ركز بالحديد على التمارين اللي تخدم ركضك مثل السكوات، اللنجز، والـ ‎RDL.‎ هذي التمارين تبني قوة وتحمل للمفاصل وتقيك من\n‏الإصابات."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏خل الأيام القريبة من الركض خفيفة وركز فيها على الكور، الثبات، وتكنيك الحركة. كذا تضمن إن الحديد يقويك للجري ومستواك يتطور\n‏بالاثنين."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي تصير ‎Hybrid Athlete‎ ورجولك دايم ثقيلة بالجري، غالبًا جدولك هو المشكلة."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أنت قاعد تعامل الحديد والركض كأنهم رياضتين منفصلة، وهذا اللي يستهلك جسمك. الحديد المفروض يخدم ركضك ويقوي مفاصلك\n‏وثباتك، مو يثقل حركتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الحل إنك تباعد بين حصص الرجل القوية وأيام الجري الطويل أو السرعة. وخل الأيام القريبة من الجري خفيفة، تركيزها على الكور\n‏والحركة والتكنيك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تمارين مثل السكوات والـ ‎RDL‎ بتفيدك كثير لو لعبتها بوزن مناسب وبدون مبالغة. رتب جدولك صح وشوف كيف ركضك بيصير\n‏أسرع وبأقل تعب."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي تبدع كـ ‎Hybrid Athlete‎، وقف تتمرن حديد ثقيل قبل أيام الجري القوية."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الركض والحديد مو ضد بعض، بس إذا خلطتهم بدون خطة بتهلك رجولك على الفاضي. تمرين الرجل الثقيل قبل جريتك الطويلة بيخليك\n‏تدخل التمرين وأنت مستهلك تمامًا."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الحديد موجود عشان يدعم ركضك، يبني ثبات رجلينك، ويحمي مفاصلك من الإصابات. مو عشان يخليك أبطأ أو يثقل خطواتك بالجري."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ركز على تمارين السكوات واللنجز والسمانة بأوزان مناسبة وأداء نظيف. رتب أسبوعك بذكاء، وخل التمارين القريبة من الجري خفيفة\n‏وتركز على الحركة والكور."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب إني بتطور أسرع كـ ‎Hybrid Athlete‎ لو ضغطت نفسي بالحديد والجري مع بعض."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏اللي صار إني كنت أدخل كل ركضة طويلة ورجولي ثقيلة ومستهلكة لأني أمرن رجل ثقيل قبلها بيوم. اكتشفت إن الحديد لازم يخدم\n‏ركضي، مو يعطله."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏يوم بدأت أباعد بين يوم الرجل الثقيل وأيام الجري القوية، تغير مستواي تمامًا. صرت أركز بالأيام القريبة من الجري على الكور،\n‏الثبات، وتمارين الحركة الخفيفة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تمارين مثل السكوات والـ ‎RDL‎ ممتازة لتقوية المفاصل، بس السر كله بالجدولة واختيار الوزن المناسب. الحين صار ركضي أخف\n‏وقوتي بالنادي أفضل بكثير."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش كثير ناس يحاولون يصيرون ‎Hybrid Athlete‎ ورجولهم تكون دايم تعبانة وخطواتهم ثقيلة؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السبب الأساسي أنهم يتمرنون بدون خطة واضحة تربط الحديد بالركض. تمرين الرجل الثقيل قبل تمرين جري قوي بيستهلك عضالتك\n‏ويخرب ركضتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏تذكر إن تمارين القوة مثل السكوات واللنجز هدفها تبني ثبات، قوة رجل، وتحمل للمفاصل عشان تحميك من الإصابات."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏كل اللي تحتاجه هو ترتيب أسبوعك بذكاء. باعد بين الأيام الثقيلة والجري الطويل، وخل أيامك القريبة خفيفة تركز على الكور وتكنيك\n‏الحركة."
+        }
+      ]
+    }
+  ]
+}

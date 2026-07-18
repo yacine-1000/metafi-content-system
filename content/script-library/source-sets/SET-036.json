@@ -1,0 +1,346 @@
+{
+  "source_set_id": "SET-036",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Biceps",
+  "topic": "Biceps Exercise Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-036-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ تمارين تخلي البايسبس عندك بارزة وتشق كم التيشيرت (آخر واحد أساسي)"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏‎Concentration curl 2/10‎عادي ج ًدا وفيه أقوى منه"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏‎Reverse curl 5/10‎مو سيء"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏‎Cable curl 7/10‎يحافظ على التوتر طول الحركة ويستهدف البايسبس مباشرة بس فيه أفضل"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏‎Incline dumbbell curl 8/10‎يعطيك إطالة ممتازة ومقاومة قوية على العضلة بس فيه أفضل"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏‎Preacher curl 10/10‎تمرين فخم بشكل ال تسمع للي يقول يسبب إصابات"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-036-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أغالط تسويها باختيار تمارين البايسبس تضيع عليك ضخامة العضلة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏التركيز الكامل على الـ ‎Concentration curl‎ تقييمه ٢ من، ١٠ تمرين عادي وتضيع وقتك عليه بوجود بدائل أقوى"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏إهمال تمارين الإطالة القوية مثل الـ ‎Incline dumbbell curl‎ هذا التمرين يعطيك مقاومة ممتازة ويستحق ٨ من ١٠"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الخوف من الـ ‎Preacher curl‎ بسبب كالم الناس عن الإصابات هذا أقوى تمرين للبايسبس وتقييمه ١٠ من، ١٠ ال تخليه\n‏يفوتك"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وال تنسى تسجل أوزانك بكل تمرين عشان تضمن التطور المستمر"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-036-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء لازم تركز عليها بتمارين البايسبس عشان تفجر العضلة وتبرزها"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏-١ ال تضيع وقتك بتمارين تقييمها ضعيف تمرين الـ ‎Concentration curl‎ مثاًل ما يعطيك النتيجة المطلوبة وتقييمه ٢ من\n‏١٠"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏-٢ دخل تمارين تحافظ على التوتر طول الحركة الـ ‎Cable curl‎ خيار بطل ويعطيك استهداف مباشر للباي بـ ٧ من ١٠"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏-٣ تمرين الـ ‎Preacher curl‎ هو الملك تقييمه ١٠ من ١٠ وفخم ج ًدا، وال تسمع لإلشاعات اللي تقول إنه يسبب إصابات"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-036-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تختار أقوى تمارين للبايسبس وتضمن العضلة تطلع بارزة ومقسمة؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ابعد عن التمارين العادية اللي ما تطورك بسرعة زي الـ ‎Concentration curl‎ والـ ‎Reverse curl‎ لأن تأثيرهم بسيط"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ركز على التمارين اللي تعطي إطالة ومقاومة قوية الـ ‎Incline dumbbell curl‎ خيار ممتاز ويعطيك إطالة ممتازة للعضلة"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏حط الـ ‎Preacher curl‎ كعنصر أساسي بجدولك تمرين فخم وتقييمه ١٠ من ١٠ وال تصدق كالم الناس بخصوص\n‏الإصابات فيه"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وأهم خطوة تضمن لك التطور هي إنك تسجل أوزانك بكل تمرين وتطورها تدريجيًا"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-036-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا دايم تدخل تمرين البايسبس وعضالتك مو راضية تبرز وتشق التيشيرت هذا التقييم بيفيدك"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ممكن تكون قاعد تضيع وقتك على الـ ‎Concentration curl‎ ترا تمرين عادي ج ًدا وفي خيارات ثانية أفضل منه بكثير"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏جرّ ب تبدله بالـ ‎Cable curl‎ والـ ‎Incline dumbbell curl‎ الكيبل يحافظ على التوتر طول الحركة، والدامبل يعطيك\n‏إطالة ومقاومة قوية للباي"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وخل تمرينك الأساسي هو الـ ‎Preacher curl‎ تمرين جبار وتقييمه ١٠ من، ١٠ ال تخاف من الإصابات والعب بتكنيك\n‏صح"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-036-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 4,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏مو كل تمرين بايسبس تلعبه بالجدول بيبرز لك العضلة بشكل فعلي"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة تلعب الـ ‎Concentration curl‎ وتتوقع منه نتيجة خرافية التمرين عادي ج ًدا وتقييمه ٢ من ١٠ بوجود بدائل\n‏أفضل"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وال تصدق اللي يقول الـ ‎Preacher curl‎ يسبب إصابات ويخوفك منه هذا أقوى تمرين للباي وتقييمه ١٠ من ١٠ واللعب\n‏فيه ممتع وفخم"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-036-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب أي تمرين بايسبس بيعطيني نفس النتيجة لين قارنت تأثير التمارين على العضلة بشكل علمي وعملي"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏اكتشفت إن تمرين زي الـ ‎Concentration curl‎ تأثيره عادي وما يستاهل التركيز عليه بينما الـ ‎Cable curl‎ يعطيك\n‏توتر مستمر طول الحركة وتأثيره أقوى بكثير"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏والتمرين اللي فعلاً غير شكل البايسبس عندي هو الـ ‎Preacher curl‎ عكس كالم الناس إنه يسبب إصابات، التمرين فخم\n‏وتقييمه كامل ١٠ من ١٠"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الزبدة من تجربتي: ركز على التمارين القوية وسجل أوزانك أول بأول عشان تشوف النتيجة بعينك"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-036-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ قاعد تدور على أقوى تمارين للبايسبس عشان تبرز العضلة وتفجر كم التيشيرت"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏تبدأ بـ ‎Reverse curl‎ و الـ ‎Concentration curl‎؟ نصيحة ال تضيع وقتك عليهم بزيادة لأن تقييمهم وتأثيرهم عادي"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏روح للـ ‎Incline dumbbell curl‎ عشان الإطالة والمقاومة القوية أو الـ ‎Cable curl‎ عشان تحافظ على التوتر المستمر\n‏طول الحركة"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وخلي الـ ‎Preacher curl‎ هو بطل جدولك بـ ١٠ من ١٠ وال تسمع للي يخوفك منه، العب بتكنيك صح وفجر العضلة"
+        }
+      ]
+    }
+  ]
+}

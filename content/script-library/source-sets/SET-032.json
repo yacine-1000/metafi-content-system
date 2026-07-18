@@ -1,0 +1,352 @@
+{
+  "source_set_id": "SET-032",
+  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Running + Gym",
+  "topic": "Combining Running and Lifting",
+  "scripts": [
+    {
+      "script_id": "SET-032-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Comparison",
+      "original_slide_count": 8,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏وقف تختار بين الركض والحديد تقدر تجمع بينهم عادي."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏3أيام حديد و 3أيام ركض ويوم واحد راحة ‎Easy Run Long Run Interval Run Push Pull Legs‎"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الاثنين ‎Push‎"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الثالثاء ‎Interval Run‎"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الأربعاء ‎Pull‎"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏الخميس ‎Easy Run‎"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "‏الجمعة ‎Legs‎"
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "‏السبت راحة"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-032-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏غلطتين تسويها لما تحاول تجمع بين الحديد والركض تخرب عليك النتيجة."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الأولى: تظن إنك لازم تضحي بواحد منهم عشان الثاني يتميز."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الثانية: تتمرنهم بدون تقسيم ذكي يخلي جسمك يستشفي صح."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الحل تقسم أسبوعك 3: أيام حديد ( )‎Push, Pull, Legs‎ و 3أيام ركض متنوعة، ويوم كامل راحة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-032-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء تحتاجها عشان تدمج الحديد والركض بجدول واحد بدون ما تنهار طاقتك."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏-١ تقسيم ذكي للحديد: ركز على جدول دفع وسحب وأرجل (.)‎Push, Pull, Legs‎"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏-٢ تنويع ركضكّ:\n‏وزعه بين ركض سهل (،)‎Easy Run‎ ركض مسافات (،)‎Long Run‎ وركض فترات (‎Interval‎\n.)Run"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏-٣ يوم راحة كامل: ضروري ج ًدا بنهاية الأسبوع عشان جسمك يعيد البناء وما تصاب."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-032-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف ترتب جدول أسبوعي يجمع بين الحديد والركض بدون ما تضغط جسمك؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الفكرة بسيطة: قسم أسبوعك 3أيام حديد و 3أيام ركض ويوم واحد راحة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏للحديد العب ‎Push, Pull, Legs‎، وللركض وزعه بين ركض خفيف، وركض فترات، وركض مسافات طويلة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏جرب هذا الترتيب: الاثنين ‎Push‎، الثالثاء ‎Interval Run‎، الأربعاء ‎Pull‎، الخميس ‎Easy Run‎، الجمعة ‎Legs‎،\n‏والسبت خذه راحة تامة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-032-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا ودك تبني عضل بالحديد وبنفس الوقت ترفع لياقتك بالركض ومحتار كيف ترتبها."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ترى مو لازم تختار واحد منهم وتترك الثاني، تقدر تجمعهم بذكاء."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏كل اللي تحتاجه هو تقسيم أسبوعك إلى 3أيام حديد ‎Push, Pull, Legs‎ و 3أيام ركض بأنواع مختلفة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وزع أيامك بالتناوب وخل يوم السبت راحة كاملة عشان ترجع لألسبوع الجديد بكامل قوتك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-032-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏مو شرط تضحي بلياقتك عشان تبني عضل، وال العكس صحيح."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة إنك تظن الركض بيطير عضلك أو الحديد بيثقلك ويخرب ركضك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏تقدر تجمع الاثنين بجدول متوازن ٣: أيام ترفع فيها أوزان و ٣ أيام تجري فيها، مع يوم استراحة كامل لالستشفاء."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏جرب تقسيم ‎Push, Pull, Legs‎ للحديد، ونوع ركضك بين السهل والفترات والمسافات الطويلة وبتشوف النتيجة بنفسك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-032-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب إني لازم أختار بين شيل الأوزان أو الجري، لحد ما جربت أدمجهم صح."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏اكتشفت إن المشكلة مو بالجمع بينهم، المشكلة كانت بالعشوائية وتداخل التمارين."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏لما رتبت أسبوعي ٣ أيام حديد ( )‎Push, Pull, Legs‎ و ٣ أيام ركض متنوع مع يوم راحة، كل شيء تغير لألفضل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏هذا النظام يعطيك القوة واللياقة بنفس الوقت بدون ما تحس بجهد زائد أو إرهاق مستمر."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-032-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ تبغى تدمج الحديد والركض بجدول واحد ممتاز بس خايف من التعب والاصابات."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السر كله في تنظيم الأيام ٣: أيام حديد و ٣ أيام ركض ويوم راحة هو الحل المثالي لك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ركز على ‎Push, Pull, Legs‎ للحديد، ونوع ركضك بين السهل (،)‎Easy‎ والفترات (،)‎Interval‎ والمسافات الطويلة\n(.)Long"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏هذا التوازن يضمن لك بناء عضل ولياقة عالية بجدول واحد مرتب وواضح."
+        }
+      ]
+    }
+  ]
+}

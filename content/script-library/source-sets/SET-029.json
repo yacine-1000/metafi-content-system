@@ -1,0 +1,418 @@
+{
+  "source_set_id": "SET-029",
+  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Hybrid Athlete",
+  "topic": "Hybrid Athlete Weekly Structure",
+  "scripts": [
+    {
+      "script_id": "SET-029-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Routine / Schedule",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تصير ‎hybrid athlete‎:"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏٤ أيام تمارين مقاومة بالأسبوع\n• push\n• pull\n• core\n• legs"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏٣ أيام ركض بالأسبوع\n• zone 2\n• intervals\n• tempo"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏استشفاء\n‏• نوم ٨-٧ ساعات\n‏• جهاز مساج\n‏• ساونا\n‏• جاكوزي بارد\n‏• اطالات بعد كل تمرين"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الأكل\n‏• بروتين عالي\n‏• دهون صحية\n‏• كارب عشان الطاقة\n‏• قاعدة ٨٠/٢٠"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏الهدف بسيط\n‏• اركض أكثر من اللي يلعبون حديد\n‏• ارفع أوزان أكثر من اللي يركضون"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-029-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تسويها لو قررت تصير ‎Hybrid Athlete.‎"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الأول: تتمرن حديد وركض بشكل عشوائي بدون جدول يجمع بينهم صح. المفروض ترتبها ٤ أيام مقاومة (دفع، سحب،\n‏كور، أرجل) و ٣ أيام ركض منوعة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثاني: تهمل الاستشفاء وتتوقع إن جسمك بيتحمل هذا المجهود كله بدون ما ينهار. لازم تنام ٨-٧ ساعات، وتهتم\n‏بالإطالات والجاكوزي البارد بعد التمرين."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثالث: تقطع الكارب أو ما تاكل زين بحجة إنك تبي تنشف. تحتاج بروتين عالي وكارب يعطيك طاقة للتمرين، وطبق\n‏قاعدة ٨٠/٢٠ بأكلك."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏تذكر إن هدفك مو تصير بطل أولمبي بجهتين. هدفك ترفع أوزان أكثر من العدائين، وتركض مسافات أطول من حقين الحديد."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-029-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٤ أشياء لازم تعرفها عشان تصير ‎Hybrid Athlete‎ وتجمع بين الحديد والركض."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول شيء، جدول تمرينك لازم يكون مقسم بذكاء ٤. أيام تمارين مقاومة و ٣ أيام ركض تكفي وتوفي إذا التزمت فيها."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني شيء، نوع بتمرين الركض حقك وال تعتمد على مسافة واحدة. العب يوم، ‎Zone 2‎ويوم أنترفل، ويوم تمبو عشان ترفع\n‏لياقتك صح."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالث شيء، الاستشفاء هو اللي بيخليك تستمر وما تنصاب. نومك خله ٨ ساعات، واستخدم الساونا وجهاز المساج عشان\n‏ترخي العضالت."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏رابع شيء، الأكل هو بنزينك بهذا النظام. ركز على البروتين العالي والكارب للطاقة، وخلك على قاعدة. ٨٠/٢٠"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏حط ببالك إن الهدف مو تكون الأول بكل رياضة لحالها. أنت بس تبي تركض أحسن من اللي يلعبون حديد، وتشيل أوزان أكثر\n‏من اللي يركضون."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-029-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف ترتب جدولك إذا تبي تصير ‎Hybrid Athlete‎؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏خلنا نقسم الأسبوع صح بدون ما ترهق جسمك. أيام الحديد خلها ٤ أيام وتكون مقسمة: دفع، سحب، كور، وأرجل."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وأيام الركض خلها ٣ أيام في الأسبوع. توزعها بين ركض خفيف، ‎Zone 2‎وتمبو، وأنترفل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏التحدي الحقيقي في هذا النظام هو الاستشفاء. ضروري تسوي إطالات بعد كل تمرين، وتنام زين، وتستخدم الجاكوزي البارد\n‏إذا تقدر."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وبنفس الوقت أكلك لازم يدعم مجهودك العالي. الكارب أساسي عشان الطاقة، والبروتين للبناء العضلي مع دهون صحية."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏في النهاية، ال تقارن نفسك بمحترفين كل رياضة. يكفي إنك تركض أحسن من اللي يرفع أثقال، وترفع أوزان أكثر من العداء."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-029-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا أنت تحب ترفع أوزان بس بنفس الوقت تبي لياقة ركض عالية، هذا النظام لك."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏نظام الـ ‎Hybrid Athlete‎ هو الحل اللي يجمع لك بين الاثنين. يعتمد على ٤ أيام تمارين مقاومة شاملة لكل الجسم."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وتخصص ٣ أيام بالأسبوع للركض بسرعات ومسافات مختلفة. هذا التنويع هو اللي بيطور لياقتك بدون ما تخسر عضالتك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏بس انتبه، إذا بتسوي هذا النظام لازم استشفائك يكون أولوية ٨. ساعات نوم وإطالات مستمرة، والساونا والمساج بتفرق معك\n‏كثير."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وال تنقص أكلك لأنك بتحرق سعرات عالية. خلي الكارب مصدر طاقتك والبروتين أساسي، مع توازن ٨٠/٢٠ في يومك."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏الزبدة من هذا النظام إنك تكون رياضي شامل. تشيل أوزان أكثر من اللي يركض بس، وتركض أكثر من اللي يلعب حديد بس."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-029-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة تسويها لما تقرر تصير ‎Hybrid Athlete‎ إنك تتمرن عشوائي بدون خطة استشفاء."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏مو الفكرة إنك تهلك نفسك كل يوم في النادي والمضمار. الترتيب هو السر ٤، أيام حديد و ٣ أيام ركض كافية جداً."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الحديد وزعه دفع وسحب وكور وأرجل، والركض نوعه بين الخفيف والأنترفل. بهذي الطريقة تعطي جسمك فرصة يتطور\n‏بالجهتين."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏بس ترى إذا نومك أقل من ٧ ساعات وما تسوي إطالات، جسمك بينهار. الاستشفاء والساونا والجاكوزي البارد هي اللي\n‏بتنقذك من الإصابات."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏ونفس الشيء ينطبق على التغذية، ال تقطع كارب لأنك تحتاجه. خذ بروتين عالي ودهون صحية، وامش على قاعدة. ٨٠/٢٠"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏تذكر إنك ما جالس تنافس بطل كمال أجسام وال ماراثون. أنت بس تبي تركض أبعد من حق الحديد، وتشيل أثقل من حق\n‏الركض."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-029-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أول شيء يجي ببالك لما تسمع بـ ‎Hybrid Athlete‎ هو إنك لازم تتمرن صبح وليل."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏بس الواقع إن الموضوع كله يعتمد على تنظيم جدولك وأكلك ٤. أيام مقاومة مقسمة لكل الجسم تكفي وتزيد."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وتضيف عليها ٣ أيام ركض بأنماط مختلفة زي الـ ‎Zone 2‎والتمبو. هذا التوازن يعطيك أفضل نتيجة بدون إرهاق مبالغ فيه."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏اللي بيفرق معك فعالً هو وقت الاستشفاء. بدون نوم زين وإطالات ومساج بعد التمرين، ما راح تكمل أسبوع."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏ولازم تاكل زين عشان تعوض الحرق العالي. بروتين عالي وكارب عشان الطاقة، وتوازن بنسبة ٨٠/٢٠ بأكلك."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏الفكرة من هذا كله إنك تبني جسم متوازن. تكون أقوى من العدائين، ولياقتك بالركض أعلى من حقين الحديد."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-029-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش نظام الـ ‎Hybrid Athlete‎ صار ترند وكثير ناس تتجه له؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ببساطة لأنه يفكك من ملل الروتين ويعطيك لياقة وقوة بنفس الوقت. تمشي على جدول ٤ أيام حديد و ٣ أيام ركض."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ترتب أيام الحديد سحب ودفع وأرجل وكور، والركض تنوع فيه عشان تطور لياقتك. هذا المكس يخلي جسمك دايم في حالة\n‏تطور."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏بس ترى الضغط على جسمك بيكون عالي. عشان كذا النوم والمساج والجاكوزي البارد مو رفاهية، هذي أساسيات."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏ونفس الكالم على التغذية. الكارب ضروري عشان ما يطيح حيلك بالركض، والبروتين عشان يبني عضالتك."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏. وتشيل أوزان أثقل من حقين الماراثون، تصير تركض أحسن من وحوش الحديد. الخالصة من هذا النظام واضحة"
+        }
+      ]
+    }
+  ]
+}

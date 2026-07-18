@@ -1,0 +1,382 @@
+{
+  "source_set_id": "SET-038",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Forearms",
+  "topic": "Forearm Exercise Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-038-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏) ٥ تمارين تخلي سواعدك تفجر التيشيرت من كبرها (آخر واحد يغير اللعبة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏عادي ج ًدا وفيه أقوى منه ‎Dumbbell wrist curl 2/10‎"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏مو سيء ‎Reverse barbell curl 4/10‎"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏يعطيك سمك ممتاز للذراع ويستهدف الساعد مباشرة بس فيه أفضل ‎Hammer curl 6/10‎"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏تمرين مظلوم ويحافظ على التوتر طول الحركة بس فيه أفضل ‎Reverse cable curl 8/10‎"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏تمرين فخم بشكل ال تسمع للي يقول صعب وغير مريح ‎Behind-the-back barbell wrist curl 10/10‎"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-038-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تمنع سواعدك تكبر وتفجر التيشيرت"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏. وتتوقع نتايج خرافية وهو تمرين عادي ج ًدا ‎Dumbbell wrist curl‎ الأول: تضيع وقتك وجهدك على الـ"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏بحجة إنه صعب أو مو مريح، مع إنه أقوى تمرين ‎Behind-the-back barbell wrist curl‎ الثاني: تتجنب تمرين\n‏. للساعد"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. الثالث: تتمرن بعشوائية بدون ما تسجل أوزانك وتتابع تطورك التدريجي في كل جلسة"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. لزيادة سمك العضلة والتوتر المستمر ‎Hammer curl‎ والـ ‎Reverse cable curl‎ عشان تعدل تمرينك، ركز على الـ"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-038-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ نصايح تخلي سواعدك تتفجر وتكبر بسرعة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏. كأقوى تمرين للساعد وال يهمك كالم الناس عنه ‎Behind-the-back barbell wrist curl‎ أواًل: ركز على الـ"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. لأنه يحافظ على التوتر العضلي طول الحركة بشكل فنان ‎Reverse cable curl‎ ثانيًا: استغل الـ\n‏ً."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالثا: دايم سجل أوزانك وتطورك عشان تضمن إنك قاعد تبني كتلة عضلية حقيقية مع الوقت"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. خله أساسي بجدولك لأنه يعطيك سمك ممتاز للذراع بالكامل ‎Hammer curl‎ وال تنسى الـ"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-038-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تبني سواعد ضخمة تفجر التيشيرت بخطوات بسيطة؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏. بتمارين أقوى وأكثر فعالية للساعد ‎Dumbbell wrist curl‎ ابدأ بتبديل التمارين العادية مثل الـ"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. لزيادة سمك الذراع ‎Hammer curl‎ والـ ‎Reverse cable curl‎، ركز على تمارين تحافظ على التوتر مثل الـ"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. كأقوى خيار لأنه يعطي الساعد حجم جبار ومختلف تمامًا ‎Behind-the-back barbell wrist curl‎ العب"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. أهم خطوة بالرحلة: ال تتمرن بدون هدف، دايم سجل أوزانك وتطورك عشان تضمن زيادة الحمل التدريجي"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-038-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا سواعدك نحيفة وتبيها تفجر التيشيرت، ركز معي"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏. العادي لأنه ضعيف وما بيعطيك الحجم اللي تحلم فيه ‎Dumbbell wrist curl‎ ال تضيع وقتك على الـ"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. لزيادة سمك ذراعك مباشرة ‎Hammer curl‎ لأنه يعطيك توتر مستمر، والـ ‎Reverse cable curl‎ جرب تدخل الـ"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. هو اللي بيغير شكل سواعدك تمامًا، ال تخليه أب ًدا ‎Behind-the-back barbell wrist curl‎ تمرين الـ"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. والأهم من هذا كله، سجل أوزانك وتطورك في التمارين هذي عشان تشوف فرق حقيقي"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-038-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة تسويها هي تكرار تمارين الساعد العادية وتوقع نتايج خرافية"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏. تمرين مستواه عادي ج ًدا وما يستاهل تركز عليه بجدولك كخيار أساسي ‎Dumbbell wrist curl‎ الـ"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. اللي كثير يقولون عنه صعب لكنه فعليًا الأفضل بال منازع ‎Behind-the-back barbell wrist curl‎ بداله، جرب الـ"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. لأنهم يحافظون على التوتر العضلي ويعطونك سمك ممتاز ‎Hammer curl‎ والـ ‎Reverse cable curl‎ ال تهمل الـ"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. تذكر دايم، الساعد ما بيكبر بشكل ملحوظ بدون ما تسجل أوزانك وتتطور فيها تدريجيًا"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-038-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كثير شباب يتمرنون سواعد لشهور بدون أي نتيجة واضحة، والمشكلة باختيار التمارين"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏. مع إنه تمرين تقييمه ضعيف وما يقارن بغيره ‎Dumbbell wrist curl‎، كنت أشوف أغلبهم يركزون على"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. بجدولك وتتجاوز فكرة إنه غير مريح ‎Behind-the-back barbell wrist curl‎ التغيير الحقيقي يبدأ لما تدّخل"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. هم اللي فعلاً بيعطونك السمك والتوتر المطلوب للساعد بشكل مباشر ‎Hammer curl‎ والـ ‎Reverse cable curl‎ الـ"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. والسر الأكبر اللي يغفل عنه الكثير هو تسجيل الأوزان ومتابعة تطور الحمل التدريجي باستمرار"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-038-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏تبي سواعد قوية وتفجر التيشيرت بس جدولك الحالي مو قاعد يفيدك ‎POV‎:"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏وهو تمرين عادي وما يعطي نفس قوة الخيارات الثانية؟ ‎Dumbbell wrist curl‎ ليش مستمر على"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. وخلك من اللي يقولون إنه صعب، تراه يغير اللعبة تمامًا ‎Behind-the-back barbell wrist curl‎ جرب تلعب"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. عشان تضمن أقصى توتر وسمك لعضالت الساعد ‎Reverse cable curl‎ والـ ‎Hammer curl‎ دخل بجدولك الـ"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. وش تنتظر؟ سجل أوزانك وتطورك من اليوم وابدأ رحلة بناء سواعد قوية فعلاً"
+        }
+      ]
+    }
+  ]
+}

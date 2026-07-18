@@ -1,0 +1,382 @@
+{
+  "source_set_id": "SET-003",
+  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Hybrid Athlete",
+  "topic": "Hybrid Athlete Training Lessons",
+  "scripts": [
+    {
+      "script_id": "SET-003-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Listicle",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أهم نصايح تمنيت أعرفها قبل لا أصير ‎hybrid athlete‎"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏. ١ ال تجهد نفسك طول الأسبوع وتحسب إن هذا الشي بيسرع تطورك"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. ٢ سر الاستمرارية إنك تخفف شدة التمرين، خذها على رواقه"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. ٤ خل عندك عادة تسوي سبرننت مرتين بالأسبوع أقوى شي عندك هذا بيفجر التستوستيرون بجسمك"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. ٥ خلصت جلسة الحديد؟ ادخل جاكوزي بارد يطلع فريش وجاهز لرياضاتك باقي الأسبوع"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏. ٦ اختار رياضة وحدة مع الحديد ال تكثر"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-003-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٤ أخطاء شائعة تدمر استشفاء الـ ‎hybrid athlete‎ وتوقف تطوره تمامًا."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول غلط هو إنك تجهد نفسك طول الأسبوع وتحسب إن كثرة الضغط بتسرع نتيجتك، بينما الصح إنك تاخذ تمرينك على رواقة وتخفف\n‏الشدة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثاني هو تشتيت مجهودك بأكثر من رياضة مع الحديد. ركز على رياضة وحدة بس بجانب الحديد عشان ما تنهك جهازك\n‏العصبي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثالث هو إهمال تمارين السبرنت القوية مرتين بالأسبوع اللي تفجر عندك التستوستيرون وتزيد قوتك الانفجارية."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏والغلط الرابع هو نسيان الجاكوزي البارد بعد حصة الحديد، لأنه اللي يخليك تطلع فريش وجاهز لتمرينك باقي الأسبوع بجدول مرن\n‏يتأقلم مع يومك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-003-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ أشياء تمنيت أعرفها قبل لا أبدأ أتمرن كـ ‎hybrid athlete‎ ووفرت علي تعب سنين."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول شي، ال تضغط على نفسك طول الأسبوع، سر الاستمرار الحقيقي هو إنك تخفف شدة التمرين وتاخذه برواقة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني شي، ال تشتت نفسك بمليون لعبة. اختار رياضة وحدة بس مع الحديد وركز عليها."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالث شي، سو سبرنت مرتين بالأسبوع بأقوى ما عندك عشان ترفع التستوستيرون وقدرتك الانفجارية."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏رابع شي، خل جدولك مرن ويتأقلم مع ظروف أسبوعك. وخامس شي، جرب الجاكوزي البارد بعد الحديد عشان تطلع فريش ومستعد\n‏للحصص الجاية."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-003-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف ترتب أسبوعك وتتطور كـ ‎hybrid athlete‎ بدون ما تحرق عضالتك وتتعب طول الوقت؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السر الأول هو المرونة؛ صمم جدول ذكي يتأقلم مع التزامات أسبوعك ورياضاتك مو العكس، وخذ تمرينك على رواقة بدون إجهاد زايد."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏اكتفِ برياضة واحدة إضافية مع الحديد وال تشتت جسمك بألعاب كثيرة تمنعك من الاستشفاء."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏فجر مستويات التستوستيرون واللياقة عندك بأنك تدخل حصتين سبرنت بأقوى جهد عندك خالل الأسبوع."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وأخيرً ا، بعد ما تخلص تمرين الحديد، ادخل جاكوزي بارد عشان ترجع عضالتك فريش وتكون جاهز لتمرينك الجاي بكامل طاقتك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-003-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تقول عن نفسك ‎hybrid athlete‎ بس كل حصة تمرين تخرب اللي بعدها وتصحى دايم تعبان، راجع تكنيك استشفائك."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ال تتوقع تتطور إذا كنت تجهد نفسك بشكل جنوني طول الأسبوع؛ خفف شدة تمرينك وخذ الأمور برواقة لتضمن الاستمرارية."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏نظم مجهودك بجدول مرن يتأقلم مع نمط حياتك، واحرص إنك تلعب رياضة وحدة بس مع تمرين الحديد."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏عشان تعطي جسمك دفعة هرمونية قوية، سو سبرنت مرتين بالأسبوع بأقصى سرعة عندك لتحفيز التستوستيرون."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وفي نهاية تمرين المقاومة، ادخل جاكوزي بارد عشان تطلع فريش ومستعد لكل التحديات الرياضية باقي أسبوعك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-003-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏الـ ‎hybrid athlete‎ الذكي ما يحتاج يتمرن أكثر ويضغط نفسه، يحتاج يرتب أسبوعه بذكاء ويهتم بالاستشفاء."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي تستمر وتشوف نتائج، وقف تخلي كل تمرين مجهد لدرجة الموت؛ خفف الشدة وخذ تمرينك على رواقة بجدول يتأقلم مع ظروفك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الجمع بين مية رياضة بيخرب عليك؛ ركز على رياضة وحدة بس مع تمرين الحديد عشان تعطي جسمك فرصة يستوعب المجهود."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏بدل ركض الساعات الطويل، جرب تسوي سبرنت مرتين بالأسبوع بأقوى ما عندك عشان ترفع التستوستيرون والقوة الانفجارية."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وال تستهين بالاستشفاء؛ جاكوزي بارد بعد الحديد كفيل يخلي جسمك فريش وجاهز لتمارينك الجاية بكامل النشاط."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-003-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏يوم بدأت طريقي كـ ‎hybrid athlete‎ كنت أحسب إن النجاح يجي من كثرة الجلد وإجهاد نفسي كل يوم."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏كنت أدخل كل تمرين وأنا منتهي، لين تعلمت أهدي اللعب وأخفف شدة التمرين وآخذ أسبوعي برواقة ومرونة بجدول يتأقلم مع يومي."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وقتها ركزت على رياضة وحدة بس مع الحديد بدل التشتت، وصار استشفائي في لفل ثاني."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏صرت أدخل حصتين سبرنت سريعة بأقوى ما عندي بالأسبوع عشان أحفز التستوستيرون وجهازي العصبي."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وجربت أدخل جاكوزي بارد بعد الحديد وفعليًا كان السحر اللي يرجع عضالتي فريش وجاهزة لباقي الأسبوع."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-003-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش كثير ناس يحاولون يصيرون ‎hybrid athlete‎ ويتعبون بسرعة بدون ما يحققون أي تطور يذكر؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏لأنهم يطيحون بفخ الإجهاد اليومي الزايد؛ سر اللعبة هو إنك تخفف الشدة، تاخذها برواقة، وتصمم جدول مرن يتأقلم مع رياضاتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ال تحاول تلعب كل الرياضات سوا؛ حدد رياضة وحدة مع الحديد عشان ما تستهلك طاقتك بالكامل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ارفع لياقتك وتستوستيرون جسمك بتمارين سبرنت خاطفة وقوية مرتين بس بالأسبوع."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وأخيرً ا، اعتمد الجاكوزي البارد بعد تمرين الحديد عشان تطلع فريش وجاهز تكمل باقي جدولك بدون إصابات أو تعب مزمن."
+        }
+      ]
+    }
+  ]
+}

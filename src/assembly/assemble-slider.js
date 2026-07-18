@@ -23,6 +23,21 @@ function normalizeText(str) {
   return str.replace(/[\r\n]+/g, ' ').replace(/  +/g, ' ').trim();
 }
 
+function prepareText(str) {
+  if (process.env.METAFI_PRESERVE_LINE_BREAKS === '1') {
+    return String(str).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  }
+  return normalizeText(String(str));
+}
+
+function renderTextHtml(str) {
+  const escaped = escapeHtml(str);
+  if (process.env.METAFI_PRESERVE_LINE_BREAKS === '1') {
+    return escaped.replace(/\n/g, '<br>');
+  }
+  return escaped;
+}
+
 function imageToDataUrl(imgPath) {
   const buf = fs.readFileSync(imgPath);
   const ext = path.extname(imgPath).toLowerCase().slice(1);
@@ -38,7 +53,7 @@ const STYLES = {
     lineHeight: '1.24',
     maxWidth: '940px',
     width: '90%',
-    top: '21%',
+    top: '45%',
     textShadow: [
       '4px 0 0 #000',
       '-4px 0 0 #000',
@@ -82,7 +97,7 @@ const STYLES = {
     fontSize: '85px',
     lineHeight: '1.2',
     maxWidth: '900px',
-    top: '25%',
+    top: '45%',
     textShadow: [
       '2px 2px 0 #000',
       '-2px -2px 0 #000',
@@ -98,8 +113,10 @@ const STYLES = {
   },
 };
 
-function buildHtml(dataUrl, text, style) {
+function buildHtml(dataUrl, text, language, role, style) {
   const s = style || STYLES['style-a'];
+  const direction = language === 'ar' ? 'rtl' : 'ltr';
+  const top = role === 'cta' ? '18%' : (s.top || '45%');
   const fontLink = s.googleFontsUrl
     ? `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="${s.googleFontsUrl}" rel="stylesheet">`
     : '';
@@ -107,7 +124,7 @@ function buildHtml(dataUrl, text, style) {
     ? `@font-face { font-family: "Monasabat"; src: url("${FONT_FILE_URL}") format("truetype"); font-weight: 400; font-style: normal; }`
     : '';
   return `<!DOCTYPE html>
-<html>
+<html lang="${language}" dir="${direction}">
 <head>
 <meta charset="utf-8">
 ${fontLink}
@@ -130,9 +147,9 @@ ${fontLink}
   }
   .text-block {
     position: absolute;
-    top: ${s.top || '28%'};
+    top: ${top};
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     width: ${s.width || 'auto'};
     max-width: ${s.maxWidth};
     color: #ffffff;
@@ -141,7 +158,7 @@ ${fontLink}
     font-weight: ${s.fontWeight || '800'};
     line-height: ${s.lineHeight};
     text-align: center;
-    direction: rtl;
+    direction: ${direction};
     white-space: normal;
     word-break: normal;
     overflow-wrap: normal;
@@ -154,7 +171,7 @@ ${fontLink}
 </head>
 <body>
   <div class="bg"></div>
-  <div class="text-block">${escapeHtml(text)}</div>
+  <div class="text-block">${renderTextHtml(text)}</div>
 </body>
 </html>`;
 }
@@ -172,7 +189,7 @@ async function renderSlides(config, outDir, style, label) {
     }
 
     const dataUrl = imageToDataUrl(imgAbsPath);
-    const html = buildHtml(dataUrl, normalizeText(slide.text), style);
+    const html = buildHtml(dataUrl, prepareText(slide.text), slide.language, slide.role, style);
 
     const page = await browser.newPage();
     await page.setViewportSize({ width: 1080, height: 1920 });

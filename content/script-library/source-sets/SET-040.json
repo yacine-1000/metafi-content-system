@@ -1,0 +1,340 @@
+{
+  "source_set_id": "SET-040",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Abs",
+  "topic": "Ab Exercise Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-040-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ تمارين تخلي عضالت بطنك بارزة ومقسمة صح (آخر واحد مهم)"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏‎Plank 2/10‎عادي ج ًدا وفيه أقوى منه"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏‎Sit-up 4/10‎مو سيء"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏‎Hanging leg raise 7/10‎يعطيك مدى حركي ممتاز ويستهدف البطن السفلية مباشرة بس فيه أفضل"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏‎Ab wheel rollout 8/10‎تمرين مظلوم ويحافظ على التوتر طول الحركة بس فيه أفضل"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏‎Cable crunch 10/10‎تمرين فخم بشكل ال تسمع للي يقول يوسع الخصر"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-040-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تسويها بتمارين البطن تمنعها تبرز وتتقسم صح"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الخطأ الأول: تضيع وقتك على ‎Plank‎ وتتوقع منه نتايج خرافية. ترى تمرين عادي وفيه بدائل أقوى بمليون مرة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الخطأ الثاني: تمرن بطنك بدون ما تطبق زيادة تدريجية. سجل أوزانك وتطور فيها مثل أي عضلة ثانية عشان تكبر وتبان."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الخطأ الثالث: تتجنب ‎Cable crunch‎ وتصدق خرافة إنه يوسع الخصر. هذا التوب وعشره على عشره لبروز البطن."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-040-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء ركز عليها بجدولك عشان تقسم بطنك صح"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أواًل: استبدل الـ ‎Plank‎ والـ ‎Sit-up‎ بتمارين تعطي مدى حركي أعلى ومقاومة أقوى."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانيًا: دخل ‎Hanging leg raise‎ لعضالت البطن السفلية و ‎Ab wheel rollout‎ عشان تحافظ على التوتر طول الحركة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ً\n‏ثالثا: العب ‎Cable crunch‎ بوزن وتدرج فيه، وسجل أوزانك عشان تضمن إنك قاعد تتطور فعليًا."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-040-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تختار تمارين بطن تبرز العضلة وتخليها مقسمة فعليًا؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ابعد عن التمارين الثابتة مثل ‎Plank‎ وركز على تمارين فيها حركة ومقاومة حقيقية."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ابدأ بتمارين تستهف البطن السفلية بمدى حركي كامل مثل ‎Hanging leg raise.‎"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وال تنسى تلعب ‎Cable crunch‎ بوزن مناسب وسجل تطورك فيه، لأنه الأفضل بدون منازع وماراح يوسع خصرك مثل\n‏ما يقولون."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-040-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا أنت تتمرن بطن يوميًا وتتوقع الـ ‎Plank‎ بيطلع لك \"سكس باك\"..."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ترى الـ ‎Plank‎ والـ ‎Sit-up‎ تأثيرهم بسيط وما يتقارن بالتمارين القوية اللي فيها مقاومة حركية."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏جرب تدخل الـ ‎Ab wheel rollout‎ لأنه يحافظ على التوتر طول الحركة، أو ‎Hanging leg raise‎ للبطن السفلية."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏والأهم من هذا كله، ركز على ‎Cable crunch‎ وسجل أوزانك وتطور فيها عشان تشوف البروز اللي تبيه."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-040-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏مو كل تمرين بطن مشهور يعني بيبرز لك العضلة ويقسمها صح"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الـ ‎Plank‎ والـ ‎Sit-up‎ ماخذين أكبر من حجمهم ونتايجهم عادية ج ًدا مقارنة بغيرهم."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي بروز حقيقي ركز على تمارين المقاومة مثل ‎Cable crunch‎ و ‎Ab wheel rollout.‎"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وال تخاف من الـ ‎Cable crunch‎، سالفة إنه يوسع الخصر خرافة وماراح تحرمك من أفضل تمرين للبطن."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-040-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كثير ناس يسوون ‎Plank‎ لمستويات خرافية والبطن لسا مو بارزة وال مقسمة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏المشكلة إن البطن عضلة تحتاج مقاومة وزيادة تدريجية عشان تبان وتكبر، مو بس ثبات."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏عشان كذا تمارين مثل ‎Ab wheel rollout‎ و ‎Hanging leg raise‎ تعطي نتايج أفضل بكثير."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏والبطل حقهم هو الـ ‎Cable crunch‎، ركز عليه وسجل أوزانك وشوف كيف شكل بطنك بيتغير."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-040-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ تتمرن بطن بكل حماس بس لسا شكلها مو مقسم ومو بارز صح"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏غالبًا تمارينك ضعيفة مثل ‎Plank‎، أو تلعب بدون ما تسجل أوزانك وتتطور فيها."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏جرب تعتمد على ‎Hanging leg raise‎ للبطن السفلية، و ‎Ab wheel rollout‎ لقوة التحمل والتوتر المستمر."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وخل تمرينك الأساسي ‎Cable crunch‎ وطبق فيه زيادة تدريجية بدون ما تشيل هم خرافة توسيع الخصر."
+        }
+      ]
+    }
+  ]
+}

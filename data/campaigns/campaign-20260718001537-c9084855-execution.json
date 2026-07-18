@@ -1,0 +1,20 @@
+{
+  "campaign_id": "campaign-20260718001537-c9084855",
+  "execution_window_days": 3,
+  "window_start": "2026-07-18",
+  "window_end": "2026-07-20",
+  "generated_count": 1,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260718-031539-p2-how-to-ar"
+  ],
+  "failed_slots": [],
+  "updated_at": "2026-07-18T00:16:09.477Z",
+  "buffered_count": 0,
+  "buffer_failures": [
+    {
+      "post_id": "post-20260718-031539-p2-how-to-ar",
+      "reason": "Buffer scheduling failed: Invalid post input: dueAt must be in the future"
+    }
+  ]
+}

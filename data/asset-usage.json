@@ -1,0 +1,154 @@
+{
+  "assets": {
+    "assets/hook-images/visual-hook-001.png": {
+      "use_count": 4,
+      "last_used_at": "2026-07-17T21:27:03.823Z",
+      "last_post_id": "post-20260718-002703-p2-how-to-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/body-images/body-slide-001.jpg": {
+      "use_count": 15,
+      "last_used_at": "2026-07-18T06:50:24.002Z",
+      "last_post_id": "post-20260718-095023-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/body-images/body-slide-005.jpg": {
+      "use_count": 15,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/app-icon-home-screen/ar/app-icon-home-screen-001.jpeg": {
+      "use_count": 27,
+      "last_used_at": "2026-07-18T00:17:21.233Z",
+      "last_post_id": "post-20260718-031721-p2-how-to-ar",
+      "bank_type": "app_icon_home_screen"
+    },
+    "assets/body-images/body-slide-009.jpg": {
+      "use_count": 15,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/body-images/body-slide-013.jpg": {
+      "use_count": 15,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/hook-images/visual-hook-005.png": {
+      "use_count": 4,
+      "last_used_at": "2026-07-17T21:27:15.509Z",
+      "last_post_id": "post-20260718-002714-p1-mistakes-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/body-images/body-slide-018.jpg": {
+      "use_count": 15,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/body-images/body-slide-022.jpg": {
+      "use_count": 15,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/body-images/body-slide-028.jpg": {
+      "use_count": 15,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/body-images/body-slide-032.jpg": {
+      "use_count": 14,
+      "last_used_at": "2026-07-18T06:50:24.002Z",
+      "last_post_id": "post-20260718-095023-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/hook-images/visual-hook-009.png": {
+      "use_count": 4,
+      "last_used_at": "2026-07-17T21:27:38.284Z",
+      "last_post_id": "post-20260718-002737-p3-tips-things-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/body-images/body-slide-037.jpg": {
+      "use_count": 14,
+      "last_used_at": "2026-07-18T06:50:24.002Z",
+      "last_post_id": "post-20260718-095023-p3-original-ar",
+      "bank_type": "body_slides"
+    },
+    "assets/hook-images/visual-hook-013.png": {
+      "use_count": 3,
+      "last_used_at": "2026-07-17T21:26:31.845Z",
+      "last_post_id": "post-20260718-002631-p3-mistakes-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/hook-images/visual-hook-017.png": {
+      "use_count": 3,
+      "last_used_at": "2026-07-17T21:26:49.234Z",
+      "last_post_id": "post-20260718-002648-p4-tips-things-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a5577dd80cc80cdcaae1ff1/hook-1784329205413-1234842116400.png": {
+      "use_count": 1,
+      "last_used_at": "2026-07-17T23:33:11.385Z",
+      "last_post_id": "post-20260718-023311-p2-how-to-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a572feb80cc80cdcab96cb7/hook-1784331905027-3939223107200.png": {
+      "use_count": 1,
+      "last_used_at": "2026-07-17T23:47:01.042Z",
+      "last_post_id": "post-20260718-024656-p2-how-to-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a572feb80cc80cdcab96cb7/hook-1784333214212-5248404618700.png": {
+      "use_count": 2,
+      "last_used_at": "2026-07-18T00:15:39.462Z",
+      "last_post_id": "post-20260718-031539-p2-how-to-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a572feb80cc80cdcab96cb7/hook-1784333214510-5248702393500.png": {
+      "use_count": 2,
+      "last_used_at": "2026-07-18T00:17:21.233Z",
+      "last_post_id": "post-20260718-031721-p2-how-to-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a572feb80cc80cdcab96cb7/hook-1784333214756-5248948625400.png": {
+      "use_count": 1,
+      "last_used_at": "2026-07-18T00:08:48.042Z",
+      "last_post_id": "post-20260718-030847-p2-identity-callout-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a572feb80cc80cdcab96cb7/hook-1784333215065-5249257713100.png": {
+      "use_count": 1,
+      "last_used_at": "2026-07-18T00:12:06.972Z",
+      "last_post_id": "post-20260718-031206-p2-how-to-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a572feb80cc80cdcab96cb7/hook-1784333215374-5249566629400.png": {
+      "use_count": 1,
+      "last_used_at": "2026-07-18T00:14:02.717Z",
+      "last_post_id": "post-20260718-031402-p2-how-to-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-hook-images/account_6a5577dd80cc80cdcaae1ff1/hook-1784331125995-3155424060800.png": {
+      "use_count": 2,
+      "last_used_at": "2026-07-18T06:48:31.621Z",
+      "last_post_id": "post-20260718-094830-p3-original-ar",
+      "bank_type": "visual_hooks"
+    },
+    "assets/account-app-cta-images/account_6a5577dd80cc80cdcaae1ff1/ar/app-cta-1784357150750-17626075839900.jpg": {
+      "use_count": 4,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "app_icon_home_screen"
+    },
+    "assets/account-hook-images/account_6a5577dd80cc80cdcaae1ff1/hook-1784331126033-3155462524100.png": {
+      "use_count": 2,
+      "last_used_at": "2026-07-18T06:53:08.149Z",
+      "last_post_id": "post-20260718-095307-p3-original-ar",
+      "bank_type": "visual_hooks"
+    }
+  }
+}

@@ -1,0 +1,424 @@
+{
+  "source_set_id": "SET-009",
+  "pillar": "Body Transformation / Aesthetic Progress",
+  "subtopic": "Body Transformation",
+  "topic": "Habits That Changed Body Composition",
+  "scripts": [
+    {
+      "script_id": "SET-009-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Transformation",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٦ أشياء غيّرت جسمي فعالً"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏صرت آخذ يومين إلى ثالثة راحة بدل ما أكتفي بيوم واحد بس"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏في كل تمرين صرت أسوي جولتين للفشل العضلي الحقيقي بدل ٤ جوالت عادية من ١٠ إلى ١٢ تكرار"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏زودت عدد وجباتي من ٣ وجبات باليوم إلى ٥ أو ٦ وجبات"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏صرت أنام على الأقل ٧ إلى ٨ ساعات كل ليلة"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏صرت أسوي كارديو قبل كل تمرين"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-009-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ أغالط تبطئ عملية تغيير الجسم وتضيع تعبك بالصالة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول غلطة هي قلة النوم. لازم تنام من ٧ إلى ٨ ساعات كل ليلة عشان عضالتك تبني صح."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني غلطة إنك تكتفي بيوم راحة واحد بس بالسبوع. عضالتك تحتاج يومين إلى ثالثة أيام راحة عشان تستشفي وتكبر."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالث غلطة هي الحجم التدريبي الزايد بدون شدة. بدل ما تضيع وقتك بـ ٤ جوالت عادية، ركز على جولتين ثقيلة توصلك\n‏للفشل العضلي الحقيقي."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏رابع غلطة إنك تحشر أكلك كله في ٣ وجبات بس. وزع وجباتك إلى ٥ أو ٦ وجبات باليوم عشان تحسن الامتصاص وتغذي\n‏عضالتك باستمرار."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏آخر غلطة هي إهمال الإحماء الهوائي. ابدأ تمرينك بكارديو خفيف قبل الحديد عشان ترفع نبضات قلبك وتجهز جسمك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-009-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ عادات غيرتني وساعدتني في تغيير الجسم بدون حرمان أو تعقيد"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏العادة الأولى: صرت أنام من ٧ إلى ٨ ساعات يوميا ً بدون أعذار."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏العادة الثانية: صرت آخذ يومين إلى ثالثة أيام راحة بالأسبوع عشان أرجع للتمرين بكامل قوتي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏العادة الثالثة: صرت أسوي كارديو خفيف قبل كل تمرين حديد عشان أسخن صح وأتجنب الإصابات."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏العادة الرابعة: قللت جوالتي وركزت على جولتين بس لكل تمرين، لكن ألعبها للفشل العضلي الفعلي بدل الـ ٤ جوالت\n‏العادية."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏العادة الخامسة: قسمت أكلي على ٥ إلى ٦ وجبات باليوم بدل ما أضغط نفسي بـ ٣ وجبات كبيرة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-009-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تبدأ رحلة تغيير الجسم وتشوف نتائج حقيقية بأقصر وقت؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أوالً، رتب نومك واحرص على ٧ إلى ٨ ساعات نوم عميق كل ليلة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانياً، غير طريقة تمرينك بالصالة؛ العب جولتين فقط لكل تمرين بشرط توصل للفشل العضلي الحقيقي بدل ٤ جوالت تقليدية."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالثاً، سخن بكارديو خفيف قبل الحديد عشان تنشط الدورة الدموية وتستعد لألوزان."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏رابعاً، قسم احتياجك اليومي من الأكل على ٥ إلى ٦ وجبات صغيرة بدل ٣ وجبات ثقيلة."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏أخيراً، عط جسمك وقت يستشفي فيه ووفر له من يومين إلى ثالثة أيام راحة كاملة بالأسبوع."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-009-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا هدفك هو تغيير الجسم بس تحس إنك ثابت وماتتطور، جرب تغير هالأشياء فوراً"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ممكن تكون قاعد تضغط نفسك بزيادة وتتمرن طول الأسبوع؛ جرب ترتاح يومين إلى ثالثة أيام وبترجع أقوى."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وبدل ما تضيع وقتك بـ ٤ جوالت عادية لكل جهاز، ركز على جولتين للفشل العضلي الحقيقي وشوف الفرق بقوتك\n‏وعضالتك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ترى الكارديو قبل الحديد مو غلط، جرب تبدأ فيه تمرينك عشان تجهز قلبك ومفاصلك للشيل."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وال تنسى الأكل، تقسيم سعراتك على ٥ إلى ٦ وجبات يوميا ً بيسهل عليك تغطية احتياجك ويحسن هضمك."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏وأهم شيء، ال تستهين بـ ٧ إلى ٨ ساعات نوم كل ليلة لأن الاستشفاء الفعلي يبدأ وأنت نايم."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-009-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏عملية تغيير الجسم مو بالضغط الزايد والتعب المستمر، أحيانا ً التراجع الذكي هو الحل"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏مو شرط تتمرن ٦ أيام بالأسبوع؛ جرب ترتاح يومين إلى ثالثة أيام وبتشوف كيف أوزانك تطير."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وال تلعب ٤ جوالت عادية وتتوقع نتائج خرافية، جولتين للفشل العضلي الحقيقي بتعطيك تفعيل أقوى بوجع أقل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏كثير ناس يحذرون من الكارديو قبل التمرين، لكن الحقيقة كارديو خفيف كإحماء قبل الحديد بيفرق بمرونتك ونشاطك بوسط\n‏الجلسة."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وزيادة الوجبات إلى ٥ أو ٦ وجبات يوميا ً أفضل بكثير لبناء العضل من حشر أكلك كله في ٣ وجبات ثقيلة تسد نفسك وتتعب\n‏هضمك."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏تذكر دايم: إذا ما نمت من ٧ إلى ٨ ساعات باليوم، كل تعبك بالصالة ماله أي قيمة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-009-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب إن تغيير الجسم يحتاج كرف وتعب طول اليوم، لين جربت أغير هالتفاصيل"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏كنت أتطير من فكرة الراحة، واليوم صرت آخذ يومين إلى ثالثة أيام راحة كاملة وأشوف عضالتي تكبر أسرع."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وبالتمارين كنت أسوي ٤ جوالت روتينية، لين جربت أسوي جولتين بس للفشل العضلي الفعلي وعرفت وش معنى التحفيز\n‏الحقيقي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏غيرت نظام وجباتي من ٣ وجبات دسمة إلى ٥ أو ٦ وجبات خفيفة، وصرت أحس بنشاط طول اليوم بدون خمول."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وصرت ألتزم بـ ٧ إلى ٨ ساعات نوم ليلية، ولقيت إن تركيزي وصحتي النفسية بالصالة فرقت ١٨٠ درجة."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏حتى تسخيني تغير؛ صرت أبدأ بكارديو خفيف قبل كل تمرين وراحت آالم المفاصل اللي كانت تجيني دايم."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-009-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش كثير ناس يفشلون في تغيير الجسم رغم التزامهم اليومي بالصالة؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السبب الأول هو إهمال الاستشفاء؛ النوم أقل من ٧ إلى ٨ ساعات يوميا ً يدمر عضالتك وصحتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏السبب الثاني هو التمرين بدون شدة فعلية؛ ٤ جوالت عادية ال تقارن بجولتين توصلك للفشل العضلي الحقيقي وتجبر العضلة\n‏تنمو."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏السبب الثالث هو عدم الاستعداد؛ البدء بالحديد مباشرة بدون كارديو خفيف كإحماء يزيد من فرص الإصابة ويقلل كفاءتك."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏السبب الرابع هو حشر السعرات بوجبات قليلة؛ جرب توزع أكلك على ٥ إلى ٦ وجبات وبتالحظ مرونة أكبر بالهضم\n‏والبناء."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏وأخيراً، ال تبخل على جسمك بالراحة؛ يومين إلى ثالثة أيام راحة بالأسبوع هي اللي تبنيك مو كثرة اللعب."
+        }
+      ]
+    }
+  ]
+}

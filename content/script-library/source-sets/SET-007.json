@@ -1,0 +1,382 @@
+{
+  "source_set_id": "SET-007",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Workout Split",
+  "topic": "Workout Split Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-007-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أسوأ ٣ جداول تمرين جربتها وأفضل ٣ جداول تمرين جربتها"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الأسوأ( ‎Bro Split‎: تقييمه )0/10: تمرّ ن العضلة مرة وحدة في الأسبوع، وهذا غالبًا ما يعطيك تطور عضلي واضح."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏‎PPL‎ و ( ‎Arnold Split‎ تقييمهم )5/10: الجدول يتمرن ٦ أيام ويريح يوم واحد بس. عدد أيام الراحة قليل ج ًدا، خصوصًا\n‏مقارنة بجداول تمرّ ن العضلة مرتين في الأسبوع."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الأفضل( ‎Anterior / Posterior‎: تقييمه )10/10: تمرّ ن العضلة مرتين في الأسبوع، وفيه أيام راحة كافية ٣: أيام على\n‏الأقل. والأهم: ما فيه يوم رجل كامل."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏( ‎Full Body‎ تقييمه )8/10: ممتاز لو ما عندك وقت وتتمرن يومين أو ثالثة بالأسبوع."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏( ‎Upper / Lower‎ تقييمه )7/10: قريب من ‎Anterior / Posterior‎، لكن الفرق إنك تتمرن الرجل في يوم لحاله."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء في اختيار جدول تمرينك تضيع جهدك وتمنعك من البناء العضلي الصح."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول غلط هو اللعب بنظام الـ ‎Bro Split‎، وتدريب العضلة مرة وحدة بالأسبوع بس، تقييمه عندي 0/10لأنه ما يعطي تطور واضح."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثاني هو تمرين ٦ أيام بالاسبوع مع يوم راحة واحد بس مثل جداول الـ ‎PPL‎ أو الـ ‎Arnold Split‎، وهالشي ينهك استشفائك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثالث هو عدم توزيع تمرين الرجل بذكاء؛ نظام ‎Upper / Lower‎ يقيم بـ 7/10لأنه يضغط الرجل بيوم واحد."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الصح إنك تختار ‎Anterior / Posterior‎ بـ ٣ أيام راحة لتمرن العضلة مرتين بدون يوم رجل كامل، أو ‎Full Body‎ لو وقتك\n‏ضيق."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء تمنيت أعرفها عن جداول التمرين قبل لا أضيع سنين بجداول تمنع تطوري العضلي."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول شي، جدول الـ ‎Bro Split‎ تقييمه 0/10؛ تمرين العضلة مرة بالاسبوع مستحيل يوصلك ألفضل نتيحة وقوة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني شي، جداول الـ ‎PPL‎ والـ ‎Arnold Split‎ متعبة زيادة عن اللزوم وتخليك تتمرن ٦ أيام بدون استشفاء كافي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالث شي، جدول الـ ‎Anterior / Posterior‎ هو الأفضل بـ ١٠/١٠ لأنه يمرن العضلة مرتين بالأسبوع مع ٣ أيام راحة وبدون تعب\n‏يوم رجل كامل."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏ولو وقتك ضيق، جدول الـ ‎Full Body‎ بـ ٣ أيام بالأسبوع هو خيارك الأنسب والذكي بدل الجداول المعقدة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تختار أفضل جدول تمرين يناسب وقتك واستشفائك ويبني لك عضالت حقيقية؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ابعد تمامًا عن الـ ‎Bro Split‎ اللي يمرن العضلة مرة بالاسبوع بس، وجرب جدول الـ ‎Anterior / Posterior‎ بـ. ١٠/١٠"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏هالجدول يخليك تمرن عضالتك مرتين بالأسبوع مع ٣ أيام راحة على الأقل، والأهم إنه يخلصك من مشكلة يوم الرجل الكامل المعذب."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏إذا وقتك زحمة، العب ‎Full Body‎ يومين أو ثالثة بالاسبوع، وإذا تبي شي قريب منه جرب ‎Upper / Lower‎ لتقسيم أفضل."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏تجنب جداول الـ ٦ أيام مثل الـ ‎PPL‎ والـ ‎Arnold Split‎ لأنها ما تعطيك فرصة لالستشفاء والبناء الفعلي."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تتمرن ٦ أيام بالأسبوع بجدول ‎PPL‎ أو ‎Arnold Split‎ وتحس جسمك منهك وراجع لورا، جدولك هو المشكلة."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏يوم واحد راحة بالأسبوع مو كافي أب ًدا للبناء العضلي، وجدول الـ ‎Bro Split‎ أصاًل ما يمرن العضلة كفاية ليتطور جسمك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الحل إنك تغير لجدول ‎Anterior / Posterior‎ اللي يضمن لك ٣ أيام راحة، ويمرن عضالتك مرتين بالاسبوع بدون ضغط يوم\n‏الرجل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ولو جدول يومك مزدحم وما تملك وقت، جدول الـ ‎Full Body‎ بـ ٣ أيام بالأسبوع بيعطيك نتائج خرافية واستشفاء ممتاز."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏تقسيم مجهودك بذكاء يعطيك عضالت أكبر بأيام تمرين أقل؛ لا تجهد جسمك على الفاضي."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏التمرين ٦ أيام بالأسبوع مو دليل على إنك بتتطور أسرع، وغالبًا جالس تهدم عضالتك بدون ما تدري."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏جداول الـ ‎PPL‎ والـ ‎Arnold Split‎ تقييمها ٥/١٠ بس لأن قلة أيام الراحة تخرب الاستشفاء وتوقف تطور قوتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وحتى الـ ‎Bro Split‎ يعتبر تضييع وقت وتطوره العضلي بطيء ج ًدا لأن العضلة تحتاج تتحفز مرتين بالأسبوع."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الجدول الأقوى هو الـ ‎Anterior / Posterior‎ بـ ١٠/١٠ لأنه يعطيك ٣ أيام راحة بالاسبوع وما فيه يوم رجل كامل يهد حيلك."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏رتب أيام تمرينك بذكاء؛ الاستشفاء والراحة هم اللي يبنون العضالت مو كثرة الأيام بالنادي."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب إن التمرين ٦ أيام بجدول ‎PPL‎ هو الطريق الوحيد للجسم الخرافي، بس اللي صار إني صرت دايم تعبان وجسمي واقف."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏جربت بعدها الـ ‎Bro Split‎ وكان أسوأ قرار؛ تمرين العضلة مرة بالاسبوع ما عطاني أي تطور ملحوظ ويستاهل الجهد."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏اللي غير مستواي فعليًا هو جدول الـ ‎Anterior / Posterior‎؛ صرت أتطور دبل وأنا أريح ٣ أيام بالاسبوع وبدون كابوس يوم الرجل\n‏الكامل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وبالأيام اللي أكون فيها مشغول، أتحول لجدول الـ ٣ ‎Full Body‎ أيام بالاسبوع وبأداء جبار واستشفاء سريع."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏نصيحة مجرب: ال تقيس نجاح تمرينك بعدد الأيام، قيسه بجودة الجدول والراحة اللي تعطيها لعضالتك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏وش اللي يخلي بعض الجداول تعطيك نتايج سريعة وجداول ثانية تخليك محلك سر رغم التزامك؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السر في تكرار تدريب العضلة وأيام الراحة؛ الـ ‎Bro Split‎ فاشل لأن تمرين العضلة مرة بالاسبوع ما يكفي للبناء."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏والـ ‎PPL‎ والـ ‎Arnold Split‎ متعبين لأن يوم واحد راحة بالاسبوع يدمر الاستشفاء ويقلل كفاءة تمرينك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏عشان كذا جدول الـ ‎Anterior / Posterior‎ يعتبر بطل بـ، ١٠/١٠ يوازن بين تكرار العضلة والراحة الكافية بدون تعقيد."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏اختار الجدول اللي يحترم استشفاء جسمك مثل الـ ‎Full Body‎ أو الـ ‎Upper / Lower‎ عشان تشوف نتائج فعلية بالمرآة."
+        }
+      ]
+    }
+  ]
+}

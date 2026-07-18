@@ -1,0 +1,346 @@
+{
+  "source_set_id": "SET-022",
+  "pillar": "Body Transformation / Aesthetic Progress",
+  "subtopic": "Bulking",
+  "topic": "Bulking Without Excess Fat",
+  "scripts": [
+    {
+      "script_id": "SET-022-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Transformation",
+      "original_slide_count": 7,
+      "final_slide_count": 8,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تضخم صح بدون ما تزيد دهون زيادة عن اللزوم"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏اسمع الكالم من واحد مجرّ ب التضخيم بنفسه 😭"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏. 1كل أكثر من احتياجك اليومي إذا تمرينك قوي ومنتظم، زيادة الأكل ما راح تخليك تسمن. كثير ناس يخافون من الأكل\n‏ويجلسون شهور ما يتغير جسمهم لأنهم ببساطة ما ياكلون كفاية."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏. 2ال تقطع الكارديو كونك بفترة تضخيم مو معناته تلغي الكارديو. امش أو سو كارديو خفيف 20إلى 30دقيقة بعد التمرين\n‏عشان تحافظ على لياقتك وصحتك."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏. 3ركز على الأداء أكثر من الوزن طبيعي قوتك تزيد بالتضخيم، لكن ال تخلي هذا الشي يخليك تشيل أوزان فوق مستواك. أهم\n‏شي الحركة تكون نظيفة عشان تستفيد وتتجنب الإصابات."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏. 4عط التضخيم وقته إذا هدفك تبني عضل فعالً، ال تتوقع النتيجة خالل شهر أو شهرين. استمر على الخطة وخلك صبور لأن\n‏بناء العضل يحتاج وقت."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "🏻💪\n‏خلك ملتزم ال تستخدم التضخيم كعذر إنك تاكل أي شيء قدامك. اضبط أكلك، تابع تقدمك، وركز إنك تتحسن بالنادي أسبوع بعد أسبوع.\n‏العضل أول، وبعدها يجي وقت التنشيف."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-022-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أغالط تسويها بفترة التضخيم تخليك تزيد دهون بدل عضل"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الأول: تقطع الكارديو تماما ً عشان \"ما يحرق العضل\". بالعكس، مشي خفيف بعد تمرينك بيحافظ على صحة قلبك ولياقتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثاني: تلعب بأوزان فوق طاقتك وتخرب التكنيك. الأهم بالتضخيم هو الأداء النظيف عشان تستهدف العضلة صح وتتجنب\n‏الإصابات."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثالث: تستعجل النتائج وتوقف بعد شهر أو شهرين. بناء العضل عملية بطيئة وتحتاج منك التزام وصبر طويل."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-022-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء لازم تنتبه لها عشان تضخم صح وبدون دهون زايدة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أوالً: ال تخاف من زيادة الأكل طالما تمرينك قوي ومنتظم. جسمك يحتاج سعرات زيادة عن احتياجه عشان يقدر يبني عضالت حقيقية."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانياً: حافظ على تمرين هوائي خفيف بجدولك. مشي من ٢٠ إلى ٣٠ دقيقة بعد الحديد بيفرق كثير في صحتك ولياقتك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ثالثاً: ركز على جودة أدائك وتطورك الأسبوعي بالنادي. التضخيم مو عذر لرفع أوزان عشوائية بتكنيك خربان، ركز باللعبة النظيفة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-022-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تزيد وزنك عضل مو دهون؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏البداية تبدأ من المطبخ، لازم تاكل أكثر من احتياجك اليومي بذكاء. إذا تمرينك جاد، الأكل الزايد بيروح للبناء العضلي مو للكرش."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏بعدها، ثبت الكارديو الخفيف بعد تمرين الحديد. مشي بسيط بنهاية تمرينك بيحافظ على مرونتك ولياقتك وما راح يضرك أبداً."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وأخيراً، ركز على الأداء النظيف وتدرج بالأوزان بدون استعجال. البناء الصح يحتاج استمرارية وشهور من الصبر والالتزام."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-022-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا أنت قاعد تضخم بس خايف تاكل وتسمن..."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ترى الخوف من الأكل بيثبت وزنك وجسمك ما راح يتغير شهور قدام. طالما تمرينك جاد وقوي، جسمك يحتاج هالسعرات عشان يبني\n‏ويكبر."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وبنفس الوقت، ال تقطع الكارديو الخفيف وال تشيل أوزان أكبر من طاقتك وتخرب التكنيك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الزبدة، اضبط جودة أكلك وعط العملية وقتها الكافي لأن العضل يبيله طول بال."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-022-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة تسويها بالتضخيم هي إنك تاكل أي شيء قدامك بحجة \"قاعد أضخم\""
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏التضخيم مو يعني تخريب دايت وقطع كارديو تماماً. هذا الأسلوب بيخليك تزيد دهون سريعة وتتعب حيل وقت التنشيف."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الصح إنك تزيد سعراتك بحدود وتستمر بالمشي الخفيف بعد التمرين. ركز بزيادة قوتك تدريجيا ً مع الحفاظ على التكنيك النظيف."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تذكر دايما ً إن البناء العضلي ياخذ وقت، فال تخرب تعبك بالاستعجال والأكل العشوائي."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-022-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب التضخيم يعني أقطع كارديو وآكل الأخضر واليابس"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏لكن الواقع غير، هالطريقة خلتني أزيد دهون وراحت لياقتي بدون فايدة عضلية حقيقية. اللي فرق معي لما صرت آكل بذكاء وأمشي ٢٠\n‏دقيقة بعد التمرين."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏صرت أهتم بأداء التمرين والتكنيك النظيف أكثر من مجرد أرقام وأوزان فوق مستوايا."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وعرفت بالنهاية إن بناء الجسم المرتب يبي له صبر واستمرارية، مو لعبة شهر أو شهرين."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-022-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش تضخم بس جسمك مو قاعد يتطور؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الاحتمال الأكبر إنك خايف من الأكل وما تاكل كفاية فوق احتياجك الفعلي. العضل يحتاج سعرات زيادة عشان يبني ويكبر مع تمرينك\n‏القوي."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏أو ممكن أداؤك بالنادي صار عشوائي وتشيل أوزان فوق طاقتك وتخرب التكنيك. ركز على الحركة النظيفة وحافظ على كارديو خفيف\n‏للياقتك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل بناء على أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الخالصة: اضبط أكلك، تمرن صح، وخلك صبور لأن العضل ما ينبني بيوم وليلة."
+        }
+      ]
+    }
+  ]
+}

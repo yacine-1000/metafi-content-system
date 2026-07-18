@@ -1,0 +1,382 @@
+{
+  "source_set_id": "SET-035",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Shoulders",
+  "topic": "Shoulder Exercise Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-035-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ تمارين تخلي أكتافك ثالثية الأبعاد وتعرض جسمك (آخر واحد أساسي)"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏‎Barbell overhead press 2/10‎عادي ج ًدا وفيه أقوى منه"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏‎Dumbbell lateral raise 5/10‎مو سيء"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏‎Dumbbell shoulder press 7/10‎يعطيك مدى حركي ممتاز ويستهدف الأكتاف مباشرة بس فيه أفضل"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏‎Cable lateral raise 8/10‎تمرين مظلوم ويحافظ على التوتر طول الحركة بس فيه أفضل"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏‎Behind-the-back cable lateral raise 10/10‎تمرين فخم بشكل ال تسمع للي يقول قديم"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-035-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تسويها بتمرين الكتف تمنعك تجيب تدويرة ثالثية الأبعاد وعرض للجسم"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الأول: تعتمد على الـ ‎Barbell overhead press‎ وتحسبه الأساس، تراه عادي وبدائله أقوى بكثير."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الثاني: تلعب ‎Dumbbell lateral raise‎ وتتوقع منه كل العرض، تراه تمرين عادي وما يحافظ على التوتر طول الحركة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الثالث: تتمرن بدون ما تسجل أوزانك وتتابع تطورك الدوري."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏البديل الأقوى؟ ركز على ‎Behind-the-back cable lateral raise‎ لأنه يعطيك توتر مستمر ونتايج فخمة بشكل ما\n‏تتخيله."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-035-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ نصائح تساعدك تبني أكتاف عريضة وثالثية الأبعاد"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏-١ ال تضيع وقتك بـ ‎Barbell overhead press‎، أداءه عادي جداً وما يقارن بغيره."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏-٢ جرب الـ ‎Cable lateral raise‎ بدل الدامبل لأنه يحافظ على التوتر طول الحركة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏-٣ سجل أوزانك دايمًا عشان تضمن التدرج بالحمل والتطور."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏والسر الأهم هو الـ ‎Behind-the-back cable lateral raise‎، هذا التمرين ١٠ على ١٠ لتفجير الأكتاف الجانبية."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-035-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف ترتب تمارين كتفك عشان تطلع بأفضل تدويرة وعرض؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ابدأ بـ ‎Dumbbell shoulder press‎ لأنه يعطيك مدى حركي ممتاز واستهداف مباشر للكتف."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وال تنسى تسجل أوزانك بكل تمرين عشان تضمن إنك قاعد تتطور وتزيد الأحمال."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تجنب تضييع جهدك على الـ ‎Barbell overhead press‎ لأنه تمرين عادي وما يعطيك أفضل نتيجة."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وخل أساس تمرينك ‎Behind-the-back cable lateral raise‎ عشان تحصل على استهداف جبار وتوتر مستمر طول\n‏الحركة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-035-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تتمرن كتف وتبي عرض وتدويرة ثالثية الأبعاد، ركز معي شوي"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الـ ‎Barbell overhead press‎ والـ ‎Dumbbell lateral raise‎ لوحدهم ماراح يوصلونك لشكل الكتف اللي تبيه."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏دخل بجدولك ‎Dumbbell shoulder press‎ لمدى حركي أفضل واستهداف مباشر للكتف."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏أهم شيء تسجل أوزانك وتتدرج فيها عشان تشوف نتيجة حقيقية."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏وال تفوت الـ ‎Behind-the-back cable lateral raise‎، هذا التمرين الأسطوري هو اللي بيعطيك تدويرة الكتف\n‏الصح."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-035-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ال تفترض إن الـ ‎Barbell press‎ هو أفضل تمرين يعرض أكتافك"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الواقع إنه تمرين عادي جداً والبدائل المتاحة أقوى وأكثر فاعلية للكتف."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏بديل مثل ‎Dumbbell shoulder press‎ بيعطيك مدى حركي أوسع واستهداف مباشر وممتاز."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وبدون تسجيل أوزانك ومتابعة تطورك، ماراح تستفيد من أي تمرين تلعبه."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي أفضل نتيجة وعرض حقيقي ركز على ‎Behind-the-back cable lateral raise‎ وما عليك من اللي يقول\n‏قديم."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-035-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب الـ ‎Dumbbell lateral raise‎ كافي عشان يعرض أكتافي بسرعة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏بس اكتشفت إنه تمرين عادي وما يعطيني التوتر المستمر اللي تحتاجه العضلة طول الحركة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏لما جربت ‎Cable lateral raise‎ و ‎Behind-the-back cable lateral raise‎ عرفت الفرق الحقيقي للزوايا\n‏الصعبة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏التأثير والتوتر في هذي التمارين فخم ومستمر طول الحركة بشكل يفرق بالنتائج."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏والأهم من هذا كله، صرت أسجل أوزاني عشان أضمن التطور المستمر وال يضيع تعبي بالصالة."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-035-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ تبي تدويرة أكتاف ثالثية الأبعاد بس جدولك فيه تمارين عادية ومو قاعد تتطور"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ليش تلعب ‎Barbell overhead press‎ وهو تقييمه عادي وما يقدم لك أفضل استهداف؟"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏جرب تبدله بـ ‎Dumbbell shoulder press‎ لمدى حركي أفضل وضغط مباشر على العضلة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏واحرص إنك تسجل أوزانك وتتابع تطورها عشان تضمن البناء العضلي المستمر."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏والتمرين الفخم اللي لازم تركز عليه لعرض الكتف هو ‎Behind-the-back cable lateral raise‎ لأنه يحافظ على\n‏التوتر طول الحركة."
+        }
+      ]
+    }
+  ]
+}

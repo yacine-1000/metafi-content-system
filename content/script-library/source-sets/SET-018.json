@@ -1,0 +1,346 @@
+{
+  "source_set_id": "SET-018",
+  "pillar": "Changed Week / What Should I Train Today?",
+  "subtopic": "Weekly Activity Adaptation",
+  "topic": "Adapting Gym Training Around Sports",
+  "scripts": [
+    {
+      "script_id": "SET-018-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ أنت تتمرن نادي وتلعب رياضات بنفس الأسبوع بس جدولك لسه يعاملك كأنك تتمرن نادي بس"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏تحس نفسك ملتزم تروح النادي وتلعب رياضتك وتحاول ما تفوت بس جسمك طول الأسبوع حاس بضغط من كل جهة"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الجدول العام غالبًا يشوف النادي بس يوم رجل يوم صدر يوم ظهر بس ما يشوف إنك لعبت أمس أو عندك رياضة بكرة أو\n‏جسمك أصاًل مستهلك"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وهنا تبدأ الحوسة أنت تقول أنا ماشي على الجدول ليش دايم تعبان؟ بس يمكن المشكلة مو في التزامك المشكلة إن الجدول ما\n‏يعرف أسبوعك الحقيقي"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏إذا تتمرن نادي وتلعب رياضات ما ينفع تفكر مثل شخص يتمرن نادي بس رياضتك تنحسب من الأسبوع حتى لو ما كانت\n‏حديد والأهم تعرف وش يناسب جسمك اليوم حسب اللي صار في أسبوعك فعليًا"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-018-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء شائعة تدمرك كـ ‎Hybrid Athlete‎ وتخرب جدولك."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الأول: تلعب جدول حديد كالسيكي مكثف كأنك ما تسوي أي رياضة ثانية طول الأسبوع. هذا يستهلك طاقتك بالكامل ويمنع\n‏استشفاء عضالتك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الثاني: تتجاهل مجهود رياضتك الثانية وتحسب الجري أو الكورة مجرد \"تسلية\" ما ترهق الجسم. الواقع إنها تستهلك من نفس\n‏مخازن طاقتك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الثالث: تضغط على نفسك بزيادة حتى لو كنت مجهد، بدون ما تعدل شدة تمرينك بنا ًء على ضغط أسبوعك الفعلي."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الحل مو إنك تتمرن أكثر، الحل تصمم جدول ذكي يوازن بين الحديد ورياضتك الأساسية."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-018-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ نصايح فرقت معي كثير كـ ‎Hybrid Athlete‎ وريحتني من التعب المستمر."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أواًل: خفف حجم تمارين الحديد في النادي، وركز على جودة التمرين والشدة بدل كثرة الجوالت والأيام."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانيًا: احسب مجهود رياضتك الثانية من ضمن خطتك الأسبوعية، تراها تستهلك من طاقة جسمك واستشفائك."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ً\n‏ثالثا: اسمع لجسمك بذكاء، فلو كنت مجهد من مباراة أمس طبيعي تخفف أوزانك اليوم في النادي."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏توازنك وتعديلك المستمر للجدول هو اللي يخليك تستمر وتتحسن بدون إصابات."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-018-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف ترتب أسبوعك وتتطور كـ ‎Hybrid Athlete‎ بدون ما تنهك جسمك؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول خطوة هي إنك تبعد عن تقسيم الأيام التقليدي مثل صدر وظهر ورجلين، لأنها ما تخدم مجهودك المتنوع."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏رتب أيام الحديد بحيث تكون تمارين الجزء السفلي بعيدة عن أيام الجري أو المباريات القوية عشان تعطي رجولك وقت\n‏لالستشفاء."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تذكر دايم إن الاستشفاء جزء أساسي من تمرينك، ويوم الراحة الفعلي هو اللي يبني عضالتك ويحسن أداءك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-018-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي تصير ‎Hybrid Athlete‎ وتجمع بين الحديد والجري، ال تعاملهم كأنهم تمرينين منفصلين."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏جسمك ما يفهم نوع التمرين، هو بس يحس بالضغط والجهد المتراكم عليه طول الأسبوع."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏إذا لعبت مباراة أو جريت مسافة طويلة أمس، طبيعي يكون أداؤك في النادي اليوم أقل من المعتاد."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الحل مو إنك تلوم نفسك وتضغط زيادة، الحل إنك تفهم أسبوعك ككامل وتوزع مجهودك بذكاء."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-018-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكثر شيء يوقف تقدمك كـ ‎Hybrid Athlete‎ هو إنك تتمرن بزيادة بدون توازن."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏تظن إنك كل ما زدت أيام الحديد مع رياضتك الثانية بتتطور أسرع، والواقع إنك جالس ترهق جسمك وتمنع استشفاءه."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏المشكلة مو في قلة حماسك أو التزامك، المشكلة في جدولك اللي يعاملك كأنك بس ترفع حديد بالنادي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏رتب حملك التدريبي بذكاء وخلي الراحة جزء من خطتك لتشوف النتايج اللي تبيها."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-018-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏يوم قررت أصير ‎Hybrid Athlete‎، كنت أحسب الحل إني أتمرن حديد ٥ أيام وأجري ٣ أيام بالاسبوع."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏النتيجة كانت تعب مستمر طول الوقت، وأداء ضعيف جداً بالنادي وفي الجري مع شوية إصابات."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏اكتشفت بعدها إن المشكلة مو بقلة التزامي، بل في إني ما صممت أسبوعي بشكل مترابط ومناسب لطاقتي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏يوم قللت أيام الحديد ورتبت جوالت تمرين أسبوعي، تطور مستواي في الاثنين بشكل ما توقعته."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-018-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ليش كثير ناس يحاولون يصيرون ‎Hybrid Athlete‎ ويتعبون بدون ما يشوفون نتايج حقيقية؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السبب إنهم ياخذون جدول حديد جاهز وجدول جري منفصل ويدمجونهم سوا بدون أي تعديل يناسب أسبوعهم."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏طاقتك لها حد معين، وما تقدر تعطي ٪١٠٠ في كل التمرينين إذا ما نسقت بينهم بذكاء."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يعرف وش لعبت من رياضات بأسبوعك ويتعدل\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏النجاح يبدأ لما تفهم إن رياضتك والحديد يكملون بعض، وتصمم جدول واحد مرن يخدم أهدافك سوا."
+        }
+      ]
+    }
+  ]
+}
