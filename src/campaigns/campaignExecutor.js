@@ -13,6 +13,7 @@ const { createInjectionRequestStore } = require('../injection/injectionRequestSt
 const { getSourceSet } = require('../scripts/scriptLibrary');
 const { mutatePlan, claimCampaignSlot, completeClaimedSlot } = require('./campaignSlotLockStore');
 const { createOperationalRepository } = require('../persistence/operationalRepository');
+const { createRenderedOutputStorage } = require('../generation/renderedOutputStorage');
 
 const ROOT = path.resolve(__dirname, '../..');
 const CAMPAIGNS_DIR = path.join(ROOT, 'data', 'campaigns');
@@ -155,6 +156,13 @@ async function executeCampaignWindow(campaignId, options = {}) {
   const validateVisualBanks = options.validateAccountVisualBanks || validateAccountVisualBanks;
   const injectionRequestStore = options.injectionRequestStore || createInjectionRequestStore({ filePath: path.join(root, 'data', 'injection-requests.json') });
   const sourceSetFor = options.getSourceSet || getSourceSet;
+  const renderedOutputStorage = operationalRepository.mode === 'supabase'
+    ? (options.renderedOutputStorage || createRenderedOutputStorage({
+      client: operationalRepository.repository.client,
+      root,
+      bucket: options.rendered_output_bucket || process.env.METAFI_RENDERED_OUTPUT_BUCKET,
+    }))
+    : null;
   const nowFor = options.now || (() => new Date());
   const campaignLoadStartedAt = Date.now();
   const campaign = await readCampaign(campaignId);
@@ -309,6 +317,19 @@ async function executeCampaignWindow(campaignId, options = {}) {
       const generatedPost = generation.posts[0];
       const renderResult = generatedPost.render_result;
       if (!renderResult || !renderResult.metadata) throw new Error('Generation did not return structured render metadata');
+      let renderedOutput = null;
+      if (renderedOutputStorage) {
+        await operationalRepository.updateGenerationJob(jobId, { state: 'uploading' });
+        renderedOutput = await renderedOutputStorage.persist({
+          campaignId: campaign.campaign_id,
+          slotId: normalizedSlot.slot_id,
+          postId: generatedPost.post_id || renderResult.post_id,
+          language: renderResult.language || normalizedSlot.language,
+          postFolder: generatedPost.post_folder || renderResult.post_folder,
+          renderedFiles: generatedPost.rendered_files || renderResult.slide_files || [],
+          generatedAt: renderResult.metadata.updated_at || renderResult.metadata.created_at || nowFor().toISOString(),
+        });
+      }
       const persistedPost = {
         ...renderResult.metadata,
         post_id: generatedPost.post_id || renderResult.post_id,
@@ -326,11 +347,15 @@ async function executeCampaignWindow(campaignId, options = {}) {
         hook_type: renderResult.hook_type || normalizedSlot.hook_type,
         caption: renderResult.caption || '',
         publish_package: renderResult.publish_package || {},
-        local_path: generatedPost.post_folder || renderResult.post_folder,
+        asset_manifest: renderedOutput
+          ? { ...(renderResult.metadata.assets || {}), ...(renderResult.metadata.asset_manifest || {}), rendered_output: renderedOutput }
+          : renderResult.metadata.asset_manifest,
+        local_path: renderedOutput ? null : (generatedPost.post_folder || renderResult.post_folder),
         publishing_mode: normalizedSlot.publishing_mode || campaign.publishing_mode || 'mobile_finish',
         updated_at: nowFor().toISOString(),
       };
       await operationalRepository.savePost(persistedPost);
+      if (renderedOutput) await renderedOutputStorage.cleanupTemporary(generatedPost.post_folder || renderResult.post_folder);
       if (persistedPost.master_script_id) usedScriptIds.add(persistedPost.master_script_id);
       if (persistedPost.topic_id) batchSourceSetIds.add(persistedPost.topic_id);
       const finalized = await operationalRepository.finalizeClaimedSlot(campaign.campaign_id, normalizedSlot.slot_id, claim.claim_id, {

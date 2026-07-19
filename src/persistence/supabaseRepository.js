@@ -123,7 +123,7 @@ class SupabaseRepository {
       language: post.language, pillar_id: nullable(post.pillar_id), hook_type: nullable(post.hook_type),
       topic_id: nullable(post.topic_id), master_script_id: nullable(post.master_script_id), caption: post.caption || '',
       publish_package: json(post.publish_package || post.publishPackage, {}), strategy_metadata: json(post.strategy_metadata, {}),
-      asset_manifest: json(post.assets || post.asset_manifest, {}), errors: json(post.errors, []),
+      asset_manifest: json({ ...(post.assets || {}), ...(post.asset_manifest || {}) }, {}), errors: json(post.errors, []),
       generation_status: oneOf(statuses.generation || post.generation_status, ['queued', 'generating', 'completed', 'failed'], 'queued'),
       review_status: oneOf(statuses.review || post.review_status, ['pending', 'approved', 'rejected'], 'pending'),
       upload_status: oneOf(statuses.upload || post.upload_status, ['not_started', 'uploading', 'uploaded', 'failed'], 'not_started'),
