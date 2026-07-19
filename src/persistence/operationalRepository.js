@@ -5,7 +5,8 @@
 const fs = require('fs/promises');
 const path = require('path');
 const { createPersistenceRepository } = require('./index');
-const { claimCampaignSlot, completeClaimedSlot } = require('../campaigns/campaignExecutor');
+const { claimCampaignSlot, completeClaimedSlot } = require('../campaigns/campaignSlotLockStore');
+const { getCoolingScriptIds, SCRIPT_ROTATION_CONFIG } = require('../publication/publicationService');
 
 const ROOT = path.resolve(__dirname, '../..');
 const campaignFile = (root, id) => path.join(root, 'data', 'campaigns', `${id}.json`);
@@ -31,6 +32,7 @@ class LocalOperationalRepository {
   async updateGenerationJob(id, mutation) { const file = path.join(this.root, 'outputs', 'jobs', id, 'manifest.json'); const prior = await json(file); if (!prior) return null; const next = { ...prior, ...mutation, job_id: id }; await write(file, next); return next; }
   async saveExecutionSummary(id, summary) { return this.saveExecution(id, summary); }
   async getExecutionSummary(id) { return this.getExecution(id); }
+  async getCoolingScriptIds(accountId, options = {}) { return getCoolingScriptIds(accountId, { ...options, root: this.root }); }
 }
 class SupabaseOperationalRepository {
   constructor(repository) { this.mode = 'supabase'; this.repository = repository; }
@@ -66,6 +68,12 @@ class SupabaseOperationalRepository {
   async saveExecution(id, summary) { return this.saveExecutionSummary(id, summary); }
   async saveJob(job) { return this.createGenerationJob(job); }
   async savePost(post) { return this.repository.upsertPost(post); }
+  async getCoolingScriptIds(accountId, { now = new Date(), cooldownMs = SCRIPT_ROTATION_CONFIG.cooldown_ms } = {}) {
+    const account = await this.repository.accountId(accountId); const cutoff = new Date(now.getTime() - cooldownMs).toISOString();
+    const { data, error } = await this.repository.client.from('publication_history').select('script_id,published_at').eq('account_id', account).gt('published_at', cutoff).not('script_id', 'is', null);
+    if (error) throw new Error(`Unable to read cooling publications: ${error.message}`);
+    return new Set(data.map((row) => row.script_id).filter(Boolean));
+  }
 }
 function createOperationalRepository(options = {}) { const repository = options.repository || createPersistenceRepository(options); return repository.mode === 'supabase' ? new SupabaseOperationalRepository(repository) : new LocalOperationalRepository(); }
 module.exports = { LocalOperationalRepository, SupabaseOperationalRepository, createOperationalRepository };

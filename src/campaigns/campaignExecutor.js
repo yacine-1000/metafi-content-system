@@ -1,6 +1,5 @@
 'use strict';
 
-const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -13,6 +12,7 @@ const { validateAccountVisualBanks } = require('../generation/resolvePostAssets'
 const { createInjectionRequestStore } = require('../injection/injectionRequestStore');
 const { getSourceSet } = require('../scripts/scriptLibrary');
 const { getCoolingScriptIds } = require('../publication/publicationService');
+const { mutatePlan, claimCampaignSlot, completeClaimedSlot } = require('./campaignSlotLockStore');
 
 const ROOT = path.resolve(__dirname, '../..');
 const CAMPAIGNS_DIR = path.join(ROOT, 'data', 'campaigns');
@@ -62,105 +62,6 @@ function writeJsonAtomic(filePath, value) {
       Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
     }
   }
-}
-
-function isValidLease(claim, now) {
-  return Boolean(claim && typeof claim.claim_id === 'string' && claim.claim_id
-    && typeof claim.lease_expires_at === 'string' && new Date(claim.lease_expires_at).getTime() > now.getTime());
-}
-
-function planLockPath(planPath) {
-  return `${planPath}.lock`;
-}
-
-function acquirePlanMutationLock(planPath, now, leaseMs) {
-  const lockPath = planLockPath(planPath);
-  const lock = {
-    lock_id: crypto.randomUUID(),
-    acquired_at: now.toISOString(),
-    lease_expires_at: new Date(now.getTime() + leaseMs).toISOString(),
-  };
-  for (let attempt = 0; attempt < 100; attempt += 1) {
-    const temporaryPath = `${lockPath}.${process.pid}.${crypto.randomUUID()}.tmp`;
-    try {
-      fs.writeFileSync(temporaryPath, JSON.stringify(lock), { encoding: 'utf8', flag: 'wx' });
-      fs.linkSync(temporaryPath, lockPath);
-      fs.unlinkSync(temporaryPath);
-      return lock;
-    } catch (error) {
-      try { if (fs.existsSync(temporaryPath)) fs.unlinkSync(temporaryPath); } catch {}
-      if (error.code !== 'EEXIST') throw error;
-      let existing;
-      try { existing = readJson(lockPath, 'Campaign plan lock'); } catch {
-        const invalidPath = `${lockPath}.${crypto.randomUUID()}.invalid`;
-        try { fs.renameSync(lockPath, invalidPath); } catch {}
-        try { if (fs.existsSync(invalidPath)) fs.unlinkSync(invalidPath); } catch {}
-        continue;
-      }
-      if (isValidLease(existing, now)) {
-        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
-        continue;
-      }
-      const expiredPath = `${lockPath}.${existing.lock_id || 'expired'}.${crypto.randomUUID()}.expired`;
-      try { fs.renameSync(lockPath, expiredPath); } catch { continue; }
-      try { fs.unlinkSync(expiredPath); } catch {}
-    }
-  }
-  return null;
-}
-
-function releasePlanMutationLock(planPath, lock) {
-  const lockPath = planLockPath(planPath);
-  try {
-    const current = readJson(lockPath, 'Campaign plan lock');
-    if (current.lock_id === lock.lock_id) fs.unlinkSync(lockPath);
-  } catch (error) {
-    if (error.code !== 'ENOENT') return;
-  }
-}
-
-function mutatePlan(planPath, now, leaseMs, mutate) {
-  const lock = acquirePlanMutationLock(planPath, now, leaseMs);
-  if (!lock) return { locked: false };
-  try {
-    return { locked: true, value: mutate(readJson(planPath, 'Campaign plan')) };
-  } finally {
-    releasePlanMutationLock(planPath, lock);
-  }
-}
-
-function claimCampaignSlot(planPath, slotId, { now, leaseMs, planLockLeaseMs, isEligible }) {
-  const result = mutatePlan(planPath, now, planLockLeaseMs, (plan) => {
-    if (!Array.isArray(plan.slots)) throw new CampaignExecutionError('Campaign plan has an invalid structure');
-    const slot = plan.slots.find((item) => item && item.slot_id === slotId);
-    if (!slot || !isEligible(slot)) return null;
-    if (isValidLease(slot.claim, now)) return null;
-    const attemptCount = Number.isInteger(slot.attempt_count) && slot.attempt_count >= 0 ? slot.attempt_count + 1 : 1;
-    const claim = {
-      claim_id: crypto.randomUUID(),
-      claimed_at: now.toISOString(),
-      lease_expires_at: new Date(now.getTime() + leaseMs).toISOString(),
-      attempt_count: attemptCount,
-    };
-    slot.claim = claim;
-    slot.attempt_count = attemptCount;
-    writeJsonAtomic(planPath, plan);
-    return { slot: { ...slot, claim: { ...claim } }, claim };
-  });
-  return result.locked ? result.value : null;
-}
-
-function completeClaimedSlot(planPath, slotId, claimId, { now, planLockLeaseMs, onComplete }) {
-  const result = mutatePlan(planPath, now, planLockLeaseMs, (plan) => {
-    if (!Array.isArray(plan.slots)) throw new CampaignExecutionError('Campaign plan has an invalid structure');
-    const slot = plan.slots.find((item) => item && item.slot_id === slotId);
-    if (!slot || !slot.claim || slot.claim.claim_id !== claimId) return false;
-    onComplete(slot);
-    delete slot.claim;
-    writeJsonAtomic(planPath, plan);
-    return true;
-  });
-  return result.locked && result.value === true;
 }
 
 function updateCampaignSlotAtomically(campaignId, slotId, update, options = {}) {

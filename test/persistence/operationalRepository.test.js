@@ -9,6 +9,7 @@ const crypto = require('node:crypto');
 const { LocalOperationalRepository, SupabaseOperationalRepository } = require('../../src/persistence/operationalRepository');
 const { SupabaseRepository } = require('../../src/persistence/supabaseRepository');
 const { createServerSupabaseClient } = require('../../src/persistence/serverSupabaseClient');
+const { getCoolingScriptIds } = require('../../src/publication/publicationService');
 
 function localPlan(root, id) {
   const dir = path.join(root, 'data', 'campaigns'); fs.mkdirSync(dir, { recursive: true });
@@ -46,4 +47,28 @@ test('SupabaseOperationalRepository preserves claim leases, finalization, jobs, 
     await repo.createGenerationJob({ job_id: `${tag}-job`, account_id: account.legacy_account_id, campaign_id: tag, state: 'queued' }); assert.equal((await repo.updateGenerationJob(`${tag}-job`, { account_id: account.legacy_account_id, campaign_id: tag, state: 'completed' })).state, 'completed');
     await repo.saveExecutionSummary(tag, { generated_count: 1 }); assert.deepEqual(await repo.getExecutionSummary(tag), { generated_count: 1 });
   } finally { if (campaignId) await base.deleteCampaign(campaignId); }
+});
+
+test('LocalOperationalRepository cooling IDs match publication service', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'metafi-cooling-'));
+  try {
+    fs.mkdirSync(path.join(root, 'data'), { recursive: true }); const now = new Date('2026-07-19T12:00:00Z');
+    fs.writeFileSync(path.join(root, 'data', 'publication-history.json'), JSON.stringify({ publications: [
+      { publication_id: 'a', account_id: 'account-a', script_id: 'recent', published_at: '2026-07-19T11:00:00Z' },
+      { publication_id: 'b', account_id: 'account-a', script_id: 'old', published_at: '2026-07-01T11:00:00Z' },
+      { publication_id: 'c', account_id: 'account-b', script_id: 'other', published_at: '2026-07-19T11:00:00Z' },
+    ] }));
+    const repo = new LocalOperationalRepository({ root }); const options = { now, cooldownMs: 86400000 };
+    assert.deepEqual([...await repo.getCoolingScriptIds('account-a', options)], [...getCoolingScriptIds('account-a', { ...options, root })]);
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
+});
+
+test('SupabaseOperationalRepository cooling IDs isolate account and window', { skip: !process.env.SUPABASE_SERVICE_ROLE_KEY }, async () => {
+  const client = createServerSupabaseClient(); const base = new SupabaseRepository(client); const repo = new SupabaseOperationalRepository(base); const tag = `cooling-${Date.now()}`; const ids = []; const posts = [];
+  try {
+    for (const suffix of ['a', 'b']) { const row = await base.upsertAccount({ account_id: `${tag}-${suffix}`, internal_name: `${tag}-${suffix}`, display_name: suffix, username: `${tag}-${suffix}`, platform: 'tiktok', country: '', language: 'ar', gender: 'male', timezone: 'Asia/Riyadh', connection_status: 'manual_only', active: true }); ids.push(row); }
+    const now = new Date(); const recent = new Date(now.getTime() - 60000).toISOString(); const old = new Date(now.getTime() - 172800000).toISOString();
+    for (const [index, script, published] of [[0, 'recent-a', recent], [0, 'old-a', old], [1, 'recent-b', recent]]) { const post = await client.from('posts').insert({ legacy_post_id: `${tag}-post-${script}`, account_id: ids[index].id, language: 'ar', caption: '' }).select().single(); if (post.error) throw post.error; posts.push(post.data.id); const pub = await client.from('publication_history').insert({ post_id: post.data.id, account_id: ids[index].id, method: 'manual', status: 'published', published_at: published, script_id: script }).select().single(); if (pub.error) throw pub.error; }
+    const cooling = await repo.getCoolingScriptIds(`${tag}-a`, { now, cooldownMs: 86400000 }); assert.deepEqual([...cooling], ['recent-a']);
+  } finally { for (const id of posts) await client.from('posts').delete().eq('id', id); for (const account of ids) await base.deleteAccount(account.legacy_account_id); }
 });
