@@ -21,6 +21,7 @@
     "buffer:draft": "node src/generation/createBufferDraft.js",
     "buffer:schedule": "node src/generation/scheduleBufferPost.js",
     "generate:slideshows": "node src/generation/generateSlideshows.js",
+    "campaigns:daily": "node src/campaigns/dailyCampaignRunner.js",
     "pipeline": "node src/pipeline/runPipeline.js",
     "check:post-metadata": "node scripts/checkPostMetadata.js",
     "check:job-isolation": "node scripts/checkJobIsolation.js",
