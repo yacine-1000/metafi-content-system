@@ -11,7 +11,7 @@ function readJson(relativePath) {
 }
 
 function parseArgs(argv) {
-  const args = { language: 'ar', usedScriptIds: [], avoidedSourceSetIds: [] };
+  const args = { language: 'ar', usedScriptIds: [], avoidedSourceSetIds: [], accountId: null };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--pillar') {
       args.pillar = argv[i + 1];
@@ -27,6 +27,9 @@ function parseArgs(argv) {
       i += 1;
     } else if (argv[i] === '--avoid-source-set-ids') {
       args.avoidedSourceSetIds = argv[i + 1].split(',').filter(Boolean);
+      i += 1;
+    } else if (argv[i] === '--account-id') {
+      args.accountId = argv[i + 1];
       i += 1;
     }
   }
@@ -124,6 +127,7 @@ function main() {
     pillarId,
     hookType: args.hook,
     visualHookType: legacyVisualSelection.script.visual_hook_type,
+    accountId: args.accountId,
     usedScriptIds: args.usedScriptIds,
     avoidedSourceSetIds: args.avoidedSourceSetIds,
   }) : null;

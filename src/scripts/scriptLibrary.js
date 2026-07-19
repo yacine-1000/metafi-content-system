@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { getCoolingScriptIds } = require('../publication/publicationService');
 
 const ROOT = path.resolve(__dirname, '../..');
 const LIBRARY_DIR = path.join(ROOT, 'content', 'script-library');
@@ -86,6 +87,10 @@ function selectArabicRuntimeScript({
   pillarId,
   hookType,
   visualHookType,
+  accountId = null,
+  publicationRoot,
+  now,
+  cooldownMs,
   usedScriptIds = [],
   avoidedSourceSetIds = [],
 }) {
@@ -106,8 +111,15 @@ function selectArabicRuntimeScript({
     }
   }
   if (!eligible.length) return null;
-  const unused = eligible.filter(({ entry }) => !usedScripts.has(entry.script_id));
-  const reusePool = unused.length ? unused : eligible;
+  const coolingScriptIds = accountId
+    ? getCoolingScriptIds(accountId, { root: publicationRoot, now, cooldownMs })
+    : new Set();
+  const publicationEligible = eligible.filter(({ entry }) => !coolingScriptIds.has(entry.script_id));
+  if (!publicationEligible.length) {
+    throw new Error(`No eligible Arabic Script Library script remains for account "${accountId}" after confirmed-publication cooldown`);
+  }
+  const unused = publicationEligible.filter(({ entry }) => !usedScripts.has(entry.script_id));
+  const reusePool = unused.length ? unused : publicationEligible;
   const differentSourceSets = reusePool.filter(({ sourceSet }) => !avoidedSourceSets.has(sourceSet.source_set_id));
   const selected = (differentSourceSets.length ? differentSourceSets : reusePool)[0];
   return adaptArabicScript(selected.sourceSet, selected.entry, { hookType, visualHookType });

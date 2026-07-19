@@ -6,6 +6,9 @@ const path = require('path');
 
 const DEFAULT_ROOT = path.resolve(__dirname, '../..');
 const POST_ID_PATTERN = /^post-[A-Za-z0-9_-]+$/;
+const SCRIPT_ROTATION_CONFIG = Object.freeze({
+  cooldown_ms: 7 * 24 * 60 * 60 * 1000,
+});
 
 class PublicationValidationError extends Error {}
 
@@ -111,6 +114,26 @@ function getPublicationForPost(postId, options = {}) {
   return readPublicationHistory(options).publications.find((record) => record.post_id === postId) || null;
 }
 
+function getCoolingScriptIds(accountId, {
+  root = DEFAULT_ROOT,
+  now = new Date(),
+  cooldownMs = SCRIPT_ROTATION_CONFIG.cooldown_ms,
+} = {}) {
+  safeFileIdentity(accountId, 'Account identity');
+  if (!(now instanceof Date) || Number.isNaN(now.getTime())) throw new PublicationValidationError('Rotation timestamp is invalid');
+  if (!Number.isInteger(cooldownMs) || cooldownMs <= 0) throw new PublicationValidationError('Script cooldown must be a positive integer number of milliseconds');
+  const nowMs = now.getTime();
+  const cooling = new Set();
+  for (const record of readPublicationHistory({ root }).publications) {
+    if (!record || record.account_id !== accountId || typeof record.script_id !== 'string' || !record.script_id) continue;
+    if (typeof record.published_at !== 'string' || Number.isNaN(new Date(record.published_at).getTime())) {
+      throw new PublicationValidationError(`Publication ${record.publication_id || record.post_id || 'record'} has an invalid published_at`);
+    }
+    if (new Date(record.published_at).getTime() + cooldownMs > nowMs) cooling.add(record.script_id);
+  }
+  return cooling;
+}
+
 function markPostPosted(postId, input = {}, { root = DEFAULT_ROOT, now = new Date() } = {}) {
   if (!input || typeof input !== 'object' || Array.isArray(input)) throw new PublicationValidationError('Request body must be a JSON object');
   const unsupported = Object.keys(input).filter((key) => !['published_at', 'external_url'].includes(key));
@@ -137,6 +160,8 @@ function markPostPosted(postId, input = {}, { root = DEFAULT_ROOT, now = new Dat
 
 module.exports = {
   PublicationValidationError,
+  SCRIPT_ROTATION_CONFIG,
+  getCoolingScriptIds,
   getPublicationForPost,
   markPostPosted,
   readPublicationHistory,
