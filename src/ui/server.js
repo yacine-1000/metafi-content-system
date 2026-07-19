@@ -47,6 +47,34 @@ const RAW_SOURCE_PATH = path.join(ROOT, 'test-inputs', 'raw-source.txt');
 const MANUAL_INPUT_PATH = path.join(ROOT, 'test-inputs', 'manual-input.json');
 const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
 
+function quickSavePostDir(campaignId, postId) {
+  const postDir = safePostFolder(postId);
+  if (!postDir || !fs.existsSync(postDir)) return null;
+  try {
+    const metadata = JSON.parse(fs.readFileSync(path.join(postDir, 'metadata.json'), 'utf8'));
+    return metadata.campaign_id === campaignId ? { postDir, metadata } : null;
+  } catch { return null; }
+}
+
+function quickSaveData(campaignId) {
+  const campaign = getCampaign(campaignId);
+  if (!campaign) return null;
+  const planPath = path.join(ROOT, 'data', 'campaigns', `${campaignId}-plan.json`);
+  if (!fs.existsSync(planPath)) return { campaign, posts: [] };
+  const publications = new Map(readPublicationHistory().publications.map((item) => [item.post_id, item]));
+  const plan = JSON.parse(fs.readFileSync(planPath, 'utf8'));
+  const posts = (plan.slots || []).filter((slot) => slot && slot.post_id).map((slot) => {
+    const found = quickSavePostDir(campaignId, slot.post_id);
+    if (!found || !found.metadata.statuses || found.metadata.statuses.generation !== 'completed') return null;
+    const pkgPath = path.join(found.postDir, 'publish-package.json');
+    let pkg = {}; try { pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8')); } catch {}
+    const rendered = path.join(found.postDir, 'rendered');
+    const slides = fs.existsSync(rendered) ? fs.readdirSync(rendered).filter((name) => /^slide-\d+\.png$/.test(name)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })) : [];
+    return { post_id: slot.post_id, scheduled_date: slot.date, scheduled_time: slot.time, language: found.metadata.language, account_handle: campaign.account_username || campaign.account_internal_name || '', saved_at: found.metadata.saved_at || null, publication: publications.get(slot.post_id) || null, first_slide_text: pkg.slides?.[0]?.text || pkg.hook_text || '', caption: fs.existsSync(path.join(found.postDir, 'caption.txt')) ? fs.readFileSync(path.join(found.postDir, 'caption.txt'), 'utf8') : (pkg.caption || ''), slide_urls: slides.map((name) => `/outputs/posts/${encodeURIComponent(slot.post_id)}/rendered/${encodeURIComponent(name)}`) };
+  }).filter(Boolean).sort((a, b) => `${a.scheduled_date} ${a.scheduled_time}`.localeCompare(`${b.scheduled_date} ${b.scheduled_time}`));
+  return { campaign_id: campaignId, posts };
+}
+
 function createInjectionRouter(options = {}) {
   const router = express.Router();
   const handlers = createInjectionHandlers({
@@ -795,6 +823,37 @@ app.post('/api/posts/:postId/mark-posted', (req, res) => {
     console.error(`[publication] manual confirmation failed: ${error.message}`);
     return res.status(500).json({ error: 'Unable to confirm publication' });
   }
+});
+
+app.get('/api/campaigns/:campaignId/quick-save', (req, res) => {
+  try { const data = quickSaveData(req.params.campaignId); return data ? res.json(data) : res.status(404).json({ error: 'Campaign not found' }); }
+  catch (error) { return res.status(400).json({ error: error.message }); }
+});
+
+app.post('/api/campaigns/:campaignId/posts/:postId/mark-saved', (req, res) => {
+  const found = quickSavePostDir(req.params.campaignId, req.params.postId);
+  if (!found) return res.status(404).json({ error: 'Campaign post not found' });
+  if (!found.metadata.statuses || found.metadata.statuses.generation !== 'completed') return res.status(400).json({ error: 'Only generated posts can be saved' });
+  if (!found.metadata.saved_at) {
+    found.metadata.saved_at = new Date().toISOString();
+    fs.writeFileSync(path.join(found.postDir, 'metadata.json'), JSON.stringify(found.metadata, null, 2), 'utf8');
+  }
+  return res.json({ post_id: req.params.postId, saved_at: found.metadata.saved_at });
+});
+
+app.get('/api/campaigns/:campaignId/posts/:postId/slides.zip', (req, res) => {
+  const found = quickSavePostDir(req.params.campaignId, req.params.postId);
+  if (!found) return res.status(404).json({ error: 'Campaign post not found' });
+  const rendered = path.join(found.postDir, 'rendered');
+  const files = fs.existsSync(rendered) ? fs.readdirSync(rendered).filter((name) => /^slide-\d+\.png$/.test(name)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })) : [];
+  if (!files.length) return res.status(404).json({ error: 'Rendered slides are missing' });
+  // Store-only ZIP: avoids a dependency and preserves each existing PNG byte-for-byte.
+  const crcTable = Array.from({ length: 256 }, (_, n) => { let c = n; for (let i = 0; i < 8; i += 1) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
+  const crc = (buffer) => { let c = 0xffffffff; for (const byte of buffer) c = crcTable[(c ^ byte) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; };
+  const parts = [], central = []; let offset = 0;
+  for (const name of files) { const data = fs.readFileSync(path.join(rendered, name)); const n = Buffer.from(name); const c = crc(data); const local = Buffer.alloc(30); local.writeUInt32LE(0x04034b50, 0); local.writeUInt16LE(20, 4); local.writeUInt32LE(c, 14); local.writeUInt32LE(data.length, 18); local.writeUInt32LE(data.length, 22); local.writeUInt16LE(n.length, 26); parts.push(local, n, data); const cd = Buffer.alloc(46); cd.writeUInt32LE(0x02014b50, 0); cd.writeUInt16LE(20, 4); cd.writeUInt16LE(20, 6); cd.writeUInt32LE(c, 16); cd.writeUInt32LE(data.length, 20); cd.writeUInt32LE(data.length, 24); cd.writeUInt16LE(n.length, 28); cd.writeUInt32LE(offset, 42); central.push(cd, n); offset += local.length + n.length + data.length; }
+  const centralSize = central.reduce((n, b) => n + b.length, 0); const end = Buffer.alloc(22); end.writeUInt32LE(0x06054b50, 0); end.writeUInt16LE(files.length, 8); end.writeUInt16LE(files.length, 10); end.writeUInt32LE(centralSize, 12); end.writeUInt32LE(offset, 16);
+  res.setHeader('Content-Type', 'application/zip'); res.setHeader('Content-Disposition', `attachment; filename="${req.params.postId}-slides.zip"`); return res.send(Buffer.concat([...parts, ...central, end]));
 });
 
 app.post('/api/posts/:postId/send-to-buffer', async (req, res) => {

@@ -1118,6 +1118,7 @@
             <button class="campaign-detail-tab active" type="button" role="tab" aria-selected="true" data-campaign-tab="overview" onclick="setCampaignDetailTab('overview')">Overview</button>
             <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="content" onclick="setCampaignDetailTab('content')">Content</button>
             <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="schedule" onclick="setCampaignDetailTab('schedule')">Schedule</button>
+            <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="quick-save" onclick="setCampaignDetailTab('quick-save')">Quick Save</button>
             <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="settings" onclick="setCampaignDetailTab('settings')">Settings</button>
           </div>
           <div class="campaign-detail-panel active" data-campaign-panel="overview">
@@ -1173,6 +1174,7 @@
             <div id="campaign-calendar-error" class="campaign-calendar-error" role="alert"></div>
             <div id="campaign-calendar-day-detail" class="campaign-calendar-day-detail"></div>
           </div>
+          <div class="campaign-detail-panel" data-campaign-panel="quick-save"><div class="campaign-content-toolbar"><button class="campaign-secondary" type="button" onclick="setQuickSaveFilter('pending')">Pending</button><button class="campaign-secondary" type="button" onclick="setQuickSaveFilter('completed')">Completed</button><span id="quick-save-feedback" style="font-size:11px;color:var(--text-muted);"></span></div><div id="quick-save-posts" style="display:grid;gap:12px;"></div></div>
           <div class="campaign-detail-panel" data-campaign-panel="settings">
             <div class="campaign-detail-summary" style="margin-top:0;"><div class="campaign-detail-item"><span class="campaign-detail-key">Account</span><span class="campaign-detail-value" id="campaign-settings-account"></span></div><div class="campaign-detail-item"><span class="campaign-detail-key">Publishing mode</span><span class="campaign-detail-value" id="campaign-settings-publishing-mode"></span></div></div>
             <div class="campaign-detail-action-group"><button class="campaign-primary" id="campaign-detail-edit" type="button">Edit Campaign</button></div>
@@ -2107,7 +2109,29 @@
         _campaignLibraryId = _currentCampaignId;
         loadCampaignSchedule();
       }
+      if (tabName === 'quick-save') loadQuickSave();
     }
+
+    let _quickSaveData = null;
+    let _quickSaveFilter = 'pending';
+    function setQuickSaveFilter(value) { _quickSaveFilter = value; renderQuickSave(); }
+    async function loadQuickSave() {
+      if (!_currentCampaignId) return;
+      const response = await fetch(`/api/campaigns/${encodeURIComponent(_currentCampaignId)}/quick-save`);
+      const data = await response.json();
+      if (!response.ok) { document.getElementById('quick-save-feedback').textContent = data.error || 'Unable to load Quick Save'; return; }
+      _quickSaveData = data; renderQuickSave();
+    }
+    function renderQuickSave() {
+      const target = document.getElementById('quick-save-posts'); if (!_quickSaveData) return;
+      const posts = _quickSaveData.posts.filter((post) => _quickSaveFilter === 'completed' ? post.publication : !post.publication);
+      const groups = new Map(); posts.forEach((post) => { const key = `${post.scheduled_date} ${post.scheduled_time}`; if (!groups.has(key)) groups.set(key, []); groups.get(key).push(post); });
+      target.innerHTML = [...groups.entries()].map(([key, items]) => `<section class="campaign-workspace-card"><div class="campaign-workspace-card-title">${escapeHtml(key)}</div>${items.map((p) => `<div style="display:grid;grid-template-columns:72px 1fr;gap:12px;margin-top:12px;"><img style="width:72px;height:96px;object-fit:cover;border-radius:7px;" src="${p.slide_urls[0] || ''}" alt=""><div><div style="font-size:12px;white-space:pre-wrap;">${escapeHtml(p.first_slide_text || p.post_id)}</div><div style="font-size:10px;color:var(--text-muted);margin:6px 0;">@${escapeHtml(p.account_handle)} · ${escapeHtml(String(p.language).toUpperCase())} · ${p.publication ? 'Posted' : p.saved_at ? 'Saved' : 'Ready'}</div><div style="display:flex;gap:6px;flex-wrap:wrap;"><button class="campaign-secondary" onclick="quickSaveCopy('${escapeHtml(p.post_id)}')">Copy Caption</button><button class="campaign-secondary" onclick="quickSaveSlides('${escapeHtml(p.post_id)}')">Share Slides</button>${p.publication ? '' : `<button class="campaign-secondary" onclick="quickSaveSaved('${escapeHtml(p.post_id)}')">Mark as Saved</button><button class="campaign-primary" onclick="markCampaignPostPosted('${escapeHtml(p.post_id)}')">Mark as Posted</button>`}</div></div></div>`).join('')}</section>`).join('') || '<div class="campaign-empty">No posts in this section.</div>';
+    }
+    function quickSavePost(id) { return _quickSaveData && _quickSaveData.posts.find((item) => item.post_id === id); }
+    async function quickSaveCopy(id) { const post = quickSavePost(id); try { await navigator.clipboard.writeText(post.caption || ''); document.getElementById('quick-save-feedback').textContent = 'Caption copied.'; } catch { document.getElementById('quick-save-feedback').textContent = 'Unable to copy caption.'; } }
+    async function quickSaveSlides(id) { const post = quickSavePost(id); try { if (navigator.share && navigator.canShare && post.slide_urls.length) { const files = await Promise.all(post.slide_urls.map(async (url, i) => new File([await fetch(url).then((r) => r.blob())], `slide-${i + 1}.png`, { type: 'image/png' }))); if (navigator.canShare({ files })) { await navigator.share({ files }); return; } } } catch {} window.location.href = `/api/campaigns/${encodeURIComponent(_currentCampaignId)}/posts/${encodeURIComponent(id)}/slides.zip`; }
+    async function quickSaveSaved(id) { const response = await fetch(`/api/campaigns/${encodeURIComponent(_currentCampaignId)}/posts/${encodeURIComponent(id)}/mark-saved`, { method: 'POST' }); const data = await response.json(); document.getElementById('quick-save-feedback').textContent = response.ok ? 'Marked as saved.' : (data.error || 'Unable to save'); if (response.ok) loadQuickSave(); }
 
     function campaignWorkspaceWindow(campaign) {
       if (_campaignExecutionSummary && _campaignExecutionSummary.campaign_id === campaign.campaign_id) {
@@ -3517,6 +3541,7 @@
         post.publication = result.publication;
         renderCampaignContent();
         renderCampaignOverview();
+        if (_quickSaveData) loadQuickSave();
       } catch (error) {
         window.alert(error.message);
       } finally {
