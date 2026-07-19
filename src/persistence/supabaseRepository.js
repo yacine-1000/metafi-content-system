@@ -162,6 +162,20 @@ class SupabaseRepository {
     return this.response(this.client.from('account_assets').upsert(row, { onConflict: 'account_id,storage_provider,storage_key' }).select().single(), 'Unable to upsert account asset');
   }
 
+  async upsertContentAsset(asset) {
+    const row = {
+      legacy_id: asset.legacy_id, asset_type: asset.asset_type, bank: asset.bank,
+      pillar: nullable(asset.pillar), hook_type: nullable(asset.hook_type), language: nullable(asset.language),
+      storage_provider: asset.storage_provider || 'local', bucket: nullable(asset.bucket), storage_key: asset.storage_key,
+      mime_type: asset.mime_type || asset.content_type, width: nullable(asset.width), height: nullable(asset.height),
+      size_bytes: nullable(asset.size_bytes == null ? asset.byte_size : asset.size_bytes), checksum: nullable(asset.checksum), active: asset.active !== false,
+    };
+    if (!row.legacy_id || !row.asset_type || !row.bank || !row.storage_key || !row.mime_type) {
+      throw new PersistenceDataError('Content asset legacy ID, type, bank, storage key, and MIME type are required');
+    }
+    return this.response(this.client.from('content_assets').upsert(row, { onConflict: 'legacy_id' }).select().single(), 'Unable to upsert content asset');
+  }
+
   async listAccounts() { return this.response(this.client.from('accounts').select('*').order('internal_name'), 'Unable to list accounts'); }
   async getAccount(legacyAccountId) { return this.response(this.client.from('accounts').select('*').eq('legacy_account_id', legacyAccountId).maybeSingle(), 'Unable to get account'); }
   async listCampaigns() { return this.response(this.client.from('campaigns').select('*').order('created_at', { ascending: false }), 'Unable to list campaigns'); }
@@ -171,12 +185,14 @@ class SupabaseRepository {
   async listGenerationJobs() { return this.response(this.client.from('generation_jobs').select('*').order('created_at', { ascending: false }), 'Unable to list generation jobs'); }
   async listPublicationHistory() { return this.response(this.client.from('publication_history').select('*').order('published_at', { ascending: false }), 'Unable to list publication history'); }
   async listAccountAssets(accountLegacyId) { return this.response(this.client.from('account_assets').select('*').eq('account_id', await this.accountId(accountLegacyId)).order('created_at'), 'Unable to list account assets'); }
+  async listContentAssets() { return this.response(this.client.from('content_assets').select('*').order('created_at'), 'Unable to list content assets'); }
 
   async deleteAccount(legacyAccountId) { return this.response(this.client.from('accounts').delete().eq('legacy_account_id', legacyAccountId).select().maybeSingle(), 'Unable to delete account'); }
   async deleteCampaign(legacyCampaignId) { return this.response(this.client.from('campaigns').delete().eq('legacy_campaign_id', legacyCampaignId).select().maybeSingle(), 'Unable to delete campaign'); }
   async deletePost(legacyPostId) { return this.response(this.client.from('posts').delete().eq('legacy_post_id', legacyPostId).select().maybeSingle(), 'Unable to delete post'); }
   async deleteGenerationJob(legacyJobId) { return this.response(this.client.from('generation_jobs').delete().eq('legacy_job_id', legacyJobId).select().maybeSingle(), 'Unable to delete generation job'); }
   async deleteAccountAsset(assetId) { return this.response(this.client.from('account_assets').delete().eq('id', assetId).select().maybeSingle(), 'Unable to delete account asset'); }
+  async deleteContentAsset(assetId) { return this.response(this.client.from('content_assets').delete().eq('id', assetId).select().maybeSingle(), 'Unable to delete content asset'); }
 }
 
 module.exports = { PersistenceDataError, SupabaseRepository };

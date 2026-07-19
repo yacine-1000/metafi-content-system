@@ -31,6 +31,7 @@ class LocalRepository {
   async upsertGenerationJob(input) { return { mode: this.mode, record: input, skipped: true }; }
   async upsertPublication(input) { return { mode: this.mode, record: input, skipped: true }; }
   async upsertAccountAsset(input) { return { mode: this.mode, record: input, skipped: true }; }
+  async upsertContentAsset(input) { return { mode: this.mode, record: input, skipped: true }; }
 }
 
 module.exports = { LocalRepository };
