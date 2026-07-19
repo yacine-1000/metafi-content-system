@@ -31,9 +31,9 @@ function options(root, campaign) {
   };
 }
 
-test('missing plan returns a structured actionable error and no failed slot', () => {
+test('missing plan returns a structured actionable error and no failed slot', async () => {
   const { root, campaign } = fixture();
-  assert.throws(
+  await assert.rejects(
     () => executeCampaignWindow(campaign.campaign_id, options(root, campaign)),
     (error) => error instanceof CampaignExecutionError
       && error.code === 'PLAN_FILE_MISSING'
@@ -42,28 +42,28 @@ test('missing plan returns a structured actionable error and no failed slot', ()
   );
 });
 
-test('empty plan is blocked explicitly instead of becoming Failed 1', () => {
+test('empty plan is blocked explicitly instead of becoming Failed 1', async () => {
   const { root, campaign, planPath } = fixture();
   fs.writeFileSync(planPath, JSON.stringify({ campaign_id: campaign.campaign_id, slots: [] }));
-  assert.throws(
+  await assert.rejects(
     () => executeCampaignWindow(campaign.campaign_id, options(root, campaign)),
     (error) => error.code === 'PLAN_ZERO_SLOTS' && error.details.expected_slots === 1,
   );
 });
 
-test('no eligible slots is a successful no-work result', () => {
+test('no eligible slots is a successful no-work result', async () => {
   const { root, campaign, planPath } = fixture('2026-07-25');
   fs.writeFileSync(planPath, JSON.stringify({
     campaign_id: campaign.campaign_id,
     slots: [{ slot_id: 'future-slot', date: '2026-07-25', time: '12:00', status: 'planned', post_id: null }],
   }));
-  const result = executeCampaignWindow(campaign.campaign_id, options(root, campaign));
+  const result = await executeCampaignWindow(campaign.campaign_id, options(root, campaign));
   assert.equal(result.outcome, 'no_work');
   assert.equal(result.reason_code, 'NO_SLOTS_CURRENT_WINDOW');
   assert.equal(result.failed_count, 0);
 });
 
-test('account asset failure is retryable and only the failed slot runs after upload', () => {
+test('account asset failure is retryable and only the failed slot runs after upload', async () => {
   const { root, campaign, planPath } = fixture();
   fs.writeFileSync(planPath, JSON.stringify({
     campaign_id: campaign.campaign_id,
@@ -80,7 +80,7 @@ test('account asset failure is retryable and only the failed slot runs after upl
     },
     generateSlideshows: () => { generationCalls += 1; throw new Error('renderer must not start'); },
   };
-  const failed = executeCampaignWindow(campaign.campaign_id, missingOptions);
+  const failed = await executeCampaignWindow(campaign.campaign_id, missingOptions);
   assert.equal(generationCalls, 0);
   assert.deepEqual(failed.failed_slots[0], {
     slot_id: 'asset-slot',
@@ -96,11 +96,14 @@ test('account asset failure is retryable and only the failed slot runs after upl
       generationCalls += 1;
       const folder = path.join(root, 'outputs', 'posts', 'post-retry');
       fs.mkdirSync(folder, { recursive: true });
-      fs.writeFileSync(path.join(folder, 'metadata.json'), JSON.stringify({ post_id: 'post-retry' }));
-      return { posts: [{ post_id: 'post-retry', post_folder: path.relative(root, folder) }] };
+      return { posts: [{ post_id: 'post-retry', post_folder: path.relative(root, folder), render_result: {
+        post_id: 'post-retry', language: 'ar', pillar_id: 'p2', hook_type: 'listicle', caption: '',
+        metadata: { post_id: 'post-retry', master_script_id: 'script-retry', topic_id: 'topic-retry', statuses: { generation: 'completed', review: 'pending' } },
+        publish_package: {}, post_folder: path.relative(root, folder),
+      } }] };
     },
   };
-  const retried = executeCampaignWindow(campaign.campaign_id, uploadedOptions);
+  const retried = await executeCampaignWindow(campaign.campaign_id, uploadedOptions);
   assert.equal(retried.generated_count, 1);
   assert.equal(retried.failed_count, 0);
   assert.equal(generationCalls, 1);

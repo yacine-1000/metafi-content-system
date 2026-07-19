@@ -11,8 +11,8 @@ const { scheduleBufferPost } = require('../generation/scheduleBufferPost');
 const { validateAccountVisualBanks } = require('../generation/resolvePostAssets');
 const { createInjectionRequestStore } = require('../injection/injectionRequestStore');
 const { getSourceSet } = require('../scripts/scriptLibrary');
-const { getCoolingScriptIds } = require('../publication/publicationService');
 const { mutatePlan, claimCampaignSlot, completeClaimedSlot } = require('./campaignSlotLockStore');
+const { createOperationalRepository } = require('../persistence/operationalRepository');
 
 const ROOT = path.resolve(__dirname, '../..');
 const CAMPAIGNS_DIR = path.join(ROOT, 'data', 'campaigns');
@@ -122,43 +122,9 @@ function failureReason(error) {
   return message.replace(/\s+/g, ' ').trim().slice(0, 1000) || 'Campaign slot generation failed';
 }
 
-function attachCampaignMetadata(postFolder, campaign, slot, now = new Date()) {
-  const metadataPath = path.join(postFolder, 'metadata.json');
-  if (!fs.existsSync(metadataPath)) throw new Error('Generated post metadata.json is missing');
-  const metadata = readJson(metadataPath, 'Generated post metadata.json');
-  metadata.campaign_id = campaign.campaign_id;
-  metadata.slot_id = slot.slot_id;
-  metadata.account_id = campaign.account_id;
-  metadata.buffer_channel_id = campaign.buffer_channel_id;
-  metadata.account_internal_name = campaign.account_internal_name;
-  metadata.account_username = campaign.account_username;
-  metadata.account_language = campaign.account_language;
-  metadata.account_timezone = campaign.account_timezone;
-  metadata.publishing_mode = slot.publishing_mode || campaign.publishing_mode || 'mobile_finish';
-  metadata.updated_at = now.toISOString();
-  writeJsonAtomic(metadataPath, metadata);
-}
-
-function campaignScriptUsage(campaignId, postsDir = POSTS_DIR) {
-  const scriptIds = new Set();
-  if (!fs.existsSync(postsDir)) return scriptIds;
-  for (const entry of fs.readdirSync(postsDir, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const metadataPath = path.join(postsDir, entry.name, 'metadata.json');
-    if (!fs.existsSync(metadataPath)) continue;
-    try {
-      const metadata = readJson(metadataPath, 'Post metadata.json');
-      if (metadata.campaign_id === campaignId && metadata.master_script_id) scriptIds.add(metadata.master_script_id);
-    } catch {
-      // Invalid unrelated post metadata must not block eligible campaign slots.
-    }
-  }
-  return scriptIds;
-}
-
 function compatibleInjectionRequest(requestStore, sourceSetFor, campaign, slot, now, publicationRoot, coolingOverride = null) {
   if (slot.language !== 'ar') return null;
-  const cooling = coolingOverride || getCoolingScriptIds(campaign.account_id, { root: publicationRoot, now });
+  const cooling = coolingOverride || new Set();
   for (const request of requestStore.list()) {
     if (!request || request.status !== 'pending' || request.campaign_id !== campaign.campaign_id || request.account_id !== campaign.account_id) continue;
     if (request.target_date && request.target_date !== slot.date) continue;
@@ -173,21 +139,25 @@ function compatibleInjectionRequest(requestStore, sourceSetFor, campaign, slot, 
   return null;
 }
 
-function executeCampaignWindow(campaignId, options = {}) {
+async function executeCampaignWindow(campaignId, options = {}) {
   const executionStartedAt = Date.now();
   const logStage = (stage, event, startedAt = executionStartedAt, details = '') => console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=${stage} event=${event} elapsed_ms=${Date.now() - startedAt}${details ? ` ${details}` : ''}`);
   logStage('execute_campaign_window', 'start');
   const root = options.root || ROOT;
-  const campaignsDir = path.join(root, 'data', 'campaigns');
-  const postsDir = path.join(root, 'outputs', 'posts');
-  const readCampaign = options.getCampaign || getCampaign;
+  const operationalRepository = options.operationalRepository || createOperationalRepository({
+    root,
+    env: options.env || process.env,
+    client: options.client,
+    repository: options.repository,
+  });
+  const readCampaign = options.getCampaign || ((id) => operationalRepository.getCampaign(id));
   const generate = options.generateSlideshows || generateSlideshows;
   const validateVisualBanks = options.validateAccountVisualBanks || validateAccountVisualBanks;
   const injectionRequestStore = options.injectionRequestStore || createInjectionRequestStore({ filePath: path.join(root, 'data', 'injection-requests.json') });
   const sourceSetFor = options.getSourceSet || getSourceSet;
   const nowFor = options.now || (() => new Date());
   const campaignLoadStartedAt = Date.now();
-  const campaign = readCampaign(campaignId);
+  const campaign = await readCampaign(campaignId);
   logStage('campaign_load', 'complete', campaignLoadStartedAt);
   if (!campaign) return null;
 
@@ -204,20 +174,9 @@ function executeCampaignWindow(campaignId, options = {}) {
     throw new CampaignExecutionError('slot_claim_lease_ms must be a positive integer');
   }
 
-  const planPath = path.join(campaignsDir, `${campaign.campaign_id}-plan.json`);
-  if (!fs.existsSync(planPath)) {
-    throw new CampaignExecutionError('No campaign plan exists. Activate or plan the campaign before generating.', 'PLAN_FILE_MISSING', { plan_path: planPath });
-  }
-  let plan = readJson(planPath, 'Campaign plan');
-  if (plan.campaign_id !== campaign.campaign_id || !Array.isArray(plan.slots)) {
-    throw new CampaignExecutionError('Campaign plan has an invalid structure', 'PLAN_INVALID', { plan_path: planPath });
-  }
   const expectedSlots = campaign.duration_days * campaign.posts_per_day;
   if (expectedSlots <= 0) {
     throw new CampaignExecutionError('Posts per day is zero; update campaign cadence before generating.', 'POSTS_PER_DAY_ZERO', { posts_per_day: campaign.posts_per_day });
-  }
-  if (plan.slots.length === 0) {
-    throw new CampaignExecutionError('Campaign plan contains zero slots. Re-plan the campaign before generating.', 'PLAN_ZERO_SLOTS', { plan_path: planPath, expected_slots: expectedSlots });
   }
   const accountFields = {
     account_id: campaign.account_id,
@@ -227,21 +186,29 @@ function executeCampaignWindow(campaignId, options = {}) {
     account_language: campaign.account_language,
     account_timezone: campaign.account_timezone,
   };
-  const accountContextMutation = mutatePlan(planPath, nowFor(), CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms, (latestPlan) => {
-    if (latestPlan.campaign_id !== campaign.campaign_id || !Array.isArray(latestPlan.slots)) {
-      throw new CampaignExecutionError('Campaign plan has an invalid structure');
-    }
-    Object.assign(latestPlan, accountFields);
-    latestPlan.slots.forEach((slot) => Object.assign(slot, accountFields));
-    writeJsonAtomic(planPath, latestPlan);
-    return latestPlan;
+  const windowStart = localDateInTimezone(campaign.timezone, nowFor());
+  const windowEnd = addCalendarDays(windowStart, executionWindowDays - 1);
+  const eligibleSlots = await operationalRepository.listEligibleSlots(campaign.campaign_id, {
+    start: windowStart,
+    end: windowEnd,
+    context: accountFields,
   });
-  logStage('plan_lock_and_context', accountContextMutation.locked ? 'complete' : 'locked');
-  if (!accountContextMutation.locked) return {
+  if (eligibleSlots.planExists === false) {
+    const details = operationalRepository.mode === 'local'
+      ? { plan_path: path.join(root, 'data', 'campaigns', `${campaign.campaign_id}-plan.json`) }
+      : {};
+    throw new CampaignExecutionError('No campaign plan exists. Activate or plan the campaign before generating.', 'PLAN_FILE_MISSING', details);
+  }
+  if (eligibleSlots.totalCount === 0) {
+    const details = { expected_slots: expectedSlots };
+    if (operationalRepository.mode === 'local') details.plan_path = path.join(root, 'data', 'campaigns', `${campaign.campaign_id}-plan.json`);
+    throw new CampaignExecutionError('Campaign plan contains zero slots. Re-plan the campaign before generating.', 'PLAN_ZERO_SLOTS', details);
+  }
+  if (eligibleSlots.locked === false) return {
     campaign_id: campaign.campaign_id,
     execution_window_days: executionWindowDays,
-    window_start: localDateInTimezone(campaign.timezone, nowFor()),
-    window_end: addCalendarDays(localDateInTimezone(campaign.timezone, nowFor()), executionWindowDays - 1),
+    window_start: windowStart,
+    window_end: windowEnd,
     generated_count: 0,
     failed_count: 0,
     skipped_claimed_count: 0,
@@ -249,24 +216,14 @@ function executeCampaignWindow(campaignId, options = {}) {
     failed_slots: [],
     updated_at: nowFor().toISOString(),
   };
-  plan = accountContextMutation.value;
-
-  const windowStart = localDateInTimezone(campaign.timezone, nowFor());
-  const windowEnd = addCalendarDays(windowStart, executionWindowDays - 1);
-  const isEligibleSlot = (slot) => (
-    ['planned', 'failed'].includes(slot.status)
-    && !slot.post_id
-    && slot.date >= windowStart
-    && slot.date <= windowEnd
-  );
-  const eligibleSlotIds = plan.slots.filter(isEligibleSlot).map((slot) => slot.slot_id);
+  const eligibleSlotIds = eligibleSlots.map((slot) => slot.slot_id || slot.legacy_slot_id);
   if (eligibleSlotIds.length === 0) {
     const ended = campaignEndDate(campaign) < windowStart;
-    const slotsInWindow = plan.slots.filter((slot) => slot.date >= windowStart && slot.date <= windowEnd);
-    const code = ended ? 'CAMPAIGN_ENDED' : slotsInWindow.length ? 'NO_ELIGIBLE_SLOTS' : 'NO_SLOTS_CURRENT_WINDOW';
+    const slotsInWindowCount = eligibleSlots.windowCount || 0;
+    const code = ended ? 'CAMPAIGN_ENDED' : slotsInWindowCount ? 'NO_ELIGIBLE_SLOTS' : 'NO_SLOTS_CURRENT_WINDOW';
     const reason = ended
       ? 'Campaign dates ended; there are no slots to generate.'
-      : slotsInWindow.length
+      : slotsInWindowCount
         ? 'No eligible slots in the current three-day window; existing slots are already processed or claimed.'
         : 'No slots in the current three-day window.';
     const summary = noWorkSummary(
@@ -277,51 +234,67 @@ function executeCampaignWindow(campaignId, options = {}) {
       code,
       reason,
       nowFor(),
-      slotsInWindow.length,
+      slotsInWindowCount,
     );
-    writeJsonAtomic(path.join(campaignsDir, `${campaign.campaign_id}-execution.json`), summary);
-    return summary;
+    await operationalRepository.saveExecutionSummary(campaign.campaign_id, summary);
+    return operationalRepository.getExecutionSummary(campaign.campaign_id);
   }
   const generatedPostIds = [];
   const failedSlots = [];
   let skippedClaimedCount = 0;
-  const filesystemScanStartedAt = Date.now();
-  const usedScriptIds = campaignScriptUsage(campaign.campaign_id, postsDir);
-  logStage('filesystem_scans', 'complete', filesystemScanStartedAt, `used_script_count=${usedScriptIds.size}`);
   const batchSourceSetIds = new Set();
   const publicationHistoryStartedAt = Date.now();
-  const executionCoolingScriptIds = getCoolingScriptIds(campaign.account_id, { root, now: nowFor() });
+  const executionCoolingScriptIds = await operationalRepository.getCoolingScriptIds(campaign.account_id, {
+    now: nowFor(),
+    campaignId: campaign.campaign_id,
+  });
+  const usedScriptIds = new Set(executionCoolingScriptIds);
   logStage('publication_history_loading', 'complete', publicationHistoryStartedAt, `cooling_script_count=${executionCoolingScriptIds.size}`);
 
   for (const slotId of eligibleSlotIds) {
     const slotStartedAt = Date.now();
-    const claimResult = claimCampaignSlot(planPath, slotId, {
-      now: nowFor(),
-      leaseMs: slotClaimLeaseMs,
-      planLockLeaseMs: CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms,
-      isEligible: isEligibleSlot,
-    });
+    const claimResult = await operationalRepository.claimEligibleSlot(campaign.campaign_id, slotId, nowFor(), slotClaimLeaseMs);
     if (!claimResult) {
       logStage('slot_claim', 'skipped', slotStartedAt, `slot_id=${slotId}`);
       skippedClaimedCount += 1;
       continue;
     }
     const { slot, claim } = claimResult;
+    const normalizedSlot = {
+      ...slot,
+      slot_id: slot.slot_id || slot.legacy_slot_id || slotId,
+      date: slot.date || slot.scheduled_date,
+      time: slot.time || slot.scheduled_time,
+    };
     logStage('slot_claim', 'complete', slotStartedAt, `slot_id=${slotId} claim_id=${claim.claim_id}`);
     let claimedInjection = null;
+    const jobId = `job-${normalizedSlot.slot_id}`;
     try {
+      await operationalRepository.createGenerationJob({
+        job_id: jobId,
+        account_id: campaign.account_id,
+        campaign_id: campaign.campaign_id,
+        slot_id: normalizedSlot.slot_id,
+        state: 'claimed',
+        attempt_count: normalizedSlot.attempt_count || claim.attempt_count || 1,
+        claim_token: claim.claim_id,
+        claimed_at: claim.claimed_at || nowFor().toISOString(),
+        claim_expires_at: claim.lease_expires_at,
+        started_at: nowFor().toISOString(),
+      });
       const accountLookupStartedAt = Date.now();
-      validateVisualBanks(campaign.account_id, slot.language, slot.hook_type);
-      logStage('account_lookup', 'complete', accountLookupStartedAt, `slot_id=${slot.slot_id}`);
+      await validateVisualBanks(campaign.account_id, normalizedSlot.language, normalizedSlot.hook_type);
+      logStage('account_lookup', 'complete', accountLookupStartedAt, `slot_id=${normalizedSlot.slot_id}`);
       const injectionLookupStartedAt = Date.now();
-      const pendingInjection = compatibleInjectionRequest(injectionRequestStore, sourceSetFor, campaign, slot, nowFor(), root, executionCoolingScriptIds);
-      logStage('injection_request_lookup', 'complete', injectionLookupStartedAt, `slot_id=${slot.slot_id} matched=${Boolean(pendingInjection)}`);
-      if (pendingInjection) claimedInjection = injectionRequestStore.claim(pendingInjection.injection_id, slot.slot_id);
-      const postId = `post-${slot.slot_id}`;
-      const generation = generate({
-        pillar: slot.pillar_id,
-        hook: slot.hook_type,
-        languages: [slot.language],
+      const pendingInjection = compatibleInjectionRequest(injectionRequestStore, sourceSetFor, campaign, normalizedSlot, nowFor(), root, executionCoolingScriptIds);
+      logStage('injection_request_lookup', 'complete', injectionLookupStartedAt, `slot_id=${normalizedSlot.slot_id} matched=${Boolean(pendingInjection)}`);
+      if (pendingInjection) claimedInjection = injectionRequestStore.claim(pendingInjection.injection_id, normalizedSlot.slot_id);
+      const postId = `post-${normalizedSlot.slot_id}`;
+      await operationalRepository.updateGenerationJob(jobId, { state: 'rendering' });
+      const generation = await generate({
+        pillar: normalizedSlot.pillar_id,
+        hook: normalizedSlot.hook_type,
+        languages: [normalizedSlot.language],
         postId,
         usedScriptIds: [...usedScriptIds],
         avoidedSourceSetIds: [...batchSourceSetIds],
@@ -329,46 +302,63 @@ function executeCampaignWindow(campaignId, options = {}) {
         coolingScriptIds: executionCoolingScriptIds,
         ...(claimedInjection ? { requiredSourceSetId: claimedInjection.source_set_id } : {}),
       });
-      logStage('slideshow_generation', 'complete', slotStartedAt, `slot_id=${slot.slot_id}`);
+      logStage('slideshow_generation', 'complete', slotStartedAt, `slot_id=${normalizedSlot.slot_id}`);
       if (!generation.posts || generation.posts.length !== 1) {
         throw new Error('Generation did not return exactly one post');
       }
       const generatedPost = generation.posts[0];
-      const postFolder = path.resolve(root, generatedPost.post_folder);
-      const generatedMetadata = readJson(path.join(postFolder, 'metadata.json'), 'Generated post metadata.json');
-      attachCampaignMetadata(postFolder, campaign, slot, nowFor());
-      if (generatedMetadata.master_script_id) usedScriptIds.add(generatedMetadata.master_script_id);
-      if (generatedMetadata.topic_id) batchSourceSetIds.add(generatedMetadata.topic_id);
-      if (completeClaimedSlot(planPath, slot.slot_id, claim.claim_id, {
-        now: nowFor(),
-        planLockLeaseMs: CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms,
-        onComplete: (currentSlot) => {
-          currentSlot.post_id = generatedPost.post_id;
-          currentSlot.status = 'generated';
-          delete currentSlot.failure_reason;
-          delete currentSlot.failure_code;
-        },
-      })) {
-        logStage('campaign_plan_finalization', 'complete', slotStartedAt, `slot_id=${slot.slot_id}`);
-        if (claimedInjection && !injectionRequestStore.consume(claimedInjection.injection_id, slot.slot_id)) {
+      const renderResult = generatedPost.render_result;
+      if (!renderResult || !renderResult.metadata) throw new Error('Generation did not return structured render metadata');
+      const persistedPost = {
+        ...renderResult.metadata,
+        post_id: generatedPost.post_id || renderResult.post_id,
+        job_id: jobId,
+        campaign_id: campaign.campaign_id,
+        slot_id: normalizedSlot.slot_id,
+        account_id: campaign.account_id,
+        buffer_channel_id: campaign.buffer_channel_id,
+        account_internal_name: campaign.account_internal_name,
+        account_username: campaign.account_username,
+        account_language: campaign.account_language,
+        account_timezone: campaign.account_timezone,
+        language: renderResult.language || normalizedSlot.language,
+        pillar_id: renderResult.pillar_id || normalizedSlot.pillar_id,
+        hook_type: renderResult.hook_type || normalizedSlot.hook_type,
+        caption: renderResult.caption || '',
+        publish_package: renderResult.publish_package || {},
+        local_path: generatedPost.post_folder || renderResult.post_folder,
+        publishing_mode: normalizedSlot.publishing_mode || campaign.publishing_mode || 'mobile_finish',
+        updated_at: nowFor().toISOString(),
+      };
+      await operationalRepository.savePost(persistedPost);
+      if (persistedPost.master_script_id) usedScriptIds.add(persistedPost.master_script_id);
+      if (persistedPost.topic_id) batchSourceSetIds.add(persistedPost.topic_id);
+      const finalized = await operationalRepository.finalizeClaimedSlot(campaign.campaign_id, normalizedSlot.slot_id, claim.claim_id, {
+        post_id: persistedPost.post_id,
+        status: 'generated',
+        failure_reason: null,
+        failure_code: null,
+      });
+      if (finalized) {
+        await operationalRepository.updateGenerationJob(jobId, { state: 'completed', completed_at: nowFor().toISOString() });
+        logStage('campaign_plan_finalization', 'complete', slotStartedAt, `slot_id=${normalizedSlot.slot_id}`);
+        if (claimedInjection && !injectionRequestStore.consume(claimedInjection.injection_id, normalizedSlot.slot_id)) {
           throw new CampaignExecutionError('Injection request could not be marked consumed');
         }
-        generatedPostIds.push(generatedPost.post_id);
+        generatedPostIds.push(persistedPost.post_id);
       }
     } catch (error) {
-      logStage('slot', 'failed', slotStartedAt, `slot_id=${slot.slot_id} error=${JSON.stringify(failureReason(error))}`);
+      logStage('slot', 'failed', slotStartedAt, `slot_id=${normalizedSlot.slot_id} error=${JSON.stringify(failureReason(error))}`);
       const reason = failureReason(error);
       const reasonCode = error && typeof error.code === 'string' ? error.code : 'SLOT_GENERATION_FAILED';
-      if (claimedInjection) injectionRequestStore.releaseFailure(claimedInjection.injection_id, slot.slot_id, reason, nowFor().toISOString());
-      if (completeClaimedSlot(planPath, slot.slot_id, claim.claim_id, {
-        now: nowFor(),
-        planLockLeaseMs: CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms,
-        onComplete: (currentSlot) => {
-          currentSlot.status = 'failed';
-          currentSlot.failure_reason = reason;
-          currentSlot.failure_code = reasonCode;
-        },
-      })) failedSlots.push({ slot_id: slot.slot_id, reason, reason_code: reasonCode, retryable: true });
+      if (claimedInjection) injectionRequestStore.releaseFailure(claimedInjection.injection_id, normalizedSlot.slot_id, reason, nowFor().toISOString());
+      try { await operationalRepository.updateGenerationJob(jobId, { state: 'failed', error_code: reasonCode, error_message: reason, completed_at: nowFor().toISOString() }); } catch {}
+      const finalized = await operationalRepository.finalizeClaimedSlot(campaign.campaign_id, normalizedSlot.slot_id, claim.claim_id, {
+        status: 'failed',
+        failure_reason: reason,
+        failure_code: reasonCode,
+      });
+      if (finalized) failedSlots.push({ slot_id: normalizedSlot.slot_id, reason, reason_code: reasonCode, retryable: true });
     }
   }
 
@@ -385,9 +375,9 @@ function executeCampaignWindow(campaignId, options = {}) {
     skipped_claimed_count: skippedClaimedCount,
     updated_at: nowFor().toISOString(),
   };
-  writeJsonAtomic(path.join(campaignsDir, `${campaign.campaign_id}-execution.json`), summary);
+  await operationalRepository.saveExecutionSummary(campaign.campaign_id, summary);
   logStage('execute_campaign_window', 'complete', executionStartedAt, `generated=${generatedPostIds.length} failed=${failedSlots.length}`);
-  return summary;
+  return operationalRepository.getExecutionSummary(campaign.campaign_id);
 }
 
 async function uploadApprovedCampaignPosts(campaignId) {
