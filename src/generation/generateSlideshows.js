@@ -67,6 +67,7 @@ function generateSlideshows({
   hook,
   languages: rawLanguages,
   usedScriptIds = [],
+  excludedScriptIds = [],
   avoidedSourceSetIds = [],
   accountId = null,
 }) {
@@ -90,6 +91,7 @@ function generateSlideshows({
       '--language', language,
     ];
     if (language === 'ar' && usedScriptIds.length) selectorArgs.push('--used-script-ids', usedScriptIds.join(','));
+    if (language === 'ar' && excludedScriptIds.length) selectorArgs.push('--exclude-script-ids', excludedScriptIds.join(','));
     if (language === 'ar' && avoidedSourceSetIds.length) selectorArgs.push('--avoid-source-set-ids', avoidedSourceSetIds.join(','));
     if (language === 'ar' && accountId) selectorArgs.push('--account-id', accountId);
     const selection = parseJsonFromOutput(runNode('src/generation/selectMasterScript.js', selectorArgs));

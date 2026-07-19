@@ -147,6 +147,22 @@ function completeClaimedSlot(planPath, slotId, claimId, { now, planLockLeaseMs, 
   return result.locked && result.value === true;
 }
 
+function updateCampaignSlotAtomically(campaignId, slotId, update, options = {}) {
+  const root = options.root || ROOT;
+  const planPath = path.join(root, 'data', 'campaigns', campaignId, 'plan.json');
+  const now = options.now || new Date();
+  const result = mutatePlan(planPath, now, options.planLockLeaseMs || CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms, (plan) => {
+    if (!Array.isArray(plan.slots)) throw new CampaignExecutionError('Campaign plan has an invalid structure');
+    const slot = plan.slots.find((item) => item && item.slot_id === slotId);
+    if (!slot) return null;
+    const value = update(slot, plan);
+    if (value === false || value == null) return null;
+    writeJsonAtomic(planPath, plan);
+    return value;
+  });
+  return result.locked ? result.value : null;
+}
+
 function localDateInTimezone(timezone) {
   const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
     timeZone: timezone,
@@ -624,6 +640,7 @@ module.exports = {
   CAMPAIGN_EXECUTION_CONFIG,
   CampaignExecutionError,
   executeCampaignWindow,
+  updateCampaignSlotAtomically,
   retryBufferNotificationPost,
   sendUploadedCampaignPostsToBuffer,
   uploadApprovedCampaignPosts,

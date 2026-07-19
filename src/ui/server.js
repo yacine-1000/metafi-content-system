@@ -23,6 +23,7 @@ const {
 } = require('../campaigns/campaignService');
 const { CampaignPlannerError, planCampaign } = require('../campaigns/campaignPlanner');
 const { CampaignExecutionError, executeCampaignWindow, retryBufferNotificationPost, sendUploadedCampaignPostsToBuffer, uploadApprovedCampaignPosts } = require('../campaigns/campaignExecutor');
+const { CampaignSwapError, swapCampaignPost } = require('../campaigns/campaignSwapService');
 const { PublicationValidationError, markPostPosted, readPublicationHistory } = require('../publication/publicationService');
 const {
   AccountConflictError,
@@ -585,6 +586,20 @@ app.post('/api/campaigns/:campaignId/generate-window', (req, res) => {
     }
     console.error(`[campaigns] execution failed: ${error.message}`);
     return res.status(500).json({ error: 'Unable to execute campaign window' });
+  }
+});
+
+app.post('/api/campaigns/:campaignId/slots/:slotId/swap', (req, res) => {
+  try {
+    const result = swapCampaignPost(req.params.campaignId, req.params.slotId);
+    if (!result) return res.status(404).json({ error: 'Campaign not found' });
+    return res.json(result);
+  } catch (error) {
+    if (error instanceof CampaignValidationError || error instanceof CampaignExecutionError || error instanceof CampaignSwapError) {
+      return res.status(400).json({ error: error.message });
+    }
+    console.error(`[campaigns] swap failed: ${error.message}`);
+    return res.status(500).json({ error: 'Unable to swap campaign post' });
   }
 });
 

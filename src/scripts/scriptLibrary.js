@@ -92,12 +92,14 @@ function selectArabicRuntimeScript({
   now,
   cooldownMs,
   usedScriptIds = [],
+  excludedScriptIds = [],
   avoidedSourceSetIds = [],
 }) {
   const pillar = PILLAR_NAMES[pillarId];
   if (!pillar) return null;
   const requestedFormat = String(hookType || '').toLowerCase();
   const usedScripts = new Set(usedScriptIds);
+  const excludedScripts = new Set(excludedScriptIds);
   const avoidedSourceSets = new Set(avoidedSourceSetIds);
   const eligible = [];
   for (const indexEntry of findSourceSets({ pillar })) {
@@ -114,9 +116,9 @@ function selectArabicRuntimeScript({
   const coolingScriptIds = accountId
     ? getCoolingScriptIds(accountId, { root: publicationRoot, now, cooldownMs })
     : new Set();
-  const publicationEligible = eligible.filter(({ entry }) => !coolingScriptIds.has(entry.script_id));
+  const publicationEligible = eligible.filter(({ entry }) => !coolingScriptIds.has(entry.script_id) && !excludedScripts.has(entry.script_id));
   if (!publicationEligible.length) {
-    throw new Error(`No eligible Arabic Script Library script remains for account "${accountId}" after confirmed-publication cooldown`);
+    throw new Error(`No eligible Arabic Script Library script remains for account "${accountId}" after publication cooldown and slot exclusions`);
   }
   const unused = publicationEligible.filter(({ entry }) => !usedScripts.has(entry.script_id));
   const reusePool = unused.length ? unused : publicationEligible;

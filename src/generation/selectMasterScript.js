@@ -11,7 +11,7 @@ function readJson(relativePath) {
 }
 
 function parseArgs(argv) {
-  const args = { language: 'ar', usedScriptIds: [], avoidedSourceSetIds: [], accountId: null };
+  const args = { language: 'ar', usedScriptIds: [], excludedScriptIds: [], avoidedSourceSetIds: [], accountId: null };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--pillar') {
       args.pillar = argv[i + 1];
@@ -24,6 +24,9 @@ function parseArgs(argv) {
       i += 1;
     } else if (argv[i] === '--used-script-ids') {
       args.usedScriptIds = argv[i + 1].split(',').filter(Boolean);
+      i += 1;
+    } else if (argv[i] === '--exclude-script-ids') {
+      args.excludedScriptIds = argv[i + 1].split(',').filter(Boolean);
       i += 1;
     } else if (argv[i] === '--avoid-source-set-ids') {
       args.avoidedSourceSetIds = argv[i + 1].split(',').filter(Boolean);
@@ -129,6 +132,7 @@ function main() {
     visualHookType: legacyVisualSelection.script.visual_hook_type,
     accountId: args.accountId,
     usedScriptIds: args.usedScriptIds,
+    excludedScriptIds: args.excludedScriptIds,
     avoidedSourceSetIds: args.avoidedSourceSetIds,
   }) : null;
   const { topic, script } = librarySelection || selectMasterScript(topicBank, pillarId, args.hook);

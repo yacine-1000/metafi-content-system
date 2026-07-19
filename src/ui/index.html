@@ -1723,6 +1723,7 @@
     let _campaignExecutionSummary = null;
     let _campaignSelectedPosts = new Set();
     const _campaignPublicationRunning = new Set();
+    const _campaignSwapRunning = new Set();
     let _campaignSelectionCampaignId = null;
     let _campaignContentExpandedGroups = new Set(['today']);
     let _campaignApprovalRunning = false;
@@ -3276,6 +3277,7 @@
       const actions = [];
       if (post) actions.push(`<button class="campaign-secondary" type="button" onclick="viewPost('${escapeHtml(post.post_id)}')">Open</button>`);
       if (post && !post.publication && status !== 'Published') actions.push(`<button class="campaign-secondary" type="button" onclick="markCampaignPostPosted('${escapeHtml(post.post_id)}')" ${_campaignPublicationRunning.has(post.post_id) ? 'disabled' : ''}>${_campaignPublicationRunning.has(post.post_id) ? 'Confirming…' : 'Mark as Posted'}</button>`);
+      if (post && canSwapCampaignPost(post)) actions.push(`<button class="campaign-secondary" type="button" onclick="swapCampaignPost('${escapeHtml(slot.slot_id)}','${escapeHtml(post.post_id)}')" ${_campaignSwapRunning.has(post.post_id) ? 'disabled' : ''}>${_campaignSwapRunning.has(post.post_id) ? 'Swapping…' : 'Swap'}</button>`);
       if (post && isGeneratedCampaignPost(post) && !approved) actions.push(`<button class="campaign-secondary" type="button" onclick="approveSingleCampaignPost('${escapeHtml(post.post_id)}')">Approve</button>`);
       const bufferRetryEligible = Boolean(post && post.publishing_mode === 'mobile_finish' && post.buffer_status === 'not_sent');
       if (bufferRetryEligible) actions.push(`<button class="campaign-secondary" type="button" onclick="toggleCampaignBufferRetry('${escapeHtml(post.post_id)}')">Retry</button>`);
@@ -3285,6 +3287,12 @@
         ? `<div class="campaign-buffer-retry"><label>Date<input id="campaign-retry-date-${escapeHtml(post.post_id)}" type="date"></label><label>Time<input id="campaign-retry-time-${escapeHtml(post.post_id)}" type="time"></label><label>Timezone<input id="campaign-retry-timezone-${escapeHtml(post.post_id)}" type="text" value="${escapeHtml(campaign.timezone)}"></label><button class="campaign-primary" id="campaign-retry-submit-${escapeHtml(post.post_id)}" type="button" onclick="retryCampaignBufferNotification('${escapeHtml(post.post_id)}')" ${_campaignRetryRunning ? 'disabled' : ''}>${_campaignRetryRunning ? 'Retrying…' : 'Retry Notification'}</button><div class="campaign-buffer-retry-error" id="campaign-retry-error-${escapeHtml(post.post_id)}"></div></div>`
         : '';
       return `<div class="campaign-content-row"><div class="campaign-post-select">${checkbox}</div><div><span class="campaign-row-status ${escapeHtml(statusClass)}"><span class="campaign-status-dot ${escapeHtml(statusClass)}"></span>${escapeHtml(status)}</span></div><div>${preview}</div><div class="campaign-content-title" title="${escapeHtml(title)}">${escapeHtml(title)}</div><div>${escapeHtml(String(slot.pillar_id).toUpperCase())}</div><div>${escapeHtml(String(slot.language).toUpperCase())}</div><div>${escapeHtml(publishingMode)}</div><div>${escapeHtml(updatedAt ? new Date(updatedAt).toLocaleString() : '—')}</div><div class="campaign-content-actions">${actions.join('')}</div></div>${retryPanel}`;
+    }
+
+    function canSwapCampaignPost(post) {
+      if (!post || !isGeneratedCampaignPost(post) || post.publication || (post.statuses && post.statuses.publish === 'published')) return false;
+      const bufferState = post.buffer_status || (post.statuses && post.statuses.buffer);
+      return !['scheduled', 'notification_scheduled', 'buffered'].includes(bufferState);
     }
 
     async function markCampaignPostPosted(postId) {
@@ -3316,6 +3324,29 @@
       if (_campaignRetryRunning) return;
       _campaignRetryPostId = _campaignRetryPostId === postId ? null : postId;
       renderCampaignContent();
+    }
+
+    async function swapCampaignPost(slotId, postId) {
+      if (!_currentCampaignId || _campaignSwapRunning.has(postId)) return;
+      const post = _allPosts.find((item) => item.post_id === postId);
+      if (!canSwapCampaignPost(post)) return;
+      if (!window.confirm('Replace this unpublished post with another eligible script? The current post will remain available for audit.')) return;
+      _campaignSwapRunning.add(postId);
+      renderCampaignContent();
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(_currentCampaignId)}/slots/${encodeURIComponent(slotId)}/swap`, { method: 'POST' });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to swap campaign post');
+        await loadCampaignSchedule();
+        renderCampaignContent();
+        renderCampaignSchedule();
+        renderCampaignOverview();
+      } catch (error) {
+        window.alert(error.message);
+      } finally {
+        _campaignSwapRunning.delete(postId);
+        renderCampaignContent();
+      }
     }
 
     async function retryCampaignBufferNotification(postId) {
