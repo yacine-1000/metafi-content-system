@@ -6,7 +6,7 @@ const fs = require('fs');
 const { spawn } = require('child_process');
 const { createClient } = require('@supabase/supabase-js');
 const { persistenceMode } = require('../persistence/serverSupabaseClient');
-const { PortalSupabaseService } = require('../persistence/portalSupabaseService');
+const { PortalSupabaseService, QuickSaveOutputError } = require('../persistence/portalSupabaseService');
 const { createPostMetadata, createPublishPackage, markUploadSuccess, markUploadFailed } = require('../lib/postMetadata');
 const { upsertContentPost } = require('../lib/supabasePostStore');
 const { generateSlideshows } = require('../generation/generateSlideshows');
@@ -860,23 +860,39 @@ app.get('/posts/:postId', (req, res) => {
   res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, buffer_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata, rendered_count, has_rendered_slides: rendered_count > 0, buffer_status, buffer_post_id: bufferDraft?.buffer_post_id || meta.buffer_post_id || null, r2_uploaded: fs.existsSync(path.join(postDir, 'r2-upload.json')), publication });
 });
 
-app.post('/api/posts/:postId/mark-posted', (req, res) => {
+app.post('/api/posts/:postId/mark-posted', async (req, res) => {
   try {
+    if (isSupabaseMode()) {
+      const result = await portalRepository().markQuickSavePosted(req.params.postId, req.body || {});
+      return result ? res.status(result.existing ? 200 : 201).json(result) : res.status(404).json({ error: 'Post not found' });
+    }
     const result = markPostPosted(req.params.postId, req.body || {});
     return res.status(result.existing ? 200 : 201).json(result);
   } catch (error) {
-    if (error instanceof PublicationValidationError) return res.status(400).json({ error: error.message });
+    if (error instanceof PublicationValidationError || error instanceof QuickSaveOutputError) return res.status(error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 400).json({ error: error.message, reason_code: error.code });
     console.error(`[publication] manual confirmation failed: ${error.message}`);
     return res.status(500).json({ error: 'Unable to confirm publication' });
   }
 });
 
-app.get('/api/campaigns/:campaignId/quick-save', (req, res) => {
-  try { const data = quickSaveData(req.params.campaignId); return data ? res.json(data) : res.status(404).json({ error: 'Campaign not found' }); }
-  catch (error) { return res.status(400).json({ error: error.message }); }
+app.get('/api/campaigns/:campaignId/quick-save', async (req, res) => {
+  try {
+    const data = isSupabaseMode() ? await portalRepository().quickSaveData(req.params.campaignId) : quickSaveData(req.params.campaignId);
+    return data ? res.json(data) : res.status(404).json({ error: 'Campaign not found' });
+  } catch (error) {
+    return res.status(error instanceof QuickSaveOutputError ? (error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 409) : 400).json({ error: error.message, reason_code: error.code || 'QUICK_SAVE_READ_FAILED' });
+  }
 });
 
-app.post('/api/campaigns/:campaignId/posts/:postId/mark-saved', (req, res) => {
+app.post('/api/campaigns/:campaignId/posts/:postId/mark-saved', async (req, res) => {
+  if (isSupabaseMode()) {
+    try {
+      const result = await portalRepository().setQuickSaveSaved(req.params.campaignId, req.params.postId, req.body?.saved !== false);
+      return result ? res.json(result) : res.status(404).json({ error: 'Campaign post not found' });
+    } catch (error) {
+      return res.status(error instanceof QuickSaveOutputError ? (error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 409) : 400).json({ error: error.message, reason_code: error.code || 'QUICK_SAVE_SAVE_FAILED' });
+    }
+  }
   const found = quickSavePostDir(req.params.campaignId, req.params.postId);
   if (!found) return res.status(404).json({ error: 'Campaign post not found' });
   if (!found.metadata.statuses || found.metadata.statuses.generation !== 'completed') return res.status(400).json({ error: 'Only generated posts can be saved' });
@@ -887,7 +903,15 @@ app.post('/api/campaigns/:campaignId/posts/:postId/mark-saved', (req, res) => {
   return res.json({ post_id: req.params.postId, saved_at: found.metadata.saved_at });
 });
 
-app.get('/api/campaigns/:campaignId/posts/:postId/slides.zip', (req, res) => {
+app.get('/api/campaigns/:campaignId/posts/:postId/slides.zip', async (req, res) => {
+  if (isSupabaseMode()) {
+    try {
+      const signedUrl = await portalRepository().quickSaveZipUrl(req.params.campaignId, req.params.postId);
+      return signedUrl ? res.redirect(302, signedUrl) : res.status(404).json({ error: 'Campaign post not found' });
+    } catch (error) {
+      return res.status(error instanceof QuickSaveOutputError ? (error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 409) : 400).json({ error: error.message, reason_code: error.code || 'QUICK_SAVE_ZIP_FAILED' });
+    }
+  }
   const found = quickSavePostDir(req.params.campaignId, req.params.postId);
   if (!found) return res.status(404).json({ error: 'Campaign post not found' });
   const rendered = path.join(found.postDir, 'rendered');
