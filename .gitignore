@@ -10,3 +10,5 @@ test-outputs/
 .claude/
 outputs/debug/
 outputs/jobs/
+
+supabase/.temp/
