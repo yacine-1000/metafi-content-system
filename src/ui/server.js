@@ -35,6 +35,10 @@ const {
   updateAccountAvatar,
 } = require('../accounts/accountService');
 const { discoverBufferTikTokChannels } = require('../generation/connectBuffer');
+const { createScriptLibraryWriteService } = require('../injection/scriptLibraryWriteService');
+const { createInjectionRequestStore } = require('../injection/injectionRequestStore');
+const { createApprovedTaxonomyService } = require('../injection/approvedTaxonomyService');
+const { createInjectionHandlers } = require('../injection/injectionApi');
 
 const ROOT = path.resolve(__dirname, '../../');
 require('dotenv').config({ path: path.join(ROOT, '.env') });
@@ -42,6 +46,25 @@ const RENDERS_DIR = path.join(ROOT, 'renders');
 const RAW_SOURCE_PATH = path.join(ROOT, 'test-inputs', 'raw-source.txt');
 const MANUAL_INPUT_PATH = path.join(ROOT, 'test-inputs', 'manual-input.json');
 const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
+
+function createInjectionRouter(options = {}) {
+  const router = express.Router();
+  const handlers = createInjectionHandlers({
+    writeService: options.writeService || createScriptLibraryWriteService(),
+    taxonomyService: options.taxonomyService || createApprovedTaxonomyService(),
+    requestStore: options.requestStore || createInjectionRequestStore(),
+    getCampaign: options.getCampaign || getCampaign,
+    listCampaigns: options.listCampaigns || listCampaigns,
+  });
+  router.get('/taxonomy', handlers.taxonomy);
+  router.get('/source-sets', handlers.sourceSets);
+  router.get('/available-source-sets', handlers.availableSourceSets);
+  router.post('/source-sets', handlers.createSourceSet);
+  router.get('/campaigns', handlers.activeCampaigns);
+  router.get('/requests', handlers.requests);
+  router.post('/campaign-requests', handlers.createCampaignRequest);
+  return router;
+}
 
 const PIPELINE = ['intake', 'planning', 'hook', 'body', 'final-slide', 'assembly:build', 'assemble:test', 'caption', 'strategy-check'];
 
@@ -230,6 +253,7 @@ async function uploadPost(postId, log) {
 
 const app = express();
 app.use(express.json());
+app.use('/api/injection', createInjectionRouter());
 app.use('/renders', express.static(RENDERS_DIR));
 app.use('/outputs', express.static(path.join(ROOT, 'outputs')));
 app.use('/assets', express.static(path.join(ROOT, 'assets')));
@@ -1072,6 +1096,8 @@ app.post('/generate', async (req, res) => {
 });
 
 const PORT = 3333;
-app.listen(PORT, () => {
-  console.log(`Creator UI running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Creator UI running at http://localhost:${PORT}`));
+}
+
+module.exports = { app, createInjectionRouter };
