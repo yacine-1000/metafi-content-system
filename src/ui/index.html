@@ -2037,10 +2037,9 @@
         if (!response.ok) throw new Error(result.error || 'Unable to generate campaign window');
         if (_currentCampaignId !== campaignId) return;
         _campaignExecutionSummary = result;
+        const skippedCount = Number(result.skipped_claimed_count || 0);
         resultElement.style.color = result.failed_count ? '#e0b070' : 'var(--mint)';
-        resultElement.textContent = result.generated_count === 0 && result.failed_count === 0
-          ? `No eligible planned slots · ${result.window_start} — ${result.window_end}`
-          : `Generated ${result.generated_count} · Failed ${result.failed_count} · ${result.window_start} — ${result.window_end}`;
+        resultElement.textContent = `Generated ${result.generated_count} · Skipped ${skippedCount} · Failed ${result.failed_count} · ${result.window_start} — ${result.window_end}`;
         await loadCampaignSchedule();
         renderCampaignContent();
         renderCampaignOverview();
