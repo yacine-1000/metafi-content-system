@@ -5,6 +5,8 @@ const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
 const { createClient } = require('@supabase/supabase-js');
+const { persistenceMode } = require('../persistence/serverSupabaseClient');
+const { PortalSupabaseService } = require('../persistence/portalSupabaseService');
 const { createPostMetadata, createPublishPackage, markUploadSuccess, markUploadFailed } = require('../lib/postMetadata');
 const { upsertContentPost } = require('../lib/supabasePostStore');
 const { generateSlideshows } = require('../generation/generateSlideshows');
@@ -46,6 +48,9 @@ const RENDERS_DIR = path.join(ROOT, 'renders');
 const RAW_SOURCE_PATH = path.join(ROOT, 'test-inputs', 'raw-source.txt');
 const MANUAL_INPUT_PATH = path.join(ROOT, 'test-inputs', 'manual-input.json');
 const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
+
+function isSupabaseMode() { return persistenceMode(process.env) === 'supabase'; }
+function portalRepository() { return new PortalSupabaseService(process.env); }
 
 function quickSavePostDir(campaignId, postId) {
   const postDir = safePostFolder(postId);
@@ -317,8 +322,9 @@ function accountWithHookBank(account) {
   return { ...account, hook_image_count: hookImages.length, hook_images: hookImages, app_cta_banks: appCtaBanks };
 }
 
-app.get('/api/accounts', (_req, res) => {
+app.get('/api/accounts', async (_req, res) => {
   try {
+    if (isSupabaseMode()) return res.json(await portalRepository().listAccounts());
     return res.json(listAccounts().map(accountWithHookBank));
   } catch (error) {
     console.error(`[accounts] list failed: ${error.message}`);
@@ -326,8 +332,9 @@ app.get('/api/accounts', (_req, res) => {
   }
 });
 
-app.get('/api/accounts/:accountId', (req, res) => {
+app.get('/api/accounts/:accountId', async (req, res) => {
   try {
+    if (isSupabaseMode()) { const account = await portalRepository().getAccount(req.params.accountId); return account ? res.json(account) : res.status(404).json({ error: 'Account not found' }); }
     const account = getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     return res.json(accountWithHookBank(account));
@@ -338,8 +345,9 @@ app.get('/api/accounts/:accountId', (req, res) => {
   }
 });
 
-app.post('/api/accounts', (req, res) => {
+app.post('/api/accounts', async (req, res) => {
   try {
+    if (isSupabaseMode()) return res.status(201).json(await portalRepository().createAccount(req.body));
     return res.status(201).json(accountWithHookBank(createAccount(req.body)));
   } catch (error) {
     if (error instanceof AccountValidationError) return res.status(400).json({ error: error.message });
@@ -369,13 +377,17 @@ app.post('/api/accounts/:accountId/avatar', (req, res, next) => {
     if (!error) return next();
     return res.status(error.type === 'entity.too.large' ? 413 : 400).json({ error: error.type === 'entity.too.large' ? 'Avatar image is too large' : 'Invalid avatar upload' });
   });
-}, (req, res) => {
+}, async (req, res) => {
   try {
     const account = getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     const declaredExtension = AVATAR_TYPES.get(String(req.headers['content-type'] || '').split(';')[0].toLowerCase());
     const detectedExtension = Buffer.isBuffer(req.body) ? avatarExtension(req.body) : null;
     if (!declaredExtension || !detectedExtension || declaredExtension !== detectedExtension) return res.status(415).json({ error: 'Avatar must be a JPG, JPEG, PNG, or WEBP image' });
+    if (isSupabaseMode()) {
+      const asset = await portalRepository().uploadAccountAsset(account.account_id, 'profile', null, req.body, String(req.headers['content-type']).split(';')[0], `avatar.${detectedExtension}`);
+      return res.json({ account_id: account.account_id, avatar_path: asset.storage_key, avatar_url: asset.url });
+    }
     const avatarDir = path.join(ROOT, 'assets', 'account-avatars', account.account_id);
     fs.mkdirSync(avatarDir, { recursive: true });
     const filename = `avatar.${detectedExtension}`;
@@ -401,7 +413,7 @@ app.post('/api/accounts/:accountId/hook-images', (req, res, next) => {
     if (!error) return next();
     return res.status(error.type === 'entity.too.large' ? 413 : 400).json({ error: error.type === 'entity.too.large' ? 'Character hook image is too large' : 'Invalid character hook image upload' });
   });
-}, (req, res) => {
+}, async (req, res) => {
   try {
     const account = getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
@@ -409,6 +421,11 @@ app.post('/api/accounts/:accountId/hook-images', (req, res, next) => {
     const detectedExtension = Buffer.isBuffer(req.body) ? avatarExtension(req.body) : null;
     if (!declaredExtension || !detectedExtension || declaredExtension !== detectedExtension) {
       return res.status(415).json({ error: 'Character hook image must be JPG, JPEG, PNG, or WEBP' });
+    }
+    if (isSupabaseMode()) {
+      const filename = `hook-${Date.now()}-${process.hrtime.bigint()}.${detectedExtension}`;
+      const asset = await portalRepository().uploadAccountAsset(account.account_id, 'hook', null, req.body, String(req.headers['content-type']).split(';')[0], filename);
+      return res.status(201).json({ account_id: account.account_id, filename, asset_path: asset.storage_key, url: asset.url });
     }
     const hookDir = path.join(ROOT, 'assets', 'account-hook-images', account.account_id);
     fs.mkdirSync(hookDir, { recursive: true });
@@ -460,7 +477,7 @@ app.post('/api/accounts/:accountId/app-cta-images/:language', (req, res, next) =
       rejected_files: [{ error: error.type === 'entity.too.large' ? 'File is too large' : 'Invalid image upload' }],
     });
   });
-}, (req, res) => {
+}, async (req, res) => {
   try {
     const account = accountForAssetRequest(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found', uploaded_files: [], rejected_files: [] });
@@ -578,8 +595,9 @@ app.post('/api/accounts/refresh-buffer-channels', async (_req, res) => {
   }
 });
 
-app.patch('/api/accounts/:accountId', (req, res) => {
+app.patch('/api/accounts/:accountId', async (req, res) => {
   try {
+    if (isSupabaseMode()) { const account = await portalRepository().updateAccount(req.params.accountId, req.body); return account ? res.json(account) : res.status(404).json({ error: 'Account not found' }); }
     const account = updateAccount(req.params.accountId, req.body);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     return res.json(accountWithHookBank(account));
@@ -591,8 +609,9 @@ app.patch('/api/accounts/:accountId', (req, res) => {
   }
 });
 
-app.get('/api/campaigns', (_req, res) => {
+app.get('/api/campaigns', async (_req, res) => {
   try {
+    if (isSupabaseMode()) return res.json(await portalRepository().listCampaigns());
     return res.json(listCampaigns());
   } catch (error) {
     if (error instanceof CampaignValidationError) return res.status(400).json({ error: error.message });
@@ -601,8 +620,9 @@ app.get('/api/campaigns', (_req, res) => {
   }
 });
 
-app.get('/api/campaigns/:campaignId', (req, res) => {
+app.get('/api/campaigns/:campaignId', async (req, res) => {
   try {
+    if (isSupabaseMode()) { const campaign = await portalRepository().getCampaign(req.params.campaignId); return campaign ? res.json(campaign) : res.status(404).json({ error: 'Campaign not found' }); }
     const campaign = getCampaign(req.params.campaignId);
     if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
     return res.json(campaign);
@@ -712,8 +732,9 @@ app.post('/api/campaigns/:campaignId/posts/:postId/retry-buffer', async (req, re
   }
 });
 
-app.post('/api/campaigns', (req, res) => {
+app.post('/api/campaigns', async (req, res) => {
   try {
+    if (isSupabaseMode()) return res.status(201).json(await portalRepository().createCampaign(req.body));
     return res.status(201).json(createCampaign(req.body));
   } catch (error) {
     if (error instanceof CampaignValidationError) return res.status(400).json({ error: error.message });

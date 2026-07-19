@@ -767,6 +767,8 @@ module.exports = {
   CampaignExecutionError,
   executeCampaignWindow,
   updateCampaignSlotAtomically,
+  claimCampaignSlot,
+  completeClaimedSlot,
   retryBufferNotificationPost,
   sendUploadedCampaignPostsToBuffer,
   uploadApprovedCampaignPosts,

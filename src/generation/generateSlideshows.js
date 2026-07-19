@@ -131,12 +131,21 @@ function generateSlideshows({
   }
 
   if (pendingRenders.length) {
-    runNode('src/generation/renderResolvedPost.js', pendingRenders.flatMap(({ selection }) => [
-      '--post', selection.output_path,
-    ]), 'renderer', PROCESS_TIMEOUTS_MS.renderer);
+    fs.mkdirSync(path.join(ROOT, 'tmp'), { recursive: true });
+    const scratchDir = fs.mkdtempSync(path.join(ROOT, 'tmp', 'renderer-'));
+    const inputPath = path.join(scratchDir, 'input.json'); const resultPath = path.join(scratchDir, 'result.json');
+    let rendered;
+    try {
+      fs.writeFileSync(inputPath, JSON.stringify({ persistence_mode: process.env.METAFI_PERSISTENCE_MODE || 'local', result_path: resultPath,
+        posts: pendingRenders.map(({ selection }) => ({ post_folder: selection.output_path, metadata: selection.metadata, publish_package: selection.publish_package,
+          post_id: selection.post_id, campaign_id: selection.metadata?.campaign_id || null, slot_id: selection.metadata?.slot_id || null, account_id: selection.metadata?.account_id || null })) }, null, 2));
+      runNode('src/generation/renderResolvedPost.js', ['--scratch-input', inputPath], 'renderer', PROCESS_TIMEOUTS_MS.renderer);
+      rendered = JSON.parse(fs.readFileSync(resultPath, 'utf8')); rendered = rendered.posts || [rendered];
+    } finally { fs.rmSync(scratchDir, { recursive: true, force: true }); }
+    pendingRenders.forEach((entry, index) => { entry.rendered = rendered[index]; });
   }
 
-  for (const { language, selection, postStartedAt } of pendingRenders) {
+  for (const { language, selection, postStartedAt, rendered } of pendingRenders) {
     const renderedDir = path.join(ROOT, selection.output_path, 'rendered');
     summary.posts.push({
       language,
@@ -144,6 +153,7 @@ function generateSlideshows({
       post_folder: selection.output_path,
       slide_count: selection.slide_count,
       rendered_files: pngFiles(renderedDir),
+      render_result: rendered,
     });
     diagnostic('post', 'complete', postStartedAt, `language=${language} post_id=${selection.post_id}`);
   }

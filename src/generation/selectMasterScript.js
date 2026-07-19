@@ -226,7 +226,11 @@ function selectMasterScriptPost(args, options = {}) {
   startedAt = performance.now();
   fs.mkdirSync(postDir, { recursive: true });
   fs.writeFileSync(path.join(postDir, 'publish-package.json'), JSON.stringify(publishPackage, null, 2), 'utf8');
-  fs.writeFileSync(path.join(postDir, 'metadata.json'), JSON.stringify(metadata, null, 2), 'utf8');
+  // Hosted Supabase mode keeps durable post metadata in the repository; this
+  // folder is renderer scratch only. Local mode retains the legacy artifact.
+  if (String(process.env.METAFI_PERSISTENCE_MODE || 'local').toLowerCase() !== 'supabase') {
+    fs.writeFileSync(path.join(postDir, 'metadata.json'), JSON.stringify(metadata, null, 2), 'utf8');
+  }
   fs.writeFileSync(path.join(postDir, 'caption.txt'), version.hook_text, 'utf8');
   timings.filesystem_writes_ms = performance.now() - startedAt;
 
@@ -239,7 +243,9 @@ function selectMasterScriptPost(args, options = {}) {
     master_script_id: masterScriptId,
     hook_type: script.hook_type,
     slide_count: script.slide_count,
-    cta_slide: script.cta_slide
+    cta_slide: script.cta_slide,
+    metadata,
+    publish_package: publishPackage
   };
 }
 

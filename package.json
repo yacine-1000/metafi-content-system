@@ -32,6 +32,7 @@
     "scripts:import": "node scripts/importScriptLibrary.js",
     "supabase:backfill": "node scripts/supabaseBackfill.js",
     "supabase:upload-assets": "node scripts/supabaseUploadAssets.js",
+    "supabase:reconcile-assets": "node scripts/supabaseReconcileAssetMetadata.js",
     "test:injection": "node --test test/injection/*.test.js",
     "test:accounts": "node --test test/accounts/*.test.js"
   },

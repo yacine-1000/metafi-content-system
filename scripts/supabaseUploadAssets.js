@@ -61,7 +61,7 @@ function buildUploadPlan(root = ROOT) {
     if (!fs.existsSync(filePath)) return;
     const data = fs.readFileSync(filePath);
     const dimensions = imageDimensions(data, asset.mime_type || asset.content_type);
-    files.push({ ...asset, ownership, file_path: filePath, storage_key: ownership === 'account' ? accountKey(asset) : contentKey(asset),
+    files.push({ ...asset, ownership, storage_provider: 'supabase_storage', file_path: filePath, storage_key: ownership === 'account' ? accountKey(asset) : contentKey(asset),
       source_storage_key: asset.storage_key, checksum: sha256(data), size_bytes: data.length, byte_size: data.length, width: dimensions.width, height: dimensions.height,
       mime_type: asset.mime_type || asset.content_type, content_type: asset.content_type || asset.mime_type, storage_bucket: BUCKET, bucket: BUCKET });
   };
