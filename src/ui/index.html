@@ -699,10 +699,22 @@
     .account-form-actions { display: flex; align-items: center; justify-content: flex-end; gap: 9px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
     .account-form-check { display: flex; align-items: center; gap: 7px; min-height: 42px; color: var(--text-sec); font-size: 11px; }
     .account-form-check input { accent-color: var(--mint); }
+    .injection-layout { display:grid; grid-template-columns:minmax(0, 1fr) 280px; gap:18px; align-items:start; }
+    .injection-card { padding:22px; border:1px solid var(--border); border-radius:12px; background:var(--card); }
+    .injection-script { margin-top:14px; padding:15px; border:1px solid var(--border); border-radius:9px; background:var(--raised); }
+    .injection-script-head { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px; }
+    .injection-slides { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; margin-top:12px; }
+    .injection-slides textarea { width:100%; min-height:70px; resize:vertical; }
+    .injection-recent { display:grid; gap:8px; }
+    .injection-recent-item { padding:10px; border:1px solid var(--border); border-radius:8px; background:var(--raised); }
+    .injection-recent-id { color:var(--mint); font:700 11px monospace; }
+    .injection-recent-topic { margin-top:4px; color:var(--text-sec); font-size:11px; }
     @media (max-width: 760px) {
       .accounts-header { flex-direction: column; }
       .account-form-grid { grid-template-columns: 1fr; }
       .account-channel-row { align-items: flex-start; flex-wrap: wrap; }
+      .injection-layout { grid-template-columns:1fr; }
+      .injection-slides { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -719,6 +731,9 @@
       </button>
       <button class="sidebar-tab" data-section="library" onclick="switchSection('library')">
         <span class="tab-icon">▤</span> Library
+      </button>
+      <button class="sidebar-tab" data-section="injection" onclick="switchSection('injection')">
+        <span class="tab-icon">+</span> Injection
       </button>
       <button class="sidebar-tab" data-section="insights" onclick="switchSection('insights')">
         <span class="tab-icon">◎</span> Insights
@@ -888,6 +903,29 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Injection Section -->
+    <div id="injection-section" class="app-section">
+      <div class="page-header"><div class="page-title">Injection</div><div class="page-sub">Add an approved Script Library source set.</div></div>
+      <div class="injection-layout">
+        <form class="injection-card" id="injection-form" onsubmit="submitInjection(event)">
+          <div class="campaign-detail-title" style="font-size:15px;">New Script</div>
+          <div class="campaign-detail-sub" style="margin-bottom:16px;">Original script plus one or more hook variations.</div>
+          <div class="account-form-grid">
+            <div class="campaign-field"><label class="campaign-label" for="injection-pillar">Pillar</label><select class="campaign-input" id="injection-pillar" required onchange="refreshInjectionSubtopics()"></select></div>
+            <div class="campaign-field"><label class="campaign-label" for="injection-subtopic">Subtopic</label><select class="campaign-input" id="injection-subtopic" required></select></div>
+            <div class="campaign-field" style="grid-column:1 / -1;"><label class="campaign-label" for="injection-topic">Topic</label><input class="campaign-input" id="injection-topic" required maxlength="240" placeholder="Specific topic"></div>
+          </div>
+          <div id="injection-scripts"></div>
+          <div style="display:flex;gap:9px;align-items:center;margin-top:14px;"><button class="campaign-secondary" type="button" onclick="addInjectionVariation()">+ Add variation</button><span id="injection-error" style="font-size:11px;color:#e07070;"></span></div>
+          <div class="account-form-actions"><span id="injection-result" style="margin-right:auto;font-size:11px;"></span><button class="campaign-primary" id="injection-submit" type="submit">Create Source Set</button></div>
+        </form>
+        <aside style="display:grid;gap:18px;">
+          <div class="injection-card"><div class="campaign-detail-title" style="font-size:14px;">Recent source sets</div><div class="campaign-detail-sub" style="margin-bottom:13px;">Latest approved additions</div><div id="injection-recent" class="injection-recent"></div></div>
+          <form class="injection-card" onsubmit="submitCampaignInjection(event)"><div class="campaign-detail-title" style="font-size:14px;">Try in Campaign</div><div class="campaign-detail-sub" style="margin-bottom:13px;">Queue a pending request only.</div><div class="campaign-field"><label class="campaign-label">Source set</label><select class="campaign-input" id="campaign-injection-source" required></select></div><div class="campaign-field" style="margin-top:10px;"><label class="campaign-label">Active campaign</label><select class="campaign-input" id="campaign-injection-campaign" required></select></div><div class="campaign-field" style="margin-top:10px;"><label class="campaign-label">Target date (optional)</label><input class="campaign-input" id="campaign-injection-date" type="date"></div><div id="campaign-injection-error" style="min-height:16px;margin-top:10px;color:#e07070;font-size:11px;"></div><button class="campaign-primary" id="campaign-injection-submit" style="margin-top:8px;" type="submit">Queue Request</button><div class="campaign-detail-title" style="font-size:12px;margin-top:20px;">Pending requests</div><div id="campaign-injection-requests" class="injection-recent"></div></form>
+        </aside>
+      </div>
     </div>
 
     <!-- Library Section -->
@@ -1332,6 +1370,152 @@
       if (name === 'dashboard') loadDashboard();
       if (name === 'campaigns') loadCampaigns();
       if (name === 'accounts') loadAccounts();
+      if (name === 'injection') loadInjection();
+    }
+
+    let _injectionTaxonomy = null;
+    let _injectionScripts = [];
+
+    function injectionOptions(values) {
+      return values.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join('');
+    }
+
+    function resetInjectionScripts() {
+      _injectionScripts = [{ version: 'Original', count: 5 }, { version: 'Variation 1', count: 5 }];
+      renderInjectionScripts();
+    }
+
+    function refreshInjectionSubtopics() {
+      if (!_injectionTaxonomy) return;
+      const pillar = document.getElementById('injection-pillar').value;
+      const select = document.getElementById('injection-subtopic');
+      select.innerHTML = injectionOptions(_injectionTaxonomy.subtopics.filter(item => item.pillar === pillar).map(item => item.subtopic));
+    }
+
+    function renderInjectionSlides(index) {
+      const slot = _injectionScripts[index];
+      const target = document.getElementById(`injection-slides-${index}`);
+      target.innerHTML = Array.from({ length: slot.count }, (_, offset) => {
+        const number = offset + 1;
+        const label = number === 4 ? 'Slide 4 — Metafi' : `Slide ${number}`;
+        return `<label class="campaign-label" style="text-transform:none;letter-spacing:0;">${label}<textarea class="campaign-input" data-injection-slide="${number}" required placeholder="Slide ${number} text"></textarea></label>`;
+      }).join('');
+    }
+
+    function renderInjectionScripts() {
+      if (!_injectionTaxonomy) return;
+      const container = document.getElementById('injection-scripts');
+      container.innerHTML = _injectionScripts.map((slot, index) => `<section class="injection-script" data-injection-script="${index}"><div class="injection-script-head"><strong style="font-size:12px;color:var(--text);">${escapeHtml(slot.version)}</strong>${index === 0 ? '<span style="font-size:10px;color:var(--mint);">Required</span>' : _injectionScripts.length === 2 ? '<span style="font-size:10px;color:var(--mint);">Required variation</span>' : `<button class="campaign-secondary" type="button" style="padding:5px 8px;" onclick="removeInjectionVariation(${index})">Remove</button>`}</div><div class="account-form-grid"><div class="campaign-field"><label class="campaign-label">Hook type</label><select class="campaign-input" data-injection-hook>${injectionOptions(_injectionTaxonomy.hook_types)}</select></div><div class="campaign-field"><label class="campaign-label">Format</label><select class="campaign-input" data-injection-format>${injectionOptions(_injectionTaxonomy.formats)}</select></div><div class="campaign-field"><label class="campaign-label">Slide count</label><input class="campaign-input" data-injection-count type="number" min="4" max="12" value="${slot.count}" onchange="changeInjectionSlideCount(${index}, this.value)"></div></div><div class="injection-slides" id="injection-slides-${index}"></div></section>`).join('');
+      _injectionScripts.forEach((_slot, index) => {
+        renderInjectionSlides(index);
+        if (index === 0) document.querySelector(`[data-injection-script="0"] [data-injection-hook]`).value = 'Original';
+      });
+    }
+
+    function changeInjectionSlideCount(index, value) {
+      _injectionScripts[index].count = Math.max(4, Math.min(12, Number(value) || 4));
+      renderInjectionScripts();
+    }
+
+    function addInjectionVariation() {
+      const number = _injectionScripts.length;
+      _injectionScripts.push({ version: `Variation ${number}`, count: 5 });
+      renderInjectionScripts();
+    }
+
+    function removeInjectionVariation(index) {
+      if (_injectionScripts.length <= 2) return;
+      _injectionScripts.splice(index, 1);
+      renderInjectionScripts();
+    }
+
+    async function loadInjection() {
+      try {
+        if (!_injectionTaxonomy) {
+          _injectionTaxonomy = await fetch('/api/injection/taxonomy').then(async response => {
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Unable to load Script Library taxonomy');
+            return result;
+          });
+          document.getElementById('injection-pillar').innerHTML = injectionOptions(_injectionTaxonomy.pillars);
+          refreshInjectionSubtopics();
+          resetInjectionScripts();
+        }
+        const recent = await fetch('/api/injection/source-sets?limit=8').then(response => response.json());
+        document.getElementById('injection-recent').innerHTML = recent.length ? recent.map(item => `<div class="injection-recent-item"><div class="injection-recent-id">${escapeHtml(item.source_set_id)}</div><div class="injection-recent-topic">${escapeHtml(item.topic)}</div></div>`).join('') : '<span style="font-size:11px;color:var(--text-muted);">No source sets yet.</span>';
+        const [sourceSets, campaigns, requests] = await Promise.all([
+          fetch('/api/injection/available-source-sets').then(response => response.json()),
+          fetch('/api/injection/campaigns').then(response => response.json()),
+          fetch('/api/injection/requests').then(response => response.json()),
+        ]);
+        document.getElementById('campaign-injection-source').innerHTML = sourceSets.map(item => `<option value="${escapeHtml(item.source_set_id)}">${escapeHtml(item.source_set_id)} · ${escapeHtml(item.topic)}</option>`).join('');
+        document.getElementById('campaign-injection-campaign').innerHTML = campaigns.length ? campaigns.map(item => `<option value="${escapeHtml(item.campaign_id)}">${escapeHtml(item.name)} (${escapeHtml(item.start_date)})</option>`).join('') : '<option value="">No active campaigns</option>';
+        document.getElementById('campaign-injection-submit').disabled = !campaigns.length || !sourceSets.length;
+        document.getElementById('campaign-injection-requests').innerHTML = requests.filter(item => item.status === 'pending').length ? requests.filter(item => item.status === 'pending').map(item => `<div class="injection-recent-item"><div class="injection-recent-id">${escapeHtml(item.source_set_id)} → ${escapeHtml(item.campaign_id)}</div><div class="injection-recent-topic">Pending${item.target_date ? ` · ${escapeHtml(item.target_date)}` : ''}</div></div>`).join('') : '<span style="font-size:11px;color:var(--text-muted);">No pending requests.</span>';
+      } catch (error) {
+        document.getElementById('injection-error').textContent = error.message;
+      }
+    }
+
+    async function submitInjection(event) {
+      event.preventDefault();
+      const errorElement = document.getElementById('injection-error');
+      const resultElement = document.getElementById('injection-result');
+      const button = document.getElementById('injection-submit');
+      errorElement.textContent = '';
+      resultElement.textContent = '';
+      const scripts = [...document.querySelectorAll('[data-injection-script]')].map((element, index) => {
+        const count = Number(element.querySelector('[data-injection-count]').value);
+        return {
+          script_version: _injectionScripts[index].version,
+          hook_type: element.querySelector('[data-injection-hook]').value,
+          format: element.querySelector('[data-injection-format]').value,
+          original_slide_count: count - 1,
+          final_slide_count: count,
+          slides: [...element.querySelectorAll('[data-injection-slide]')].map((field, offset) => {
+            const number = offset + 1;
+            return { slide_number: number, slide_label: number === 4 ? 'Slide 4 — Metafi' : `Slide ${number}`, is_metafi_slide: number === 4, text: field.value };
+          }),
+        };
+      });
+      button.disabled = true;
+      button.textContent = 'Creating…';
+      try {
+        const response = await fetch('/api/injection/source-sets', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pillar: document.getElementById('injection-pillar').value, subtopic: document.getElementById('injection-subtopic').value, topic: document.getElementById('injection-topic').value, scripts }) });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to create source set');
+        resultElement.style.color = 'var(--mint)';
+        resultElement.textContent = `Created ${result.source_set.source_set_id}`;
+        document.getElementById('injection-topic').value = '';
+        resetInjectionScripts();
+        await loadInjection();
+      } catch (error) {
+        errorElement.textContent = error.message;
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Create Source Set';
+      }
+    }
+
+    async function submitCampaignInjection(event) {
+      event.preventDefault();
+      const errorElement = document.getElementById('campaign-injection-error');
+      const button = document.getElementById('campaign-injection-submit');
+      errorElement.textContent = '';
+      button.disabled = true;
+      try {
+        const response = await fetch('/api/injection/campaign-requests', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source_set_id: document.getElementById('campaign-injection-source').value, campaign_id: document.getElementById('campaign-injection-campaign').value, target_date: document.getElementById('campaign-injection-date').value || null }) });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to queue request');
+        errorElement.style.color = 'var(--mint)';
+        errorElement.textContent = `Queued ${result.request.injection_id}`;
+        await loadInjection();
+      } catch (error) {
+        errorElement.style.color = '#e07070';
+        errorElement.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
     }
 
     let _accounts = [];

@@ -136,6 +136,39 @@ function createScriptLibraryWriteService(options = {}) {
     return nextSourceSetId(index, sourceSetsDir);
   }
 
+  function getTaxonomy() {
+    const index = readJson(indexPath);
+    if (!index || !Array.isArray(index.source_sets)) throw new ScriptLibraryWriteError('index.json must contain source_sets');
+    const taxonomy = loadRuntimeTruth(libraryDir, index);
+    return {
+      pillars: [...taxonomy.pillars].sort(),
+      subtopics: [...taxonomy.subtopics.entries()]
+        .map(([subtopic, pillar]) => ({ subtopic, pillar }))
+        .sort((left, right) => left.subtopic.localeCompare(right.subtopic)),
+      hook_types: [...taxonomy.hookTypes].sort(),
+      formats: [...taxonomy.formats].sort(),
+    };
+  }
+
+  function listRecentSourceSets(limit = 10) {
+    const index = readJson(indexPath);
+    if (!index || !Array.isArray(index.source_sets)) throw new ScriptLibraryWriteError('index.json must contain source_sets');
+    return index.source_sets.slice(-Math.max(1, Math.min(Number(limit) || 10, 50))).reverse();
+  }
+
+  function getSourceSet(sourceSetId) {
+    const index = readJson(indexPath);
+    if (!index || !Array.isArray(index.source_sets)) throw new ScriptLibraryWriteError('index.json must contain source_sets');
+    const entry = index.source_sets.find((item) => item.source_set_id === sourceSetId);
+    return entry ? readJson(path.join(libraryDir, entry.file)) : null;
+  }
+
+  function listSourceSets() {
+    const index = readJson(indexPath);
+    if (!index || !Array.isArray(index.source_sets)) throw new ScriptLibraryWriteError('index.json must contain source_sets');
+    return [...index.source_sets];
+  }
+
   function createSourceSet(input) {
     let lock;
     try {
@@ -181,7 +214,7 @@ function createScriptLibraryWriteService(options = {}) {
       if (fs.existsSync(lockPath)) fs.unlinkSync(lockPath);
     }
   }
-  return { getNextSourceSetId, createSourceSet };
+  return { getNextSourceSetId, getTaxonomy, listRecentSourceSets, listSourceSets, getSourceSet, createSourceSet };
 }
 
 module.exports = { ScriptLibraryWriteError, createScriptLibraryWriteService };
