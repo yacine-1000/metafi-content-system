@@ -12,11 +12,39 @@ const { SupabaseRepository } = require('../../src/persistence/supabaseRepository
 const { buildPostRecord } = require('../../src/lib/supabasePostStore');
 const { upsertContentPost } = require('../../src/lib/supabasePostStore');
 const { collectAccountsOnly, reportAccountsOnly } = require('../../scripts/supabaseBackfill');
+const { buildUploadPlan, report: reportUploadPlan } = require('../../scripts/supabaseUploadAssets');
 
 test('local persistence is the default and does not need Supabase credentials', () => {
   const repository = createPersistenceRepository({ env: {} });
   assert.equal(repository.mode, 'local');
   assert.equal(persistenceMode({}), 'local');
+});
+
+test('clean-start upload plan uses private deterministic account and global keys without outputs', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'metafi-upload-'));
+  try {
+    const accountId = 'account_fixture';
+    fs.mkdirSync(path.join(root, 'data', 'accounts'), { recursive: true });
+    fs.mkdirSync(path.join(root, 'assets', 'account-avatars', accountId), { recursive: true });
+    fs.mkdirSync(path.join(root, 'assets', 'account-hook-images', accountId), { recursive: true });
+    fs.mkdirSync(path.join(root, 'assets', 'account-app-cta-images', accountId, 'ar'), { recursive: true });
+    fs.mkdirSync(path.join(root, 'assets', 'body-images'), { recursive: true });
+    fs.mkdirSync(path.join(root, 'assets', 'hook-images'), { recursive: true });
+    fs.mkdirSync(path.join(root, 'assets', 'app-icon-home-screen', 'ar'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'data', 'accounts', 'fixture.json'), JSON.stringify({ account_id: accountId, internal_name: 'Fixture', display_name: 'Fixture', username: 'fixture', platform: 'tiktok', language: 'ar', gender: 'male', timezone: 'Asia/Riyadh', active: true, avatar_path: `/assets/account-avatars/${accountId}/avatar.png` }));
+    for (const target of [
+      path.join(root, 'assets', 'account-avatars', accountId, 'avatar.png'), path.join(root, 'assets', 'account-hook-images', accountId, 'hook.png'),
+      path.join(root, 'assets', 'account-app-cta-images', accountId, 'ar', 'cta.jpg'), path.join(root, 'assets', 'body-images', 'body.jpg'),
+      path.join(root, 'assets', 'hook-images', 'hook.png'), path.join(root, 'assets', 'app-icon-home-screen', 'ar', 'app.jpeg'),
+    ]) fs.writeFileSync(target, 'image');
+    const plan = buildUploadPlan(root);
+    const output = reportUploadPlan(plan, true);
+    assert.equal(output.files_discovered, 6);
+    assert.ok(output.destination_keys.includes(`accounts/${accountId}/profile/avatar.png`));
+    assert.ok(output.destination_keys.includes('global/body/body_slides/body.jpg'));
+    assert.ok(output.destination_keys.includes('global/app-screenshots/ar/app.jpeg'));
+    assert.equal(output.blocking_errors.length, 0);
+  } finally { fs.rmSync(root, { recursive: true, force: true }); }
 });
 
 test('supabase mode fails clearly when its server-only configuration is missing', () => {

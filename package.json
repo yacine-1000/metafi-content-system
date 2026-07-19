@@ -31,9 +31,9 @@
     "check:v2": "node scripts/checkV2.js",
     "scripts:import": "node scripts/importScriptLibrary.js",
     "supabase:backfill": "node scripts/supabaseBackfill.js",
+    "supabase:upload-assets": "node scripts/supabaseUploadAssets.js",
     "test:injection": "node --test test/injection/*.test.js",
-    "test:accounts": "node --test test/accounts/*.test.js",
-    "ui": "node src/ui/server.js"
+    "test:accounts": "node --test test/accounts/*.test.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1086.0",
@@ -43,5 +43,8 @@
     "exceljs": "^4.4.0",
     "express": "^4.22.1",
     "playwright": "^1.59.1"
+  },
+  "devDependencies": {
+    "supabase": "^2.109.1"
   }
 }
