@@ -30,6 +30,7 @@
     "check:v1": "node scripts/checkV1.js",
     "check:v2": "node scripts/checkV2.js",
     "scripts:import": "node scripts/importScriptLibrary.js",
+    "supabase:backfill": "node scripts/supabaseBackfill.js",
     "test:injection": "node --test test/injection/*.test.js",
     "test:accounts": "node --test test/accounts/*.test.js",
     "ui": "node src/ui/server.js"
