@@ -1,5 +1,6 @@
 'use strict';
 
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -16,6 +17,8 @@ const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
 
 const CAMPAIGN_EXECUTION_CONFIG = Object.freeze({
   execution_window_days: 3,
+  slot_claim_lease_ms: 15 * 60 * 1000,
+  plan_lock_lease_ms: 30 * 1000,
 });
 
 class CampaignExecutionError extends Error {}
@@ -31,7 +34,117 @@ function readJson(filePath, label) {
 function writeJsonAtomic(filePath, value) {
   const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
   fs.writeFileSync(temporaryPath, JSON.stringify(value, null, 2), 'utf8');
-  fs.renameSync(temporaryPath, filePath);
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    try {
+      fs.renameSync(temporaryPath, filePath);
+      return;
+    } catch (error) {
+      if (!['EPERM', 'EBUSY'].includes(error.code) || attempt === 19) {
+        try { fs.unlinkSync(temporaryPath); } catch {}
+        throw error;
+      }
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
+    }
+  }
+}
+
+function isValidLease(claim, now) {
+  return Boolean(claim && typeof claim.claim_id === 'string' && claim.claim_id
+    && typeof claim.lease_expires_at === 'string' && new Date(claim.lease_expires_at).getTime() > now.getTime());
+}
+
+function planLockPath(planPath) {
+  return `${planPath}.lock`;
+}
+
+function acquirePlanMutationLock(planPath, now, leaseMs) {
+  const lockPath = planLockPath(planPath);
+  const lock = {
+    lock_id: crypto.randomUUID(),
+    acquired_at: now.toISOString(),
+    lease_expires_at: new Date(now.getTime() + leaseMs).toISOString(),
+  };
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    const temporaryPath = `${lockPath}.${process.pid}.${crypto.randomUUID()}.tmp`;
+    try {
+      fs.writeFileSync(temporaryPath, JSON.stringify(lock), { encoding: 'utf8', flag: 'wx' });
+      fs.linkSync(temporaryPath, lockPath);
+      fs.unlinkSync(temporaryPath);
+      return lock;
+    } catch (error) {
+      try { if (fs.existsSync(temporaryPath)) fs.unlinkSync(temporaryPath); } catch {}
+      if (error.code !== 'EEXIST') throw error;
+      let existing;
+      try { existing = readJson(lockPath, 'Campaign plan lock'); } catch {
+        const invalidPath = `${lockPath}.${crypto.randomUUID()}.invalid`;
+        try { fs.renameSync(lockPath, invalidPath); } catch {}
+        try { if (fs.existsSync(invalidPath)) fs.unlinkSync(invalidPath); } catch {}
+        continue;
+      }
+      if (isValidLease(existing, now)) {
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10);
+        continue;
+      }
+      const expiredPath = `${lockPath}.${existing.lock_id || 'expired'}.${crypto.randomUUID()}.expired`;
+      try { fs.renameSync(lockPath, expiredPath); } catch { continue; }
+      try { fs.unlinkSync(expiredPath); } catch {}
+    }
+  }
+  return null;
+}
+
+function releasePlanMutationLock(planPath, lock) {
+  const lockPath = planLockPath(planPath);
+  try {
+    const current = readJson(lockPath, 'Campaign plan lock');
+    if (current.lock_id === lock.lock_id) fs.unlinkSync(lockPath);
+  } catch (error) {
+    if (error.code !== 'ENOENT') return;
+  }
+}
+
+function mutatePlan(planPath, now, leaseMs, mutate) {
+  const lock = acquirePlanMutationLock(planPath, now, leaseMs);
+  if (!lock) return { locked: false };
+  try {
+    return { locked: true, value: mutate(readJson(planPath, 'Campaign plan')) };
+  } finally {
+    releasePlanMutationLock(planPath, lock);
+  }
+}
+
+function claimCampaignSlot(planPath, slotId, { now, leaseMs, planLockLeaseMs, isEligible }) {
+  const result = mutatePlan(planPath, now, planLockLeaseMs, (plan) => {
+    if (!Array.isArray(plan.slots)) throw new CampaignExecutionError('Campaign plan has an invalid structure');
+    const slot = plan.slots.find((item) => item && item.slot_id === slotId);
+    if (!slot || !isEligible(slot)) return null;
+    if (isValidLease(slot.claim, now)) return null;
+    const attemptCount = Number.isInteger(slot.attempt_count) && slot.attempt_count >= 0 ? slot.attempt_count + 1 : 1;
+    const claim = {
+      claim_id: crypto.randomUUID(),
+      claimed_at: now.toISOString(),
+      lease_expires_at: new Date(now.getTime() + leaseMs).toISOString(),
+      attempt_count: attemptCount,
+    };
+    slot.claim = claim;
+    slot.attempt_count = attemptCount;
+    writeJsonAtomic(planPath, plan);
+    return { slot: { ...slot, claim: { ...claim } }, claim };
+  });
+  return result.locked ? result.value : null;
+}
+
+function completeClaimedSlot(planPath, slotId, claimId, { now, planLockLeaseMs, onComplete }) {
+  const result = mutatePlan(planPath, now, planLockLeaseMs, (plan) => {
+    if (!Array.isArray(plan.slots)) throw new CampaignExecutionError('Campaign plan has an invalid structure');
+    const slot = plan.slots.find((item) => item && item.slot_id === slotId);
+    if (!slot || !slot.claim || slot.claim.claim_id !== claimId) return false;
+    onComplete(slot);
+    delete slot.claim;
+    writeJsonAtomic(planPath, plan);
+    return true;
+  });
+  return result.locked && result.value === true;
 }
 
 function localDateInTimezone(timezone) {
@@ -53,7 +166,7 @@ function failureReason(error) {
   return message.replace(/\s+/g, ' ').trim().slice(0, 1000) || 'Campaign slot generation failed';
 }
 
-function attachCampaignMetadata(postFolder, campaign, slot) {
+function attachCampaignMetadata(postFolder, campaign, slot, now = new Date()) {
   const metadataPath = path.join(postFolder, 'metadata.json');
   if (!fs.existsSync(metadataPath)) throw new Error('Generated post metadata.json is missing');
   const metadata = readJson(metadataPath, 'Generated post metadata.json');
@@ -66,16 +179,16 @@ function attachCampaignMetadata(postFolder, campaign, slot) {
   metadata.account_language = campaign.account_language;
   metadata.account_timezone = campaign.account_timezone;
   metadata.publishing_mode = slot.publishing_mode || campaign.publishing_mode || 'mobile_finish';
-  metadata.updated_at = new Date().toISOString();
+  metadata.updated_at = now.toISOString();
   writeJsonAtomic(metadataPath, metadata);
 }
 
-function campaignScriptUsage(campaignId) {
+function campaignScriptUsage(campaignId, postsDir = POSTS_DIR) {
   const scriptIds = new Set();
-  if (!fs.existsSync(POSTS_DIR)) return scriptIds;
-  for (const entry of fs.readdirSync(POSTS_DIR, { withFileTypes: true })) {
+  if (!fs.existsSync(postsDir)) return scriptIds;
+  for (const entry of fs.readdirSync(postsDir, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
-    const metadataPath = path.join(POSTS_DIR, entry.name, 'metadata.json');
+    const metadataPath = path.join(postsDir, entry.name, 'metadata.json');
     if (!fs.existsSync(metadataPath)) continue;
     try {
       const metadata = readJson(metadataPath, 'Post metadata.json');
@@ -88,7 +201,14 @@ function campaignScriptUsage(campaignId) {
 }
 
 function executeCampaignWindow(campaignId, options = {}) {
-  const campaign = getCampaign(campaignId);
+  const root = options.root || ROOT;
+  const campaignsDir = path.join(root, 'data', 'campaigns');
+  const postsDir = path.join(root, 'outputs', 'posts');
+  const readCampaign = options.getCampaign || getCampaign;
+  const generate = options.generateSlideshows || generateSlideshows;
+  const validateVisualBanks = options.validateAccountVisualBanks || validateAccountVisualBanks;
+  const nowFor = options.now || (() => new Date());
+  const campaign = readCampaign(campaignId);
   if (!campaign) return null;
 
   const executionWindowDays = options.execution_window_days == null
@@ -97,10 +217,16 @@ function executeCampaignWindow(campaignId, options = {}) {
   if (!Number.isInteger(executionWindowDays) || executionWindowDays <= 0) {
     throw new CampaignExecutionError('execution_window_days must be a positive integer');
   }
+  const slotClaimLeaseMs = options.slot_claim_lease_ms == null
+    ? CAMPAIGN_EXECUTION_CONFIG.slot_claim_lease_ms
+    : options.slot_claim_lease_ms;
+  if (!Number.isInteger(slotClaimLeaseMs) || slotClaimLeaseMs <= 0) {
+    throw new CampaignExecutionError('slot_claim_lease_ms must be a positive integer');
+  }
 
-  const planPath = path.join(CAMPAIGNS_DIR, `${campaign.campaign_id}-plan.json`);
+  const planPath = path.join(campaignsDir, `${campaign.campaign_id}-plan.json`);
   if (!fs.existsSync(planPath)) throw new CampaignExecutionError('Campaign plan does not exist');
-  const plan = readJson(planPath, 'Campaign plan');
+  let plan = readJson(planPath, 'Campaign plan');
   if (plan.campaign_id !== campaign.campaign_id || !Array.isArray(plan.slots)) {
     throw new CampaignExecutionError('Campaign plan has an invalid structure');
   }
@@ -112,28 +238,60 @@ function executeCampaignWindow(campaignId, options = {}) {
     account_language: campaign.account_language,
     account_timezone: campaign.account_timezone,
   };
-  Object.assign(plan, accountFields);
-  plan.slots.forEach((slot) => Object.assign(slot, accountFields));
-  writeJsonAtomic(planPath, plan);
+  const accountContextMutation = mutatePlan(planPath, nowFor(), CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms, (latestPlan) => {
+    if (latestPlan.campaign_id !== campaign.campaign_id || !Array.isArray(latestPlan.slots)) {
+      throw new CampaignExecutionError('Campaign plan has an invalid structure');
+    }
+    Object.assign(latestPlan, accountFields);
+    latestPlan.slots.forEach((slot) => Object.assign(slot, accountFields));
+    writeJsonAtomic(planPath, latestPlan);
+    return latestPlan;
+  });
+  if (!accountContextMutation.locked) return {
+    campaign_id: campaign.campaign_id,
+    execution_window_days: executionWindowDays,
+    window_start: localDateInTimezone(campaign.timezone),
+    window_end: addCalendarDays(localDateInTimezone(campaign.timezone), executionWindowDays - 1),
+    generated_count: 0,
+    failed_count: 0,
+    skipped_claimed_count: 0,
+    generated_post_ids: [],
+    failed_slots: [],
+    updated_at: nowFor().toISOString(),
+  };
+  plan = accountContextMutation.value;
 
   const windowStart = localDateInTimezone(campaign.timezone);
   const windowEnd = addCalendarDays(windowStart, executionWindowDays - 1);
-  const eligibleSlots = plan.slots.filter((slot) => (
+  const isEligibleSlot = (slot) => (
     ['planned', 'failed'].includes(slot.status)
     && !slot.post_id
     && slot.date >= windowStart
     && slot.date <= windowEnd
-  ));
+  );
+  const eligibleSlotIds = plan.slots.filter(isEligibleSlot).map((slot) => slot.slot_id);
   const generatedPostIds = [];
   const failedSlots = [];
-  const usedScriptIds = campaignScriptUsage(campaign.campaign_id);
+  let skippedClaimedCount = 0;
+  const usedScriptIds = campaignScriptUsage(campaign.campaign_id, postsDir);
   const batchSourceSetIds = new Set();
 
-  for (const slot of eligibleSlots) {
+  for (const slotId of eligibleSlotIds) {
+    const claimResult = claimCampaignSlot(planPath, slotId, {
+      now: nowFor(),
+      leaseMs: slotClaimLeaseMs,
+      planLockLeaseMs: CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms,
+      isEligible: isEligibleSlot,
+    });
+    if (!claimResult) {
+      skippedClaimedCount += 1;
+      continue;
+    }
+    const { slot, claim } = claimResult;
     try {
-      validateAccountVisualBanks(campaign.account_id, slot.language);
+      validateVisualBanks(campaign.account_id, slot.language);
       const postId = `post-${slot.slot_id}`;
-      const generation = generateSlideshows({
+      const generation = generate({
         pillar: slot.pillar_id,
         hook: slot.hook_type,
         languages: [slot.language],
@@ -146,22 +304,30 @@ function executeCampaignWindow(campaignId, options = {}) {
         throw new Error('Generation did not return exactly one post');
       }
       const generatedPost = generation.posts[0];
-      const postFolder = path.resolve(ROOT, generatedPost.post_folder);
+      const postFolder = path.resolve(root, generatedPost.post_folder);
       const generatedMetadata = readJson(path.join(postFolder, 'metadata.json'), 'Generated post metadata.json');
-      attachCampaignMetadata(postFolder, campaign, slot);
+      attachCampaignMetadata(postFolder, campaign, slot, nowFor());
       if (generatedMetadata.master_script_id) usedScriptIds.add(generatedMetadata.master_script_id);
       if (generatedMetadata.topic_id) batchSourceSetIds.add(generatedMetadata.topic_id);
-      slot.post_id = generatedPost.post_id;
-      slot.status = 'generated';
-      delete slot.failure_reason;
-      writeJsonAtomic(planPath, plan);
-      generatedPostIds.push(generatedPost.post_id);
+      if (completeClaimedSlot(planPath, slot.slot_id, claim.claim_id, {
+        now: nowFor(),
+        planLockLeaseMs: CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms,
+        onComplete: (currentSlot) => {
+          currentSlot.post_id = generatedPost.post_id;
+          currentSlot.status = 'generated';
+          delete currentSlot.failure_reason;
+        },
+      })) generatedPostIds.push(generatedPost.post_id);
     } catch (error) {
       const reason = failureReason(error);
-      slot.status = 'failed';
-      slot.failure_reason = reason;
-      writeJsonAtomic(planPath, plan);
-      failedSlots.push({ slot_id: slot.slot_id, reason });
+      if (completeClaimedSlot(planPath, slot.slot_id, claim.claim_id, {
+        now: nowFor(),
+        planLockLeaseMs: CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms,
+        onComplete: (currentSlot) => {
+          currentSlot.status = 'failed';
+          currentSlot.failure_reason = reason;
+        },
+      })) failedSlots.push({ slot_id: slot.slot_id, reason });
     }
   }
 
@@ -174,9 +340,10 @@ function executeCampaignWindow(campaignId, options = {}) {
     failed_count: failedSlots.length,
     generated_post_ids: generatedPostIds,
     failed_slots: failedSlots,
-    updated_at: new Date().toISOString(),
+    skipped_claimed_count: skippedClaimedCount,
+    updated_at: nowFor().toISOString(),
   };
-  writeJsonAtomic(path.join(CAMPAIGNS_DIR, `${campaign.campaign_id}-execution.json`), summary);
+  writeJsonAtomic(path.join(campaignsDir, `${campaign.campaign_id}-execution.json`), summary);
   return summary;
 }
 
