@@ -2275,7 +2275,10 @@
         _campaignExecutionSummary = result;
         const skippedCount = Number(result.skipped_count || 0) + Number(result.skipped_claimed_count || 0);
         resultElement.style.color = result.failed_count ? '#e0b070' : 'var(--mint)';
-        resultElement.textContent = result.outcome === 'no_work'
+        const actionableFailure = Array.isArray(result.failed_slots) && result.failed_slots[0] && result.failed_slots[0].reason;
+        resultElement.textContent = actionableFailure
+          ? `${actionableFailure} · Generated ${result.generated_count} · Failed ${result.failed_count}`
+          : result.outcome === 'no_work'
           ? `${result.reason} · Generated 0 · Skipped ${skippedCount} · Failed 0`
           : `Generated ${result.generated_count} · Skipped ${skippedCount} · Failed ${result.failed_count} · ${result.window_start} — ${result.window_end}`;
         await loadCampaignSchedule();

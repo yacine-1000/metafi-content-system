@@ -102,6 +102,7 @@ function generateSlideshows({
     languages,
     posts: [],
   };
+  const pendingRenders = [];
 
   for (const language of languages) {
     const postStartedAt = Date.now();
@@ -126,10 +127,16 @@ function generateSlideshows({
     if (accountId) resolverArgs.push('--account-id', accountId);
     runNode('src/generation/resolvePostAssets.js', resolverArgs, 'asset_resolution', PROCESS_TIMEOUTS_MS.asset_resolution);
 
-    runNode('src/generation/renderResolvedPost.js', [
-      '--post', selection.output_path,
-    ], 'renderer', PROCESS_TIMEOUTS_MS.renderer);
+    pendingRenders.push({ language, selection, postStartedAt });
+  }
 
+  if (pendingRenders.length) {
+    runNode('src/generation/renderResolvedPost.js', pendingRenders.flatMap(({ selection }) => [
+      '--post', selection.output_path,
+    ]), 'renderer', PROCESS_TIMEOUTS_MS.renderer);
+  }
+
+  for (const { language, selection, postStartedAt } of pendingRenders) {
     const renderedDir = path.join(ROOT, selection.output_path, 'rendered');
     summary.posts.push({
       language,

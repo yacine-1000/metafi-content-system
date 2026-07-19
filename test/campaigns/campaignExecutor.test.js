@@ -7,6 +7,7 @@ const path = require('node:path');
 const test = require('node:test');
 
 const { CampaignExecutionError, executeCampaignWindow } = require('../../src/campaigns/campaignExecutor');
+const { AccountAssetValidationError } = require('../../src/generation/resolvePostAssets');
 
 function fixture(startDate = '2026-07-19') {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'metafi-campaign-'));
@@ -62,3 +63,48 @@ test('no eligible slots is a successful no-work result', () => {
   assert.equal(result.failed_count, 0);
 });
 
+test('account asset failure is retryable and only the failed slot runs after upload', () => {
+  const { root, campaign, planPath } = fixture();
+  fs.writeFileSync(planPath, JSON.stringify({
+    campaign_id: campaign.campaign_id,
+    slots: [{
+      slot_id: 'asset-slot', date: '2026-07-19', time: '12:00', status: 'planned', post_id: null,
+      language: 'ar', hook_type: 'listicle', pillar_id: 'p2', publishing_mode: 'automatic',
+    }],
+  }));
+  let generationCalls = 0;
+  const missingOptions = {
+    ...options(root, campaign),
+    validateAccountVisualBanks: () => {
+      throw new AccountAssetValidationError('ACCOUNT_CTA_MISSING', 'Faisal is missing an Arabic CTA image. Upload it in Accounts and retry.');
+    },
+    generateSlideshows: () => { generationCalls += 1; throw new Error('renderer must not start'); },
+  };
+  const failed = executeCampaignWindow(campaign.campaign_id, missingOptions);
+  assert.equal(generationCalls, 0);
+  assert.deepEqual(failed.failed_slots[0], {
+    slot_id: 'asset-slot',
+    reason: 'Faisal is missing an Arabic CTA image. Upload it in Accounts and retry.',
+    reason_code: 'ACCOUNT_CTA_MISSING',
+    retryable: true,
+  });
+  assert.equal(JSON.parse(fs.readFileSync(planPath, 'utf8')).slots[0].status, 'failed');
+
+  const uploadedOptions = {
+    ...options(root, campaign),
+    generateSlideshows: () => {
+      generationCalls += 1;
+      const folder = path.join(root, 'outputs', 'posts', 'post-retry');
+      fs.mkdirSync(folder, { recursive: true });
+      fs.writeFileSync(path.join(folder, 'metadata.json'), JSON.stringify({ post_id: 'post-retry' }));
+      return { posts: [{ post_id: 'post-retry', post_folder: path.relative(root, folder) }] };
+    },
+  };
+  const retried = executeCampaignWindow(campaign.campaign_id, uploadedOptions);
+  assert.equal(retried.generated_count, 1);
+  assert.equal(retried.failed_count, 0);
+  assert.equal(generationCalls, 1);
+  const retriedSlot = JSON.parse(fs.readFileSync(planPath, 'utf8')).slots[0];
+  assert.equal(retriedSlot.status, 'generated');
+  assert.equal(retriedSlot.failure_code, undefined);
+});

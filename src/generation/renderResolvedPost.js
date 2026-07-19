@@ -2,15 +2,17 @@
 
 const fs = require('fs');
 const path = require('path');
-const { spawnSync } = require('child_process');
+const { chromium } = require('playwright');
+const { renderSlides, STYLES } = require('../assembly/assemble-slider');
+const { performance } = require('perf_hooks');
 
 const ROOT = path.resolve(__dirname, '../..');
 
 function parseArgs(argv) {
-  const args = {};
+  const args = { posts: [] };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--post') {
-      args.post = argv[i + 1];
+      args.posts.push(argv[i + 1]);
       i += 1;
     }
   }
@@ -48,13 +50,10 @@ function assertResolvedPackage(pkg, postFolder) {
   }
 }
 
-function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (!args.post) throw new Error('Missing required argument: --post outputs/posts/{post_id}');
-
-  const postFolder = path.isAbsolute(args.post) ? args.post : path.join(ROOT, args.post);
+async function renderPost(argsPost, browser) {
+  const postFolder = path.isAbsolute(argsPost) ? argsPost : path.join(ROOT, argsPost);
   if (!fs.existsSync(postFolder) || !fs.statSync(postFolder).isDirectory()) {
-    throw new Error(`Post folder does not exist: ${args.post}`);
+    throw new Error(`Post folder does not exist: ${argsPost}`);
   }
 
   const resolvedPath = path.join(postFolder, 'publish-package-resolved.json');
@@ -80,23 +79,17 @@ function main() {
   fs.writeFileSync(configPath, JSON.stringify(renderConfig, null, 2), 'utf8');
   fs.mkdirSync(rendersDir, { recursive: true });
 
-  const result = spawnSync(
-    process.execPath,
-    ['src/assembly/assemble-slider.js'],
-    {
-      cwd: ROOT,
-      stdio: 'inherit',
-      env: {
-        ...process.env,
-        METAFI_ASSEMBLY_CONFIG_INPUT: configPath,
-        METAFI_RENDERS_DIR: rendersDir,
-        METAFI_PRESERVE_LINE_BREAKS: '1',
-      },
-    }
-  );
-
-  if (result.status !== 0) {
-    throw new Error(`Renderer failed with exit code ${result.status}`);
+  const previousPreserveLineBreaks = process.env.METAFI_PRESERVE_LINE_BREAKS;
+  process.env.METAFI_PRESERVE_LINE_BREAKS = '1';
+  try {
+    await renderSlides(renderConfig, rendersDir, STYLES['style-a'], path.basename(postFolder), {
+      browser,
+      pageMode: 'reuse',
+      imageMode: 'base64',
+    });
+  } finally {
+    if (previousPreserveLineBreaks == null) delete process.env.METAFI_PRESERVE_LINE_BREAKS;
+    else process.env.METAFI_PRESERVE_LINE_BREAKS = previousPreserveLineBreaks;
   }
 
   const metadataPath = path.join(postFolder, 'metadata.json');
@@ -112,12 +105,38 @@ function main() {
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf8');
   }
 
-  console.log(JSON.stringify({
+  return {
     post_folder: repoRelative(postFolder),
     render_config: repoRelative(configPath),
     rendered_dir: repoRelative(rendersDir),
     slide_count: renderConfig.slides.length,
-  }, null, 2));
+  };
 }
 
-main();
+async function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (!args.posts.length) throw new Error('Missing required argument: --post outputs/posts/{post_id}');
+  const batchStartedAt = performance.now();
+  const launchStartedAt = performance.now();
+  const browser = await chromium.launch();
+  console.error(`[renderer] ${new Date().toISOString()} stage=browser_launch event=complete elapsed_ms=${Math.round((performance.now() - launchStartedAt) * 100) / 100} scope=batch`);
+  try {
+    const results = [];
+    for (const post of args.posts) results.push(await renderPost(post, browser));
+    console.log(JSON.stringify(args.posts.length === 1 ? results[0] : { posts: results }, null, 2));
+  } finally {
+    const closeStartedAt = performance.now();
+    await browser.close();
+    console.error(`[renderer] ${new Date().toISOString()} stage=browser_shutdown event=complete elapsed_ms=${Math.round((performance.now() - closeStartedAt) * 100) / 100} scope=batch`);
+  }
+  console.error(`[renderer] ${new Date().toISOString()} stage=render_batch event=complete elapsed_ms=${Math.round((performance.now() - batchStartedAt) * 100) / 100} posts=${args.posts.length}`);
+}
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { assertResolvedPackage, renderPost };

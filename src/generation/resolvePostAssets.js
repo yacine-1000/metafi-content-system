@@ -23,6 +23,15 @@ const LANGUAGE_LANES = {
 const CTA_ASSET_BANK = 'app_icon_home_screen';
 const USAGE_PATH = path.join(ROOT, 'data', 'asset-usage.json');
 
+class AccountAssetValidationError extends Error {
+  constructor(code, message, details = {}) {
+    super(message);
+    this.name = 'AccountAssetValidationError';
+    this.code = code;
+    this.details = details;
+  }
+}
+
 function parseArgs(argv) {
   const args = {};
   for (let i = 0; i < argv.length; i += 1) {
@@ -72,6 +81,35 @@ function validImages(assetFolder) {
     .filter((entry) => entry.isFile())
     .map((entry) => entry.name)
     .filter((name) => VALID_EXTENSIONS.has(path.extname(name).toLowerCase()))
+    .sort((a, b) => a.localeCompare(b));
+}
+
+function isReadableSupportedImage(filePath) {
+  try {
+    fs.accessSync(filePath, fs.constants.R_OK);
+    const extension = path.extname(filePath).toLowerCase();
+    if (!VALID_EXTENSIONS.has(extension)) return false;
+    const handle = fs.openSync(filePath, 'r');
+    try {
+      const header = Buffer.alloc(12);
+      const bytesRead = fs.readSync(handle, header, 0, header.length, 0);
+      if (bytesRead < 12) return false;
+      if (extension === '.png') return header.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+      if (extension === '.jpg' || extension === '.jpeg') return header[0] === 0xff && header[1] === 0xd8 && header[2] === 0xff;
+      return header.toString('ascii', 0, 4) === 'RIFF' && header.toString('ascii', 8, 12) === 'WEBP';
+    } finally {
+      fs.closeSync(handle);
+    }
+  } catch {
+    return false;
+  }
+}
+
+function readableSupportedImages(assetFolder) {
+  if (!fs.existsSync(assetFolder) || !fs.statSync(assetFolder).isDirectory()) return [];
+  return fs.readdirSync(assetFolder, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && isReadableSupportedImage(path.join(assetFolder, entry.name)))
+    .map((entry) => entry.name)
     .sort((a, b) => a.localeCompare(b));
 }
 
@@ -127,14 +165,28 @@ function emptyBankError(bank, account, folderRelative, language) {
   return new Error(`No valid image files found in ${folderRelative}`);
 }
 
-function validateAccountVisualBanks(accountId, language) {
-  const account = visualAccount(accountId);
-  for (const bank of ['visual_hooks', 'body_slides', CTA_ASSET_BANK]) {
+function validateAccountVisualBanks(accountId, language, hookType = '', options = {}) {
+  const root = options.root || ROOT;
+  const account = options.account || visualAccount(accountId);
+  for (const bank of ['visual_hooks', CTA_ASSET_BANK]) {
     const folderRelative = assetFolderFor(bank, language, account);
-    const folder = path.join(ROOT, folderRelative);
-    let images = [];
-    if (fs.existsSync(folder) && fs.statSync(folder).isDirectory()) images = validImages(folder);
-    if (!images.length) throw emptyBankError(bank, account, folderRelative, language);
+    const folder = path.join(root, folderRelative);
+    const images = readableSupportedImages(folder);
+    if (images.length) continue;
+    if (bank === 'visual_hooks') {
+      throw new AccountAssetValidationError(
+        'ACCOUNT_HOOK_ASSET_MISSING',
+        `${account.internal_name} is missing a character hook image${hookType ? ` for ${hookType}` : ''}. Upload it in Accounts and retry.`,
+        { account_id: account.account_id, hook_type: hookType || null, asset_folder: folderRelative },
+      );
+    }
+    const languageName = ({ ar: 'Arabic', en: 'English', es: 'Spanish', fr: 'French' })[language] || language;
+    const article = ['Arabic', 'English'].includes(languageName) ? 'an' : 'a';
+    throw new AccountAssetValidationError(
+      'ACCOUNT_CTA_MISSING',
+      `${account.internal_name} is missing ${article} ${languageName} CTA image. Upload it in Accounts and retry.`,
+      { account_id: account.account_id, language, asset_folder: folderRelative },
+    );
   }
   return account;
 }
@@ -251,7 +303,9 @@ function main() {
       const folder = path.join(ROOT, resolvedFolderRelative);
       let images;
       try {
-        images = validImages(folder);
+        images = account && ['visual_hooks', CTA_ASSET_BANK].includes(bank)
+          ? readableSupportedImages(folder)
+          : validImages(folder);
       } catch (error) {
         if (!fs.existsSync(folder)) throw emptyBankError(bank, account, resolvedFolderRelative, args.languageLane);
         throw error;
@@ -309,4 +363,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { validateAccountVisualBanks };
+module.exports = { AccountAssetValidationError, isReadableSupportedImage, validateAccountVisualBanks };

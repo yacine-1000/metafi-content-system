@@ -410,7 +410,7 @@ function executeCampaignWindow(campaignId, options = {}) {
     let claimedInjection = null;
     try {
       const accountLookupStartedAt = Date.now();
-      validateVisualBanks(campaign.account_id, slot.language);
+      validateVisualBanks(campaign.account_id, slot.language, slot.hook_type);
       logStage('account_lookup', 'complete', accountLookupStartedAt, `slot_id=${slot.slot_id}`);
       const injectionLookupStartedAt = Date.now();
       const pendingInjection = compatibleInjectionRequest(injectionRequestStore, sourceSetFor, campaign, slot, nowFor(), root, executionCoolingScriptIds);
@@ -445,6 +445,7 @@ function executeCampaignWindow(campaignId, options = {}) {
           currentSlot.post_id = generatedPost.post_id;
           currentSlot.status = 'generated';
           delete currentSlot.failure_reason;
+          delete currentSlot.failure_code;
         },
       })) {
         logStage('campaign_plan_finalization', 'complete', slotStartedAt, `slot_id=${slot.slot_id}`);
@@ -456,6 +457,7 @@ function executeCampaignWindow(campaignId, options = {}) {
     } catch (error) {
       logStage('slot', 'failed', slotStartedAt, `slot_id=${slot.slot_id} error=${JSON.stringify(failureReason(error))}`);
       const reason = failureReason(error);
+      const reasonCode = error && typeof error.code === 'string' ? error.code : 'SLOT_GENERATION_FAILED';
       if (claimedInjection) injectionRequestStore.releaseFailure(claimedInjection.injection_id, slot.slot_id, reason, nowFor().toISOString());
       if (completeClaimedSlot(planPath, slot.slot_id, claim.claim_id, {
         now: nowFor(),
@@ -463,8 +465,9 @@ function executeCampaignWindow(campaignId, options = {}) {
         onComplete: (currentSlot) => {
           currentSlot.status = 'failed';
           currentSlot.failure_reason = reason;
+          currentSlot.failure_code = reasonCode;
         },
-      })) failedSlots.push({ slot_id: slot.slot_id, reason });
+      })) failedSlots.push({ slot_id: slot.slot_id, reason, reason_code: reasonCode, retryable: true });
     }
   }
 
