@@ -93,6 +93,7 @@ function selectArabicRuntimeScript({
   cooldownMs,
   usedScriptIds = [],
   excludedScriptIds = [],
+  requiredSourceSetId = null,
   avoidedSourceSetIds = [],
 }) {
   const pillar = PILLAR_NAMES[pillarId];
@@ -103,6 +104,7 @@ function selectArabicRuntimeScript({
   const avoidedSourceSets = new Set(avoidedSourceSetIds);
   const eligible = [];
   for (const indexEntry of findSourceSets({ pillar })) {
+    if (requiredSourceSetId && indexEntry.source_set_id !== requiredSourceSetId) continue;
     const sourceSet = getSourceSet(indexEntry.source_set_id);
     for (const entry of sourceSet.scripts) {
       if (!requestedFormat

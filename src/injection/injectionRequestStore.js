@@ -25,7 +25,7 @@ function createInjectionRequestStore(options = {}) {
     for (const field of required) if (typeof request[field] !== 'string' || request[field].trim() === '') throw new InjectionRequestStoreError(`${field} is required`);
     if (!/^INJ-[A-Za-z0-9_-]+$/.test(request.injection_id)) throw new InjectionRequestStoreError('injection_id is invalid');
     if (!/^SET-\d{3,}$/.test(request.source_set_id)) throw new InjectionRequestStoreError('source_set_id is invalid');
-    for (const field of ['campaign_id', 'account_id', 'target_date', 'consumed_by_slot_id']) {
+    for (const field of ['campaign_id', 'account_id', 'target_date', 'consumed_by_slot_id', 'claimed_by_slot_id', 'failure_reason', 'failed_at']) {
       if (request[field] != null && typeof request[field] !== 'string') throw new InjectionRequestStoreError(`${field} must be a string or null`);
     }
     if (Number.isNaN(Date.parse(request.requested_at))) throw new InjectionRequestStoreError('requested_at must be an ISO-compatible timestamp');
@@ -42,6 +42,9 @@ function createInjectionRequestStore(options = {}) {
       requested_at: request.requested_at,
       target_date: request.target_date ?? null,
       consumed_by_slot_id: request.consumed_by_slot_id ?? null,
+      claimed_by_slot_id: request.claimed_by_slot_id ?? null,
+      failure_reason: request.failure_reason ?? null,
+      failed_at: request.failed_at ?? null,
     };
     const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -50,7 +53,63 @@ function createInjectionRequestStore(options = {}) {
     return normalized;
   }
 
-  return { list: () => read().injection_requests, save };
+  function update(injectionId, mutate) {
+    const lockPath = `${filePath}.lock`;
+    let lock;
+    for (let attempt = 0; attempt < 100; attempt += 1) {
+      try { lock = fs.openSync(lockPath, 'wx'); break; }
+      catch (error) { if (error.code !== 'EEXIST') throw error; Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 10); }
+    }
+    if (lock == null) throw new InjectionRequestStoreError('Injection request store is busy');
+    try {
+      const store = read();
+      const request = store.injection_requests.find((item) => item.injection_id === injectionId);
+      if (!request) return null;
+      const value = mutate(request);
+      if (value === false) return null;
+      const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+      fs.writeFileSync(temporaryPath, `${JSON.stringify(store, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' });
+      fs.renameSync(temporaryPath, filePath);
+      return { ...request };
+    } finally {
+      try { fs.closeSync(lock); } catch {}
+      try { fs.unlinkSync(lockPath); } catch {}
+    }
+  }
+
+  function claim(injectionId, slotId) {
+    return update(injectionId, (request) => {
+      if (request.status !== 'pending') return false;
+      request.status = 'claimed';
+      request.claimed_by_slot_id = slotId;
+      return true;
+    });
+  }
+
+  function consume(injectionId, slotId) {
+    return update(injectionId, (request) => {
+      if (request.status !== 'claimed' || request.claimed_by_slot_id !== slotId) return false;
+      request.status = 'consumed';
+      request.consumed_by_slot_id = slotId;
+      request.claimed_by_slot_id = null;
+      request.failure_reason = null;
+      request.failed_at = null;
+      return true;
+    });
+  }
+
+  function releaseFailure(injectionId, slotId, reason, failedAt = new Date().toISOString()) {
+    return update(injectionId, (request) => {
+      if (request.status !== 'claimed' || request.claimed_by_slot_id !== slotId) return false;
+      request.status = 'pending';
+      request.claimed_by_slot_id = null;
+      request.failure_reason = String(reason || 'Injection generation failed').slice(0, 1000);
+      request.failed_at = failedAt;
+      return true;
+    });
+  }
+
+  return { list: () => read().injection_requests, save, claim, consume, releaseFailure };
 }
 
 module.exports = { InjectionRequestStoreError, createInjectionRequestStore };

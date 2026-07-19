@@ -10,10 +10,19 @@ const { uploadPostToR2 } = require('../generation/uploadToR2');
 const { createBufferDraft } = require('../generation/createBufferDraft');
 const { scheduleBufferPost } = require('../generation/scheduleBufferPost');
 const { validateAccountVisualBanks } = require('../generation/resolvePostAssets');
+const { createInjectionRequestStore } = require('../injection/injectionRequestStore');
+const { getSourceSet } = require('../scripts/scriptLibrary');
+const { getCoolingScriptIds } = require('../publication/publicationService');
 
 const ROOT = path.resolve(__dirname, '../..');
 const CAMPAIGNS_DIR = path.join(ROOT, 'data', 'campaigns');
 const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
+const PILLAR_NAMES = Object.freeze({
+  p1: 'Changed Week / What Should I Train Today?',
+  p2: 'Hybrid Athlete / Sport + Gym Balance',
+  p3: 'Workout Programming / Exercise Selection',
+  p4: 'Body Transformation / Aesthetic Progress',
+});
 
 const CAMPAIGN_EXECUTION_CONFIG = Object.freeze({
   execution_window_days: 3,
@@ -149,7 +158,7 @@ function completeClaimedSlot(planPath, slotId, claimId, { now, planLockLeaseMs, 
 
 function updateCampaignSlotAtomically(campaignId, slotId, update, options = {}) {
   const root = options.root || ROOT;
-  const planPath = path.join(root, 'data', 'campaigns', campaignId, 'plan.json');
+  const planPath = path.join(root, 'data', 'campaigns', `${campaignId}-plan.json`);
   const now = options.now || new Date();
   const result = mutatePlan(planPath, now, options.planLockLeaseMs || CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms, (plan) => {
     if (!Array.isArray(plan.slots)) throw new CampaignExecutionError('Campaign plan has an invalid structure');
@@ -216,6 +225,23 @@ function campaignScriptUsage(campaignId, postsDir = POSTS_DIR) {
   return scriptIds;
 }
 
+function compatibleInjectionRequest(requestStore, sourceSetFor, campaign, slot, now, publicationRoot) {
+  if (slot.language !== 'ar') return null;
+  const cooling = getCoolingScriptIds(campaign.account_id, { root: publicationRoot, now });
+  for (const request of requestStore.list()) {
+    if (!request || request.status !== 'pending' || request.campaign_id !== campaign.campaign_id || request.account_id !== campaign.account_id) continue;
+    if (request.target_date && request.target_date !== slot.date) continue;
+    let sourceSet;
+    try { sourceSet = sourceSetFor(request.source_set_id); } catch { continue; }
+    if (!sourceSet || sourceSet.pillar !== PILLAR_NAMES[slot.pillar_id] || !Array.isArray(sourceSet.scripts)) continue;
+    const compatible = sourceSet.scripts.some((script) => script && !cooling.has(script.script_id)
+      && (String(script.hook_type).toLowerCase() === String(slot.hook_type).toLowerCase()
+        || String(script.format).toLowerCase() === String(slot.hook_type).toLowerCase()));
+    if (compatible) return request;
+  }
+  return null;
+}
+
 function executeCampaignWindow(campaignId, options = {}) {
   const root = options.root || ROOT;
   const campaignsDir = path.join(root, 'data', 'campaigns');
@@ -223,6 +249,8 @@ function executeCampaignWindow(campaignId, options = {}) {
   const readCampaign = options.getCampaign || getCampaign;
   const generate = options.generateSlideshows || generateSlideshows;
   const validateVisualBanks = options.validateAccountVisualBanks || validateAccountVisualBanks;
+  const injectionRequestStore = options.injectionRequestStore || createInjectionRequestStore({ filePath: path.join(root, 'data', 'injection-requests.json') });
+  const sourceSetFor = options.getSourceSet || getSourceSet;
   const nowFor = options.now || (() => new Date());
   const campaign = readCampaign(campaignId);
   if (!campaign) return null;
@@ -304,8 +332,11 @@ function executeCampaignWindow(campaignId, options = {}) {
       continue;
     }
     const { slot, claim } = claimResult;
+    let claimedInjection = null;
     try {
       validateVisualBanks(campaign.account_id, slot.language);
+      const pendingInjection = compatibleInjectionRequest(injectionRequestStore, sourceSetFor, campaign, slot, nowFor(), root);
+      if (pendingInjection) claimedInjection = injectionRequestStore.claim(pendingInjection.injection_id, slot.slot_id);
       const postId = `post-${slot.slot_id}`;
       const generation = generate({
         pillar: slot.pillar_id,
@@ -315,6 +346,7 @@ function executeCampaignWindow(campaignId, options = {}) {
         usedScriptIds: [...usedScriptIds],
         avoidedSourceSetIds: [...batchSourceSetIds],
         accountId: campaign.account_id,
+        ...(claimedInjection ? { requiredSourceSetId: claimedInjection.source_set_id } : {}),
       });
       if (!generation.posts || generation.posts.length !== 1) {
         throw new Error('Generation did not return exactly one post');
@@ -333,9 +365,15 @@ function executeCampaignWindow(campaignId, options = {}) {
           currentSlot.status = 'generated';
           delete currentSlot.failure_reason;
         },
-      })) generatedPostIds.push(generatedPost.post_id);
+      })) {
+        if (claimedInjection && !injectionRequestStore.consume(claimedInjection.injection_id, slot.slot_id)) {
+          throw new CampaignExecutionError('Injection request could not be marked consumed');
+        }
+        generatedPostIds.push(generatedPost.post_id);
+      }
     } catch (error) {
       const reason = failureReason(error);
+      if (claimedInjection) injectionRequestStore.releaseFailure(claimedInjection.injection_id, slot.slot_id, reason, nowFor().toISOString());
       if (completeClaimedSlot(planPath, slot.slot_id, claim.claim_id, {
         now: nowFor(),
         planLockLeaseMs: CAMPAIGN_EXECUTION_CONFIG.plan_lock_lease_ms,

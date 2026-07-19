@@ -53,7 +53,7 @@ function swapCampaignPost(campaignId, slotId, options = {}) {
   const now = options.now || (() => new Date());
   const campaign = readCampaign(campaignId);
   if (!campaign) return null;
-  const planPath = path.join(root, 'data', 'campaigns', campaignId, 'plan.json');
+  const planPath = path.join(root, 'data', 'campaigns', `${campaignId}-plan.json`);
   const plan = readJson(planPath, 'Campaign plan');
   const slot = Array.isArray(plan.slots) && plan.slots.find((item) => item && item.slot_id === slotId);
   if (!slot || !slot.post_id) throw new CampaignSwapError('Only a generated campaign slot can be swapped');
