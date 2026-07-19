@@ -20,6 +20,7 @@
     "buffer:connect": "node src/generation/connectBuffer.js",
     "buffer:draft": "node src/generation/createBufferDraft.js",
     "buffer:schedule": "node src/generation/scheduleBufferPost.js",
+    "buffer:reconcile": "node src/publication/bufferPublicationReconciler.js",
     "generate:slideshows": "node src/generation/generateSlideshows.js",
     "campaigns:daily": "node src/campaigns/dailyCampaignRunner.js",
     "pipeline": "node src/pipeline/runPipeline.js",

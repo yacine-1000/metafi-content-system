@@ -158,11 +158,40 @@ function markPostPosted(postId, input = {}, { root = DEFAULT_ROOT, now = new Dat
   return { publication, existing: false };
 }
 
+function confirmBufferPublication(postId, input = {}, { root = DEFAULT_ROOT, now = new Date() } = {}) {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) throw new PublicationValidationError('Buffer publication input must be an object');
+  const history = readPublicationHistory({ root });
+  const existing = history.publications.find((record) => record.post_id === postId);
+  if (existing) return { publication: existing, existing: true };
+  const bufferPostId = requiredIdentity(input.buffer_post_id, 'Buffer post ID');
+  const bufferStatus = requiredIdentity(input.buffer_status, 'Buffer post status');
+  const identity = derivePostIdentity(postId, root);
+  if (Number.isNaN(now.getTime())) throw new PublicationValidationError('Confirmation timestamp is invalid');
+  const publication = {
+    publication_id: `publication_${crypto.randomUUID()}`,
+    ...identity,
+    method: 'buffer',
+    posting_method: 'buffer',
+    published_at: validatedTimestamp(input.published_at, now),
+    confirmed_at: now.toISOString(),
+    external_url: null,
+    buffer: {
+      post_id: bufferPostId,
+      status: bufferStatus,
+      channel_id: input.buffer_channel_id == null ? null : requiredIdentity(input.buffer_channel_id, 'Buffer channel ID'),
+      sent_at: input.sent_at == null ? null : validatedTimestamp(input.sent_at, now),
+    },
+  };
+  writeJsonAtomic(historyPath(root), { publications: [...history.publications, publication] });
+  return { publication, existing: false };
+}
+
 module.exports = {
   PublicationValidationError,
   SCRIPT_ROTATION_CONFIG,
   getCoolingScriptIds,
   getPublicationForPost,
   markPostPosted,
+  confirmBufferPublication,
   readPublicationHistory,
 };
