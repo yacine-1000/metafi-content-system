@@ -1269,7 +1269,7 @@
     <div id="accounts-section" class="app-section">
       <div class="accounts-header">
         <div><div class="page-title">Army</div><div class="page-sub">Manage connected TikTok publishing accounts.</div></div>
-        <button class="campaign-primary" id="refresh-buffer-channels" type="button" onclick="refreshBufferChannels()">Refresh Buffer Channels</button>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;"><button class="campaign-primary" type="button" onclick="startAddAccount()">Add an Account</button><button class="campaign-secondary" id="refresh-buffer-channels" type="button" onclick="refreshBufferChannels()">Refresh Buffer Channels</button></div>
       </div>
       <div id="accounts-status" style="min-height:16px;margin-bottom:12px;color:var(--text-muted);font-size:11px;"></div>
       <div id="accounts-list" class="accounts-grid"></div>
@@ -1281,11 +1281,13 @@
       <div id="account-form-card" class="account-form-card">
         <div class="campaign-detail-head"><div><div class="campaign-detail-title"><span class="campaign-detail-icon">@</span><span id="account-form-title">Configure Account</span></div><div class="campaign-detail-sub" id="account-form-channel"></div></div><button class="campaign-secondary" type="button" onclick="closeAccountForm()">Close</button></div>
         <div class="account-form-grid">
-          <div class="campaign-field"><label class="campaign-label" for="account-internal-name">Internal name</label><input class="campaign-input" id="account-internal-name" type="text"></div>
-          <div class="campaign-field"><span class="campaign-label">TikTok identity</span><div class="campaign-fixed-account" id="account-buffer-identity"></div></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-internal-name">Display / internal name</label><input class="campaign-input" id="account-internal-name" type="text"></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-username">Username</label><input class="campaign-input" id="account-username" type="text" placeholder="@username"></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-platform">Platform</label><select class="campaign-input" id="account-platform"><option value="tiktok">TikTok</option></select></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-buffer-channel">Buffer channel <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label><select class="campaign-input" id="account-buffer-channel" onchange="selectAccountBufferChannel(this.value)"><option value="">Manual only — no Buffer channel</option></select></div>
           <div class="campaign-field"><span class="campaign-label">Profile picture</span><div class="account-avatar-upload"><div class="account-avatar-preview" id="account-avatar-preview">&#9835;</div><div class="account-avatar-picker"><label class="account-avatar-action" for="account-avatar-file" id="account-avatar-action">Upload Profile Picture</label><input id="account-avatar-file" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" onchange="previewAccountAvatar(this)"><span style="color:var(--text-muted);font-size:10px;">JPG, JPEG, PNG, or WEBP</span></div></div></div>
           <div class="campaign-field"><label class="campaign-label" for="account-country">Country</label><input class="campaign-input" id="account-country" type="text"></div>
-          <div class="campaign-field"><label class="campaign-label" for="account-language">Language</label><select class="campaign-input" id="account-language"><option value="ar">Arabic</option><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="zh">Chinese</option></select></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-language">Default language</label><select class="campaign-input" id="account-language"><option value="ar">Arabic</option><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="zh">Chinese</option></select></div>
           <div class="campaign-field"><label class="campaign-label" for="account-gender">Gender</label><select class="campaign-input" id="account-gender"><option value="male">Male</option><option value="female">Female</option></select></div>
           <div class="campaign-field"><label class="campaign-label" for="account-timezone">Timezone</label><input class="campaign-input" id="account-timezone" type="text" value="Asia/Riyadh"></div>
           <div class="campaign-field"><span class="campaign-label">Status</span><label class="account-form-check"><input id="account-active" type="checkbox" checked> Active</label></div>
@@ -1531,13 +1533,27 @@
       return '&#9835;';
     }
 
-    function previewAccountAvatar(input) {
+    async function previewAccountAvatar(input) {
       const file = input.files && input.files[0];
       _accountAvatarFile = file || null;
       const preview = document.getElementById('account-avatar-preview');
       if (!file) { preview.innerHTML = '&#9835;'; return; }
       preview.innerHTML = `<img src="${escapeHtml(URL.createObjectURL(file))}" alt="Profile picture preview">`;
       document.getElementById('account-avatar-action').textContent = 'Replace image';
+      if (!_accountEditingId) return;
+      const errorElement = document.getElementById('account-form-error');
+      try {
+        const response = await fetch(`/api/accounts/${encodeURIComponent(_accountEditingId)}/avatar`, { method: 'POST', headers: { 'Content-Type': file.type }, body: file });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to upload profile picture');
+        _accountAvatarFile = null;
+        await loadAccounts();
+        errorElement.style.color = 'var(--mint)';
+        errorElement.textContent = 'Profile picture uploaded independently.';
+      } catch (error) {
+        errorElement.style.color = '#e07070';
+        errorElement.textContent = error.message;
+      }
     }
 
     function accountCard(account) {
@@ -1774,20 +1790,26 @@
 
     function fillAccountForm(account, channel) {
       _accountEditingId = account ? account.account_id : null;
-      _accountChannel = channel || (account ? {
-        organization_id: account.buffer_organization_id,
-        channel_id: account.buffer_channel_id,
-        channel_name: account.buffer_channel_name,
-        username: account.username,
+      _accountChannel = channel || (account && account.buffer_channel_id ? {
+        organization_id: account.buffer_organization_id, channel_id: account.buffer_channel_id,
+        channel_name: account.buffer_channel_name, username: account.username,
       } : null);
-      document.getElementById('account-form-title').textContent = account ? 'Edit Account' : 'Configure Account';
-      document.getElementById('account-form-channel').textContent = _accountChannel ? `TikTok · @${String(_accountChannel.username || '').replace(/^@/, '')}` : '';
+      document.getElementById('account-form-title').textContent = account ? 'Manage Account' : 'Add an Account';
+      document.getElementById('account-form-channel').textContent = account ? account.account_id : 'Create the account first; visual uploads unlock after a stable account ID is returned.';
       document.getElementById('account-internal-name').value = account ? account.internal_name : '';
-      const identityName = account ? account.display_name : (_accountChannel ? _accountChannel.channel_name : '');
-      const identityUsername = account ? account.username : (_accountChannel ? _accountChannel.username : '');
-      document.getElementById('account-buffer-identity').innerHTML = `<span class="campaign-account-icon">@</span><span><strong style="display:block;color:var(--text);font-size:12px;">${escapeHtml(identityName || 'TikTok account')}</strong><span style="color:var(--text-muted);font-size:10px;">@${escapeHtml(String(identityUsername || '').replace(/^@/, ''))}</span></span>`;
+      document.getElementById('account-username').value = account ? account.username : (_accountChannel ? _accountChannel.username || '' : '');
+      document.getElementById('account-platform').value = account ? account.platform : 'tiktok';
+      const selectedChannelId = account ? account.buffer_channel_id : (_accountChannel ? _accountChannel.channel_id : '');
+      const bufferSelect = document.getElementById('account-buffer-channel');
+      bufferSelect.innerHTML = accountBufferOptions(selectedChannelId);
+      if (selectedChannelId && ![...bufferSelect.options].some((option) => option.value === selectedChannelId)) {
+        bufferSelect.insertAdjacentHTML('beforeend', `<option value="${escapeHtml(selectedChannelId)}" selected>${escapeHtml(account.buffer_channel_name || selectedChannelId)}</option>`);
+      }
+      bufferSelect.value = selectedChannelId || '';
+      bufferSelect.disabled = Boolean(account);
       _accountAvatarFile = null;
       document.getElementById('account-avatar-file').value = '';
+      document.getElementById('account-avatar-file').disabled = !account;
       document.getElementById('account-avatar-preview').innerHTML = account ? accountAvatarMarkup(account) : '&#9835;';
       document.getElementById('account-avatar-action').textContent = account && account.avatar_path ? 'Replace image' : 'Upload Profile Picture';
       document.getElementById('account-country').value = account ? account.country : '';
@@ -1799,6 +1821,7 @@
       _accountAppCtaLanguage = account && ['ar', 'en', 'es', 'fr'].includes(account.language) ? account.language : 'ar';
       renderAccountAppCtaBank(account);
       document.getElementById('account-form-error').textContent = '';
+      document.getElementById('account-form-error').style.color = '#e07070';
       document.getElementById('account-form-card').classList.add('visible');
       document.getElementById('account-form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -1806,6 +1829,20 @@
     function configureAccountChannel(channelId) {
       const channel = _discoveredChannels.find((item) => item.channel_id === channelId);
       if (channel) fillAccountForm(null, channel);
+    }
+
+    function startAddAccount() {
+      fillAccountForm(null, null);
+    }
+
+    function accountBufferOptions(selectedId = '') {
+      const available = _discoveredChannels.filter((channel) => !channel.linked_account_id || channel.channel_id === selectedId);
+      return `<option value="">Manual only — no Buffer channel</option>${available.map((channel) => `<option value="${escapeHtml(channel.channel_id)}" ${channel.channel_id === selectedId ? 'selected' : ''}>${escapeHtml(channel.channel_name || channel.username || channel.channel_id)} · @${escapeHtml(String(channel.username || '').replace(/^@/, ''))}</option>`).join('')}`;
+    }
+
+    function selectAccountBufferChannel(channelId) {
+      _accountChannel = channelId ? _discoveredChannels.find((item) => item.channel_id === channelId) || null : null;
+      if (_accountChannel) document.getElementById('account-username').value = _accountChannel.username || '';
     }
 
     function openAccount(accountId) {
@@ -1821,17 +1858,14 @@
       document.getElementById('account-form-card').classList.remove('visible');
     }
 
-    function newAccountId(channelId) {
-      const suffix = String(channelId).toLowerCase().replace(/[^a-z0-9_-]/g, '-').replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, '').slice(-48) || String(Date.now());
-      return `account_${suffix}`;
-    }
-
     async function saveAccount() {
-      if (!_accountChannel) return;
       const button = document.getElementById('account-save');
       const errorElement = document.getElementById('account-form-error');
       const editable = {
         internal_name: document.getElementById('account-internal-name').value.trim(),
+        display_name: document.getElementById('account-internal-name').value.trim(),
+        username: document.getElementById('account-username').value.trim(),
+        platform: document.getElementById('account-platform').value,
         country: document.getElementById('account-country').value.trim(),
         language: document.getElementById('account-language').value,
         gender: document.getElementById('account-gender').value,
@@ -1839,15 +1873,10 @@
         active: document.getElementById('account-active').checked,
       };
       const payload = _accountEditingId ? editable : {
-        account_id: newAccountId(_accountChannel.channel_id),
         ...editable,
-        display_name: _accountChannel.channel_name || _accountChannel.username || 'TikTok account',
-        username: _accountChannel.username || _accountChannel.channel_name,
-        platform: 'tiktok',
-        buffer_organization_id: _accountChannel.organization_id || '',
-        buffer_channel_id: _accountChannel.channel_id,
-        buffer_channel_name: _accountChannel.channel_name || '',
-        connection_status: 'connected',
+        buffer_organization_id: _accountChannel ? _accountChannel.organization_id || '' : '',
+        buffer_channel_id: _accountChannel ? _accountChannel.channel_id : '',
+        buffer_channel_name: _accountChannel ? _accountChannel.channel_name || '' : '',
       };
       button.disabled = true;
       button.textContent = 'Saving…';
@@ -1861,19 +1890,11 @@
         });
         const result = await response.json();
         if (!response.ok) throw new Error(result.error || 'Unable to save account');
-        if (_accountAvatarFile) {
-          const avatarResponse = await fetch(`/api/accounts/${encodeURIComponent(result.account_id)}/avatar`, {
-            method: 'POST',
-            headers: { 'Content-Type': _accountAvatarFile.type },
-            body: _accountAvatarFile,
-          });
-          const avatarResult = await avatarResponse.json();
-          if (!avatarResponse.ok) throw new Error(avatarResult.error || 'Unable to upload profile picture');
-        }
-        closeAccountForm();
         await loadAccounts();
-        document.getElementById('accounts-status').style.color = 'var(--mint)';
-        document.getElementById('accounts-status').textContent = wasEditing ? 'Account updated.' : 'Account configured.';
+        const refreshed = _accounts.find((account) => account.account_id === result.account_id) || result;
+        fillAccountForm(refreshed, null);
+        errorElement.style.color = 'var(--mint)';
+        errorElement.textContent = wasEditing ? 'Account updated.' : `Account created. Visual uploads now use ${result.account_id}.`;
       } catch (error) {
         errorElement.textContent = error.message;
       } finally {

@@ -2,9 +2,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '../..');
-const ACCOUNTS_DIR = path.join(ROOT, 'data', 'accounts');
+const ACCOUNTS_DIR = process.env.METAFI_ACCOUNTS_DIR || path.join(ROOT, 'data', 'accounts');
 const ACCOUNT_ID_PATTERN = /^[a-z0-9](?:[a-z0-9_-]{0,62}[a-z0-9])?$/;
 const LANGUAGES = new Set(['ar', 'en', 'es', 'fr', 'zh']);
 const GENDERS = new Set(['male', 'female']);
@@ -93,7 +94,7 @@ function createAccount(input) {
   assertAllowedFields(input, true);
   const now = new Date().toISOString();
   const account = {
-    account_id: input.account_id,
+    account_id: input.account_id || `account_${crypto.randomBytes(12).toString('hex')}`,
     internal_name: input.internal_name,
     display_name: input.display_name,
     username: input.username,
