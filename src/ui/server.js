@@ -628,13 +628,28 @@ app.post('/api/campaigns/:campaignId/plan', (req, res) => {
 });
 
 app.post('/api/campaigns/:campaignId/generate-window', (req, res) => {
+  const startedAt = Date.now();
+  const campaignId = req.params.campaignId;
+  console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=start`);
   try {
-    const summary = executeCampaignWindow(req.params.campaignId);
+    const summary = executeCampaignWindow(campaignId);
     if (!summary) return res.status(404).json({ error: 'Campaign not found' });
+    console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=return elapsed_ms=${Date.now() - startedAt}`);
     return res.json(summary);
   } catch (error) {
+    console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=error elapsed_ms=${Date.now() - startedAt} error=${JSON.stringify(error.message || String(error))}`);
+    if (res.headersSent) return res.end();
     if (error instanceof CampaignValidationError || error instanceof CampaignExecutionError) {
-      return res.status(400).json({ error: error.message });
+      return res.status(400).json({
+        error: error.message,
+        reason: error.message,
+        reason_code: error.code || (error instanceof CampaignValidationError ? 'CAMPAIGN_CONFIG_INVALID' : 'CAMPAIGN_EXECUTION_ERROR'),
+        details: error.details || {},
+        outcome: 'blocked',
+        generated_count: 0,
+        skipped_count: 0,
+        failed_count: 0,
+      });
     }
     console.error(`[campaigns] execution failed: ${error.message}`);
     return res.status(500).json({ error: 'Unable to execute campaign window' });
@@ -712,11 +727,21 @@ app.post('/api/campaigns', (req, res) => {
 
 app.patch('/api/campaigns/:campaignId', (req, res) => {
   try {
+    // An active campaign is only usable if its plan can be created first.
+    // Planning before the status write prevents a failed activation from
+    // leaving an ACTIVE campaign without a plan.
+    if (req.body && req.body.status === 'active') {
+      const planned = planCampaign(req.params.campaignId);
+      if (!planned) return res.status(404).json({ error: 'Campaign not found' });
+      if (!Array.isArray(planned.plan.slots) || planned.plan.slots.length === 0) {
+        throw new CampaignPlannerError('Campaign plan contains zero slots');
+      }
+    }
     const campaign = updateCampaign(req.params.campaignId, req.body);
     if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
     return res.json(campaign);
   } catch (error) {
-    if (error instanceof CampaignValidationError) return res.status(400).json({ error: error.message });
+    if (error instanceof CampaignValidationError || error instanceof CampaignPlannerError) return res.status(400).json({ error: error.message, reason_code: 'ACTIVATION_PLAN_INVALID', reason: error.message });
     console.error(`[campaigns] update failed: ${error.message}`);
     return res.status(500).json({ error: 'Unable to update campaign' });
   }

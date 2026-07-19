@@ -30,7 +30,14 @@ const CAMPAIGN_EXECUTION_CONFIG = Object.freeze({
   plan_lock_lease_ms: 30 * 1000,
 });
 
-class CampaignExecutionError extends Error {}
+class CampaignExecutionError extends Error {
+  constructor(message, code = 'CAMPAIGN_EXECUTION_ERROR', details = {}) {
+    super(message);
+    this.name = 'CampaignExecutionError';
+    this.code = code;
+    this.details = details;
+  }
+}
 
 function readJson(filePath, label) {
   try {
@@ -172,11 +179,11 @@ function updateCampaignSlotAtomically(campaignId, slotId, update, options = {}) 
   return result.locked ? result.value : null;
 }
 
-function localDateInTimezone(timezone) {
+function localDateInTimezone(timezone, now = new Date()) {
   const parts = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
     timeZone: timezone,
     year: 'numeric', month: '2-digit', day: '2-digit',
-  }).formatToParts(new Date()).filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
+  }).formatToParts(now).filter((part) => part.type !== 'literal').map((part) => [part.type, part.value]));
   return `${parts.year}-${parts.month}-${parts.day}`;
 }
 
@@ -184,6 +191,29 @@ function addCalendarDays(date, offset) {
   const [year, month, day] = date.split('-').map(Number);
   const value = new Date(Date.UTC(year, month - 1, day + offset));
   return `${value.getUTCFullYear()}-${String(value.getUTCMonth() + 1).padStart(2, '0')}-${String(value.getUTCDate()).padStart(2, '0')}`;
+}
+
+function campaignEndDate(campaign) {
+  return addCalendarDays(campaign.start_date, campaign.duration_days - 1);
+}
+
+function noWorkSummary(campaign, executionWindowDays, windowStart, windowEnd, code, reason, now, skippedCount = 0) {
+  return {
+    campaign_id: campaign.campaign_id,
+    outcome: 'no_work',
+    reason_code: code,
+    reason,
+    execution_window_days: executionWindowDays,
+    window_start: windowStart,
+    window_end: windowEnd,
+    generated_count: 0,
+    skipped_count: skippedCount,
+    skipped_claimed_count: 0,
+    failed_count: 0,
+    generated_post_ids: [],
+    failed_slots: [],
+    updated_at: now.toISOString(),
+  };
 }
 
 function failureReason(error) {
@@ -225,9 +255,9 @@ function campaignScriptUsage(campaignId, postsDir = POSTS_DIR) {
   return scriptIds;
 }
 
-function compatibleInjectionRequest(requestStore, sourceSetFor, campaign, slot, now, publicationRoot) {
+function compatibleInjectionRequest(requestStore, sourceSetFor, campaign, slot, now, publicationRoot, coolingOverride = null) {
   if (slot.language !== 'ar') return null;
-  const cooling = getCoolingScriptIds(campaign.account_id, { root: publicationRoot, now });
+  const cooling = coolingOverride || getCoolingScriptIds(campaign.account_id, { root: publicationRoot, now });
   for (const request of requestStore.list()) {
     if (!request || request.status !== 'pending' || request.campaign_id !== campaign.campaign_id || request.account_id !== campaign.account_id) continue;
     if (request.target_date && request.target_date !== slot.date) continue;
@@ -243,6 +273,9 @@ function compatibleInjectionRequest(requestStore, sourceSetFor, campaign, slot, 
 }
 
 function executeCampaignWindow(campaignId, options = {}) {
+  const executionStartedAt = Date.now();
+  const logStage = (stage, event, startedAt = executionStartedAt, details = '') => console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=${stage} event=${event} elapsed_ms=${Date.now() - startedAt}${details ? ` ${details}` : ''}`);
+  logStage('execute_campaign_window', 'start');
   const root = options.root || ROOT;
   const campaignsDir = path.join(root, 'data', 'campaigns');
   const postsDir = path.join(root, 'outputs', 'posts');
@@ -252,7 +285,9 @@ function executeCampaignWindow(campaignId, options = {}) {
   const injectionRequestStore = options.injectionRequestStore || createInjectionRequestStore({ filePath: path.join(root, 'data', 'injection-requests.json') });
   const sourceSetFor = options.getSourceSet || getSourceSet;
   const nowFor = options.now || (() => new Date());
+  const campaignLoadStartedAt = Date.now();
   const campaign = readCampaign(campaignId);
+  logStage('campaign_load', 'complete', campaignLoadStartedAt);
   if (!campaign) return null;
 
   const executionWindowDays = options.execution_window_days == null
@@ -269,10 +304,19 @@ function executeCampaignWindow(campaignId, options = {}) {
   }
 
   const planPath = path.join(campaignsDir, `${campaign.campaign_id}-plan.json`);
-  if (!fs.existsSync(planPath)) throw new CampaignExecutionError('Campaign plan does not exist');
+  if (!fs.existsSync(planPath)) {
+    throw new CampaignExecutionError('No campaign plan exists. Activate or plan the campaign before generating.', 'PLAN_FILE_MISSING', { plan_path: planPath });
+  }
   let plan = readJson(planPath, 'Campaign plan');
   if (plan.campaign_id !== campaign.campaign_id || !Array.isArray(plan.slots)) {
-    throw new CampaignExecutionError('Campaign plan has an invalid structure');
+    throw new CampaignExecutionError('Campaign plan has an invalid structure', 'PLAN_INVALID', { plan_path: planPath });
+  }
+  const expectedSlots = campaign.duration_days * campaign.posts_per_day;
+  if (expectedSlots <= 0) {
+    throw new CampaignExecutionError('Posts per day is zero; update campaign cadence before generating.', 'POSTS_PER_DAY_ZERO', { posts_per_day: campaign.posts_per_day });
+  }
+  if (plan.slots.length === 0) {
+    throw new CampaignExecutionError('Campaign plan contains zero slots. Re-plan the campaign before generating.', 'PLAN_ZERO_SLOTS', { plan_path: planPath, expected_slots: expectedSlots });
   }
   const accountFields = {
     account_id: campaign.account_id,
@@ -291,11 +335,12 @@ function executeCampaignWindow(campaignId, options = {}) {
     writeJsonAtomic(planPath, latestPlan);
     return latestPlan;
   });
+  logStage('plan_lock_and_context', accountContextMutation.locked ? 'complete' : 'locked');
   if (!accountContextMutation.locked) return {
     campaign_id: campaign.campaign_id,
     execution_window_days: executionWindowDays,
-    window_start: localDateInTimezone(campaign.timezone),
-    window_end: addCalendarDays(localDateInTimezone(campaign.timezone), executionWindowDays - 1),
+    window_start: localDateInTimezone(campaign.timezone, nowFor()),
+    window_end: addCalendarDays(localDateInTimezone(campaign.timezone, nowFor()), executionWindowDays - 1),
     generated_count: 0,
     failed_count: 0,
     skipped_claimed_count: 0,
@@ -305,7 +350,7 @@ function executeCampaignWindow(campaignId, options = {}) {
   };
   plan = accountContextMutation.value;
 
-  const windowStart = localDateInTimezone(campaign.timezone);
+  const windowStart = localDateInTimezone(campaign.timezone, nowFor());
   const windowEnd = addCalendarDays(windowStart, executionWindowDays - 1);
   const isEligibleSlot = (slot) => (
     ['planned', 'failed'].includes(slot.status)
@@ -314,13 +359,41 @@ function executeCampaignWindow(campaignId, options = {}) {
     && slot.date <= windowEnd
   );
   const eligibleSlotIds = plan.slots.filter(isEligibleSlot).map((slot) => slot.slot_id);
+  if (eligibleSlotIds.length === 0) {
+    const ended = campaignEndDate(campaign) < windowStart;
+    const slotsInWindow = plan.slots.filter((slot) => slot.date >= windowStart && slot.date <= windowEnd);
+    const code = ended ? 'CAMPAIGN_ENDED' : slotsInWindow.length ? 'NO_ELIGIBLE_SLOTS' : 'NO_SLOTS_CURRENT_WINDOW';
+    const reason = ended
+      ? 'Campaign dates ended; there are no slots to generate.'
+      : slotsInWindow.length
+        ? 'No eligible slots in the current three-day window; existing slots are already processed or claimed.'
+        : 'No slots in the current three-day window.';
+    const summary = noWorkSummary(
+      campaign,
+      executionWindowDays,
+      windowStart,
+      windowEnd,
+      code,
+      reason,
+      nowFor(),
+      slotsInWindow.length,
+    );
+    writeJsonAtomic(path.join(campaignsDir, `${campaign.campaign_id}-execution.json`), summary);
+    return summary;
+  }
   const generatedPostIds = [];
   const failedSlots = [];
   let skippedClaimedCount = 0;
+  const filesystemScanStartedAt = Date.now();
   const usedScriptIds = campaignScriptUsage(campaign.campaign_id, postsDir);
+  logStage('filesystem_scans', 'complete', filesystemScanStartedAt, `used_script_count=${usedScriptIds.size}`);
   const batchSourceSetIds = new Set();
+  const publicationHistoryStartedAt = Date.now();
+  const executionCoolingScriptIds = getCoolingScriptIds(campaign.account_id, { root, now: nowFor() });
+  logStage('publication_history_loading', 'complete', publicationHistoryStartedAt, `cooling_script_count=${executionCoolingScriptIds.size}`);
 
   for (const slotId of eligibleSlotIds) {
+    const slotStartedAt = Date.now();
     const claimResult = claimCampaignSlot(planPath, slotId, {
       now: nowFor(),
       leaseMs: slotClaimLeaseMs,
@@ -328,14 +401,20 @@ function executeCampaignWindow(campaignId, options = {}) {
       isEligible: isEligibleSlot,
     });
     if (!claimResult) {
+      logStage('slot_claim', 'skipped', slotStartedAt, `slot_id=${slotId}`);
       skippedClaimedCount += 1;
       continue;
     }
     const { slot, claim } = claimResult;
+    logStage('slot_claim', 'complete', slotStartedAt, `slot_id=${slotId} claim_id=${claim.claim_id}`);
     let claimedInjection = null;
     try {
+      const accountLookupStartedAt = Date.now();
       validateVisualBanks(campaign.account_id, slot.language);
-      const pendingInjection = compatibleInjectionRequest(injectionRequestStore, sourceSetFor, campaign, slot, nowFor(), root);
+      logStage('account_lookup', 'complete', accountLookupStartedAt, `slot_id=${slot.slot_id}`);
+      const injectionLookupStartedAt = Date.now();
+      const pendingInjection = compatibleInjectionRequest(injectionRequestStore, sourceSetFor, campaign, slot, nowFor(), root, executionCoolingScriptIds);
+      logStage('injection_request_lookup', 'complete', injectionLookupStartedAt, `slot_id=${slot.slot_id} matched=${Boolean(pendingInjection)}`);
       if (pendingInjection) claimedInjection = injectionRequestStore.claim(pendingInjection.injection_id, slot.slot_id);
       const postId = `post-${slot.slot_id}`;
       const generation = generate({
@@ -346,8 +425,10 @@ function executeCampaignWindow(campaignId, options = {}) {
         usedScriptIds: [...usedScriptIds],
         avoidedSourceSetIds: [...batchSourceSetIds],
         accountId: campaign.account_id,
+        coolingScriptIds: executionCoolingScriptIds,
         ...(claimedInjection ? { requiredSourceSetId: claimedInjection.source_set_id } : {}),
       });
+      logStage('slideshow_generation', 'complete', slotStartedAt, `slot_id=${slot.slot_id}`);
       if (!generation.posts || generation.posts.length !== 1) {
         throw new Error('Generation did not return exactly one post');
       }
@@ -366,12 +447,14 @@ function executeCampaignWindow(campaignId, options = {}) {
           delete currentSlot.failure_reason;
         },
       })) {
+        logStage('campaign_plan_finalization', 'complete', slotStartedAt, `slot_id=${slot.slot_id}`);
         if (claimedInjection && !injectionRequestStore.consume(claimedInjection.injection_id, slot.slot_id)) {
           throw new CampaignExecutionError('Injection request could not be marked consumed');
         }
         generatedPostIds.push(generatedPost.post_id);
       }
     } catch (error) {
+      logStage('slot', 'failed', slotStartedAt, `slot_id=${slot.slot_id} error=${JSON.stringify(failureReason(error))}`);
       const reason = failureReason(error);
       if (claimedInjection) injectionRequestStore.releaseFailure(claimedInjection.injection_id, slot.slot_id, reason, nowFor().toISOString());
       if (completeClaimedSlot(planPath, slot.slot_id, claim.claim_id, {
@@ -387,6 +470,7 @@ function executeCampaignWindow(campaignId, options = {}) {
 
   const summary = {
     campaign_id: campaign.campaign_id,
+    outcome: failedSlots.length ? 'completed_with_failures' : 'completed',
     execution_window_days: executionWindowDays,
     window_start: windowStart,
     window_end: windowEnd,
@@ -398,6 +482,7 @@ function executeCampaignWindow(campaignId, options = {}) {
     updated_at: nowFor().toISOString(),
   };
   writeJsonAtomic(path.join(campaignsDir, `${campaign.campaign_id}-execution.json`), summary);
+  logStage('execute_campaign_window', 'complete', executionStartedAt, `generated=${generatedPostIds.length} failed=${failedSlots.length}`);
   return summary;
 }
 

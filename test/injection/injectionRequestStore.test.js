@@ -15,6 +15,7 @@ test('persists the standalone injection-request schema and rejects duplicate IDs
     injection_id: 'INJ-test-001', source_set_id: 'SET-045', campaign_id: null,
     account_id: null, status: 'pending', priority: 'normal',
     requested_at: '2026-07-19T00:00:00.000Z', target_date: '2026-07-20', consumed_by_slot_id: null,
+    claimed_by_slot_id: null, failure_reason: null, failed_at: null,
   };
   assert.deepEqual(store.save(input), input);
   assert.deepEqual(store.list(), [input]);

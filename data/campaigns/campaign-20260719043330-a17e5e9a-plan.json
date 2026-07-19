@@ -1,0 +1,35 @@
+{
+  "campaign_id": "campaign-20260719043330-a17e5e9a",
+  "account_id": "account_6a5577dd80cc80cdcaae1ff1",
+  "buffer_channel_id": "6a5577dd80cc80cdcaae1ff1",
+  "account_internal_name": "Yazeed",
+  "account_username": "metafi.app",
+  "account_language": "ar",
+  "account_timezone": "Asia/Riyadh",
+  "status": "planned",
+  "created_at": "2026-07-19T04:33:30.205Z",
+  "total_slots": 1,
+  "timezone": "Asia/Riyadh",
+  "publishing_mode": "automatic",
+  "slots": [
+    {
+      "slot_id": "campaign-20260719043330-a17e5e9a-slot-0001",
+      "date": "2026-07-19",
+      "time": "09:29",
+      "scheduled_at": "2026-07-19T06:29:00.000Z",
+      "pillar_id": "p2",
+      "hook_type": "listicle",
+      "language": "ar",
+      "account_id": "account_6a5577dd80cc80cdcaae1ff1",
+      "buffer_channel_id": "6a5577dd80cc80cdcaae1ff1",
+      "account_internal_name": "Yazeed",
+      "account_username": "metafi.app",
+      "account_language": "ar",
+      "account_timezone": "Asia/Riyadh",
+      "publishing_mode": "automatic",
+      "status": "generated",
+      "post_id": "post-20260719-073330-p2-listicle-ar",
+      "attempt_count": 1
+    }
+  ]
+}

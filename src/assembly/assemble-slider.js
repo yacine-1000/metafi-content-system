@@ -8,6 +8,19 @@ const { resolvePath } = require('../lib/pathResolver');
 const ROOT = path.resolve(__dirname, '../../');
 const CONFIG_PATH = resolvePath(ROOT, 'METAFI_ASSEMBLY_CONFIG_INPUT', 'test-inputs/assembly-config.json');
 const RENDERS_DIR = resolvePath(ROOT, 'METAFI_RENDERS_DIR', 'renders');
+const OPERATION_TIMEOUT_MS = 30000;
+const CLOSE_TIMEOUT_MS = 5000;
+
+function withTimeout(promise, timeoutMs, operation) {
+  let timer;
+  return Promise.race([promise, new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${operation} timed out after ${timeoutMs}ms`)), timeoutMs);
+  })]).finally(() => clearTimeout(timer));
+}
+
+function diagnostic(stage, event, startedAt, details = '') {
+  console.error(`[renderer] ${new Date().toISOString()} stage=${stage} event=${event} elapsed_ms=${Date.now() - startedAt}${details ? ` ${details}` : ''}`);
+}
 
 const FONT_PATH = fs.existsSync(path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf'))
   ? path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf')
@@ -178,9 +191,13 @@ ${fontLink}
 
 async function renderSlides(config, outDir, style, label) {
   fs.mkdirSync(outDir, { recursive: true });
-  const browser = await chromium.launch();
+  const launchStartedAt = Date.now();
+  const browser = await withTimeout(chromium.launch(), OPERATION_TIMEOUT_MS, 'browser launch');
+  diagnostic('browser_launch', 'complete', launchStartedAt);
 
+  try {
   for (const slide of config.slides) {
+    const slideStartedAt = Date.now();
     const imgAbsPath = path.join(ROOT, slide.image_path);
 
     if (!fs.existsSync(imgAbsPath)) {
@@ -191,22 +208,30 @@ async function renderSlides(config, outDir, style, label) {
     const dataUrl = imageToDataUrl(imgAbsPath);
     const html = buildHtml(dataUrl, prepareText(slide.text), slide.language, slide.role, style);
 
-    const page = await browser.newPage();
+    const page = await withTimeout(browser.newPage(), OPERATION_TIMEOUT_MS, `slide ${slide.slide_number} page creation`);
+    try {
     await page.setViewportSize({ width: 1080, height: 1920 });
-    await page.setContent(html, { waitUntil: 'domcontentloaded' });
+    await withTimeout(page.setContent(html, { waitUntil: 'domcontentloaded' }), OPERATION_TIMEOUT_MS, `slide ${slide.slide_number} image loading`);
     if (style && style.googleFontsUrl) {
-      await page.evaluate(() => document.fonts.ready);
+      await withTimeout(page.evaluate(() => document.fonts.ready), OPERATION_TIMEOUT_MS, `slide ${slide.slide_number} font loading`);
     }
     await page.waitForTimeout(300);
 
     const outPath = path.join(outDir, `slide-${slide.slide_number}.png`);
-    await page.screenshot({ path: outPath, clip: { x: 0, y: 0, width: 1080, height: 1920 } });
-    await page.close();
+    await withTimeout(page.screenshot({ path: outPath, clip: { x: 0, y: 0, width: 1080, height: 1920 } }), OPERATION_TIMEOUT_MS, `slide ${slide.slide_number} screenshot`);
+    diagnostic('slide', 'complete', slideStartedAt, `slide=${slide.slide_number}`);
 
     console.log(`[${label}] ✓ slide-${slide.slide_number}.png`);
+    } finally {
+      try { await withTimeout(page.close(), CLOSE_TIMEOUT_MS, `slide ${slide.slide_number} page close`); }
+      catch (error) { console.error(`[renderer] ${new Date().toISOString()} stage=page_close event=warning slide=${slide.slide_number} error=${error.message}`); }
+    }
   }
-
-  await browser.close();
+  } finally {
+    const closeStartedAt = Date.now();
+    try { await withTimeout(browser.close(), CLOSE_TIMEOUT_MS, 'browser close'); diagnostic('browser_close', 'complete', closeStartedAt); }
+    catch (error) { console.error(`[renderer] ${new Date().toISOString()} stage=browser_close event=timeout elapsed_ms=${Date.now() - closeStartedAt} error=${error.message}`); }
+  }
 }
 
 async function main() {
@@ -233,7 +258,7 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+main().then(() => process.exit(0)).catch((err) => {
   console.error(err);
   process.exit(1);
 });

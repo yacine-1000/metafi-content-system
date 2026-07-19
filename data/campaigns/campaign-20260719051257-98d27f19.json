@@ -1,6 +1,6 @@
 {
-  "campaign_id": "campaign-20260718070244-9f238092",
-  "name": "hjks",
+  "campaign_id": "campaign-20260719051257-98d27f19",
+  "name": "Test come on",
   "objective": "app_installs",
   "account_id": "account_6a572feb80cc80cdcab96cb7",
   "buffer_channel_id": "6a572feb80cc80cdcab96cb7",
@@ -9,25 +9,25 @@
   "account_language": "ar",
   "account_timezone": "Asia/Riyadh",
   "language": "ar",
-  "start_date": "2026-07-18",
+  "start_date": "2026-07-19",
   "duration_days": 1,
   "posts_per_day": 1,
   "pillars": [
     {
-      "pillar_id": "p3",
+      "pillar_id": "p2",
       "percentage": 100
     }
   ],
   "hook_types": [
-    "Original"
+    "listicle"
   ],
   "posting_time_mode": "manual",
   "posting_times": [
-    "11:11"
+    "09:17"
   ],
   "publishing_mode": "automatic",
   "timezone": "Asia/Riyadh",
-  "status": "draft",
-  "created_at": "2026-07-18T07:02:44.324Z",
-  "updated_at": "2026-07-18T07:02:44.324Z"
+  "status": "active",
+  "created_at": "2026-07-19T05:12:57.825Z",
+  "updated_at": "2026-07-19T05:12:59.383Z"
 }

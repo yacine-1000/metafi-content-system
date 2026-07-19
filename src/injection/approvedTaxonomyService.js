@@ -4,6 +4,12 @@ const path = require('path');
 const ExcelJS = require('exceljs');
 
 class ApprovedTaxonomyError extends Error {}
+const taxonomyCache = new Map();
+
+function invalidateApprovedTaxonomyCache(workbookPath = null) {
+  if (workbookPath) taxonomyCache.delete(path.resolve(workbookPath));
+  else taxonomyCache.clear();
+}
 
 function cellText(cell) {
   const value = cell.value;
@@ -17,6 +23,10 @@ function cellText(cell) {
 function createApprovedTaxonomyService(options = {}) {
   const workbookPath = path.resolve(options.workbookPath || path.join(__dirname, '..', '..', 'content', 'script-library', 'source', 'script-library.xlsx'));
   async function getTaxonomy() {
+    const stat = await require('fs').promises.stat(workbookPath);
+    const version = `${stat.mtimeMs}:${stat.size}`;
+    const cached = taxonomyCache.get(workbookPath);
+    if (cached && cached.version === version) return cached.value;
     const workbook = new ExcelJS.Workbook();
     try { await workbook.xlsx.readFile(workbookPath); } catch (error) { throw new ApprovedTaxonomyError(`Unable to read approved taxonomy workbook: ${error.message}`); }
     const sheet = workbook.getWorksheet('Taxonomy');
@@ -40,9 +50,11 @@ function createApprovedTaxonomyService(options = {}) {
       else if (section === 'subtopics' && second) subtopics.push({ subtopic: first, pillar: second });
     });
     if (!pillars.size || !hookTypes.size || !formats.size || !subtopics.length) throw new ApprovedTaxonomyError('Approved taxonomy is incomplete');
-    return { pillars: [...pillars], subtopics, hook_types: [...hookTypes], formats: [...formats] };
+    const value = { pillars: [...pillars], subtopics, hook_types: [...hookTypes], formats: [...formats] };
+    taxonomyCache.set(workbookPath, { version, value });
+    return value;
   }
   return { getTaxonomy };
 }
 
-module.exports = { ApprovedTaxonomyError, createApprovedTaxonomyService };
+module.exports = { ApprovedTaxonomyError, createApprovedTaxonomyService, invalidateApprovedTaxonomyCache };

@@ -2151,7 +2151,10 @@
       const campaignPosts = _allPosts.filter((post) => post.campaign_id === campaign.campaign_id);
       const slots = _campaignPlan && _campaignPlan.campaign_id === campaign.campaign_id && Array.isArray(_campaignPlan.slots) ? _campaignPlan.slots : [];
       const counts = {
-        Planned: slots.filter((slot) => slot.status === 'planned').length,
+        // Pipeline stages are cumulative; a generated slot is still a slot
+        // that was planned. Showing only outstanding `planned` statuses made
+        // healthy one-slot campaigns misleadingly display Planned: 0.
+        Planned: slots.length,
         Generated: campaignPosts.filter(isGeneratedCampaignPost).length,
         Approved: campaignPosts.filter((post) => post.statuses && post.statuses.review === 'approved').length,
         Uploaded: campaignPosts.filter((post) => post.upload_status === 'uploaded' || (post.statuses && post.statuses.upload === 'uploaded')).length,
@@ -2262,24 +2265,29 @@
       button.textContent = 'Generating…';
       resultElement.style.color = 'var(--text-muted)';
       resultElement.textContent = '';
+      const controller = new AbortController();
+      const requestTimeout = setTimeout(() => controller.abort(), 240000);
       try {
-        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/generate-window`, { method: 'POST' });
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/generate-window`, { method: 'POST', signal: controller.signal });
         const result = await response.json();
-        if (!response.ok) throw new Error(result.error || 'Unable to generate campaign window');
+        if (!response.ok) throw new Error(result.reason || result.error || 'Unable to generate campaign window');
         if (_currentCampaignId !== campaignId) return;
         _campaignExecutionSummary = result;
-        const skippedCount = Number(result.skipped_claimed_count || 0);
+        const skippedCount = Number(result.skipped_count || 0) + Number(result.skipped_claimed_count || 0);
         resultElement.style.color = result.failed_count ? '#e0b070' : 'var(--mint)';
-        resultElement.textContent = `Generated ${result.generated_count} · Skipped ${skippedCount} · Failed ${result.failed_count} · ${result.window_start} — ${result.window_end}`;
+        resultElement.textContent = result.outcome === 'no_work'
+          ? `${result.reason} · Generated 0 · Skipped ${skippedCount} · Failed 0`
+          : `Generated ${result.generated_count} · Skipped ${skippedCount} · Failed ${result.failed_count} · ${result.window_start} — ${result.window_end}`;
         await loadCampaignSchedule();
         renderCampaignContent();
         renderCampaignOverview();
       } catch (error) {
         if (_currentCampaignId === campaignId) {
           resultElement.style.color = '#e07070';
-          resultElement.textContent = error.message;
+          resultElement.textContent = error.name === 'AbortError' ? 'Generation timed out after 4 minutes' : error.message;
         }
       } finally {
+        clearTimeout(requestTimeout);
         _campaignExecutionRunning = false;
         button.disabled = false;
         button.textContent = 'Generate Next 3 Days';

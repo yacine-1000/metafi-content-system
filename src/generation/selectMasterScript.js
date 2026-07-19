@@ -111,12 +111,14 @@ function validateVersion(script, language) {
   return version;
 }
 
-function main() {
-  const args = parseArgs(process.argv.slice(2));
+function selectMasterScriptPost(args, options = {}) {
+  const timings = options.timings || {};
+  let startedAt = performance.now();
   const pillars = readJson('content/banks/pillars.json');
   const topicBank = readJson('content/banks/topic-bank.json');
   const ctaRules = readJson('content/banks/cta-rules.json');
   const postingRules = readJson('content/banks/posting-rules.json');
+  timings.taxonomy_loading_ms = performance.now() - startedAt;
 
   const pillarId = selectPillarId(pillars, args.pillar);
   const language = args.language;
@@ -129,6 +131,7 @@ function main() {
       catch { return selectMasterScript(topicBank, getActivePillarIds(pillars)[0]); }
     })()
     : null;
+  startedAt = performance.now();
   const librarySelection = language === 'ar' ? selectArabicRuntimeScript({
     pillarId,
     hookType: args.hook,
@@ -138,7 +141,10 @@ function main() {
     excludedScriptIds: args.excludedScriptIds,
     requiredSourceSetId: args.requiredSourceSetId,
     avoidedSourceSetIds: args.avoidedSourceSetIds,
+    timings,
+    coolingScriptIds: options.coolingScriptIds || null,
   }) : null;
+  timings.selection_pipeline_ms = performance.now() - startedAt;
   const { topic, script } = librarySelection || selectMasterScript(topicBank, pillarId, args.hook);
   const version = validateVersion(script, language);
 
@@ -217,12 +223,14 @@ function main() {
   };
 
   const postDir = path.join(ROOT, 'outputs', 'posts', postId);
+  startedAt = performance.now();
   fs.mkdirSync(postDir, { recursive: true });
   fs.writeFileSync(path.join(postDir, 'publish-package.json'), JSON.stringify(publishPackage, null, 2), 'utf8');
   fs.writeFileSync(path.join(postDir, 'metadata.json'), JSON.stringify(metadata, null, 2), 'utf8');
   fs.writeFileSync(path.join(postDir, 'caption.txt'), version.hook_text, 'utf8');
+  timings.filesystem_writes_ms = performance.now() - startedAt;
 
-  console.log(JSON.stringify({
+  return {
     post_id: postId,
     output_path: path.relative(ROOT, postDir).replace(/\\/g, '/'),
     language,
@@ -232,7 +240,18 @@ function main() {
     hook_type: script.hook_type,
     slide_count: script.slide_count,
     cta_slide: script.cta_slide
-  }, null, 2));
+  };
 }
 
-main();
+function main() {
+  const timings = {};
+  const startedAt = performance.now();
+  const result = selectMasterScriptPost(parseArgs(process.argv.slice(2)), { timings });
+  timings.total_ms = performance.now() - startedAt;
+  console.error(`[script-selection-profile] ${JSON.stringify(timings)}`);
+  console.log(JSON.stringify(result, null, 2));
+}
+
+if (require.main === module) main();
+
+module.exports = { selectMasterScriptPost };

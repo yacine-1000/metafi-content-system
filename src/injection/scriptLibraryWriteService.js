@@ -2,6 +2,8 @@
 
 const fs = require('fs');
 const path = require('path');
+const { invalidateScriptLibraryCache } = require('../scripts/scriptLibrary');
+const { invalidateApprovedTaxonomyCache } = require('./approvedTaxonomyService');
 
 const SOURCE_SET_PATTERN = /^SET-(\d{3,})$/;
 const VERSION_PATTERN = /^(Original|Variation ([1-9]\d*))$/;
@@ -198,6 +200,8 @@ function createScriptLibraryWriteService(options = {}) {
         if (options.beforeIndexCommit) options.beforeIndexCommit({ sourceSet, updatedIndex });
         fs.renameSync(indexTemp, indexPath);
         indexTemp = null;
+        invalidateScriptLibraryCache();
+        invalidateApprovedTaxonomyCache();
       } catch (error) {
         fs.unlinkSync(sourcePath);
         throw error;

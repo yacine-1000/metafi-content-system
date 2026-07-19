@@ -15,6 +15,18 @@ const PILLAR_NAMES = Object.freeze({
   p4: 'Body Transformation / Aesthetic Progress',
 });
 const PILLAR_IDS = Object.freeze(Object.fromEntries(Object.entries(PILLAR_NAMES).map(([id, name]) => [name, id])));
+let indexCache = null;
+const sourceSetCache = new Map();
+
+function fileVersion(filePath) {
+  const stat = fs.statSync(filePath);
+  return `${stat.mtimeMs}:${stat.size}`;
+}
+
+function invalidateScriptLibraryCache() {
+  indexCache = null;
+  sourceSetCache.clear();
+}
 
 function readJson(filePath, label) {
   if (!fs.existsSync(filePath)) throw new Error(`${label} is missing: ${path.relative(ROOT, filePath)}`);
@@ -26,8 +38,11 @@ function readJson(filePath, label) {
 }
 
 function loadIndex() {
+  const version = fileVersion(INDEX_PATH);
+  if (indexCache && indexCache.version === version) return indexCache.value;
   const index = readJson(INDEX_PATH, 'Script Library index');
   if (!Array.isArray(index.source_sets)) throw new Error('Script Library index must contain source_sets');
+  indexCache = { version, value: index };
   return index;
 }
 
@@ -37,7 +52,12 @@ function getSourceSet(sourceSetId) {
   if (!entry) return null;
   const filePath = path.resolve(LIBRARY_DIR, entry.file);
   if (!filePath.startsWith(path.resolve(LIBRARY_DIR) + path.sep)) throw new Error('Script Library index contains an unsafe Source Set path');
-  return readJson(filePath, `Source Set ${sourceSetId}`);
+  const version = fileVersion(filePath);
+  const cached = sourceSetCache.get(sourceSetId);
+  if (cached && cached.version === version) return cached.value;
+  const value = readJson(filePath, `Source Set ${sourceSetId}`);
+  sourceSetCache.set(sourceSetId, { version, value });
+  return value;
 }
 
 function findSourceSets({ pillar, subtopic, hook_type: hookType } = {}) {
@@ -95,7 +115,10 @@ function selectArabicRuntimeScript({
   excludedScriptIds = [],
   requiredSourceSetId = null,
   avoidedSourceSetIds = [],
+  timings = null,
+  coolingScriptIds: providedCoolingScriptIds = null,
 }) {
+  const mark = (stage, startedAt) => { if (timings) timings[stage] = (timings[stage] || 0) + (performance.now() - startedAt); };
   const pillar = PILLAR_NAMES[pillarId];
   if (!pillar) return null;
   const requestedFormat = String(hookType || '').toLowerCase();
@@ -103,8 +126,14 @@ function selectArabicRuntimeScript({
   const excludedScripts = new Set(excludedScriptIds);
   const avoidedSourceSets = new Set(avoidedSourceSetIds);
   const eligible = [];
-  for (const indexEntry of findSourceSets({ pillar })) {
-    if (requiredSourceSetId && indexEntry.source_set_id !== requiredSourceSetId) continue;
+  let startedAt = performance.now();
+  const sourceSets = findSourceSets({ pillar });
+  mark('script_library_loading_ms', startedAt);
+  startedAt = performance.now();
+  const filteredSourceSets = requiredSourceSetId ? sourceSets.filter((entry) => entry.source_set_id === requiredSourceSetId) : sourceSets;
+  mark('source_set_filtering_ms', startedAt);
+  startedAt = performance.now();
+  for (const indexEntry of filteredSourceSets) {
     const sourceSet = getSourceSet(indexEntry.source_set_id);
     for (const entry of sourceSet.scripts) {
       if (!requestedFormat
@@ -114,10 +143,13 @@ function selectArabicRuntimeScript({
       }
     }
   }
+  mark('hook_format_filtering_ms', startedAt);
   if (!eligible.length) return null;
-  const coolingScriptIds = accountId
+  startedAt = performance.now();
+  const coolingScriptIds = providedCoolingScriptIds || (accountId
     ? getCoolingScriptIds(accountId, { root: publicationRoot, now, cooldownMs })
-    : new Set();
+    : new Set());
+  mark('cooldown_lookup_ms', startedAt);
   const publicationEligible = eligible.filter(({ entry }) => !coolingScriptIds.has(entry.script_id) && !excludedScripts.has(entry.script_id));
   if (!publicationEligible.length) {
     throw new Error(`No eligible Arabic Script Library script remains for account "${accountId}" after publication cooldown and slot exclusions`);
@@ -125,8 +157,10 @@ function selectArabicRuntimeScript({
   const unused = publicationEligible.filter(({ entry }) => !usedScripts.has(entry.script_id));
   const reusePool = unused.length ? unused : publicationEligible;
   const differentSourceSets = reusePool.filter(({ sourceSet }) => !avoidedSourceSets.has(sourceSet.source_set_id));
+  startedAt = performance.now();
   const selected = (differentSourceSets.length ? differentSourceSets : reusePool)[0];
+  mark('final_script_choice_ms', startedAt);
   return adaptArabicScript(selected.sourceSet, selected.entry, { hookType, visualHookType });
 }
 
-module.exports = { adaptArabicScript, findSourceSets, getSourceSet, loadIndex, selectArabicRuntimeScript };
+module.exports = { adaptArabicScript, findSourceSets, getSourceSet, invalidateScriptLibraryCache, loadIndex, selectArabicRuntimeScript };
