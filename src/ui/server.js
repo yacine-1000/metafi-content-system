@@ -23,6 +23,7 @@ const {
 } = require('../campaigns/campaignService');
 const { CampaignPlannerError, planCampaign } = require('../campaigns/campaignPlanner');
 const { CampaignExecutionError, executeCampaignWindow, retryBufferNotificationPost, sendUploadedCampaignPostsToBuffer, uploadApprovedCampaignPosts } = require('../campaigns/campaignExecutor');
+const { PublicationValidationError, markPostPosted, readPublicationHistory } = require('../publication/publicationService');
 const {
   AccountConflictError,
   AccountValidationError,
@@ -658,6 +659,12 @@ app.get('/posts', (_req, res) => {
     .filter((name) => fs.statSync(path.join(postsDir, name)).isDirectory())
     .sort()
     .reverse();
+  let publicationsByPostId = new Map();
+  try {
+    publicationsByPostId = new Map(readPublicationHistory().publications.map((record) => [record.post_id, record]));
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
   const posts = folders.map((name) => {
     const metaPath = path.join(postsDir, name, 'metadata.json');
     let m = { post_id: name, status: 'unknown', statuses: { generation: 'unknown', review: 'unknown', upload: 'unknown', buffer: 'unknown', publish: 'unknown', strategy: 'not_checked' }, created_at: null, slide_count: 5 };
@@ -665,7 +672,7 @@ app.get('/posts', (_req, res) => {
       try { m = JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch {}
     }
     const statuses = resolveStatuses(m, null);
-    return { ...m, statuses, upload_readiness: computeReadiness(statuses), buffer_readiness: computeBufferReadiness(statuses) };
+    return { ...m, statuses, upload_readiness: computeReadiness(statuses), buffer_readiness: computeBufferReadiness(statuses), publication: publicationsByPostId.get(name) || null };
   });
   res.json(posts);
 });
@@ -717,7 +724,24 @@ app.get('/posts/:postId', (req, res) => {
   const buffer_status = meta.buffer_status === 'scheduled'
     ? 'scheduled'
     : bufferDraft?.buffer_post_id ? 'draft_created' : (meta.buffer_status || 'not_sent');
-  res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, buffer_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata, rendered_count, has_rendered_slides: rendered_count > 0, buffer_status, buffer_post_id: bufferDraft?.buffer_post_id || meta.buffer_post_id || null, r2_uploaded: fs.existsSync(path.join(postDir, 'r2-upload.json')) });
+  let publication;
+  try {
+    publication = readPublicationHistory().publications.find((record) => record.post_id === req.params.postId) || null;
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, buffer_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata, rendered_count, has_rendered_slides: rendered_count > 0, buffer_status, buffer_post_id: bufferDraft?.buffer_post_id || meta.buffer_post_id || null, r2_uploaded: fs.existsSync(path.join(postDir, 'r2-upload.json')), publication });
+});
+
+app.post('/api/posts/:postId/mark-posted', (req, res) => {
+  try {
+    const result = markPostPosted(req.params.postId, req.body || {});
+    return res.status(result.existing ? 200 : 201).json(result);
+  } catch (error) {
+    if (error instanceof PublicationValidationError) return res.status(400).json({ error: error.message });
+    console.error(`[publication] manual confirmation failed: ${error.message}`);
+    return res.status(500).json({ error: 'Unable to confirm publication' });
+  }
 });
 
 app.post('/api/posts/:postId/send-to-buffer', async (req, res) => {
