@@ -1362,8 +1362,9 @@
       const platformLabel = ({ tiktok: 'TikTok', instagram: 'Instagram', youtube: 'YouTube' })[platform.toLowerCase()]
         || (platform === '—' ? platform : platform.charAt(0).toUpperCase() + platform.slice(1));
       const connected = account.connection_status === 'connected';
-      const stateLabel = account.active === false ? 'Inactive' : connected ? 'Connected' : 'Disconnected';
-      const stateClass = account.active === false || !connected ? 'disconnected' : 'connected';
+      const manualOnly = account.connection_status === 'manual_only';
+      const stateLabel = account.active === false ? 'Inactive' : manualOnly ? 'Manual only' : connected ? 'Connected' : 'Disconnected';
+      const stateClass = account.active === false || (!connected && !manualOnly) ? 'disconnected' : 'connected';
       return `<article class="account-card"><div class="account-card-head"><div class="account-avatar">${accountAvatarMarkup(account)}</div><div style="min-width:0;"><div class="account-name">${escapeHtml(account.internal_name || account.display_name || '—')}</div><div class="account-username">@${escapeHtml(String(account.username || '').replace(/^@/, ''))}</div></div><div class="account-badges"><span class="account-badge ${stateClass}">${stateLabel}</span></div></div><div class="account-meta-grid"><div><span class="account-meta-label">Country</span><span class="account-meta-value">${escapeHtml(account.country || '—')}</span></div><div><span class="account-meta-label">Platform</span><span class="account-meta-value">${escapeHtml(platformLabel)}</span></div><div><span class="account-meta-label">Character hooks</span><span class="account-meta-value">${Number(account.hook_image_count) || 0}</span></div></div><button class="campaign-secondary" type="button" onclick="openAccount('${safeId}')">Open Account</button></article>`;
     }
 
@@ -1742,7 +1743,7 @@
     };
 
     function campaignAccountEligible(account) {
-      return account && account.active === true && account.connection_status === 'connected';
+      return account && account.active === true && ['connected', 'manual_only'].includes(account.connection_status);
     }
 
     function campaignAccountDisplay(campaign) {
@@ -1765,7 +1766,7 @@
         const eligible = campaignAccountEligible(account);
         const selectable = eligible && _campaignAccountCanChange;
         const selected = account.account_id === _campaignAccountId;
-        const disabledLabel = !account.active ? 'Inactive' : account.connection_status !== 'connected' ? 'Disconnected' : !_campaignAccountCanChange ? 'Locked' : 'Connected';
+        const disabledLabel = !account.active ? 'Inactive' : !campaignAccountEligible(account) ? 'Disconnected' : !_campaignAccountCanChange ? 'Locked' : account.connection_status === 'manual_only' ? 'Manual only' : 'Connected';
         return `<button class="campaign-account-option${selected ? ' selected' : ''}" type="button" onclick="selectCampaignAccount('${escapeHtml(account.account_id)}')" ${selectable ? '' : 'disabled'}><span class="account-avatar" style="width:34px;height:34px;font-size:11px;">${accountAvatarMarkup(account)}</span><span class="campaign-account-option-copy"><span class="campaign-account-option-name">${escapeHtml(account.internal_name)}</span><span class="campaign-account-option-sub"><span>@${escapeHtml(String(account.username || '').replace(/^@/, ''))}</span><span>•</span><span class="campaign-account-option-country">${escapeHtml(account.country || '—')}</span></span></span><span class="account-badge ${eligible ? 'connected' : !account.active ? 'unlinked' : 'disconnected'}">${disabledLabel}</span></button>`;
       }).join('');
       container.classList.toggle('open', _campaignAccountMenuOpen);

@@ -430,6 +430,7 @@ async function sendUploadedCampaignPostsToBuffer(campaignId) {
   const campaign = getCampaign(campaignId);
   if (!campaign) return null;
   const account = resolveCampaignAccount(campaign.account_id);
+  if (!account.buffer_channel_id) throw new CampaignExecutionError('Campaign account has no Buffer channel configured');
   const planPath = path.join(CAMPAIGNS_DIR, `${campaign.campaign_id}-plan.json`);
   const plan = fs.existsSync(planPath) ? readJson(planPath, 'Campaign plan') : { slots: [] };
   const slotsById = new Map((plan.slots || []).map((slot) => [slot.slot_id, slot]));
@@ -567,6 +568,7 @@ async function retryBufferNotificationPost(campaignId, postId, { local_date: dat
   if (metadata.buffer_status !== 'not_sent' && !persistedFailure) throw new CampaignExecutionError('Post is not eligible for Buffer retry');
 
   const account = resolveCampaignAccount(campaign.account_id);
+  if (!account.buffer_channel_id) throw new CampaignExecutionError('Campaign account has no Buffer channel configured');
   if (!metadata.buffer_channel_id) throw new CampaignExecutionError('Post metadata is missing buffer_channel_id');
   if (metadata.buffer_channel_id !== account.buffer_channel_id) throw new CampaignExecutionError('Post Buffer channel does not match the selected campaign account');
 

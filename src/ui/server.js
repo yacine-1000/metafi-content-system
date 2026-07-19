@@ -96,6 +96,20 @@ function safePostFolder(postId) {
   return path.dirname(postDir) === path.resolve(POSTS_DIR) ? postDir : null;
 }
 
+function postBufferChannelError(postDir) {
+  const metadataPath = path.join(postDir, 'metadata.json');
+  if (!fs.existsSync(metadataPath)) return null;
+  try {
+    const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+    if (!metadata.account_id) return null;
+    const account = getAccount(metadata.account_id);
+    if (account && !account.buffer_channel_id) return 'Post account has no Buffer channel configured';
+  } catch {
+    return null;
+  }
+  return null;
+}
+
 function renderedImageCount(postDir) {
   const renderedDir = path.join(postDir, 'rendered');
   if (!fs.existsSync(renderedDir) || !fs.statSync(renderedDir).isDirectory()) return 0;
@@ -469,7 +483,7 @@ app.post('/api/accounts/refresh-buffer-channels', async (_req, res) => {
       discoverBufferTikTokChannels(),
       Promise.resolve(listAccounts()),
     ]);
-    const accountsByChannel = new Map(accounts.map((account) => [account.buffer_channel_id, account]));
+    const accountsByChannel = new Map(accounts.filter((account) => account.buffer_channel_id).map((account) => [account.buffer_channel_id, account]));
     const safeChannel = (channel, linkedAccountId = null) => ({
       organization_id: channel.organization_id,
       organization_name: channel.organization_name,
@@ -487,7 +501,7 @@ app.post('/api/accounts/refresh-buffer-channels', async (_req, res) => {
     const unlinkedChannels = connectedChannels
       .filter((channel) => !accountsByChannel.has(channel.channel_id))
       .map((channel) => safeChannel(channel));
-    const disconnectedSavedAccounts = accounts.filter((account) => !connectedIds.has(account.buffer_channel_id)).map((account) => {
+    const disconnectedSavedAccounts = accounts.filter((account) => account.buffer_channel_id && !connectedIds.has(account.buffer_channel_id)).map((account) => {
       const discovered = channels.find((channel) => channel.channel_id === account.buffer_channel_id);
       return {
         organization_id: discovered ? discovered.organization_id : account.buffer_organization_id,
@@ -750,6 +764,8 @@ app.post('/api/posts/:postId/send-to-buffer', async (req, res) => {
   if (!fs.existsSync(postDir) || !fs.statSync(postDir).isDirectory()) {
     return res.status(404).json({ error: 'Post not found' });
   }
+  const bufferChannelError = postBufferChannelError(postDir);
+  if (bufferChannelError) return res.status(400).json({ error: bufferChannelError });
   if (renderedImageCount(postDir) === 0) {
     return res.status(400).json({ error: 'Rendered slides are missing' });
   }
@@ -801,6 +817,8 @@ app.post('/api/posts/:postId/schedule-buffer', async (req, res) => {
   if (!fs.existsSync(postDir) || !fs.statSync(postDir).isDirectory()) {
     return res.status(404).json({ error: 'Post not found' });
   }
+  const bufferChannelError = postBufferChannelError(postDir);
+  if (bufferChannelError) return res.status(400).json({ error: bufferChannelError });
 
   const { local_date: localDate, local_time: localTime, timezone } = req.body || {};
   if (typeof localDate !== 'string' || typeof localTime !== 'string' || typeof timezone !== 'string') {

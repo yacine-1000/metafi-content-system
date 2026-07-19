@@ -47,8 +47,7 @@ function resolveCampaignAccount(accountId) {
   }
   if (!account) throw new CampaignValidationError(`Campaign account does not exist: ${accountId}`);
   if (account.active !== true) throw new CampaignValidationError(`Campaign account is inactive: ${account.account_id}`);
-  if (account.connection_status !== 'connected') throw new CampaignValidationError(`Campaign account is disconnected: ${account.account_id}`);
-  if (!account.buffer_channel_id) throw new CampaignValidationError(`Campaign account is missing buffer_channel_id: ${account.account_id}`);
+  if (!['connected', 'manual_only'].includes(account.connection_status)) throw new CampaignValidationError(`Campaign account is disconnected: ${account.account_id}`);
   return account;
 }
 

@@ -8,6 +8,7 @@ const ACCOUNTS_DIR = path.join(ROOT, 'data', 'accounts');
 const ACCOUNT_ID_PATTERN = /^[a-z0-9](?:[a-z0-9_-]{0,62}[a-z0-9])?$/;
 const LANGUAGES = new Set(['ar', 'en', 'es', 'fr', 'zh']);
 const GENDERS = new Set(['male', 'female']);
+const CONNECTION_STATUSES = new Set(['connected', 'manual_only']);
 const INPUT_FIELDS = new Set([
   'account_id', 'internal_name', 'display_name', 'username', 'platform',
   'country', 'language', 'gender', 'timezone', 'buffer_organization_id', 'buffer_channel_id',
@@ -69,12 +70,15 @@ function validateAccount(account) {
   if (!LANGUAGES.has(account.language)) throw new AccountValidationError('language must be ar, en, es, fr, or zh');
   if (!GENDERS.has(account.gender)) throw new AccountValidationError('gender must be male or female');
   if (typeof account.timezone !== 'string' || !isValidTimezone(account.timezone)) throw new AccountValidationError('timezone must be a valid IANA timezone');
-  if (account.connection_status !== 'connected') throw new AccountValidationError('connection_status must be connected');
+  if (!CONNECTION_STATUSES.has(account.connection_status)) throw new AccountValidationError('connection_status must be connected or manual_only');
   if (typeof account.active !== 'boolean') throw new AccountValidationError('active must be a boolean');
-  if (!account.buffer_channel_id.trim()) throw new AccountValidationError('buffer_channel_id is required');
+  const hasBufferChannel = Boolean(account.buffer_channel_id.trim());
+  if (account.connection_status === 'connected' && !hasBufferChannel) throw new AccountValidationError('buffer_channel_id is required for connected accounts');
+  if (account.connection_status === 'manual_only' && hasBufferChannel) throw new AccountValidationError('manual_only accounts cannot have buffer_channel_id');
 }
 
 function assertUniqueBufferChannel(bufferChannelId, excludedAccountId = null) {
+  if (!bufferChannelId || !bufferChannelId.trim()) return;
   const duplicate = listAccounts().find((account) => account.account_id !== excludedAccountId && account.buffer_channel_id === bufferChannelId);
   if (duplicate) throw new AccountConflictError('buffer_channel_id is already assigned to another account');
 }
@@ -100,9 +104,9 @@ function createAccount(input) {
     gender: input.gender || 'male',
     timezone: input.timezone,
     buffer_organization_id: input.buffer_organization_id || '',
-    buffer_channel_id: input.buffer_channel_id,
+    buffer_channel_id: input.buffer_channel_id || '',
     buffer_channel_name: input.buffer_channel_name || '',
-    connection_status: input.connection_status || 'connected',
+    connection_status: input.connection_status || (input.buffer_channel_id ? 'connected' : 'manual_only'),
     active: input.active == null ? true : input.active,
     created_at: now,
     updated_at: now,
