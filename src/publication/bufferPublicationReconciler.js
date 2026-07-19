@@ -21,7 +21,7 @@ function readApiKey(root) {
 async function fetchBufferPostStatus(bufferPostId, { root = ROOT, fetchImpl = fetch } = {}) {
   const response = await fetchImpl(BUFFER_API_URL, {
     method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${readApiKey(root)}` },
-    body: JSON.stringify({ query: `query Post($id: ID!) { post(id: $id) { id status sentAt dueAt channelId } }`, variables: { id: bufferPostId } }),
+    body: JSON.stringify({ query: `query Post($input: PostInput!) { post(input: $input) { id status sentAt dueAt channelId } }`, variables: { input: { id: bufferPostId } } }),
   });
   let payload;
   try { payload = await response.json(); } catch { throw new Error(`Buffer status response was not JSON (HTTP ${response.status})`); }
