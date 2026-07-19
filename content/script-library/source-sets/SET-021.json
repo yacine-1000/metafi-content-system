@@ -1,0 +1,340 @@
+{
+  "source_set_id": "SET-021",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Hormones",
+  "topic": "Increasing Testosterone Naturally",
+  "scripts": [
+    {
+      "script_id": "SET-021-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Educational",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏حاب ترفع التستوستيرون طبيعيًا؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏التستوستيرون يساعد جسمك يحوّ ل الأكل والتمرين لعضل وقوة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏إذا كان منخفض، تحس تتمرن كثير بس جسمك واقف مكانه."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏القاعدة بسيطة: تمارين قوية ومقاومة كفاية."
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏أوزان ثقيلة +عضالت كبيرة = تحفيز أقوى للجسم."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏أهم التمارين: سكوات: يحفز الجسم كامل ديدلفت: يشغل العضالت الخلفية بنش برس: أساس قوة الجزء العلوي بنت أوفر رو:\n‏يبني سماكة الظهر أوفرهيد برس: يقوي الكتف والقوة العامة"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏غلطين بالتمرين يخلون هرمون التستوستيرون عندك دايم منخفض."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الأول: تسحب على تمارين العضالت الكبيرة وتركز على أجهزة العزل بس."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثاني: تتجنب الأوزان الثقيلة وتمرن جسمك بدون ما تعطيه إشارة حقيقية للبناء."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ال زبدة عشان ترفع الهرمون طبيعي: ركز على السكوات، الديدلفت، البنش برس، البنت أوفر رو، والأوفرهيد برس."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء ركز عليها بجدولك عشان ترفع التستوستيرون طبيعيًا."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أواًل: حط التمارين المركبة اللي تشغل عضالت كبيرة بجسمك في بداية تمرينك."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانيًا: تمرن بأوزان ثقيلة وحمل عالي عشان تجبر جسمك يفرز الهرمون ويحول أكلك لعضل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ً\n‏ثالثا: خل أساس تمرينك السكوات والديدلفت لألرجل والظهر، والبنش برس والبنت أوفر رو والأوفرهيد برس للجزء العلوي."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تخلي تمرينك يحفز التستوستيرون الطبيعي بأعلى كفاءة؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الحل مو بكثرة الأجهزة الخفيفة، الحل إنك تعطي جسمك مقاومة قوية وصدمة حقيقية."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ابدأ تمرينك بالسكوات والديدلفت لأنها عضالت كبيرة وتحفز هرمونات الجسم كامل."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏واستهدف الجزء العلوي بتمارين مركبة وثقيلة مثل البنش برس، البنت أوفر رو، والأوفرهيد برس لبناء قوة وسماكة حقيقية."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تتمرن بجهد عالي وتأكل صح بس جسمك واقف مكانه وعضالتك ما تزيد."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏المشكلة غالبًا تكون في خمول هرمون التستوستيرون الطبيعي بجسمك وصعوبة تحويل الأكل لعضل."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏عشان تحل هالمشكلة، لازم تفرض على جسمك تمارين مقاومة قوية وبأوزان ثقيلة تجبره يتطور."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ركز بجدولك على الديدلفت، السكوات، البنش برس، البنت أوفر رو، والأوفرهيد برس وبتشوف كيف يتغير جسمك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏ال تظن إن التكرارات الكثيرة بالأجهزة الخفيفة بتعطيك البناء العضلي اللي تتمناه."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏إذا تبي ترفع التستوستيرون الطبيعي وتستفيد من أكللك، لازم تروح لألوزان الحرة والثقيلة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏تمارين مثل السكوات والديدلفت تعطي جسمك إشارة هرمونية قوية تخليه يحول تمرينك لعضل وقوة."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏خل البنش برس، البنت أوفر رو، والأوفرهيد برس هي أساس يومك للجزء العلوي وال تضيع وقتك بأشياء جانبية."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كثير شباب يحسبون إن ضعف البناء العضلي سببه الجينات، وهم يتمرنون بجهد بس بدون أوزان حقيقية."
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الحقيقة إن جسمك يحتاج تحفيز هرموني قوي ما يجي إال بالتمارين المركبة الثقيلة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏أول ما تبدأ تدخل السكوات والديدلفت بجدولك، جسمك بيبدأ يفرز التستوستيرون ويرفع كفاءة البناء."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وتكملة هالقوة تجي من البنش برس، البنت أوفر رو، والأوفرهيد برس عشان تبني سماكة وقوة للجزء العلوي كامل."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏وش يصير لجسمك وهرموناتك لما تركز على التمارين المركبة الثقيلة؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏التستوستيرون بيرتفع طبيعي، وجسمك بيبدأ يستغل الأكل والتمرين بكفاءة عشان يحولهم لعضل وقوة حقيقية."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏كل اللي تحتاجه هو إنك تشغل العضالت الكبيرة بتمارين قوية مثل السكوات للرجلين والديدلفت للظهر."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وخل البنش برس، البنت أوفر رو، والأوفرهيد برس هي أساس قوتك العلوية وسماكة عضالتك."
+        }
+      ]
+    }
+  ]
+}

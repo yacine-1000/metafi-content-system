@@ -1,0 +1,16 @@
+{
+  "campaign_id": "campaign-20260718070111-3a5012a9",
+  "execution_window_days": 3,
+  "window_start": "2026-07-18",
+  "window_end": "2026-07-20",
+  "generated_count": 0,
+  "failed_count": 1,
+  "generated_post_ids": [],
+  "failed_slots": [
+    {
+      "slot_id": "campaign-20260718070111-3a5012a9-slot-0001",
+      "reason": "Faisal has no Arabic App CTA images. Upload them from Faisal's account page before retrying."
+    }
+  ],
+  "updated_at": "2026-07-18T07:01:45.137Z"
+}

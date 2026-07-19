@@ -1,0 +1,18 @@
+{
+  "campaign_id": "campaign-20260717212603-364e0086",
+  "execution_window_days": 3,
+  "window_start": "2026-07-18",
+  "window_end": "2026-07-20",
+  "generated_count": 6,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260718-002613-p2-how-to-ar",
+    "post-20260718-002631-p3-mistakes-ar",
+    "post-20260718-002648-p4-tips-things-ar",
+    "post-20260718-002703-p2-how-to-ar",
+    "post-20260718-002714-p1-mistakes-ar",
+    "post-20260718-002737-p3-tips-things-ar"
+  ],
+  "failed_slots": [],
+  "updated_at": "2026-07-17T21:27:48.676Z"
+}

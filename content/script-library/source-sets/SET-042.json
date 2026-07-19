@@ -1,0 +1,340 @@
+{
+  "source_set_id": "SET-042",
+  "pillar": "Workout Programming / Exercise Selection",
+  "subtopic": "Quads",
+  "topic": "Quad Exercise Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-042-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٥ تمارين تخلي فخذك أكبر من رأسك (آخر واحد جبار)"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏‎Goblet squat 2/10‎عادي ج ًدا وفيه أقوى منه"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏‎Leg press 4/10‎مو سيء"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏‎Leg extension 7/10‎يعطيك عزل ممتاز ويستهدف الكوادز مباشرة بس فيه أفضل"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏‎Smith machine squat 9/10‎تمرين مظلوم ويعطيك ثبات جبار بس فيه أفضل"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏‎Hack squat 10/10‎تمرين فخم بشكل ال تسمع للي يقول يعور الركب"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-042-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أخطاء تسويها بتمرين الأرجل تحرمك من الفخذ الأسطوري"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أول غلطة تضيع وقتك وجهدك على الـ ‎Goblet squat‎ وجدولك يحتاج تمارين أقوى بكثير."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثاني غلطة تتجنب الـ ‎Hack squat‎ بسبب إشاعات إنه يعور الركب وتفوت أقوى تمرين للكوادز."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏آخر غلطة تتمرن بالبركة بدون ما تسجل أوزانك وتتابع تطورك المستمر."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-042-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء لازم تركز عليها عشان تفجر عضلة الفخذ وتكبر حجمها"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏أواًل رتب تمارينك صح، وخلي الأساس تمارين بطلة بالثبات مثل الـ ‎Hack squat‎ والـ ‎Smith squat.‎"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ثانيًا اعزل الكوادز بشكل مباشر بتمارين ممتازة مثل الـ ‎Leg extension‎ وال تضيع جهدك على الـ ‎Goblet squat.‎"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏ً\n‏ثالثا الزبدة كلها بمتابعة التطور، سجل أوزانك بكل تمرين عشان تضمن إنك قاعد تتقدم."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-042-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف تختار أفضل التمارين اللي تضمن لك فخذ ضخم وعريض؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ابدأ بالتركيز على التمارين اللي تعطيك أعلى ثبات واستهداف، مثل الـ ‎Hack squat‎ والـ ‎Smith machine squat.‎"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏اعزل الكوادز بـ ‎Leg extension‎، وتجنب التمارين الضعيفة اللي ما تعطيك النتيجة المطلوبة مثل الـ ‎Goblet squat.‎"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الأهم من هذا كله، سجل أوزانك أول بأول وتطور فيها مع الوقت عشان تشوف النتايج صح."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-042-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا تتمرن أرجل وتبغى فخذك يكبر صدق، ركز هنا شوي"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الـ ‎Goblet squat‎ والـ ‎Leg press‎ تمارين عادية وماراح تعطيك الفخذ اللي تحلم فيه."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏بدلها بتمارين جبارة تعطيك ثبات واستهداف قوي مثل الـ ‎Smith squat‎ والـ ‎Hack squat‎ الأسطوري."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وعشان تضمن نتايج حقيقية، لازم تسجل أوزانك وتتطور فيها أسبوع ورا أسبوع."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-042-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏مو كل تمرين أرجل بجدولك يستاهل تتعب عليه وتضيع وقتك فيه"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏تمارين مثل الـ ‎Goblet squat‎ والـ ‎Leg press‎ تقييمها متدني مقارنة بغيرها وما تصنع الفارق الكبير."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وال تصدق اللي يقول الـ ‎Hack squat‎ يضر الركب، ترى هو التوب 10/10لتكبير الكوادز."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الخالصة، اختر تمارينك صح وسجل أوزانك وتطورك عشان تشوف النتيجة اللي ترضيك."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-042-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب الـ ‎Leg press‎ هو الحل السري لتكبير الفخذ، لين اكتشفت ذولي"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏عرفت إن تمارين مثل الـ ‎Goblet squat‎ والـ ‎Leg press‎ ما تقارن أب ًدا بقوة الـ ‎Smith squat‎ والـ ‎Hack squat.‎"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الثبات جبار فيهم ويستهدفون الكوادز بشكل مجنون، خصوصًا الـ ‎Hack squat‎ اللي يعتبر التوب."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏واللي فرق معي صدق وخالني أتطور هو إني صرت أسجل أوزاني وأتابعها بكل تمرين."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-042-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ تدور على التمارين اللي تضمن لك فخذ ضخم وتختصر عليك الوقت؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏اسحب على الـ ‎Goblet squat‎ وركز على الـ ‎Leg extension‎ لعزل الكوادز واستهدافها مباشرة."
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏وخل أساس تمرينك الـ ‎Smith squat‎ والـ ‎Hack squat‎ الجبار عشان الثبات العالي."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏وال تنسى أهم خطوة؛ سجل أوزانك وتأكد إنك قاعد تتطور فيهم باستمرار."
+        }
+      ]
+    }
+  ]
+}

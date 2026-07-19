@@ -1,0 +1,33 @@
+{
+  "campaign_id": "campaign-20260718070244-9f238092",
+  "name": "hjks",
+  "objective": "app_installs",
+  "account_id": "account_6a572feb80cc80cdcab96cb7",
+  "buffer_channel_id": "6a572feb80cc80cdcab96cb7",
+  "account_internal_name": "Faisal",
+  "account_username": "fay_sal100",
+  "account_language": "ar",
+  "account_timezone": "Asia/Riyadh",
+  "language": "ar",
+  "start_date": "2026-07-18",
+  "duration_days": 1,
+  "posts_per_day": 1,
+  "pillars": [
+    {
+      "pillar_id": "p3",
+      "percentage": 100
+    }
+  ],
+  "hook_types": [
+    "Original"
+  ],
+  "posting_time_mode": "manual",
+  "posting_times": [
+    "11:11"
+  ],
+  "publishing_mode": "automatic",
+  "timezone": "Asia/Riyadh",
+  "status": "draft",
+  "created_at": "2026-07-18T07:02:44.324Z",
+  "updated_at": "2026-07-18T07:02:44.324Z"
+}

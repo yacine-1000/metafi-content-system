@@ -1,0 +1,22 @@
+{
+  "campaign_id": "campaign-20260718000811-65045f73",
+  "execution_window_days": 3,
+  "window_start": "2026-07-18",
+  "window_end": "2026-07-20",
+  "generated_count": 3,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260718-030814-p2-listicle-ar",
+    "post-20260718-030829-p3-how-to-ar",
+    "post-20260718-030847-p2-identity-callout-ar"
+  ],
+  "failed_slots": [],
+  "updated_at": "2026-07-18T00:11:17.370Z",
+  "buffered_count": 2,
+  "buffer_failures": [
+    {
+      "post_id": "post-20260718-030814-p2-listicle-ar",
+      "reason": "Buffer scheduling failed: Invalid post input: dueAt must be in the future"
+    }
+  ]
+}

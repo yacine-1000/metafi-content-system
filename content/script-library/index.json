@@ -1,0 +1,796 @@
+{
+  "source_sets": [
+    {
+      "source_set_id": "SET-001",
+      "file": "source-sets/SET-001.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Becoming a Hybrid Athlete",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-002",
+      "file": "source-sets/SET-002.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Hormones",
+      "topic": "Increasing Testosterone Naturally",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-003",
+      "file": "source-sets/SET-003.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Hybrid Athlete Training Lessons",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-004",
+      "file": "source-sets/SET-004.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Performance & Recovery",
+      "topic": "Cortisol-Raising Habits",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-005",
+      "file": "source-sets/SET-005.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Hormones",
+      "topic": "Sprinting and Testosterone",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-006",
+      "file": "source-sets/SET-006.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Three Runs with Gym",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-007",
+      "file": "source-sets/SET-007.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Workout Split",
+      "topic": "Workout Split Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-008",
+      "file": "source-sets/SET-008.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Hormones",
+      "topic": "Habits That Support Testosterone",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-009",
+      "file": "source-sets/SET-009.json",
+      "pillar": "Body Transformation / Aesthetic Progress",
+      "subtopic": "Body Transformation",
+      "topic": "Habits That Changed Body Composition",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-010",
+      "file": "source-sets/SET-010.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Tennis + Gym",
+      "topic": "Combining Tennis with Gym",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-011",
+      "file": "source-sets/SET-011.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Sport + Muscle Gain",
+      "topic": "Building Muscle While Playing Sports",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-012",
+      "file": "source-sets/SET-012.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Biceps",
+      "topic": "Biceps Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-013",
+      "file": "source-sets/SET-013.json",
+      "pillar": "Body Transformation / Aesthetic Progress",
+      "subtopic": "Facial Appearance",
+      "topic": "Reducing Facial Puffiness",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-014",
+      "file": "source-sets/SET-014.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Training Concepts",
+      "topic": "Gym Mistakes to Avoid",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-015",
+      "file": "source-sets/SET-015.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Football + Gym",
+      "topic": "Combining Football with Gym",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-016",
+      "file": "source-sets/SET-016.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Pilates + Gym",
+      "topic": "Combining Pilates with Gym",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-017",
+      "file": "source-sets/SET-017.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Running with Gym",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-018",
+      "file": "source-sets/SET-018.json",
+      "pillar": "Changed Week / What Should I Train Today?",
+      "subtopic": "Weekly Activity Adaptation",
+      "topic": "Adapting Gym Training Around Sports",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-019",
+      "file": "source-sets/SET-019.json",
+      "pillar": "Changed Week / What Should I Train Today?",
+      "subtopic": "Personalized Plan",
+      "topic": "Personalized Training for Mixed Weekly Load",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-020",
+      "file": "source-sets/SET-020.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Hybrid Athlete Strength and Endurance",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-021",
+      "file": "source-sets/SET-021.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Hormones",
+      "topic": "Increasing Testosterone Naturally",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-022",
+      "file": "source-sets/SET-022.json",
+      "pillar": "Body Transformation / Aesthetic Progress",
+      "subtopic": "Bulking",
+      "topic": "Bulking Without Excess Fat",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-023",
+      "file": "source-sets/SET-023.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Three Runs with Gym",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-024",
+      "file": "source-sets/SET-024.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Running and Lifting Mistakes",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-025",
+      "file": "source-sets/SET-025.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "VO₂ Max",
+      "topic": "Understanding VO₂ Max",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-026",
+      "file": "source-sets/SET-026.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Running and Lifting",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-027",
+      "file": "source-sets/SET-027.json",
+      "pillar": "Body Transformation / Aesthetic Progress",
+      "subtopic": "Before and After",
+      "topic": "Body Transformation Habits",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-028",
+      "file": "source-sets/SET-028.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Pilates + Gym",
+      "topic": "Combining Pilates and Lifting",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-029",
+      "file": "source-sets/SET-029.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Hybrid Athlete Weekly Structure",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-030",
+      "file": "source-sets/SET-030.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Forearms",
+      "topic": "Forearm Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-031",
+      "file": "source-sets/SET-031.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "RPE",
+      "topic": "Understanding RPE",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-032",
+      "file": "source-sets/SET-032.json",
+      "pillar": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Running and Lifting",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-033",
+      "file": "source-sets/SET-033.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Chest",
+      "topic": "Chest Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-034",
+      "file": "source-sets/SET-034.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Back",
+      "topic": "Back Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-035",
+      "file": "source-sets/SET-035.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Shoulders",
+      "topic": "Shoulder Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-036",
+      "file": "source-sets/SET-036.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Biceps",
+      "topic": "Biceps Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-037",
+      "file": "source-sets/SET-037.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Triceps",
+      "topic": "Triceps Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-038",
+      "file": "source-sets/SET-038.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Forearms",
+      "topic": "Forearm Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-039",
+      "file": "source-sets/SET-039.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Abs",
+      "topic": "Ab Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-040",
+      "file": "source-sets/SET-040.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Abs",
+      "topic": "Ab Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-041",
+      "file": "source-sets/SET-041.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Glutes",
+      "topic": "Glute Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-042",
+      "file": "source-sets/SET-042.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Quads",
+      "topic": "Quad Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-043",
+      "file": "source-sets/SET-043.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Hamstrings",
+      "topic": "Hamstring Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    },
+    {
+      "source_set_id": "SET-044",
+      "file": "source-sets/SET-044.json",
+      "pillar": "Workout Programming / Exercise Selection",
+      "subtopic": "Calves",
+      "topic": "Calf Exercise Ranking",
+      "hook_types": [
+        "Original",
+        "Mistakes",
+        "Tips / Things",
+        "How-to",
+        "Identity Callout",
+        "Contrarian / Warning",
+        "Story / Regret / Realization",
+        "POV / Question"
+      ],
+      "script_count": 8
+    }
+  ]
+}

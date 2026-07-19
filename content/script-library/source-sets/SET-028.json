@@ -1,0 +1,394 @@
+{
+  "source_set_id": "SET-028",
+  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Pilates + Gym",
+  "topic": "Combining Pilates and Lifting",
+  "scripts": [
+    {
+      "script_id": "SET-028-ORIGINAL",
+      "script_version": "Original",
+      "hook_type": "Original",
+      "format": "Routine / Schedule",
+      "original_slide_count": 8,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏تلعبين بيالتس وحديد؟ تمنيت اعرف هذا الجدول من اول"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السبت حديد (الجزء العلوي) التركيز: ظهر، اكتاف، صدر، ذراعين ركزي على الأداء قبل زيادة الوزن"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الأحد بيالتس التركيز: المرونة، البطن، التوازن ووضعية الجسم"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الاثنين رااااحة امشي 30–20دقيقة إذا تقدرين"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الثالثاء حديد (الجزء السفلي) التركيز: قلوتس، هامسترنق، كوادز، سمانة"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏الأربعاء بيالتس ركزي على التحكم بالحركة واسترخي بعد تمارين الرجل"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "‏الخميس رااااحة"
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "‏الجمعة مشي أو كارديو خفيف 40–20دقيقة أو راحة إذا تحسين جسمك يحتاجها"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-028-V1",
+      "script_version": "Variation 1",
+      "hook_type": "Mistakes",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أغالط تسوينها لما تدمجين البيالتس مع الحديد تخرب عليك النتيجة"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الأول: تتمرنين يومين ورا بعض بدون يوم راحة يفصل بينهم ويساعد عضالتك تستشفي"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثاني: تلعبين بيالتس وحديد للجزء السفلي في نفس اليوم وتجهدين عضالت الرجل زيادة عن اللزوم"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الغلط الثالث: تركزين على زيادة أوزان الحديد وتنسين التكنيك والتحكم بالحركة في البيالتس"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الجدول الصح: سبت علوي، أحد بيالتس، اثنين راحة، ثالثاء سفلي، أربعاء بيالتس، خميس راحة، والجمعة كارديو خفيف"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-028-V2",
+      "script_version": "Variation 2",
+      "hook_type": "Tips / Things",
+      "format": "Listicle",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏٣ أشياء لازم تنتبهين لها لو تبين تجمعين بين البيالتس والحديد في أسبوعك"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏-١ افصلي بين أيام القوة وأيام الاستشفاء؛ العضالت تحتاج وقت ترتاح وتكبر"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏-٢ ركزي في أيام البيالتس على المرونة، التوازن، ووضعية الجسم والتحكم بالحركة"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏-٣ ال تهملين الكارديو الخفيف والمشي في أيام الراحة لتنشيط الدورة الدموية"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الزبدة: رتبي جدولك بحيث يكون عندك يومين راحة كاملة في الأسبوع عشان تتجنبين الإصابات"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-028-V3",
+      "script_version": "Variation 3",
+      "hook_type": "How-to",
+      "format": "How-to / Framework",
+      "original_slide_count": 6,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كيف ترتبين جدولك الأسبوعي وتدمجين الحديد والبيالتس بدون ما تنهكين جسمك؟"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ابدئي السبت بتمرين حديد للجزء العلوي وركزي على ظهرك وأكتافك وصدرك بأداء ممتاز قبل تزيدين الأوزان"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الأحد خليه بيالتس للتركيز على مرونة الجسم، عضالت البطن، والتوازن"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الاثنين خذيه راحة تامة مع مشي خفيف لتنشيط الجسم"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الثالثاء ارجعي للحديد وركزي على الجزء السفلي، والأربعاء بيالتس عشان تريحين عضالت الرجل وتتحكمين بحركتك"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "‏باقي الأسبوع وزعيه بين راحة كاملة يوم الخميس، وكارديو خفيف أو مشي يوم الجمعة"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-028-V4",
+      "script_version": "Variation 4",
+      "hook_type": "Identity Callout",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏إذا جدولك الأسبوعي يجمع بين البيالتس والحديد وضايعة بتنسيق الأيام، هذا الترتيب لك"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السبت ابدئي بقوة وتمرني حديد جزء علوي، وركزي على جودة الأداء قبل الوزن"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الأحد حولي على البيالتس واشتغلي على بطنك وتوازنك ومرونتك"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الاثنين ريحي جسمك تمامًا، والثالثاء خصصيه لحديد الجزء السفلي بتركيز عالي"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الأربعاء ارجعي للبيالتس للتحكم والاسترخاء، والخميس راحة، والجمعة مشي خفيف أو راحة لو جسمك يحتاجها"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-028-V5",
+      "script_version": "Variation 5",
+      "hook_type": "Contrarian / Warning",
+      "format": "Myth / Contrarian",
+      "original_slide_count": 4,
+      "final_slide_count": 5,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏أكبر غلطة تسوينها لما تدمجين الحديد والبيالتس هي إنك تتمرنين كل يوم بدون تنظيم"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏ترى مو كثرة التمارين هي اللي بتعطيك نتيجة، الأهم هو ذكاء توزيع الأيام والاستشفاء"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏ال تضغطين على عضالتك؛ وزعي الأسبوع بين حديد علوي وسفلي، وبيالتس للمرونة والتوازن، وأيام راحة صريحة"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏تأكدي إن جسمك يحتاج الراحة والمشي الخفيف عشان يقدر يبني ويتحسن بالتمرين اللي بعده"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-028-V6",
+      "script_version": "Variation 6",
+      "hook_type": "Story / Regret / Realization",
+      "format": "Story",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏كنت أحسب إن دمج البيالتس والحديد في أسبوع واحد مستحيل وبيتعب جسمي، لين جربت هذا التقسيم"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏صرت أتمرن السبت حديد علوي بتركيز عالي، والأحد بيالتس للمرونة والبطن ووضعية الجسم"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏واكتشفت إن سر الاستمرار هو يوم الاثنين الراحة مع مشي خفيف لتجديد الطاقة"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏أرجع الثالثاء لحديد السفلي بكامل قوتي، والأربعاء أهدّي اللعب بالبيالتس والاسترخاء"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏والخميس راحة، والجمعة مشي خفيف؛ هذا التوازن هو اللي فرق بلياقتي وشكل جسمي بدون إجهاد"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-028-V7",
+      "script_version": "Variation 7",
+      "hook_type": "POV / Question",
+      "format": "POV / Relatable Scenario",
+      "original_slide_count": 5,
+      "final_slide_count": 6,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "‏‎POV‎ تبين تجمعين بين فوائد الحديد للبناء العضلي والبيالتس للمرونة والتوازن بجدول واحد مرتب"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "‏السبت خليه حديد جزء علوي، وركزي على الأداء الصح لظهرك وأكتافك قبل الأوزان"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "‏الأحد بيالتس لتقوية عضالت البطن والتوازن، والاثنين راحة تامة مع مشي خفيف"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4 — Metafi",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": false,
+          "text": "‏الثالثاء حديد جزء سفلي للقلوتس والكوادز، والأربعاء بيالتس للتحكم بالسرعة والاسترخاء بعد تمرين الرجل"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏الخميس خذيه راحة تامة، والجمعة مشي خفيف أو كملي راحتك لو جسمك لسه تعبان"
+        }
+      ]
+    }
+  ]
+}

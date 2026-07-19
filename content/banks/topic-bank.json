@@ -4,704 +4,449 @@
   "topics_by_pillar": {
     "p2": [
       {
-        "id": "p2_topic_001",
+        "id": "p2_becoming_hybrid_athlete",
         "pillar_id": "p2",
-        "seed_topic": "ترتيب أسبوع بين الكورة والنادي",
+        "topic_name": "Becoming a Hybrid Athlete",
+        "topic_name_ar": "كيف تصير Hybrid Athlete",
+        "active": true,
         "master_scripts": [
           {
-            "id": "p2_topic_001_comparison",
-            "hook_type": "comparison",
-            "hook_text": "جدول لاعب كورة غير جدول واحد يتمرن بس",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "جدول لاعب كورة غير جدول واحد يتمرن بس", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تحط رجل ثقيلة قبل المباراة بيوم", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: خلي الحديد يخدم لعبك مو يكسره", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "رتب أسبوعك حسب المباراة والتمرين في Metafi", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_001_listicle",
+            "id": "p2_hybrid_athlete_listicle_001",
+            "master_script_id": "p2_hybrid_athlete_listicle_001",
+            "active": true,
             "hook_type": "listicle",
-            "hook_text": "3 قواعد إذا تجمع بين الكورة والنادي",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 قواعد إذا تجمع بين الكورة والنادي", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. لا تثقل الرجل قبل اللعب", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. بعد المباراة خفف الشدة وارجع تدريجي", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "خل Metafi يختار لك تمرين اليوم", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_001_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف ترتب أسبوعك بين الكورة والنادي",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف ترتب أسبوعك بين الكورة والنادي", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "ابدأ بتاريخ المباراة، مو بجدول النادي", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "حط أقوى تمرين بعيد عن يوم اللعب", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "افتح Metafi وشوف تمرينك المناسب اليوم", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_001_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "إذا تلعب كورة وتتمرن حديد، هذا لك",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "إذا تلعب كورة وتتمرن حديد، هذا لك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "مو كل جدول يناسب جسم يلعب كل أسبوع", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "تحتاج تدريب يحافظ على قوتك ولياقتك", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يخليك تختار صح بدون حوسة", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "p2_topic_002",
-        "pillar_id": "p2",
-        "seed_topic": "يوم رجل ما يخرب المباراة",
-        "master_scripts": [
-          {
-            "id": "p2_topic_002_comparison",
-            "hook_type": "comparison",
-            "hook_text": "يوم رجل ذكي أفضل من يوم رجل يكسرك",
             "visual_hook_type": "physique_proof",
-            "slide_count": 4,
+            "slide_count": 8,
             "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "يوم رجل ذكي أفضل من يوم رجل يكسرك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: سكوات ثقيل وبعده مباراة قريبة", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: حجم أقل وجودة أعلى حسب أسبوعك", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يضبط يوم الرجل حسب جدولك", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_002_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 أشياء تخلي يوم الرجل ما يخرب لعبك",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 أشياء تخلي يوم الرجل ما يخرب لعبك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. لا توصل فشل عضلي بكل تمرين", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. خفف القفز والجري بعد الرجل الثقيل", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "خل Metafi يحسب لك التوازن", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_002_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تتمرن رجل وانت عندك لعب قريب",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تتمرن رجل وانت عندك لعب قريب", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "اختار تمارين ثابتة وما تدمرك", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "خل الشدة عالية بس المجموعات قليلة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يعطيك تمرين مناسب لليوم", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_002_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "يا لاعب الكورة، لا تدمر رجولك عشان النادي",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "يا لاعب الكورة، لا تدمر رجولك عشان النادي", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "القوة مهمة، بس الثقل الغلط يسرق سرعتك", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "تمرن كرجل رياضي، مو كأنك داخل تحدي", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يخليك تعرف متى تضغط ومتى تخفف", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "p2_topic_003",
-        "pillar_id": "p2",
-        "seed_topic": "قوة الحديد اللي تنفع في الملعب",
-        "master_scripts": [
-          {
-            "id": "p2_topic_003_comparison",
-            "hook_type": "comparison",
-            "hook_text": "قوة النادي غير قوة الملعب",
-            "visual_hook_type": "physique_proof",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "قوة النادي غير قوة الملعب", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "مو كل رقم عالي يعني أداء أعلى", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "القوة الصح تخليك أسرع وأثبت وأخف", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يختار تمارين تخدم لعبك", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_003_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 تمارين حديد تخدمك في الملعب",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 تمارين حديد تخدمك في الملعب", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. رجل واحدة عشان الثبات", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. ظهر قوي عشان الاحتكاك", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يبني لك الحصة حسب هدفك", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_003_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تختار تمارين حديد تفيد لعبك",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تختار تمارين حديد تفيد لعبك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "اسأل: هل هذا يخدم حركة ألعبها؟", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "اختر تمرين يعطي قوة بدون ما يسرق لياقتك", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يحول هدفك لتمرين واضح", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p2_topic_003_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "إذا تبغى قوة تبان في اللعب، لا تتمرن عشوائي",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "إذا تبغى قوة تبان في اللعب، لا تتمرن عشوائي", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "التمرين العشوائي يعطي تعب أكثر من نتيجة", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "القوة الرياضية تحتاج اختيار ذكي", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يرتب لك الاختيار", "asset_bank": "app_icon_home_screen" }
-            ]
+            "versions": {
+              "ar": {
+                "hook_text": "٧ أشياء تخليك تصير Hybrid Athlete تمنيت عرفتها بدري",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "٧ أشياء تخليك تصير\nHybrid Athlete\nتمنيت عرفتها بدري"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "١. تمرن بذكاء، مو بس بحماس\nابدأ بالحديد وبعدها الكارديو\nلا تخلي الجري يخرب تمرينك\nولا الحديد يخلي لياقتك صفر"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "٢. كل كأنك تتمرن فعلًا\nلا تخاف من الكارب\nوخذ بروتينك بشكل كافي\nالأكل هو اللي يشغلك"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "٣. سو جدول حديد يتعدل حسب\nأسبوعك ورياضتك\nاستخدم هذا"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "٤. سجّل كل شي\nأوزانك في النادي\nوركضاتك برا النادي\nلأنك إذا ما تتابع تقدمك\nبتقعد تتمرن بشكل عشوائي"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "٥. طور تنفسك\nحاول تركز على Zone 2\nمو تمرين ممل وخلاص\nهذا اللي يخلي تنفسك يتحمل لفترة أطول\nويخليك ترجع أقوى حتى في تمارين الحديد"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "٦. اشتغل على اللي ناقصك\nنفسك يتعب بسرعة؟\nزود ركضاتك\nلياقتك ممتازة بس جسمك ضعيف؟\nشد حيلك بالحديد"
+                  },
+                  {
+                    "slide_number": 8,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "٧. لا تستهين بالنوم\nنام زين\nوخفف التمرين كل فترة\nجسمك ما يتحسن لما تستهلكه\nيتحسن لما تعطيه فرصة يتشافى"
+                  }
+                ]
+              },
+              "en": {
+                "hook_text": "7 things that’ll make you a better Hybrid Athlete wish I knew these sooner",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "7 things that’ll make you a better\nHybrid Athlete\nwish I knew these sooner"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "1. Train smart, not just hard\nLift first, then do cardio\ndon’t let running ruin your strength\nor lifting kill your fitness"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "2. Eat like you actually train\nDon’t be scared of carbs\nand get enough protein\nfood is what keeps you going"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "3. Build a lifting plan that adjusts\nto your week and your sport\nuse this app"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "4. Track everything\nYour lifts in the gym\nand your runs outside\nif you don’t track your progress\nyou’re just guessing"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "5. Build your engine\nFocus on Zone 2\nit’s not just boring cardio\nit helps you last longer\nand recover better for lifting"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "6. Work on what you’re missing\nGet tired too quickly?\nRun more\nGreat cardio but still weak?\nLift harder"
+                  },
+                  {
+                    "slide_number": 8,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "7. Don’t sleep on recovery\nSleep well\nand take easier weeks sometimes\nyour body doesn’t improve when you run it down\nit improves when you let it recover"
+                  }
+                ]
+              },
+              "es": {
+                "hook_text": "7 cosas que te convertirán en un mejor Hybrid Athlete ojalá las hubiera sabido antes",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "7 cosas que te convertirán en un mejor\nHybrid Athlete\nojalá las hubiera sabido antes"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "1. Entrena con cabeza, no solo con ganas\nPrimero pesas, luego cardio\nno dejes que correr arruine tu fuerza\nni que las pesas maten tu condición física"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "2. Come como alguien que de verdad entrena\nNo le tengas miedo a los carbohidratos\ny consume suficiente proteína\nla comida es lo que te hace rendir"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "3. Ten un plan de pesas que se adapte\na tu semana y a tu deporte\nusa esta app"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "4. Registra todo\nTus pesos en el gimnasio\ny tus carreras fuera\nsi no mides tu progreso\nsolo estás adivinando"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "5. Mejora tu motor\nEnfócate en Zone 2\nno es solo cardio aburrido\nte ayuda a aguantar más\ny a recuperarte mejor para las pesas"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "6. Trabaja en lo que te falta\n¿Te cansas muy rápido?\nCorre más\n¿Tienes buen cardio pero te falta fuerza?\nLevanta más pesado"
+                  },
+                  {
+                    "slide_number": 8,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "7. No subestimes la recuperación\nDuerme bien\ny baja el ritmo algunas semanas\ntu cuerpo no mejora cuando lo revientas\nmejora cuando le das tiempo para recuperarse"
+                  }
+                ]
+              },
+              "fr": {
+                "hook_text": "7 choses qui feront de toi un meilleur Hybrid Athlete j'aurais aimé les connaître plus tôt",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "7 choses qui feront de toi un meilleur\nHybrid Athlete\nj'aurais aimé les connaître plus tôt"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "1. Entraîne-toi intelligemment, pas juste plus dur\nCommence par les poids, puis fais ton cardio\nne laisse pas la course ruiner ta force\nni les poids ruiner ton cardio"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "2. Mange comme quelqu'un qui s'entraîne vraiment\nN'aie pas peur des glucides\net mange assez de protéines\nc'est la nourriture qui te fait performer"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "3. Fais un programme de musculation\nqui s'adapte à ta semaine et à ton sport\nutilise cette appli"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "4. Suis tout ce que tu fais\nTes charges à la salle\net tes runs à l'extérieur\nsi tu ne suis pas tes progrès\ntu avances au hasard"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "5. Développe ton endurance\nConcentre-toi sur la Zone 2\nce n'est pas juste du cardio ennuyeux\nça t'aide à tenir plus longtemps\net à mieux récupérer pour la musculation"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "6. Travaille tes points faibles\nTu t'essouffles trop vite ?\nCours plus\nBon cardio mais pas assez de force ?\nSoulève plus lourd"
+                  },
+                  {
+                    "slide_number": 8,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "7. Ne néglige pas la récupération\nDors bien\net prévois des semaines plus légères de temps en temps\nton corps ne progresse pas quand tu le détruis\nil progresse quand tu le laisses récupérer"
+                  }
+                ]
+              }
+            }
           }
         ]
       }
     ],
-    "p1": [
-      {
-        "id": "p1_topic_001",
-        "pillar_id": "p1",
-        "seed_topic": "وش تتمرن إذا أسبوعك تلخبط",
-        "master_scripts": [
-          {
-            "id": "p1_topic_001_comparison",
-            "hook_type": "comparison",
-            "hook_text": "الأسبوع المثالي غير الأسبوع الحقيقي",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "الأسبوع المثالي غير الأسبوع الحقيقي", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تكمل الجدول كأن ولا شي تغير", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: اختار أهم تمرين يخدم الأسبوع", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يساعدك تختار تمرين اليوم", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_001_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 أسئلة قبل تتمرن في أسبوع ملخبط",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 أسئلة قبل تتمرن في أسبوع ملخبط", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. كم يوم باقي لك تتمرن؟", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. وش العضلة اللي ما أخذت حقها؟", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يحولها لاختيار واضح", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_001_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تختار تمرينك إذا أسبوعك تلخبط",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تختار تمرينك إذا أسبوعك تلخبط", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "احسب الأيام الباقية قبل تختار", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "ابدأ بالأولوية، مو بالتمرين اللي تحبه", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "افتح Metafi وخذ قرارك بسرعة", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_001_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "إذا جدولك يتغير كل أسبوع، لا تحتاج جدول جامد",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "إذا جدولك يتغير كل أسبوع، لا تحتاج جدول جامد", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "الجمود يخليك تفوت أو تعوض غلط", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "تحتاج نظام يعرف يتكيف معك", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi مصمم لهذا النوع من الأسابيع", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "p1_topic_002",
-        "pillar_id": "p1",
-        "seed_topic": "تمرين قصير لما اليوم يزحم",
-        "master_scripts": [
-          {
-            "id": "p1_topic_002_comparison",
-            "hook_type": "comparison",
-            "hook_text": "30 دقيقة صح أفضل من ساعة عشوائية",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "30 دقيقة صح أفضل من ساعة عشوائية", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تدخل النادي بدون خطة وتضيع الوقت", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: تمرين قليل بس مركز", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يعطيك حصة تناسب وقتك", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_002_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 قواعد لتمرين سريع ما يضيع",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 قواعد لتمرين سريع ما يضيع", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. تمرين مركب أول شي", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. قلل الأجهزة اللي تنتظر عليها", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يختصر عليك القرار", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_002_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تتمرن إذا عندك 30 دقيقة بس",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تتمرن إذا عندك 30 دقيقة بس", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "احذف الزوائد وخلك على الأساسيات", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "اختر عضلتين أو حركة كاملة للجسم", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يطلع لك تمرين سريع", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_002_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "للي يومه زحمة بس ما يبغى يقطع",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "للي يومه زحمة بس ما يبغى يقطع", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "مو لازم كل تمرين يكون طويل", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "المهم تختار صح وتدخل بسرعة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يعطيك خيار يناسب وقتك", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "p1_topic_003",
-        "pillar_id": "p1",
-        "seed_topic": "وش تتمرن بعد نوم سيئ",
-        "master_scripts": [
-          {
-            "id": "p1_topic_003_comparison",
-            "hook_type": "comparison",
-            "hook_text": "تمرين بعد نوم سيئ غير تمرين يوم طاقتك عالية",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "تمرين بعد نوم سيئ غير تمرين يوم طاقتك عالية", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تضغط أقصى شي وانت جسمك مطفي", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: جودة حركة وشدة محسوبة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يراعي طاقتك اليوم", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_003_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 تعديلات إذا نمت قليل",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 تعديلات إذا نمت قليل", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. قلل الأوزان شوي", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. لا تختبر أرقامك اليوم", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يختار لك النسخة الأهدأ", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_003_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تتمرن بعد نوم سيئ",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تتمرن بعد نوم سيئ", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "اختار تمارين تعرفها كويس", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "خل هدفك تحافظ على الرتم مو تكسر رقم", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يبدل الخطة حسب حالتك", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p1_topic_003_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "إذا نومك مضروب، لا تعاند جسمك",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "إذا نومك مضروب، لا تعاند جسمك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "العناد اليوم ممكن يخرب باقي الأسبوع", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "الذكي يعدل بدون ما يوقف", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يساعدك تختار التعديل", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      }
-    ],
+    "p1": [],
     "p3": [
       {
-        "id": "p3_topic_001",
+        "id": "p3_best_exercises_by_muscle",
         "pillar_id": "p3",
-        "seed_topic": "اختيار التمرين حسب الهدف",
+        "topic_name": "Best exercise selection by muscle group",
+        "topic_name_ar": "أفضل التمارين لكل عضلة",
+        "active": true,
         "master_scripts": [
           {
-            "id": "p3_topic_001_comparison",
-            "hook_type": "comparison",
-            "hook_text": "تمرين مشهور غير تمرين مناسب لك",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "تمرين مشهور غير تمرين مناسب لك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تختار التمرين لأنه منتشر", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: اختاره لأنه يخدم هدفك", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يربط الهدف بالتمرين", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_001_listicle",
+            "id": "p3_biceps_listicle_001",
+            "master_script_id": "p3_biceps_listicle_001",
+            "active": true,
             "hook_type": "listicle",
-            "hook_text": "3 أسئلة قبل تختار أي تمرين",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 أسئلة قبل تختار أي تمرين", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. وش العضلة المستهدفة؟", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. هل يناسب مفاصلك وأسبوعك؟", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يختار بناء على هدفك", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_001_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تختار تمرين يخدم هدفك",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تختار تمرين يخدم هدفك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "حدد الهدف: قوة، عضل، أو أداء", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "اختر أقل تمرين يوصلك للنتيجة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يرتب لك الاختيار", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_001_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "إذا تنسخ تمارين الناس، غالبا قاعد تضيع وقتك",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "إذا تنسخ تمارين الناس، غالبا قاعد تضيع وقتك", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "جسمك وهدفك وجدولك مختلف", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "الاختيار الصح يبدأ من سياقك", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يبني التمرين عليك أنت", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "p3_topic_002",
-        "pillar_id": "p3",
-        "seed_topic": "الأجهزة مقابل الأوزان الحرة",
-        "master_scripts": [
-          {
-            "id": "p3_topic_002_comparison",
-            "hook_type": "comparison",
-            "hook_text": "الأجهزة مو أقل من الأوزان الحرة",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "الأجهزة مو أقل من الأوزان الحرة", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تحكم على التمرين من شكله", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: اختار الأداة اللي تعطيك جودة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يقترح البديل المناسب", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_002_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 مرات يكون الجهاز خيار ذكي",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 مرات يكون الجهاز خيار ذكي", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. إذا تبغى ثبات أكثر", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. إذا مفاصلك تحتاج مسار أوضح", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يساعدك تختار الأداة", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_002_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تختار بين جهاز ووزن حر",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تختار بين جهاز ووزن حر", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "لو تحتاج ثبات، الجهاز ممتاز", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "لو تحتاج تحكم كامل، جرب الوزن الحر", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يعطيك الخيار حسب الهدف", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_002_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "للي يحس الجهاز يعني تمرين سهل",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "للي يحس الجهاز يعني تمرين سهل", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "الصعوبة مو مقياس الجودة الوحيد", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "التمرين الصح هو اللي يخدم الهدف", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يبعدك عن الاختيار العشوائي", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "p3_topic_003",
-        "pillar_id": "p3",
-        "seed_topic": "التقدم بدون زيادة وزن كل مرة",
-        "master_scripts": [
-          {
-            "id": "p3_topic_003_comparison",
-            "hook_type": "comparison",
-            "hook_text": "التقدم مو دايم وزن أعلى",
             "visual_hook_type": "physique_proof",
-            "slide_count": 4,
+            "slide_count": 7,
             "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "التقدم مو دايم وزن أعلى", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تزيد وزن وتخرب الحركة", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: ترفع جودة أو تكرارات أو تحكم", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يتابع طريقة تقدمك", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_003_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 طرق تتقدم غير زيادة الحديد",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 طرق تتقدم غير زيادة الحديد", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. زود تكرار بنفس الوزن", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. حسن مدى الحركة والتحكم", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يختار تقدمك القادم", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_003_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تتقدم بدون ما تزود وزن كل مرة",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تتقدم بدون ما تزود وزن كل مرة", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "ثبت الحركة قبل تثبت الرقم", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "زود شي واحد فقط كل مرة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يحافظ على تقدمك مرتب", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p3_topic_003_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "إذا كل تمرينك مطاردة أرقام، انتبه",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "إذا كل تمرينك مطاردة أرقام، انتبه", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "الرقم بدون جودة ممكن يرجعك وراء", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "التقدم الحقيقي واضح ومستمر", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يخليك تتقدم بدون تهور", "asset_bank": "app_icon_home_screen" }
-            ]
+            "versions": {
+              "ar": {
+                "hook_text": "٥ تمارين تخلي حجم البايسبس أكبر من رأسك",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "٥ تمارين تخلي حجم البايسبس أكبر\nمن رأسك"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Dumbbell curl\n1/10\nعادي جدًا وفيه أقوى منه"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Hammer curl\n4/10\nمو سيء"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "سجل أوزانك عشان تتطور\nاستخدم هذا"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Preacher curl\n6/10\nيعطيك مدى حركي ممتاز\nويستهدف البايسبس مباشرة\nبس فيه أفضل"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Bayesian curl\n8/10\nتمرين مظلوم وضخم البايسبس عندي\nبسرعة بس فيه أفضل"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Spider curl\n10/10\nتمرين فخم بشكل\nلا تسمع للي يقول قديم"
+                  }
+                ]
+              },
+              "en": {
+                "hook_text": "5 exercises that'll make your biceps look bigger than your head",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "5 exercises that'll make your biceps\nlook bigger than your head"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Dumbbell curl\n1/10\nPretty basic\nthere are way better options"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Hammer curl\n4/10\nNot bad\nbut nothing special"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "Track your weights so you actually progress\nuse this app"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Preacher curl\n6/10\nGreat stretch\nhits the biceps really well\nbut there’s still better"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Bayesian curl\n8/10\nSuper underrated\nthis grew my biceps fast\nbut one exercise beats it"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Spider curl\n10/10\nSo good\ndon’t listen to anyone saying it’s outdated"
+                  }
+                ]
+              },
+              "es": {
+                "hook_text": "5 ejercicios que harán que tus bíceps se vean más grandes que tu cabeza",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "5 ejercicios que harán que tus bíceps\nse vean más grandes que tu cabeza"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Dumbbell curl\n1/10\nMuy básico\nhay opciones mucho mejores"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Hammer curl\n4/10\nNo está mal\npero tampoco es la gran cosa"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "Lleva un registro de tus pesos para progresar de verdad\nusa esta app"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Preacher curl\n6/10\nMuy buen estiramiento\ntrabaja el bíceps súper bien\npero todavía hay uno mejor"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Bayesian curl\n8/10\nEstá muy infravalorado\na mí me hizo crecer los bíceps rápido\npero hay uno que lo supera"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Spider curl\n10/10\nEstá brutal\nno le hagas caso a quien diga que ya pasó de moda"
+                  }
+                ]
+              },
+              "fr": {
+                "hook_text": "5 exercices qui feront paraître tes biceps plus gros que ta tête",
+                "slides": [
+                  {
+                    "slide_number": 1,
+                    "role": "hook",
+                    "asset_bank": "visual_hooks",
+                    "text": "5 exercices qui feront paraître tes biceps\nplus gros que ta tête"
+                  },
+                  {
+                    "slide_number": 2,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Dumbbell curl\n1/10\nVraiment basique\nil y a largement mieux"
+                  },
+                  {
+                    "slide_number": 3,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Hammer curl\n4/10\nPas mal\nmais rien d'incroyable"
+                  },
+                  {
+                    "slide_number": 4,
+                    "role": "cta",
+                    "asset_bank": "app_icon_home_screen",
+                    "text": "Note tes charges pour vraiment progresser\nutilise cette appli"
+                  },
+                  {
+                    "slide_number": 5,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Preacher curl\n6/10\nSuper bon étirement\nça cible très bien les biceps\nmais il y a encore mieux"
+                  },
+                  {
+                    "slide_number": 6,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Bayesian curl\n8/10\nVraiment sous-coté\nce mouvement a fait grossir mes biceps rapidement\nmais il y en a un encore meilleur"
+                  },
+                  {
+                    "slide_number": 7,
+                    "role": "body",
+                    "asset_bank": "body_slides",
+                    "text": "Spider curl\n10/10\nUne dinguerie\nn'écoute pas ceux qui disent qu'il est dépassé"
+                  }
+                ]
+              }
+            }
           }
         ]
       }
     ],
-    "p4": [
-      {
-        "id": "p4_topic_001",
-        "pillar_id": "p4",
-        "seed_topic": "الجسم الرياضي مو بس تضخيم",
-        "master_scripts": [
-          {
-            "id": "p4_topic_001_comparison",
-            "hook_type": "comparison",
-            "hook_text": "جسم رياضي غير جسم متعب من الضخامة",
-            "visual_hook_type": "physique_proof",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "جسم رياضي غير جسم متعب من الضخامة", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "الغلط: تطارد الحجم وتنسى الحركة", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الأفضل: قوة، شكل، ولياقة تمشي مع بعض", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يبني تدريب يخدم الشكل والأداء", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p4_topic_001_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 علامات إن جسمك رياضي فعلا",
-            "visual_hook_type": "physique_proof",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 علامات إن جسمك رياضي فعلا", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. شكلك قوي وحركتك خفيفة", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. تقدر تلعب وتتمرن بدون انهيار", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يوازن بين الشكل والأداء", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p4_topic_001_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تبني جسم رياضي مو بس ضخم",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تبني جسم رياضي مو بس ضخم", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "خل القوة واللياقة داخل نفس الخطة", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "لا تخلي الضخامة تلغي الحركة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يرتب لك هذا التوازن", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p4_topic_001_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "إذا تبغى جسم يبان ويلعب، ركز هنا",
-            "visual_hook_type": "physique_proof",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "إذا تبغى جسم يبان ويلعب، ركز هنا", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "الشكل لحاله ما يكفي إذا الأداء طايح", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "الجسم الرياضي يثبت نفسه بالحركة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يخليك تبني الاثنين", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      },
-      {
-        "id": "p4_topic_002",
-        "pillar_id": "p4",
-        "seed_topic": "التحول من عشوائية إلى خطة",
-        "master_scripts": [
-          {
-            "id": "p4_topic_002_comparison",
-            "hook_type": "comparison",
-            "hook_text": "الفرق مو حماس، الفرق خطة",
-            "visual_hook_type": "physique_proof",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "الفرق مو حماس، الفرق خطة", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "wrong_way", "text": "العشوائية تخليك تبدأ كثير وتوقف كثير", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "better_way", "text": "الخطة تخليك تعرف وش تسوي اليوم", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يحول هدفك لخطة يومية", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p4_topic_002_listicle",
-            "hook_type": "listicle",
-            "hook_text": "3 أشياء تغير جسمك أكثر من الحماس",
-            "visual_hook_type": "collage",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "3 أشياء تغير جسمك أكثر من الحماس", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "point_1", "text": "1. تمرين تعرف سببه", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "point_2", "text": "2. تكرار ذكي حتى في الأسابيع الصعبة", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يخليك ثابت بدون عشوائية", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p4_topic_002_how_to",
-            "hook_type": "how_to",
-            "hook_text": "كيف تطلع من العشوائية في التدريب",
-            "visual_hook_type": "basic_pinterest_gym_image",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "كيف تطلع من العشوائية في التدريب", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "step_1", "text": "حدد وش هدف تمرين اليوم", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "step_2", "text": "خل كل حصة تبني على اللي قبلها", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يعطيك الخطوة الجاية", "asset_bank": "app_icon_home_screen" }
-            ]
-          },
-          {
-            "id": "p4_topic_002_identity_callout",
-            "hook_type": "identity_callout",
-            "hook_text": "للي تعب من يبدأ ويوقف كل شهر",
-            "visual_hook_type": "weird_outfit_character",
-            "slide_count": 4,
-            "cta_slide": 4,
-            "slides": [
-              { "slide_number": 1, "role": "hook", "text": "للي تعب من يبدأ ويوقف كل شهر", "asset_bank": "visual_hooks" },
-              { "slide_number": 2, "role": "problem", "text": "المشكلة غالبا مو فيك، في غياب الخطة", "asset_bank": "body_slides" },
-              { "slide_number": 3, "role": "standard", "text": "خطة بسيطة تكسب حماس متقطع", "asset_bank": "body_slides" },
-              { "slide_number": 4, "role": "cta", "text": "Metafi يخليك تعرف وش تسوي اليوم", "asset_bank": "app_icon_home_screen" }
-            ]
-          }
-        ]
-      }
-    ]
+    "p4": []
   }
 }

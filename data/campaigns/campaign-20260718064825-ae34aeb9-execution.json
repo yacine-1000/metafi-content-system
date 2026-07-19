@@ -1,0 +1,13 @@
+{
+  "campaign_id": "campaign-20260718064825-ae34aeb9",
+  "execution_window_days": 3,
+  "window_start": "2026-07-18",
+  "window_end": "2026-07-20",
+  "generated_count": 1,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260718-094830-p3-original-ar"
+  ],
+  "failed_slots": [],
+  "updated_at": "2026-07-18T06:49:10.810Z"
+}

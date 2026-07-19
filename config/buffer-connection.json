@@ -1,0 +1,11 @@
+{
+  "provider": "buffer",
+  "connected_at": "2026-07-13T23:49:05.651Z",
+  "organization_id": "6a5575f99375eef3ab87debc",
+  "organization_name": "My Organization",
+  "channel_id": "6a5577dd80cc80cdcaae1ff1",
+  "channel_name": "metafi.app",
+  "channel_service": "tiktok",
+  "channel_username": "metafi.app",
+  "status": "connected"
+}
