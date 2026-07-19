@@ -27,7 +27,8 @@
     "strategy-check": "node src/phases/strategy-check.js",
     "check:v1": "node scripts/checkV1.js",
     "check:v2": "node scripts/checkV2.js",
-    "scripts:import": "node scripts/importScriptLibrary.js"
+    "scripts:import": "node scripts/importScriptLibrary.js",
+    "test:injection": "node --test test/injection/*.test.js"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1086.0",
