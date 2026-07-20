@@ -12,3 +12,4 @@ outputs/debug/
 outputs/jobs/
 
 supabase/.temp/
+.vercel

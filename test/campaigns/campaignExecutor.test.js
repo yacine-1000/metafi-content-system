@@ -26,6 +26,7 @@ function options(root, campaign) {
   return {
     root,
     getCampaign: () => campaign,
+    now: () => new Date('2026-07-19T12:00:00.000Z'),
     injectionRequestStore: { list: () => [], claim: () => null },
     validateAccountVisualBanks: () => {},
   };

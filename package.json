@@ -2,6 +2,8 @@
   "name": "metafi-content-system",
   "version": "1.0.0",
   "scripts": {
+    "start": "node src/ui/server.js",
+    "vercel-build": "node --check api/index.js",
     "intake": "node src/phases/raw-intake.js",
     "planning": "node src/phases/planning.js",
     "hook": "node src/phases/hook.js",
@@ -47,5 +49,6 @@
   },
   "devDependencies": {
     "supabase": "^2.109.1"
-  }
+  },
+  "engines": { "node": ">=22 <23" }
 }

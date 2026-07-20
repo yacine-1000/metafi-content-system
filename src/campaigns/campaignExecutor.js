@@ -160,7 +160,7 @@ async function executeCampaignWindow(campaignId, options = {}) {
     ? (options.renderedOutputStorage || createRenderedOutputStorage({
       client: operationalRepository.repository.client,
       root,
-      bucket: options.rendered_output_bucket || process.env.METAFI_RENDERED_OUTPUT_BUCKET,
+      bucket: options.rendered_output_bucket || process.env.SUPABASE_STORAGE_BUCKET || process.env.METAFI_RENDERED_OUTPUT_BUCKET,
     }))
     : null;
   const nowFor = options.now || (() => new Date());

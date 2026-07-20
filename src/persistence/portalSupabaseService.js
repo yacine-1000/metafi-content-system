@@ -46,11 +46,12 @@ class PortalSupabaseService {
   constructor(env = process.env, options = {}) {
     this.client = options.client || createServerSupabaseClient(env);
     this.repository = options.repository || createPersistenceRepository({ env, client: this.client });
-    this.renderedOutputStorage = options.renderedOutputStorage || new RenderedOutputStorage(this.client);
+    this.storageBucket = env.SUPABASE_STORAGE_BUCKET || ASSET_BUCKET;
+    this.renderedOutputStorage = options.renderedOutputStorage || new RenderedOutputStorage(this.client, { bucket: this.storageBucket });
   }
   async signed(asset) {
     if (!asset || asset.storage_provider !== 'supabase_storage' || !asset.storage_key) return null;
-    const { data, error } = await this.client.storage.from(asset.storage_bucket || asset.bucket || ASSET_BUCKET).createSignedUrl(asset.storage_key, SIGNED_URL_TTL_SECONDS);
+    const { data, error } = await this.client.storage.from(asset.storage_bucket || asset.bucket || this.storageBucket).createSignedUrl(asset.storage_key, SIGNED_URL_TTL_SECONDS);
     if (error) throw new Error(`Unable to sign asset ${asset.storage_key}: ${error.message}`);
     return data.signedUrl;
   }
@@ -74,10 +75,10 @@ class PortalSupabaseService {
     const account = await this.getAccount(accountId); if (!account) return null;
     const clean = String(filename).replace(/[^a-zA-Z0-9._-]/g, '_');
     const key = assetType === 'profile' ? `accounts/${accountId}/profile/${clean}` : assetType === 'hook' ? `accounts/${accountId}/hooks/${clean}` : `accounts/${accountId}/cta/${language}/${clean}`;
-    const { error } = await this.client.storage.from(ASSET_BUCKET).upload(key, buffer, { contentType: mimeType, upsert: false });
+    const { error } = await this.client.storage.from(this.storageBucket).upload(key, buffer, { contentType: mimeType, upsert: false });
     if (error) throw new Error(`Unable to upload account asset: ${error.message}`);
     const checksum = crypto.createHash('sha256').update(buffer).digest('hex');
-    const saved = await this.repository.upsertAccountAsset({ account_id: accountId, asset_type: assetType, language, storage_provider: 'supabase_storage', storage_bucket: ASSET_BUCKET, storage_key: key, content_type: mimeType, byte_size: buffer.length, checksum_sha256: checksum, active: true });
+    const saved = await this.repository.upsertAccountAsset({ account_id: accountId, asset_type: assetType, language, storage_provider: 'supabase_storage', storage_bucket: this.storageBucket, storage_key: key, content_type: mimeType, byte_size: buffer.length, checksum_sha256: checksum, active: true });
     return { ...saved, url: await this.signed(saved) };
   }
   async listCampaigns() { const rows = await this.repository.listCampaigns(); const accounts = new Map((await this.repository.listAccounts()).map((a) => [a.id, a])); return rows.map((r) => legacyCampaign(r, accounts.get(r.account_id))); }
@@ -88,6 +89,19 @@ class PortalSupabaseService {
     const campaign_id = input.campaign_id || `campaign-${new Date().toISOString().replace(/[-:TZ.]/g, '').slice(0, 14)}-${crypto.randomBytes(4).toString('hex')}`;
     const campaign = { ...input, campaign_id, account_id: account.account_id, language: input.language || account.language, timezone: input.timezone || account.timezone, publishing_mode: input.publishing_mode || 'mobile_finish', status: 'draft', account_internal_name: account.internal_name, account_username: account.username, account_language: account.language, account_timezone: account.timezone, buffer_channel_id: account.buffer_channel_id };
     const plan = buildPlan(campaign); await this.repository.upsertCampaign(campaign); await this.repository.upsertCampaignSlots(campaign_id, plan.slots, account.account_id); return campaign;
+  }
+  async updateCampaign(id, changes = {}) {
+    const existing = await this.getCampaign(id); if (!existing) return null;
+    const saved = await this.repository.upsertCampaign({ ...existing, ...changes, campaign_id: id, account_id: existing.account_id });
+    return legacyCampaign(saved, await this.repository.getAccount(existing.account_id));
+  }
+  async deleteCampaign(id) { return this.repository.deleteCampaign(id); }
+  async health() {
+    const database = await this.client.from('accounts').select('id').limit(1); if (database.error) throw new Error(`Unable to verify Supabase database: ${database.error.message}`);
+    const bucket = await this.client.storage.getBucket(this.storageBucket);
+    if (bucket.error) throw new Error(`Unable to verify Supabase Storage: ${bucket.error.message}`);
+    return { status: 'ok', persistence_mode: 'supabase', database: 'reachable', storage: 'reachable', storage_bucket: this.storageBucket,
+      storage_private: bucket.data.public === false, checked_at: new Date().toISOString() };
   }
 
   validatedRenderedOutput(campaign, slot, post) {

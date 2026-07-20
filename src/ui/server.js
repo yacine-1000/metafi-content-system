@@ -51,6 +51,7 @@ const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
 
 function isSupabaseMode() { return persistenceMode(process.env) === 'supabase'; }
 function portalRepository() { return new PortalSupabaseService(process.env); }
+function isHostedPortal() { return isSupabaseMode() && (process.env.VERCEL === '1' || process.env.METAFI_HOSTED_PORTAL === '1'); }
 
 function quickSavePostDir(campaignId, postId) {
   const postDir = safePostFolder(postId);
@@ -286,11 +287,34 @@ async function uploadPost(postId, log) {
 
 const app = express();
 app.use(express.json());
+app.use((req, res, next) => {
+  if (!isHostedPortal()) return next();
+  const allowed = [
+    ['GET', /^\/api\/health$/], ['GET', /^\/api\/accounts(?:\/[^/]+)?$/], ['POST', /^\/api\/accounts$/], ['PATCH', /^\/api\/accounts\/[^/]+$/],
+    ['POST', /^\/api\/accounts\/[^/]+\/(?:avatar|hook-images)$/], ['POST', /^\/api\/accounts\/[^/]+\/app-cta-images\/(?:ar|en|es|fr)$/],
+    ['GET', /^\/api\/campaigns(?:\/[^/]+)?$/], ['POST', /^\/api\/campaigns$/], ['PATCH', /^\/api\/campaigns\/[^/]+$/], ['DELETE', /^\/api\/campaigns\/[^/]+$/],
+    ['GET', /^\/api\/campaigns\/[^/]+\/quick-save$/], ['POST', /^\/api\/campaigns\/[^/]+\/posts\/[^/]+\/mark-saved$/],
+    ['GET', /^\/api\/campaigns\/[^/]+\/posts\/[^/]+\/slides\.zip$/], ['POST', /^\/api\/posts\/[^/]+\/mark-posted$/],
+  ];
+  if (allowed.some(([method, pattern]) => req.method === method && pattern.test(req.path))) return next();
+  if (req.path === '/' && req.method === 'GET') return next();
+  return res.status(503).json({ error: 'This action requires the separate Metafi rendering/publication worker', reason_code: 'WORKER_NOT_DEPLOYED' });
+});
 app.use('/api/injection', createInjectionRouter());
 app.use('/renders', express.static(RENDERS_DIR));
 app.use('/outputs', express.static(path.join(ROOT, 'outputs')));
 app.use('/assets', express.static(path.join(ROOT, 'assets')));
 app.use(express.static(path.join(__dirname)));
+
+app.get('/api/health', async (_req, res) => {
+  try {
+    if (!isSupabaseMode()) return res.json({ status: 'ok', persistence_mode: 'local', checked_at: new Date().toISOString() });
+    return res.json(await portalRepository().health());
+  } catch (error) {
+    console.error(`[health] dependency check failed: ${error.message}`);
+    return res.status(503).json({ status: 'degraded', persistence_mode: isSupabaseMode() ? 'supabase' : 'local', database: 'unreachable', checked_at: new Date().toISOString() });
+  }
+});
 
 const HOOK_IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp']);
 const APP_CTA_LANGUAGES = Object.freeze(['ar', 'en', 'es', 'fr']);
@@ -379,7 +403,7 @@ app.post('/api/accounts/:accountId/avatar', (req, res, next) => {
   });
 }, async (req, res) => {
   try {
-    const account = getAccount(req.params.accountId);
+    const account = isSupabaseMode() ? await portalRepository().getAccount(req.params.accountId) : getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     const declaredExtension = AVATAR_TYPES.get(String(req.headers['content-type'] || '').split(';')[0].toLowerCase());
     const detectedExtension = Buffer.isBuffer(req.body) ? avatarExtension(req.body) : null;
@@ -415,7 +439,7 @@ app.post('/api/accounts/:accountId/hook-images', (req, res, next) => {
   });
 }, async (req, res) => {
   try {
-    const account = getAccount(req.params.accountId);
+    const account = isSupabaseMode() ? await portalRepository().getAccount(req.params.accountId) : getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     const declaredExtension = AVATAR_TYPES.get(String(req.headers['content-type'] || '').split(';')[0].toLowerCase());
     const detectedExtension = Buffer.isBuffer(req.body) ? avatarExtension(req.body) : null;
@@ -479,7 +503,7 @@ app.post('/api/accounts/:accountId/app-cta-images/:language', (req, res, next) =
   });
 }, async (req, res) => {
   try {
-    const account = accountForAssetRequest(req.params.accountId);
+    const account = isSupabaseMode() ? await portalRepository().getAccount(req.params.accountId) : accountForAssetRequest(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found', uploaded_files: [], rejected_files: [] });
     const language = String(req.params.language || '').toLowerCase();
     if (!APP_CTA_LANGUAGES.includes(language)) {
@@ -493,6 +517,11 @@ app.post('/api/accounts/:accountId/app-cta-images/:language', (req, res, next) =
         uploaded_files: [],
         rejected_files: [{ error: 'Unsupported image or MIME mismatch' }],
       });
+    }
+    if (isSupabaseMode()) {
+      const filename = `app-cta-${Date.now()}-${process.hrtime.bigint()}.${detectedExtension}`;
+      const asset = await portalRepository().uploadAccountAsset(account.account_id, 'localized_cta', language, req.body, String(req.headers['content-type']).split(';')[0], filename);
+      return res.status(201).json({ account_id: account.account_id, language, uploaded_files: [{ filename, url: asset.url }], rejected_files: [], image_count: 1, images: [{ filename, url: asset.url }] });
     }
     const ctaDir = path.join(ROOT, 'assets', 'account-app-cta-images', account.account_id, language);
     fs.mkdirSync(ctaDir, { recursive: true });
@@ -746,8 +775,12 @@ app.post('/api/campaigns', async (req, res) => {
   }
 });
 
-app.patch('/api/campaigns/:campaignId', (req, res) => {
+app.patch('/api/campaigns/:campaignId', async (req, res) => {
   try {
+    if (isSupabaseMode()) {
+      const campaign = await portalRepository().updateCampaign(req.params.campaignId, req.body || {});
+      return campaign ? res.json(campaign) : res.status(404).json({ error: 'Campaign not found' });
+    }
     // An active campaign is only usable if its plan can be created first.
     // Planning before the status write prevents a failed activation from
     // leaving an ACTIVE campaign without a plan.
@@ -768,8 +801,12 @@ app.patch('/api/campaigns/:campaignId', (req, res) => {
   }
 });
 
-app.delete('/api/campaigns/:campaignId', (req, res) => {
+app.delete('/api/campaigns/:campaignId', async (req, res) => {
   try {
+    if (isSupabaseMode()) {
+      const campaign = await portalRepository().deleteCampaign(req.params.campaignId);
+      return campaign ? res.json({ campaign_id: req.params.campaignId, status: 'deleted' }) : res.status(404).json({ error: 'Campaign not found' });
+    }
     if (!deleteCampaign(req.params.campaignId)) return res.status(404).json({ error: 'Campaign not found' });
     return res.json({ campaign_id: req.params.campaignId, status: 'deleted' });
   } catch (error) {
