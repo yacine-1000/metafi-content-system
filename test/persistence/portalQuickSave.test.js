@@ -1,6 +1,8 @@
 'use strict';
 
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const test = require('node:test');
 
 const { PortalSupabaseService, QuickSaveOutputError } = require('../../src/persistence/portalSupabaseService');
@@ -28,17 +30,37 @@ test('Quick Save validates linkage and derives ordered private output references
     (error) => error instanceof QuickSaveOutputError && error.code === 'QUICK_SAVE_ACCESS_DENIED');
 });
 
-test('team campaigns include only complete durable outputs and calculate counts', async () => {
+test('team campaigns use complete durable output as readiness and calculate counts', async () => {
   const service = Object.create(PortalSupabaseService.prototype); service.renderedOutputStorage = { bucket: 'private' };
+  service.signed = async (asset) => `https://signed.invalid/${asset.storage_key}`;
   const { campaign, slot, post } = fixture(); Object.assign(campaign, { name: 'Launch', start_date: '2026-07-20', duration_days: 3 });
-  Object.assign(post, { generation_status: 'completed', saved_at: '2026-07-20T10:00:00Z', publication_status: 'published' });
+  Object.assign(post, { generation_status: 'queued', saved_at: '2026-07-20T10:00:00Z', publication_status: 'published' });
   const incomplete = { ...post, id: 'post-2', legacy_post_id: 'post-2', asset_manifest: {} };
   service.repository = {
-    listCampaigns: async () => [campaign], listAccounts: async () => [{ id: campaign.account_id, legacy_account_id: 'account-test', display_name: 'Metafi' }],
+    listCampaigns: async () => [campaign], listAccounts: async () => [{ id: campaign.account_id, legacy_account_id: 'account-test', display_name: 'Metafi', username: '@metafi.app' }],
     listCampaignSlots: async () => [slot], listPosts: async () => [post, incomplete],
+    listAccountAssets: async (accountId) => accountId === 'account-test' ? [{ asset_type: 'profile', active: true, storage_key: 'accounts/account-test/profile/avatar.png' }] : [],
   };
   assert.deepEqual(await service.teamCampaigns(), { campaigns: [{ campaign_id: 'campaign-test', name: 'Launch', account_id: 'account-test', account: 'Metafi',
+    account_handle: '@metafi.app', account_profile_url: 'https://signed.invalid/accounts/account-test/profile/avatar.png',
     start_date: '2026-07-20', end_date: '2026-07-22', ready_count: 1, saved_count: 1, posted_count: 1 }] });
+});
+
+test('team account identity normalizes handles, falls back to account name, and scopes profile lookup', async () => {
+  const service = Object.create(PortalSupabaseService.prototype); const requested = [];
+  service.repository = { listAccountAssets: async (accountId) => { requested.push(accountId); return []; } };
+  assert.deepEqual(await service.teamAccountIdentity({ legacy_account_id: 'account-a', username: '@@metafi.app', display_name: 'Metafi' }),
+    { account_handle: '@metafi.app', account_profile_url: null });
+  assert.deepEqual(await service.teamAccountIdentity({ legacy_account_id: 'account-b', username: '', display_name: 'Founding Team' }),
+    { account_handle: 'Founding Team', account_profile_url: null });
+  assert.deepEqual(requested, ['account-a', 'account-b']);
+});
+
+test('team UI falls back to account initials when a profile image is missing or fails', () => {
+  const html = fs.readFileSync(path.resolve(__dirname, '../../src/ui/team.html'), 'utf8');
+  assert.match(html, /function avatarFallback\(image\)/);
+  assert.match(html, /onerror="avatarFallback\(this\)"/);
+  assert.match(html, /data-initials=/);
 });
 
 test('team mark-posted validates campaign linkage, blocks Buffer state, and is idempotent', async () => {

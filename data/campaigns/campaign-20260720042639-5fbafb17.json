@@ -1,6 +1,6 @@
 {
-  "campaign_id": "campaign-20260719051257-98d27f19",
-  "name": "Test come on",
+  "campaign_id": "campaign-20260720042639-5fbafb17",
+  "name": "fdfew",
   "objective": "app_installs",
   "account_id": "account_6a572feb80cc80cdcab96cb7",
   "buffer_channel_id": "6a572feb80cc80cdcab96cb7",
@@ -9,13 +9,17 @@
   "account_language": "ar",
   "account_timezone": "Asia/Riyadh",
   "language": "ar",
-  "start_date": "2026-07-19",
+  "start_date": "2026-07-20",
   "duration_days": 1,
   "posts_per_day": 1,
   "pillars": [
     {
       "pillar_id": "p2",
-      "percentage": 100
+      "percentage": 60
+    },
+    {
+      "pillar_id": "p3",
+      "percentage": 40
     }
   ],
   "hook_types": [
@@ -23,11 +27,11 @@
   ],
   "posting_time_mode": "manual",
   "posting_times": [
-    "09:17"
+    "08:26"
   ],
-  "publishing_mode": "automatic",
+  "publishing_mode": "mobile_finish",
   "timezone": "Asia/Riyadh",
   "status": "active",
-  "created_at": "2026-07-19T05:12:57.825Z",
-  "updated_at": "2026-07-19T05:12:59.383Z"
+  "created_at": "2026-07-20T04:26:39.174Z",
+  "updated_at": "2026-07-20T04:26:43.405Z"
 }

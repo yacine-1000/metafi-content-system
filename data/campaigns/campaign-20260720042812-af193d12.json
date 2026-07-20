@@ -1,0 +1,37 @@
+{
+  "campaign_id": "campaign-20260720042812-af193d12",
+  "name": "nnnnnnn",
+  "objective": "app_installs",
+  "account_id": "account_1c849d394821b80c3a3c8f61",
+  "buffer_channel_id": "",
+  "account_internal_name": "fwdfwe",
+  "account_username": "@ferjgerg",
+  "account_language": "ar",
+  "account_timezone": "Asia/Riyadh",
+  "language": "ar",
+  "start_date": "2026-07-20",
+  "duration_days": 1,
+  "posts_per_day": 1,
+  "pillars": [
+    {
+      "pillar_id": "p2",
+      "percentage": 60
+    },
+    {
+      "pillar_id": "p3",
+      "percentage": 40
+    }
+  ],
+  "hook_types": [
+    "listicle"
+  ],
+  "posting_time_mode": "manual",
+  "posting_times": [
+    "00:28"
+  ],
+  "publishing_mode": "mobile_finish",
+  "timezone": "Asia/Riyadh",
+  "status": "active",
+  "created_at": "2026-07-20T04:28:12.857Z",
+  "updated_at": "2026-07-20T04:28:15.079Z"
+}

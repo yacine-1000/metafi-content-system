@@ -1,0 +1,43 @@
+{
+  "campaign_id": "campaign-20260720045820-73f9d743",
+  "name": "mohammed campaign",
+  "objective": "app_installs",
+  "account_id": "account_1c849d394821b80c3a3c8f61",
+  "buffer_channel_id": "",
+  "account_internal_name": "Mohammed",
+  "account_username": "@mohh.a22",
+  "account_language": "ar",
+  "account_timezone": "Asia/Riyadh",
+  "language": "ar",
+  "start_date": "2026-07-20",
+  "duration_days": 1,
+  "posts_per_day": 3,
+  "pillars": [
+    {
+      "pillar_id": "p2",
+      "percentage": 60
+    },
+    {
+      "pillar_id": "p3",
+      "percentage": 40
+    }
+  ],
+  "hook_types": [
+    "listicle",
+    "Contrarian / Warning",
+    "How-to",
+    "Original",
+    "Mistakes",
+    "Identity Callout",
+    "POV / Question",
+    "Story / Regret / Realization",
+    "Tips / Things"
+  ],
+  "posting_time_mode": "random",
+  "posting_times": [],
+  "publishing_mode": "mobile_finish",
+  "timezone": "Asia/Riyadh",
+  "status": "active",
+  "created_at": "2026-07-20T04:58:20.315Z",
+  "updated_at": "2026-07-20T04:58:21.263Z"
+}

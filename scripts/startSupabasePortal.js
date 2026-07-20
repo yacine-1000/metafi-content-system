@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const net = require('net');
 const path = require('path');
 const dotenv = require('dotenv');
 
@@ -9,6 +10,15 @@ const environmentFile = path.join(ROOT, '.env.supabase.local');
 
 function required(name) {
   if (!process.env[name] || !String(process.env[name]).trim()) throw new Error(`${name} is required in .env.supabase.local`);
+}
+
+function ensurePortAvailable(port) {
+  return new Promise((resolve, reject) => {
+    const probe = net.createServer();
+    probe.unref();
+    probe.once('error', () => reject(new Error(`Port ${port} is already in use. Stop the existing local portal before starting the Supabase operator.`)));
+    probe.listen({ host: '127.0.0.1', port, exclusive: true }, () => probe.close(resolve));
+  });
 }
 
 async function main() {
@@ -22,6 +32,9 @@ async function main() {
   if (process.env.METAFI_HOSTED_PORTAL !== 'false') throw new Error('METAFI_HOSTED_PORTAL must be false for the local operator');
   if (process.env.BUFFER_ENABLED !== 'false') throw new Error('BUFFER_ENABLED must be false for the local operator');
   for (const name of ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_STORAGE_BUCKET']) required(name);
+  const port = Number(process.env.PORT || 3333);
+  if (!Number.isSafeInteger(port) || port < 1 || port > 65535) throw new Error('PORT must be a valid TCP port');
+  await ensurePortAvailable(port);
 
   const { chromium } = require('playwright');
   const chromiumPath = chromium.executablePath();
@@ -31,8 +44,6 @@ async function main() {
   if (health.status !== 'ok' || health.database !== 'reachable' || health.storage !== 'reachable' || health.storage_private !== true) throw new Error('Supabase database or private Storage readiness failed');
 
   const { app } = require('../src/ui/server');
-  const port = Number(process.env.PORT || 3333);
-  if (!Number.isSafeInteger(port) || port < 1 || port > 65535) throw new Error('PORT must be a valid TCP port');
   app.listen(port, () => {
     console.log('Local operator mode: SUPABASE');
     console.log('Database: connected');
@@ -45,4 +56,4 @@ async function main() {
 
 if (require.main === module) main().catch((error) => { console.error(`Supabase operator startup failed: ${error.message}`); process.exitCode = 1; });
 
-module.exports = { main };
+module.exports = { ensurePortAvailable, main };

@@ -55,6 +55,15 @@ class PortalSupabaseService {
     if (error) throw new Error(`Unable to sign asset ${asset.storage_key}: ${error.message}`);
     return data.signedUrl;
   }
+  async teamAccountIdentity(account) {
+    if (!account) return { account_handle: '', account_profile_url: null };
+    const storedHandle = String(account.username || '').trim();
+    const accountName = account.display_name || account.internal_name || '';
+    const accountHandle = storedHandle ? `@${storedHandle.replace(/^@+/, '')}` : accountName;
+    const assets = await this.repository.listAccountAssets(account.legacy_account_id);
+    const profile = assets.find((asset) => asset.asset_type === 'profile' && asset.active);
+    return { account_handle: accountHandle, account_profile_url: profile ? await this.signed(profile) : null };
+  }
   async enrichAccount(row) {
     const account = legacyAccount(row); const assets = await this.repository.listAccountAssets(account.account_id);
     const hook = assets.filter((a) => a.asset_type === 'hook' && a.active);
@@ -145,7 +154,10 @@ class PortalSupabaseService {
       this.repository.listPosts(campaignId),
     ]);
     const slotById = new Map(slots.map((slot) => [slot.id, slot]));
-    const ready = posts.filter((post) => post.generation_status === 'completed');
+    const ready = posts.filter((post) => {
+      try { this.validatedRenderedOutput(campaign, slotById.get(post.campaign_slot_id), post); return true; }
+      catch { return false; }
+    });
     const postIds = ready.map((post) => post.id); let publications = [];
     if (postIds.length) publications = await this.repository.response(this.client.from('publication_history').select('*').in('post_id', postIds), 'Unable to load Quick Save publications');
     const publicationByPost = new Map(publications.map((item) => [item.post_id, item]));
@@ -170,7 +182,6 @@ class PortalSupabaseService {
 
   async setQuickSaveSaved(campaignId, postId, saved = true) {
     const found = await this.quickSavePost(campaignId, postId); if (!found) return null;
-    if (found.post.generation_status !== 'completed') throw new QuickSaveOutputError('Only generated posts can be saved', 'QUICK_SAVE_NOT_READY');
     const savedAt = saved ? (found.post.saved_at || new Date().toISOString()) : null;
     const { data, error } = await this.client.from('posts').update({ saved_at: savedAt }).eq('id', found.post.id).eq('campaign_id', found.campaign.id).eq('account_id', found.campaign.account_id).select('legacy_post_id,saved_at').single();
     if (error) throw new Error(`Unable to update Quick Save state: ${error.message}`);
@@ -193,15 +204,15 @@ class PortalSupabaseService {
       ]);
       const slotById = new Map(slots.map((slot) => [slot.id, slot]));
       const ready = posts.filter((post) => {
-        if (post.generation_status !== 'completed') return false;
         try { this.validatedRenderedOutput(campaign, slotById.get(post.campaign_slot_id), post); return true; }
         catch { return false; }
       });
       if (!ready.length) continue;
       const account = accountById.get(campaign.account_id);
+      const identity = await this.teamAccountIdentity(account);
       const end = new Date(`${campaign.start_date}T00:00:00.000Z`); end.setUTCDate(end.getUTCDate() + campaign.duration_days - 1);
       values.push({ campaign_id: campaign.legacy_campaign_id, name: campaign.name, account_id: account?.legacy_account_id,
-        account: account?.display_name || account?.username || account?.internal_name || '', start_date: campaign.start_date,
+        account: account?.display_name || account?.username || account?.internal_name || '', ...identity, start_date: campaign.start_date,
         end_date: end.toISOString().slice(0, 10), ready_count: ready.length, saved_count: ready.filter((post) => post.saved_at).length,
         posted_count: ready.filter((post) => post.publication_status === 'published').length });
     }
@@ -211,10 +222,12 @@ class PortalSupabaseService {
   async teamCampaign(campaignId) {
     const campaign = await this.repository.getCampaign(campaignId); if (!campaign) return null;
     const account = await this.repository.response(this.client.from('accounts').select('*').eq('id', campaign.account_id).single(), 'Unable to load team campaign account');
+    const identity = await this.teamAccountIdentity(account);
     const data = await this.quickSaveData(campaignId);
+    const end = new Date(`${campaign.start_date}T00:00:00.000Z`); end.setUTCDate(end.getUTCDate() + campaign.duration_days - 1);
     return { campaign: { campaign_id: campaign.legacy_campaign_id, name: campaign.name, account_id: account.legacy_account_id,
       account: account.display_name || account.username || account.internal_name || '', timezone: campaign.timezone,
-      start_date: campaign.start_date, duration_days: campaign.duration_days }, posts: data.posts };
+      ...identity, start_date: campaign.start_date, end_date: end.toISOString().slice(0, 10), duration_days: campaign.duration_days }, posts: data.posts };
   }
 
   async markTeamPostPosted(campaignId, postId) {
