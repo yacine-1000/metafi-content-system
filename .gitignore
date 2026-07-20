@@ -1,5 +1,6 @@
 
 .env
+.env.supabase.local
 node_modules/
 outputs/
 renders/

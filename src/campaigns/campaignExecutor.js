@@ -199,6 +199,7 @@ async function executeCampaignWindow(campaignId, options = {}) {
   const eligibleSlots = await operationalRepository.listEligibleSlots(campaign.campaign_id, {
     start: windowStart,
     end: windowEnd,
+    now: nowFor(),
     context: accountFields,
   });
   if (eligibleSlots.planExists === false) {

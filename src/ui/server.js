@@ -300,6 +300,13 @@ app.use((req, res, next) => {
   if (req.path === '/' && req.method === 'GET') return next();
   return res.status(503).json({ error: 'This action requires the separate Metafi rendering/publication worker', reason_code: 'WORKER_NOT_DEPLOYED' });
 });
+app.use((req, res, next) => {
+  if (!isSupabaseMode() || process.env.BUFFER_ENABLED === 'true') return next();
+  const bufferRoute = req.path === '/api/accounts/refresh-buffer-channels'
+    || /\/upload-approved$|\/send-uploaded-to-buffer$|\/retry-buffer$|\/send-to-buffer$|\/schedule-buffer$|\/buffer$/.test(req.path);
+  if (!bufferRoute) return next();
+  return res.status(503).json({ error: 'Buffer actions are disabled for this local operator', reason_code: 'BUFFER_DISABLED' });
+});
 app.use('/api/injection', createInjectionRouter());
 app.use('/renders', express.static(RENDERS_DIR));
 app.use('/outputs', express.static(path.join(ROOT, 'outputs')));
@@ -662,8 +669,12 @@ app.get('/api/campaigns/:campaignId', async (req, res) => {
   }
 });
 
-app.post('/api/campaigns/:campaignId/plan', (req, res) => {
+app.post('/api/campaigns/:campaignId/plan', async (req, res) => {
   try {
+    if (isSupabaseMode()) {
+      const plan = await portalRepository().getCampaignPlan(req.params.campaignId);
+      return plan ? res.json(plan) : res.status(404).json({ error: 'Campaign not found' });
+    }
     const result = planCampaign(req.params.campaignId);
     if (!result) return res.status(404).json({ error: 'Campaign not found' });
     return res.status(result.existing ? 200 : 201).json(result.plan);
@@ -676,12 +687,12 @@ app.post('/api/campaigns/:campaignId/plan', (req, res) => {
   }
 });
 
-app.post('/api/campaigns/:campaignId/generate-window', (req, res) => {
+app.post('/api/campaigns/:campaignId/generate-window', async (req, res) => {
   const startedAt = Date.now();
   const campaignId = req.params.campaignId;
   console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=start`);
   try {
-    const summary = executeCampaignWindow(campaignId);
+    const summary = await executeCampaignWindow(campaignId);
     if (!summary) return res.status(404).json({ error: 'Campaign not found' });
     console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=return elapsed_ms=${Date.now() - startedAt}`);
     return res.json(summary);
@@ -707,6 +718,7 @@ app.post('/api/campaigns/:campaignId/generate-window', (req, res) => {
 
 app.post('/api/campaigns/:campaignId/slots/:slotId/swap', (req, res) => {
   try {
+    if (isSupabaseMode()) return res.status(409).json({ error: 'Campaign swaps are not available in the Supabase local operator', reason_code: 'SUPABASE_SWAP_UNAVAILABLE' });
     const result = swapCampaignPost(req.params.campaignId, req.params.slotId);
     if (!result) return res.status(404).json({ error: 'Campaign not found' });
     return res.json(result);

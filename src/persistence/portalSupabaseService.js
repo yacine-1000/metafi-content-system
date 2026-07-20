@@ -83,6 +83,12 @@ class PortalSupabaseService {
   }
   async listCampaigns() { const rows = await this.repository.listCampaigns(); const accounts = new Map((await this.repository.listAccounts()).map((a) => [a.id, a])); return rows.map((r) => legacyCampaign(r, accounts.get(r.account_id))); }
   async getCampaign(id) { const row = await this.repository.getCampaign(id); if (!row) return null; const accounts = new Map((await this.repository.listAccounts()).map((a) => [a.id, a])); return legacyCampaign(row, accounts.get(row.account_id)); }
+  async getCampaignPlan(id) {
+    const campaign = await this.getCampaign(id); if (!campaign) return null;
+    const slots = (await this.repository.listCampaignSlots(id)).map((slot) => ({ ...slot, slot_id: slot.legacy_slot_id,
+      campaign_id: id, account_id: campaign.account_id, date: slot.scheduled_date, time: slot.scheduled_time }));
+    return { campaign_id: id, account_id: campaign.account_id, slots, created_at: campaign.created_at, updated_at: new Date().toISOString() };
+  }
   async createCampaign(input) {
     const account = await this.getAccount(input.account_id); if (!account || !account.active) throw new Error('Campaign account does not exist or is inactive');
     if (!input.name || !input.objective || !input.start_date || !Number.isInteger(input.duration_days) || input.duration_days <= 0 || !Number.isInteger(input.posts_per_day) || input.posts_per_day <= 0 || !Array.isArray(input.pillars) || !Array.isArray(input.hook_types)) throw new Error('Campaign configuration is invalid');

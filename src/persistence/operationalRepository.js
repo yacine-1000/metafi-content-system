@@ -80,7 +80,9 @@ class SupabaseOperationalRepository {
     const id = await this.repository.campaignId(campaignId);
     const rows = await this.repository.response(this.repository.client.from('campaign_slots').select('*').eq('campaign_id', id).order('scheduled_at'), 'Unable to list eligible slots');
     const inWindow = rows.filter((slot) => (!window?.start || slot.scheduled_date >= window.start) && (!window?.end || slot.scheduled_date <= window.end));
-    const eligible = inWindow.filter((slot) => ['planned', 'failed'].includes(slot.status)).map((slot) => ({ ...slot, slot_id: slot.legacy_slot_id,
+    const now = window?.now instanceof Date ? window.now : new Date(window?.now || Date.now());
+    const eligible = inWindow.filter((slot) => ['planned', 'failed'].includes(slot.status)
+      || (slot.status === 'generating' && slot.claim_expires_at && new Date(slot.claim_expires_at) <= now)).map((slot) => ({ ...slot, slot_id: slot.legacy_slot_id,
       date: slot.scheduled_date, time: slot.scheduled_time }));
     eligible.planExists = true; eligible.totalCount = rows.length; eligible.windowCount = inWindow.length; eligible.locked = true; return eligible;
   }

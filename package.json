@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node src/ui/server.js",
+    "portal": "node src/ui/server.js",
+    "portal:supabase": "node scripts/startSupabasePortal.js",
+    "worker:start": "node src/worker/index.js",
     "vercel-build": "node --check api/index.js",
     "intake": "node src/phases/raw-intake.js",
     "planning": "node src/phases/planning.js",
