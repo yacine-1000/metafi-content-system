@@ -31,6 +31,7 @@ async function main() {
   if (process.env.METAFI_PERSISTENCE_MODE !== 'supabase') throw new Error('METAFI_PERSISTENCE_MODE must be supabase');
   if (process.env.METAFI_HOSTED_PORTAL !== 'false') throw new Error('METAFI_HOSTED_PORTAL must be false for the local operator');
   if (process.env.BUFFER_ENABLED !== 'false') throw new Error('BUFFER_ENABLED must be false for the local operator');
+  process.env.METAFI_LOCAL_OPERATOR = 'true';
   for (const name of ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_STORAGE_BUCKET']) required(name);
   const port = Number(process.env.PORT || 3333);
   if (!Number.isSafeInteger(port) || port < 1 || port > 65535) throw new Error('PORT must be a valid TCP port');
@@ -49,6 +50,8 @@ async function main() {
     console.log('Database: connected');
     console.log('Storage: connected');
     console.log('Chromium: ready');
+    console.log('Local generation: enabled');
+    console.log('Hosted worker dispatch: disabled');
     console.log('Buffer: disabled');
     console.log(`Portal: http://localhost:${port}`);
   });

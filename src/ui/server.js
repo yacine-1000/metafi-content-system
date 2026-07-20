@@ -41,6 +41,7 @@ const { createScriptLibraryWriteService } = require('../injection/scriptLibraryW
 const { createInjectionRequestStore } = require('../injection/injectionRequestStore');
 const { createApprovedTaxonomyService } = require('../injection/approvedTaxonomyService');
 const { createInjectionHandlers } = require('../injection/injectionApi');
+const { LocalTeamPublisher, TeamPublishError } = require('../team/localTeamPublisher');
 
 const ROOT = path.resolve(__dirname, '../../');
 require('dotenv').config({ path: path.join(ROOT, '.env') });
@@ -51,7 +52,10 @@ const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
 
 function isSupabaseMode() { return persistenceMode(process.env) === 'supabase'; }
 function portalRepository() { return new PortalSupabaseService(process.env); }
-function isHostedPortal() { return isSupabaseMode() && (process.env.VERCEL === '1' || process.env.METAFI_HOSTED_PORTAL === '1'); }
+function hostedPortalEnabled(env = process.env) {
+  return env.METAFI_LOCAL_OPERATOR !== 'true' && persistenceMode(env) === 'supabase' && (env.VERCEL === '1' || env.METAFI_HOSTED_PORTAL === '1');
+}
+function isHostedPortal() { return hostedPortalEnabled(process.env); }
 
 function quickSavePostDir(campaignId, postId) {
   const postDir = safePostFolder(postId);
@@ -924,6 +928,30 @@ app.post('/api/posts/:postId/mark-posted', async (req, res) => {
   }
 });
 
+app.get('/api/campaigns/:campaignId/team-publish-status', async (req, res) => {
+  if (isSupabaseMode()) return res.status(409).json({ error: 'Team publishing is for locally generated campaigns', reason_code: 'TEAM_PUBLISH_LOCAL_ONLY' });
+  try { return res.json(await new LocalTeamPublisher({ root: ROOT }).status(req.params.campaignId)); }
+  catch (error) { return res.status(error instanceof TeamPublishError ? 400 : 503).json({ error: error.message, reason_code: error.code || 'TEAM_PUBLISH_STATUS_FAILED' }); }
+});
+
+app.post('/api/campaigns/:campaignId/posts/:postId/publish-team', async (req, res) => {
+  if (isSupabaseMode()) return res.status(409).json({ error: 'Team publishing is for locally generated campaigns', reason_code: 'TEAM_PUBLISH_LOCAL_ONLY' });
+  try { return res.json(await new LocalTeamPublisher({ root: ROOT }).publishPost(req.params.campaignId, req.params.postId)); }
+  catch (error) {
+    console.error(`[team-publish] campaign_id=${req.params.campaignId} post_id=${req.params.postId} error=${JSON.stringify(error.message)}`);
+    return res.status(error instanceof TeamPublishError ? 400 : 503).json({ error: error.message, reason_code: error.code || 'TEAM_PUBLISH_FAILED' });
+  }
+});
+
+app.post('/api/campaigns/:campaignId/publish-ready-team', async (req, res) => {
+  if (isSupabaseMode()) return res.status(409).json({ error: 'Team publishing is for locally generated campaigns', reason_code: 'TEAM_PUBLISH_LOCAL_ONLY' });
+  try { return res.json(await new LocalTeamPublisher({ root: ROOT }).publishReady(req.params.campaignId)); }
+  catch (error) {
+    console.error(`[team-publish] campaign_id=${req.params.campaignId} error=${JSON.stringify(error.message)}`);
+    return res.status(error instanceof TeamPublishError ? 400 : 503).json({ error: error.message, reason_code: error.code || 'TEAM_PUBLISH_FAILED' });
+  }
+});
+
 app.get('/api/campaigns/:campaignId/quick-save', async (req, res) => {
   try {
     const data = isSupabaseMode() ? await portalRepository().quickSaveData(req.params.campaignId) : quickSaveData(req.params.campaignId);
@@ -1278,4 +1306,4 @@ if (require.main === module) {
   app.listen(PORT, () => console.log(`Creator UI running at http://localhost:${PORT}`));
 }
 
-module.exports = { app, createInjectionRouter };
+module.exports = { app, createInjectionRouter, hostedPortalEnabled };

@@ -1134,7 +1134,7 @@
             <div class="campaign-workspace-grid">
               <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Campaign Health</div><div id="campaign-health" class="campaign-health-value"></div></section>
               <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Pipeline</div><div id="campaign-pipeline" class="campaign-pipeline"></div></section>
-              <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Quick Actions</div><div class="campaign-quick-actions"><button class="campaign-primary" id="campaign-generate-window" type="button" onclick="generateCampaignWindow()">Generate Next 3 Days</button><button class="campaign-secondary" id="campaign-upload-approved" type="button" onclick="uploadApprovedCampaignPosts()">Upload Approved</button><button class="campaign-secondary" id="campaign-send-buffer" type="button" onclick="sendUploadedCampaignPostsToBuffer()">Send Uploaded to Buffer</button></div><div id="campaign-execution-result" style="margin-top:12px;font-size:11px;color:var(--text-muted);"></div></section>
+              <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Quick Actions</div><div class="campaign-quick-actions"><button class="campaign-primary" id="campaign-generate-window" type="button" onclick="generateCampaignWindow()">Generate Next 3 Days</button><button class="campaign-secondary" id="campaign-publish-team" type="button" onclick="publishReadyCampaignPostsToTeam()" hidden>Publish Ready Posts to Team Portal</button><button class="campaign-secondary" id="campaign-upload-approved" type="button" onclick="uploadApprovedCampaignPosts()">Upload Approved</button><button class="campaign-secondary" id="campaign-send-buffer" type="button" onclick="sendUploadedCampaignPostsToBuffer()">Send Uploaded to Buffer</button></div><div id="campaign-execution-result" style="margin-top:12px;font-size:11px;color:var(--text-muted);"></div></section>
               <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Recent Activity</div><div id="campaign-recent-activity" class="campaign-activity-list"></div></section>
             </div>
             <div class="campaign-detail-action-row"><div></div><div id="campaign-detail-toggle"></div></div>
@@ -1240,6 +1240,7 @@
               <div class="campaign-objectives">
                 <div><input class="campaign-objective-input" id="publishing-automatic" name="campaign-publishing-mode" type="radio" value="automatic" onchange="setCampaignPublishingMode('automatic')"><label class="campaign-objective-card" for="publishing-automatic"><span class="campaign-objective-title">Automatic Publish</span><span class="campaign-objective-copy">Buffer publishes automatically. Native TikTok sound cannot be added.</span></label></div>
                 <div><input class="campaign-objective-input" id="publishing-mobile-finish" name="campaign-publishing-mode" type="radio" value="mobile_finish" checked onchange="setCampaignPublishingMode('mobile_finish')"><label class="campaign-objective-card" for="publishing-mobile-finish"><span class="campaign-objective-title">Mobile Finish &mdash; Add TikTok Sound</span><span class="campaign-objective-copy">Buffer sends the post to the phone so the sound can be added before publishing.</span></label></div>
+                <div><input class="campaign-objective-input" id="publishing-team-manual" name="campaign-publishing-mode" type="radio" value="team_manual" onchange="setCampaignPublishingMode('team_manual')"><label class="campaign-objective-card" for="publishing-team-manual"><span class="campaign-objective-title">Team Portal &mdash; Manual Posting</span><span class="campaign-objective-copy">Generate locally, then publish finished slides to the team portal for manual posting.</span></label></div>
               </div>
             </div>
             <div class="campaign-field" style="margin-top:16px;"><label class="campaign-label" for="campaign-timezone">Timezone</label><input class="campaign-input" id="campaign-timezone" type="text" value="Asia/Riyadh" oninput="updateCampaignWizard()"></div>
@@ -1936,13 +1937,16 @@
     let _campaignApprovalRunning = false;
     let _campaignUploadRunning = false;
     let _campaignBufferRunning = false;
+    let _teamPublishCampaignRunning = false;
+    const _teamPublishRunning = new Set();
+    const _teamPublishStates = new Map();
     let _campaignRetryPostId = null;
     let _campaignRetryRunning = false;
     let _campaigns = [];
     let _campaignToastTimer = null;
 
     const CAMPAIGN_LANGUAGE_LABELS = { ar: 'Arabic', en: 'English', es: 'Spanish', fr: 'French' };
-    const CAMPAIGN_PUBLISHING_MODE_LABELS = { automatic: 'Automatic Publish', mobile_finish: 'Mobile Finish — Add TikTok Sound' };
+    const CAMPAIGN_PUBLISHING_MODE_LABELS = { automatic: 'Automatic Publish', mobile_finish: 'Mobile Finish — Add TikTok Sound', team_manual: 'Team Portal — Manual Posting' };
     const CAMPAIGN_OBJECTIVE_LABELS = {
       brand_awareness: 'Brand Awareness',
       app_installs: 'App Installs',
@@ -2103,7 +2107,10 @@
         const campaign = _campaigns.find((item) => item.campaign_id === _currentCampaignId);
         _campaignLibraryId = _currentCampaignId;
         _campaignLibraryName = campaign ? campaign.name : '';
-        loadCampaignWorkspaceData(_currentCampaignId).then(renderCampaignContent);
+        loadCampaignWorkspaceData(_currentCampaignId).then(async () => {
+          if (campaign && campaign.publishing_mode === 'team_manual') await loadTeamPublishStatus(_currentCampaignId);
+          renderCampaignContent();
+        });
       }
       if (tabName === 'schedule') {
         _campaignLibraryId = _currentCampaignId;
@@ -2149,6 +2156,7 @@
       if (!campaign) return;
       const status = String(campaign.status || 'draft').toLowerCase();
       const campaignPosts = _allPosts.filter((post) => post.campaign_id === campaign.campaign_id);
+      const teamManual = campaign.publishing_mode === 'team_manual';
       const slots = _campaignPlan && _campaignPlan.campaign_id === campaign.campaign_id && Array.isArray(_campaignPlan.slots) ? _campaignPlan.slots : [];
       const counts = {
         // Pipeline stages are cumulative; a generated slot is still a slot
@@ -2158,7 +2166,7 @@
         Generated: campaignPosts.filter(isGeneratedCampaignPost).length,
         Approved: campaignPosts.filter((post) => post.statuses && post.statuses.review === 'approved').length,
         Uploaded: campaignPosts.filter((post) => post.upload_status === 'uploaded' || (post.statuses && post.statuses.upload === 'uploaded')).length,
-        [campaign.publishing_mode === 'mobile_finish' ? 'Notification Scheduled' : 'Buffered']: campaignPosts.filter((post) => campaign.publishing_mode === 'mobile_finish' ? post.buffer_status === 'notification_scheduled' : (post.buffer_status === 'buffered' || (post.statuses && post.statuses.buffer === 'buffered'))).length,
+        [teamManual ? 'Published to Team' : campaign.publishing_mode === 'mobile_finish' ? 'Notification Scheduled' : 'Buffered']: campaignPosts.filter((post) => teamManual ? _teamPublishStates.get(post.post_id)?.state === 'published' : campaign.publishing_mode === 'mobile_finish' ? post.buffer_status === 'notification_scheduled' : (post.buffer_status === 'buffered' || (post.statuses && post.statuses.buffer === 'buffered'))).length,
         Published: campaignPosts.filter((post) => post.statuses && post.statuses.publish === 'published').length,
         Failed: slots.filter((slot) => slot.status === 'failed').length,
       };
@@ -2177,6 +2185,9 @@
       healthElement.className = `campaign-health-value${health === 'Needs Review' ? ' review' : health === 'Action Required' ? ' action' : ''}`;
       healthElement.textContent = health;
       document.getElementById('campaign-pipeline').innerHTML = Object.entries(counts).map(([label, count]) => `<div class="campaign-pipeline-item"><span class="campaign-pipeline-count">${count}</span><span class="campaign-pipeline-label">${label}</span></div>`).join('');
+      document.getElementById('campaign-publish-team').hidden = !teamManual;
+      document.getElementById('campaign-upload-approved').hidden = teamManual;
+      document.getElementById('campaign-send-buffer').hidden = teamManual;
       const activity = campaignPosts.map((post) => {
         const label = post.buffer_status === 'notification_scheduled' ? 'Notification Scheduled' : post.buffer_status === 'buffered' && post.publishing_mode !== 'mobile_finish' ? 'Buffered' : post.upload_status === 'uploaded' ? 'Uploaded' : post.statuses && post.statuses.review === 'approved' ? 'Approved' : 'Generated';
         return { label: `${label}: ${post.post_id}`, time: post.buffered_at || post.updated_at || post.created_at || '' };
@@ -3515,10 +3526,18 @@
       const publishingMode = CAMPAIGN_PUBLISHING_MODE_LABELS[(post && post.publishing_mode) || slot.publishing_mode || campaign.publishing_mode || 'mobile_finish'];
       const updatedAt = post && (post.buffered_at || post.updated_at || post.created_at) || slot.scheduled_at;
       const actions = [];
+      const teamManual = campaign.publishing_mode === 'team_manual';
       if (post) actions.push(`<button class="campaign-secondary" type="button" onclick="viewPost('${escapeHtml(post.post_id)}')">Open</button>`);
-      if (post && !post.publication && status !== 'Published') actions.push(`<button class="campaign-secondary" type="button" onclick="markCampaignPostPosted('${escapeHtml(post.post_id)}')" ${_campaignPublicationRunning.has(post.post_id) ? 'disabled' : ''}>${_campaignPublicationRunning.has(post.post_id) ? 'Confirming…' : 'Mark as Posted'}</button>`);
+      if (post && !teamManual && !post.publication && status !== 'Published') actions.push(`<button class="campaign-secondary" type="button" onclick="markCampaignPostPosted('${escapeHtml(post.post_id)}')" ${_campaignPublicationRunning.has(post.post_id) ? 'disabled' : ''}>${_campaignPublicationRunning.has(post.post_id) ? 'Confirming…' : 'Mark as Posted'}</button>`);
       if (post && canSwapCampaignPost(post)) actions.push(`<button class="campaign-secondary" type="button" onclick="swapCampaignPost('${escapeHtml(slot.slot_id)}','${escapeHtml(post.post_id)}')" ${_campaignSwapRunning.has(post.post_id) ? 'disabled' : ''}>${_campaignSwapRunning.has(post.post_id) ? 'Swapping…' : 'Swap'}</button>`);
       if (post && isGeneratedCampaignPost(post) && !approved) actions.push(`<button class="campaign-secondary" type="button" onclick="approveSingleCampaignPost('${escapeHtml(post.post_id)}')">Approve</button>`);
+      if (teamManual && post && isGeneratedCampaignPost(post)) {
+        const sync = _teamPublishStates.get(post.post_id) || { state: 'not_published' };
+        const running = _teamPublishRunning.has(post.post_id) || sync.state === 'publishing';
+        const label = running ? 'Publishing…' : sync.state === 'published' ? 'Sync Again' : 'Publish to Team Portal';
+        const stateLabel = running ? 'Publishing' : sync.state === 'published' ? 'Published to Team' : sync.state === 'failed' ? 'Publish Failed' : 'Not Published to Team';
+        actions.push(`<span class="campaign-row-status ${escapeHtml(sync.state)}">${escapeHtml(stateLabel)}</span><button class="campaign-primary" type="button" onclick="publishCampaignPostToTeam('${escapeHtml(post.post_id)}')" ${running ? 'disabled' : ''}>${label}</button>`);
+      }
       const bufferRetryEligible = Boolean(post && post.publishing_mode === 'mobile_finish' && post.buffer_status === 'not_sent');
       if (bufferRetryEligible) actions.push(`<button class="campaign-secondary" type="button" onclick="toggleCampaignBufferRetry('${escapeHtml(post.post_id)}')">Retry</button>`);
       else if (status === 'Failed') actions.push('<button class="campaign-secondary" type="button" onclick="generateCampaignWindow()">Retry</button>');
@@ -3790,6 +3809,66 @@
         _campaignUploadRunning = false;
         button.disabled = false;
         button.textContent = 'Upload Approved';
+      }
+    }
+
+    async function loadTeamPublishStatus(campaignId) {
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/team-publish-status`);
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to load team publish status');
+        (result.posts || []).forEach((item) => _teamPublishStates.set(item.post_id, item));
+      } catch {
+        // Supabase availability never blocks local campaign review or generation.
+      }
+    }
+
+    async function publishCampaignPostToTeam(postId) {
+      if (!_currentCampaignId || _teamPublishRunning.has(postId)) return;
+      const campaignId = _currentCampaignId;
+      _teamPublishRunning.add(postId);
+      _teamPublishStates.set(postId, { post_id: postId, state: 'publishing' });
+      renderCampaignContent();
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/posts/${encodeURIComponent(postId)}/publish-team`, { method: 'POST' });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to publish to the team portal');
+        _teamPublishStates.set(postId, { post_id: postId, state: 'published', published_at: result.published_at });
+        showCampaignToast('Published to Team Portal');
+      } catch (error) {
+        _teamPublishStates.set(postId, { post_id: postId, state: 'failed', error: error.message });
+        showCampaignToast(error.message, 'error');
+      } finally {
+        _teamPublishRunning.delete(postId);
+        if (_currentCampaignId === campaignId) { renderCampaignContent(); renderCampaignOverview(); }
+      }
+    }
+
+    async function publishReadyCampaignPostsToTeam() {
+      if (!_currentCampaignId || _teamPublishCampaignRunning) return;
+      const campaignId = _currentCampaignId;
+      const ready = _allPosts.filter((post) => post.campaign_id === campaignId && isGeneratedCampaignPost(post));
+      ready.forEach((post) => { _teamPublishRunning.add(post.post_id); _teamPublishStates.set(post.post_id, { post_id: post.post_id, state: 'publishing' }); });
+      _teamPublishCampaignRunning = true;
+      const button = document.getElementById('campaign-publish-team');
+      button.disabled = true;
+      button.textContent = 'Publishing…';
+      renderCampaignContent();
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/publish-ready-team`, { method: 'POST' });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to publish ready posts');
+        (result.results || []).forEach((item) => _teamPublishStates.set(item.post_id, { post_id: item.post_id, state: item.state === 'published' ? 'published' : 'failed', error: item.error }));
+        showCampaignToast(`Published ${result.published_count || 0} post${result.published_count === 1 ? '' : 's'} to Team Portal`);
+      } catch (error) {
+        ready.forEach((post) => _teamPublishStates.set(post.post_id, { post_id: post.post_id, state: 'failed', error: error.message }));
+        showCampaignToast(error.message, 'error');
+      } finally {
+        ready.forEach((post) => _teamPublishRunning.delete(post.post_id));
+        _teamPublishCampaignRunning = false;
+        button.disabled = false;
+        button.textContent = 'Publish Ready Posts to Team Portal';
+        if (_currentCampaignId === campaignId) { renderCampaignContent(); renderCampaignOverview(); }
       }
     }
 

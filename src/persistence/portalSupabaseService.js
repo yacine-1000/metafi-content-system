@@ -124,7 +124,7 @@ class PortalSupabaseService {
       throw new QuickSaveOutputError('Post does not belong to the requested campaign and account', 'QUICK_SAVE_ACCESS_DENIED');
     }
     const output = post.asset_manifest?.rendered_output;
-    if (!output || output.status !== 'complete' || output.storage_provider !== 'supabase_storage' || !Array.isArray(output.slides) || !output.zip) {
+    if (!output || output.status !== 'complete' || output.storage_provider !== 'supabase_storage' || !Array.isArray(output.slides) || !output.slides.length) {
       throw new QuickSaveOutputError(`Rendered output metadata is missing for ${post.legacy_post_id}`);
     }
     const expectedBase = renderedOutputBasePath({ campaignId: campaign.legacy_campaign_id, slotId: slot.legacy_slot_id, postId: post.legacy_post_id, language: post.language });
@@ -132,7 +132,7 @@ class PortalSupabaseService {
     const expectedBucket = this.renderedOutputStorage?.bucket;
     if (!expectedBucket || output.bucket !== expectedBucket || output.base_path !== expectedBase
       || slides.some((slide, index) => slide.order !== index + 1 || slide.storage_key !== `${expectedPrefix}slides/slide-${String(index + 1).padStart(2, '0')}.png`)
-      || output.zip.storage_key !== `${expectedBase}/${post.legacy_post_id}-slides.zip`) {
+      || (output.zip && output.zip.storage_key !== `${expectedBase}/${post.legacy_post_id}-slides.zip`)) {
       throw new QuickSaveOutputError('Rendered output metadata failed linkage validation', 'QUICK_SAVE_ACCESS_DENIED');
     }
     return { ...output, slides };

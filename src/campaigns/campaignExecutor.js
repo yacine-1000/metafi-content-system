@@ -409,6 +409,7 @@ async function executeCampaignWindow(campaignId, options = {}) {
 async function uploadApprovedCampaignPosts(campaignId) {
   const campaign = getCampaign(campaignId);
   if (!campaign) return null;
+  if (campaign.publishing_mode === 'team_manual') throw new CampaignExecutionError('Team Portal campaigns use Publish to Team Portal instead of the Buffer upload workflow');
   const uploadedPostIds = [];
   const failedPosts = [];
   let skippedCount = 0;
@@ -488,6 +489,7 @@ async function ensureBufferDraft(postFolder, account) {
 async function sendUploadedCampaignPostsToBuffer(campaignId) {
   const campaign = getCampaign(campaignId);
   if (!campaign) return null;
+  if (campaign.publishing_mode === 'team_manual') throw new CampaignExecutionError('Team Portal campaigns cannot be sent to Buffer');
   const account = resolveCampaignAccount(campaign.account_id);
   if (!account.buffer_channel_id) throw new CampaignExecutionError('Campaign account has no Buffer channel configured');
   const planPath = path.join(CAMPAIGNS_DIR, `${campaign.campaign_id}-plan.json`);

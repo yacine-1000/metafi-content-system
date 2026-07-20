@@ -12,7 +12,7 @@ const OBJECTIVES = new Set(['brand_awareness', 'app_installs', 'account_warm_up'
 const LANGUAGES = new Set(['ar', 'en', 'es', 'fr']);
 const PILLARS = new Set(['p1', 'p2', 'p3', 'p4']);
 const POSTING_TIME_MODES = new Set(['manual', 'random']);
-const PUBLISHING_MODES = new Set(['automatic', 'mobile_finish']);
+const PUBLISHING_MODES = new Set(['automatic', 'mobile_finish', 'team_manual']);
 const HOOK_TYPES = new Set([
   'listicle',
   'Contrarian / Warning',
@@ -169,7 +169,7 @@ function validateInput(input) {
     throw new CampaignValidationError('posting_time_mode must be manual or random');
   }
   if (!PUBLISHING_MODES.has(input.publishing_mode == null ? 'mobile_finish' : input.publishing_mode)) {
-    throw new CampaignValidationError('publishing_mode must be automatic or mobile_finish');
+    throw new CampaignValidationError('publishing_mode must be automatic, mobile_finish, or team_manual');
   }
   if (input.posting_time_mode === 'manual') {
     if (!Array.isArray(input.posting_times) || input.posting_times.length !== input.posts_per_day) {

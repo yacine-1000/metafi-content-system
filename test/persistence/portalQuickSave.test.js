@@ -30,6 +30,14 @@ test('Quick Save validates linkage and derives ordered private output references
     (error) => error instanceof QuickSaveOutputError && error.code === 'QUICK_SAVE_ACCESS_DENIED');
 });
 
+test('Quick Save accepts complete slide-only output without a ZIP', () => {
+  const service = Object.create(PortalSupabaseService.prototype); service.renderedOutputStorage = { bucket: 'private' };
+  const { campaign, slot, post } = fixture(); delete post.asset_manifest.rendered_output.zip;
+  const output = service.validatedRenderedOutput(campaign, slot, post);
+  assert.equal(output.zip, undefined);
+  assert.deepEqual(output.slides.map((slide) => slide.order), [1, 2]);
+});
+
 test('team campaigns use complete durable output as readiness and calculate counts', async () => {
   const service = Object.create(PortalSupabaseService.prototype); service.renderedOutputStorage = { bucket: 'private' };
   service.signed = async (asset) => `https://signed.invalid/${asset.storage_key}`;
