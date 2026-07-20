@@ -5,7 +5,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "src/ui/index.html",
+      "includeFiles": "src/ui/*.html",
       "maxDuration": 30
     }
   }

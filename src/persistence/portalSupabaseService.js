@@ -182,6 +182,52 @@ class PortalSupabaseService {
     return this.renderedOutputStorage.signedZip(found.output, SIGNED_URL_TTL_SECONDS);
   }
 
+  async teamCampaigns() {
+    const [campaigns, accounts] = await Promise.all([this.repository.listCampaigns(), this.repository.listAccounts()]);
+    const accountById = new Map(accounts.map((account) => [account.id, account]));
+    const values = [];
+    for (const campaign of campaigns) {
+      const [slots, posts] = await Promise.all([
+        this.repository.listCampaignSlots(campaign.legacy_campaign_id),
+        this.repository.listPosts(campaign.legacy_campaign_id),
+      ]);
+      const slotById = new Map(slots.map((slot) => [slot.id, slot]));
+      const ready = posts.filter((post) => {
+        if (post.generation_status !== 'completed') return false;
+        try { this.validatedRenderedOutput(campaign, slotById.get(post.campaign_slot_id), post); return true; }
+        catch { return false; }
+      });
+      if (!ready.length) continue;
+      const account = accountById.get(campaign.account_id);
+      const end = new Date(`${campaign.start_date}T00:00:00.000Z`); end.setUTCDate(end.getUTCDate() + campaign.duration_days - 1);
+      values.push({ campaign_id: campaign.legacy_campaign_id, name: campaign.name, account_id: account?.legacy_account_id,
+        account: account?.display_name || account?.username || account?.internal_name || '', start_date: campaign.start_date,
+        end_date: end.toISOString().slice(0, 10), ready_count: ready.length, saved_count: ready.filter((post) => post.saved_at).length,
+        posted_count: ready.filter((post) => post.publication_status === 'published').length });
+    }
+    return { campaigns: values };
+  }
+
+  async teamCampaign(campaignId) {
+    const campaign = await this.repository.getCampaign(campaignId); if (!campaign) return null;
+    const account = await this.repository.response(this.client.from('accounts').select('*').eq('id', campaign.account_id).single(), 'Unable to load team campaign account');
+    const data = await this.quickSaveData(campaignId);
+    return { campaign: { campaign_id: campaign.legacy_campaign_id, name: campaign.name, account_id: account.legacy_account_id,
+      account: account.display_name || account.username || account.internal_name || '', timezone: campaign.timezone,
+      start_date: campaign.start_date, duration_days: campaign.duration_days }, posts: data.posts };
+  }
+
+  async markTeamPostPosted(campaignId, postId) {
+    const found = await this.quickSavePost(campaignId, postId); if (!found) return null;
+    const { data: existing, error } = await this.client.from('publication_history').select('*').eq('post_id', found.post.id).maybeSingle();
+    if (error) throw new Error(`Unable to read publication state: ${error.message}`);
+    if (existing) return { publication: existing, existing: true };
+    if (found.post.buffer_post_id || ['draft', 'notification_scheduled', 'buffered', 'published'].includes(found.post.buffer_status)) {
+      throw new QuickSaveOutputError('This post already has a Buffer publication state', 'QUICK_SAVE_ALREADY_PUBLISHED');
+    }
+    return this.markQuickSavePosted(postId, {});
+  }
+
   async markQuickSavePosted(postId, input = {}) {
     const unsupported = Object.keys(input).filter((key) => !['published_at', 'external_url'].includes(key));
     if (unsupported.length) throw new QuickSaveOutputError(`Unsupported publication field: ${unsupported[0]}`, 'QUICK_SAVE_PUBLICATION_INVALID');

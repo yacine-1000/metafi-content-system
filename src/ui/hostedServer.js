@@ -26,6 +26,19 @@ app.get('/api/health', async (_req, res) => {
   }
 });
 
+app.get('/api/team/campaigns', async (_req, res) => {
+  try { return res.json(await portal().teamCampaigns()); }
+  catch (error) { console.error(`[team] campaign list failed: ${error.message}`); return res.status(500).json({ error: 'Unable to load team campaigns' }); }
+});
+app.get('/api/team/campaigns/:campaignId', async (req, res) => {
+  try { const data = await portal().teamCampaign(req.params.campaignId); return data ? res.json(data) : res.status(404).json({ error: 'Campaign not found' }); }
+  catch (error) { return quickSaveError(res, error, 'Unable to load team campaign'); }
+});
+app.post('/api/team/campaigns/:campaignId/posts/:postId/mark-posted', async (req, res) => {
+  try { const data = await portal().markTeamPostPosted(req.params.campaignId, req.params.postId); return data ? res.status(data.existing ? 200 : 201).json(data) : res.status(404).json({ error: 'Campaign post not found' }); }
+  catch (error) { return quickSaveError(res, error, 'Unable to mark team post as posted'); }
+});
+
 app.get('/api/accounts', async (_req, res) => {
   try { return res.json(await portal().listAccounts()); }
   catch (error) { console.error(`[accounts] list failed: ${error.message}`); return res.status(500).json({ error: 'Unable to list accounts' }); }
@@ -101,6 +114,7 @@ app.post('/api/posts/:postId/mark-posted', async (req, res) => {
 });
 
 app.all('/api/*', (_req, res) => res.status(503).json({ error: 'This action requires the separate Metafi rendering/publication worker', reason_code: 'WORKER_NOT_DEPLOYED' }));
+app.get(['/team', '/team/campaign/:campaignId'], (_req, res) => res.sendFile(path.join(__dirname, 'team.html')));
 app.get('/', (_req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 app.all('*', (_req, res) => res.status(503).json({ error: 'This action requires the separate Metafi rendering/publication worker', reason_code: 'WORKER_NOT_DEPLOYED' }));
 
