@@ -1,0 +1,23 @@
+{
+  "campaign_id": "campaign-20260720065112-b4069991",
+  "outcome": "completed",
+  "execution_window_days": 3,
+  "window_start": "2026-07-20",
+  "window_end": "2026-07-22",
+  "generated_count": 9,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260720-095120-p2-listicle-ar",
+    "post-20260720-095126-p1-how-to-ar",
+    "post-20260720-095133-p2-original-ar",
+    "post-20260720-095154-p3-mistakes-ar",
+    "post-20260720-095214-p2-pov-question-ar",
+    "post-20260720-095302-p2-listicle-ar",
+    "post-20260720-095315-p1-how-to-ar",
+    "post-20260720-095336-p2-original-ar",
+    "post-20260720-095412-p3-mistakes-ar"
+  ],
+  "failed_slots": [],
+  "skipped_claimed_count": 0,
+  "updated_at": "2026-07-20T06:54:20.158Z"
+}

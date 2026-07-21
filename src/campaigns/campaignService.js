@@ -12,7 +12,7 @@ const OBJECTIVES = new Set(['brand_awareness', 'app_installs', 'account_warm_up'
 const LANGUAGES = new Set(['ar', 'en', 'es', 'fr']);
 const PILLARS = new Set(['p1', 'p2', 'p3', 'p4']);
 const POSTING_TIME_MODES = new Set(['manual', 'random']);
-const PUBLISHING_MODES = new Set(['automatic', 'mobile_finish']);
+const PUBLISHING_MODES = new Set(['automatic', 'mobile_finish', 'team_manual']);
 const HOOK_TYPES = new Set([
   'listicle',
   'Contrarian / Warning',
@@ -47,8 +47,7 @@ function resolveCampaignAccount(accountId) {
   }
   if (!account) throw new CampaignValidationError(`Campaign account does not exist: ${accountId}`);
   if (account.active !== true) throw new CampaignValidationError(`Campaign account is inactive: ${account.account_id}`);
-  if (account.connection_status !== 'connected') throw new CampaignValidationError(`Campaign account is disconnected: ${account.account_id}`);
-  if (!account.buffer_channel_id) throw new CampaignValidationError(`Campaign account is missing buffer_channel_id: ${account.account_id}`);
+  if (!['connected', 'manual_only'].includes(account.connection_status)) throw new CampaignValidationError(`Campaign account is disconnected: ${account.account_id}`);
   return account;
 }
 
@@ -170,7 +169,7 @@ function validateInput(input) {
     throw new CampaignValidationError('posting_time_mode must be manual or random');
   }
   if (!PUBLISHING_MODES.has(input.publishing_mode == null ? 'mobile_finish' : input.publishing_mode)) {
-    throw new CampaignValidationError('publishing_mode must be automatic or mobile_finish');
+    throw new CampaignValidationError('publishing_mode must be automatic, mobile_finish, or team_manual');
   }
   if (input.posting_time_mode === 'manual') {
     if (!Array.isArray(input.posting_times) || input.posting_times.length !== input.posts_per_day) {

@@ -11,7 +11,7 @@ function readJson(relativePath) {
 }
 
 function parseArgs(argv) {
-  const args = { language: 'ar', usedScriptIds: [], avoidedSourceSetIds: [] };
+  const args = { language: 'ar', usedScriptIds: [], excludedScriptIds: [], avoidedSourceSetIds: [], accountId: null, requiredSourceSetId: null };
   for (let i = 0; i < argv.length; i += 1) {
     if (argv[i] === '--pillar') {
       args.pillar = argv[i + 1];
@@ -25,8 +25,17 @@ function parseArgs(argv) {
     } else if (argv[i] === '--used-script-ids') {
       args.usedScriptIds = argv[i + 1].split(',').filter(Boolean);
       i += 1;
+    } else if (argv[i] === '--exclude-script-ids') {
+      args.excludedScriptIds = argv[i + 1].split(',').filter(Boolean);
+      i += 1;
+    } else if (argv[i] === '--source-set-id') {
+      args.requiredSourceSetId = argv[i + 1];
+      i += 1;
     } else if (argv[i] === '--avoid-source-set-ids') {
       args.avoidedSourceSetIds = argv[i + 1].split(',').filter(Boolean);
+      i += 1;
+    } else if (argv[i] === '--account-id') {
+      args.accountId = argv[i + 1];
       i += 1;
     }
   }
@@ -102,12 +111,14 @@ function validateVersion(script, language) {
   return version;
 }
 
-function main() {
-  const args = parseArgs(process.argv.slice(2));
+function selectMasterScriptPost(args, options = {}) {
+  const timings = options.timings || {};
+  let startedAt = performance.now();
   const pillars = readJson('content/banks/pillars.json');
   const topicBank = readJson('content/banks/topic-bank.json');
   const ctaRules = readJson('content/banks/cta-rules.json');
   const postingRules = readJson('content/banks/posting-rules.json');
+  timings.taxonomy_loading_ms = performance.now() - startedAt;
 
   const pillarId = selectPillarId(pillars, args.pillar);
   const language = args.language;
@@ -120,13 +131,20 @@ function main() {
       catch { return selectMasterScript(topicBank, getActivePillarIds(pillars)[0]); }
     })()
     : null;
+  startedAt = performance.now();
   const librarySelection = language === 'ar' ? selectArabicRuntimeScript({
     pillarId,
     hookType: args.hook,
     visualHookType: legacyVisualSelection.script.visual_hook_type,
+    accountId: args.accountId,
     usedScriptIds: args.usedScriptIds,
+    excludedScriptIds: args.excludedScriptIds,
+    requiredSourceSetId: args.requiredSourceSetId,
     avoidedSourceSetIds: args.avoidedSourceSetIds,
+    timings,
+    coolingScriptIds: options.coolingScriptIds || null,
   }) : null;
+  timings.selection_pipeline_ms = performance.now() - startedAt;
   const { topic, script } = librarySelection || selectMasterScript(topicBank, pillarId, args.hook);
   const version = validateVersion(script, language);
 
@@ -205,12 +223,18 @@ function main() {
   };
 
   const postDir = path.join(ROOT, 'outputs', 'posts', postId);
+  startedAt = performance.now();
   fs.mkdirSync(postDir, { recursive: true });
   fs.writeFileSync(path.join(postDir, 'publish-package.json'), JSON.stringify(publishPackage, null, 2), 'utf8');
-  fs.writeFileSync(path.join(postDir, 'metadata.json'), JSON.stringify(metadata, null, 2), 'utf8');
+  // Hosted Supabase mode keeps durable post metadata in the repository; this
+  // folder is renderer scratch only. Local mode retains the legacy artifact.
+  if (String(process.env.METAFI_PERSISTENCE_MODE || 'local').toLowerCase() !== 'supabase') {
+    fs.writeFileSync(path.join(postDir, 'metadata.json'), JSON.stringify(metadata, null, 2), 'utf8');
+  }
   fs.writeFileSync(path.join(postDir, 'caption.txt'), version.hook_text, 'utf8');
+  timings.filesystem_writes_ms = performance.now() - startedAt;
 
-  console.log(JSON.stringify({
+  return {
     post_id: postId,
     output_path: path.relative(ROOT, postDir).replace(/\\/g, '/'),
     language,
@@ -219,8 +243,21 @@ function main() {
     master_script_id: masterScriptId,
     hook_type: script.hook_type,
     slide_count: script.slide_count,
-    cta_slide: script.cta_slide
-  }, null, 2));
+    cta_slide: script.cta_slide,
+    metadata,
+    publish_package: publishPackage
+  };
 }
 
-main();
+function main() {
+  const timings = {};
+  const startedAt = performance.now();
+  const result = selectMasterScriptPost(parseArgs(process.argv.slice(2)), { timings });
+  timings.total_ms = performance.now() - startedAt;
+  console.error(`[script-selection-profile] ${JSON.stringify(timings)}`);
+  console.log(JSON.stringify(result, null, 2));
+}
+
+if (require.main === module) main();
+
+module.exports = { selectMasterScriptPost };

@@ -1,0 +1,17 @@
+{
+  "publications": [
+    {
+      "publication_id": "publication_040aa6ad-a8ac-4397-a0c7-1611353d217e",
+      "post_id": "post-20260720-092427-p2-listicle-ar",
+      "campaign_id": "campaign-20260720062422-0d810d35",
+      "slot_id": "campaign-20260720062422-0d810d35-slot-0001",
+      "account_id": "account_1c849d394821b80c3a3c8f61",
+      "script_id": "SET-001-V1",
+      "source_set_id": "SET-001",
+      "method": "manual",
+      "published_at": "2026-07-20T20:13:59.256Z",
+      "confirmed_at": "2026-07-20T20:13:59.256Z",
+      "external_url": null
+    }
+  ]
+}

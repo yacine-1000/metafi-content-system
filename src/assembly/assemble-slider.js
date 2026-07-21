@@ -3,11 +3,28 @@
 const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
+const { performance } = require('perf_hooks');
 const { resolvePath } = require('../lib/pathResolver');
 
 const ROOT = path.resolve(__dirname, '../../');
 const CONFIG_PATH = resolvePath(ROOT, 'METAFI_ASSEMBLY_CONFIG_INPUT', 'test-inputs/assembly-config.json');
 const RENDERS_DIR = resolvePath(ROOT, 'METAFI_RENDERS_DIR', 'renders');
+const OPERATION_TIMEOUT_MS = 30000;
+const CLOSE_TIMEOUT_MS = 5000;
+
+function withTimeout(promise, timeoutMs, operation) {
+  let timer;
+  return Promise.race([promise, new Promise((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`${operation} timed out after ${timeoutMs}ms`)), timeoutMs);
+  })]).finally(() => clearTimeout(timer));
+}
+
+function diagnostic(stage, event, startedAt, details = '') {
+  const elapsedMs = Math.round((performance.now() - startedAt) * 100) / 100;
+  console.error(`[renderer] ${new Date().toISOString()} stage=${stage} event=${event} elapsed_ms=${elapsedMs}${details ? ` ${details}` : ''}`);
+  return elapsedMs;
+}
 
 const FONT_PATH = fs.existsSync(path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf'))
   ? path.join(ROOT, 'assets', 'fonts', 'monasabat.ttf')
@@ -176,11 +193,61 @@ ${fontLink}
 </html>`;
 }
 
-async function renderSlides(config, outDir, style, label) {
-  fs.mkdirSync(outDir, { recursive: true });
-  const browser = await chromium.launch();
+function imageUrl(imgPath, mode = 'base64') {
+  return mode === 'file' ? pathToFileURL(imgPath).href : imageToDataUrl(imgPath);
+}
 
-  for (const slide of config.slides) {
+async function waitForRenderReadiness(page, slideNumber) {
+  const imageStartedAt = performance.now();
+  await withTimeout(page.evaluate(async () => {
+    const background = getComputedStyle(document.querySelector('.bg')).backgroundImage;
+    const match = background.match(/^url\(["']?(.*?)["']?\)$/);
+    if (!match) throw new Error('Background image URL is missing');
+    const image = new Image();
+    image.src = match[1];
+    if (image.decode) await image.decode();
+    else await new Promise((resolve, reject) => { image.onload = resolve; image.onerror = reject; });
+  }), OPERATION_TIMEOUT_MS, `slide ${slideNumber} background image decode`);
+  const imageMs = diagnostic('background_image', 'ready', imageStartedAt, `slide=${slideNumber}`);
+
+  const fontStartedAt = performance.now();
+  const fontState = await withTimeout(page.evaluate(async () => {
+    await document.fonts.ready;
+    const text = document.querySelector('.text-block');
+    const computed = getComputedStyle(text);
+    return { family: computed.fontFamily, ready: document.fonts.status === 'loaded' };
+  }), OPERATION_TIMEOUT_MS, `slide ${slideNumber} font readiness`);
+  const fontMs = diagnostic('font_loading', 'ready', fontStartedAt, `slide=${slideNumber} family=${JSON.stringify(fontState.family)} status=${fontState.ready ? 'loaded' : 'pending'}`);
+
+  const layoutStartedAt = performance.now();
+  await withTimeout(page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)))), OPERATION_TIMEOUT_MS, `slide ${slideNumber} layout completion`);
+  const layoutMs = diagnostic('layout', 'ready', layoutStartedAt, `slide=${slideNumber}`);
+  return { image_ms: imageMs, font_ms: fontMs, layout_ms: layoutMs };
+}
+
+async function renderSlides(config, outDir, style, label, options = {}) {
+  fs.mkdirSync(outDir, { recursive: true });
+  const renderStartedAt = performance.now();
+  const ownsBrowser = !options.browser;
+  const launchStartedAt = performance.now();
+  const browser = options.browser || await withTimeout(chromium.launch(), OPERATION_TIMEOUT_MS, 'browser launch');
+  const launchMs = ownsBrowser ? diagnostic('browser_launch', 'complete', launchStartedAt) : 0;
+  const contextStartedAt = performance.now();
+  const context = await withTimeout(browser.newContext({ viewport: { width: 1080, height: 1920 } }), OPERATION_TIMEOUT_MS, 'browser context creation');
+  const contextMs = diagnostic('browser_context', 'complete', contextStartedAt);
+  const reusePage = (options.pageMode || process.env.METAFI_RENDER_PAGE_MODE || 'reuse') === 'reuse';
+  const selectedImageMode = options.imageMode || process.env.METAFI_RENDER_IMAGE_MODE || 'base64';
+  let page = null;
+  const slideTimings = [];
+
+  try {
+    if (reusePage) {
+      const pageStartedAt = performance.now();
+      page = await withTimeout(context.newPage(), OPERATION_TIMEOUT_MS, 'post page creation');
+      diagnostic('page_creation', 'complete', pageStartedAt, 'scope=post');
+    }
+    for (const slide of config.slides) {
+    const slideStartedAt = performance.now();
     const imgAbsPath = path.join(ROOT, slide.image_path);
 
     if (!fs.existsSync(imgAbsPath)) {
@@ -188,25 +255,56 @@ async function renderSlides(config, outDir, style, label) {
       continue;
     }
 
-    const dataUrl = imageToDataUrl(imgAbsPath);
-    const html = buildHtml(dataUrl, prepareText(slide.text), slide.language, slide.role, style);
+    const sourceStartedAt = performance.now();
+    const sourceUrl = imageUrl(imgAbsPath, selectedImageMode);
+    const sourceMs = diagnostic('image_source', 'complete', sourceStartedAt, `slide=${slide.slide_number} mode=${selectedImageMode} bytes=${fs.statSync(imgAbsPath).size}`);
+    const html = buildHtml(sourceUrl, prepareText(slide.text), slide.language, slide.role, style);
 
-    const page = await browser.newPage();
-    await page.setViewportSize({ width: 1080, height: 1920 });
-    await page.setContent(html, { waitUntil: 'domcontentloaded' });
-    if (style && style.googleFontsUrl) {
-      await page.evaluate(() => document.fonts.ready);
+    if (!reusePage) {
+      const pageStartedAt = performance.now();
+      page = await withTimeout(context.newPage(), OPERATION_TIMEOUT_MS, `slide ${slide.slide_number} page creation`);
+      diagnostic('page_creation', 'complete', pageStartedAt, `slide=${slide.slide_number}`);
     }
-    await page.waitForTimeout(300);
+    try {
+    const htmlStartedAt = performance.now();
+    await withTimeout(page.setContent(html, { waitUntil: 'domcontentloaded' }), OPERATION_TIMEOUT_MS, `slide ${slide.slide_number} HTML setup`);
+    const htmlMs = diagnostic('html_setup', 'complete', htmlStartedAt, `slide=${slide.slide_number}`);
+    const readiness = await waitForRenderReadiness(page, slide.slide_number);
 
     const outPath = path.join(outDir, `slide-${slide.slide_number}.png`);
-    await page.screenshot({ path: outPath, clip: { x: 0, y: 0, width: 1080, height: 1920 } });
-    await page.close();
+    const screenshotStartedAt = performance.now();
+    await withTimeout(page.screenshot({ path: outPath, clip: { x: 0, y: 0, width: 1080, height: 1920 } }), OPERATION_TIMEOUT_MS, `slide ${slide.slide_number} screenshot`);
+    const screenshotMs = diagnostic('screenshot', 'complete', screenshotStartedAt, `slide=${slide.slide_number}`);
+    const totalMs = diagnostic('slide', 'complete', slideStartedAt, `slide=${slide.slide_number}`);
+    slideTimings.push({ slide: slide.slide_number, source_ms: sourceMs, html_ms: htmlMs, ...readiness, screenshot_ms: screenshotMs, total_ms: totalMs });
 
     console.log(`[${label}] ✓ slide-${slide.slide_number}.png`);
+    } finally {
+      if (!reusePage && page) {
+        const closeStartedAt = performance.now();
+        try { await withTimeout(page.close(), CLOSE_TIMEOUT_MS, `slide ${slide.slide_number} page close`); diagnostic('page_cleanup', 'complete', closeStartedAt, `slide=${slide.slide_number}`); }
+        catch (error) { console.error(`[renderer] ${new Date().toISOString()} stage=page_cleanup event=warning slide=${slide.slide_number} error=${error.message}`); }
+        page = null;
+      }
+    }
   }
-
-  await browser.close();
+  } finally {
+    if (page) {
+      const pageCloseStartedAt = performance.now();
+      try { await withTimeout(page.close(), CLOSE_TIMEOUT_MS, 'post page cleanup'); diagnostic('page_cleanup', 'complete', pageCloseStartedAt, 'scope=post'); }
+      catch (error) { console.error(`[renderer] ${new Date().toISOString()} stage=page_cleanup event=warning error=${error.message}`); }
+    }
+    const contextCloseStartedAt = performance.now();
+    try { await withTimeout(context.close(), CLOSE_TIMEOUT_MS, 'browser context cleanup'); diagnostic('context_cleanup', 'complete', contextCloseStartedAt); }
+    catch (error) { console.error(`[renderer] ${new Date().toISOString()} stage=context_cleanup event=warning error=${error.message}`); }
+    if (ownsBrowser) {
+      const closeStartedAt = performance.now();
+      try { await withTimeout(browser.close(), CLOSE_TIMEOUT_MS, 'browser close'); diagnostic('browser_close', 'complete', closeStartedAt); }
+      catch (error) { console.error(`[renderer] ${new Date().toISOString()} stage=browser_close event=timeout error=${error.message}`); }
+    }
+  }
+  const totalMs = diagnostic('render_post', 'complete', renderStartedAt, `slides=${slideTimings.length} page_mode=${reusePage ? 'reuse' : 'per-slide'} image_mode=${selectedImageMode}`);
+  return { total_ms: totalMs, launch_ms: launchMs, context_ms: contextMs, slide_timings: slideTimings };
 }
 
 async function main() {
@@ -233,7 +331,11 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((err) => {
+    console.error(err);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { STYLES, buildHtml, renderSlides, waitForRenderReadiness };

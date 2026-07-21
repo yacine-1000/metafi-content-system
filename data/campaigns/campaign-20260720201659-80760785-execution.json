@@ -1,0 +1,23 @@
+{
+  "campaign_id": "campaign-20260720201659-80760785",
+  "outcome": "completed",
+  "execution_window_days": 3,
+  "window_start": "2026-07-20",
+  "window_end": "2026-07-22",
+  "generated_count": 9,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260720-235603-p2-listicle-ar",
+    "post-20260720-235609-p1-contrarian-warning-ar",
+    "post-20260720-235615-p2-identity-callout-ar",
+    "post-20260720-235619-p3-story-regret-realization-ar",
+    "post-20260720-235625-p2-pov-question-ar",
+    "post-20260720-235631-p2-how-to-ar",
+    "post-20260720-235635-p1-original-ar",
+    "post-20260720-235640-p2-mistakes-ar",
+    "post-20260720-235644-p3-tips-things-ar"
+  ],
+  "failed_slots": [],
+  "skipped_claimed_count": 0,
+  "updated_at": "2026-07-20T20:56:49.888Z"
+}

@@ -160,7 +160,14 @@ function planCampaign(campaignId) {
   if (!campaign) return null;
   const filePath = planPath(campaign.campaign_id);
   if (fs.existsSync(filePath)) {
-    const plan = applyAccountContext(JSON.parse(fs.readFileSync(filePath, 'utf8')), campaign);
+    let plan = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const expectedSlots = campaign.duration_days * campaign.posts_per_day;
+    // Repair unusable/stale empty plans with the same planner used for new
+    // campaigns. Plans containing lifecycle state are otherwise preserved.
+    if (!Array.isArray(plan.slots) || (plan.slots.length === 0 && expectedSlots > 0)) {
+      plan = buildPlan(campaign);
+    }
+    plan = applyAccountContext(plan, campaign);
     writePlan(filePath, plan);
     return { plan, existing: true };
   }

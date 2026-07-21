@@ -1,0 +1,16 @@
+{
+  "campaign_id": "campaign-20260719051330-70937671",
+  "outcome": "no_work",
+  "reason_code": "NO_SLOTS_CURRENT_WINDOW",
+  "reason": "No slots in the current three-day window.",
+  "execution_window_days": 3,
+  "window_start": "2026-07-19",
+  "window_end": "2026-07-21",
+  "generated_count": 0,
+  "skipped_count": 0,
+  "skipped_claimed_count": 0,
+  "failed_count": 0,
+  "generated_post_ids": [],
+  "failed_slots": [],
+  "updated_at": "2026-07-19T05:26:50.806Z"
+}

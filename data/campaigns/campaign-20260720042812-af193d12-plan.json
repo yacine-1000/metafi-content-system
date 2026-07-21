@@ -1,0 +1,35 @@
+{
+  "campaign_id": "campaign-20260720042812-af193d12",
+  "account_id": "account_1c849d394821b80c3a3c8f61",
+  "buffer_channel_id": "",
+  "account_internal_name": "fwdfwe",
+  "account_username": "@ferjgerg",
+  "account_language": "ar",
+  "account_timezone": "Asia/Riyadh",
+  "status": "planned",
+  "created_at": "2026-07-20T04:28:15.073Z",
+  "total_slots": 1,
+  "timezone": "Asia/Riyadh",
+  "publishing_mode": "mobile_finish",
+  "slots": [
+    {
+      "slot_id": "campaign-20260720042812-af193d12-slot-0001",
+      "date": "2026-07-20",
+      "time": "00:28",
+      "scheduled_at": "2026-07-19T21:28:00.000Z",
+      "pillar_id": "p2",
+      "hook_type": "listicle",
+      "language": "ar",
+      "account_id": "account_1c849d394821b80c3a3c8f61",
+      "buffer_channel_id": "",
+      "account_internal_name": "fwdfwe",
+      "account_username": "@ferjgerg",
+      "account_language": "ar",
+      "account_timezone": "Asia/Riyadh",
+      "publishing_mode": "mobile_finish",
+      "status": "generated",
+      "post_id": "post-20260720-072817-p2-listicle-ar",
+      "attempt_count": 1
+    }
+  ]
+}

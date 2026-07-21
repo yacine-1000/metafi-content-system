@@ -5,6 +5,8 @@ const path = require('path');
 const fs = require('fs');
 const { spawn } = require('child_process');
 const { createClient } = require('@supabase/supabase-js');
+const { persistenceMode } = require('../persistence/serverSupabaseClient');
+const { PortalSupabaseService, QuickSaveOutputError } = require('../persistence/portalSupabaseService');
 const { createPostMetadata, createPublishPackage, markUploadSuccess, markUploadFailed } = require('../lib/postMetadata');
 const { upsertContentPost } = require('../lib/supabasePostStore');
 const { generateSlideshows } = require('../generation/generateSlideshows');
@@ -23,6 +25,8 @@ const {
 } = require('../campaigns/campaignService');
 const { CampaignPlannerError, planCampaign } = require('../campaigns/campaignPlanner');
 const { CampaignExecutionError, executeCampaignWindow, retryBufferNotificationPost, sendUploadedCampaignPostsToBuffer, uploadApprovedCampaignPosts } = require('../campaigns/campaignExecutor');
+const { CampaignSwapError, swapCampaignPost } = require('../campaigns/campaignSwapService');
+const { PublicationValidationError, markPostPosted, readPublicationHistory } = require('../publication/publicationService');
 const {
   AccountConflictError,
   AccountValidationError,
@@ -33,6 +37,11 @@ const {
   updateAccountAvatar,
 } = require('../accounts/accountService');
 const { discoverBufferTikTokChannels } = require('../generation/connectBuffer');
+const { createScriptLibraryWriteService } = require('../injection/scriptLibraryWriteService');
+const { createInjectionRequestStore } = require('../injection/injectionRequestStore');
+const { createApprovedTaxonomyService } = require('../injection/approvedTaxonomyService');
+const { createInjectionHandlers } = require('../injection/injectionApi');
+const { LocalTeamPublisher, TeamPublishError } = require('../team/localTeamPublisher');
 
 const ROOT = path.resolve(__dirname, '../../');
 require('dotenv').config({ path: path.join(ROOT, '.env') });
@@ -40,6 +49,60 @@ const RENDERS_DIR = path.join(ROOT, 'renders');
 const RAW_SOURCE_PATH = path.join(ROOT, 'test-inputs', 'raw-source.txt');
 const MANUAL_INPUT_PATH = path.join(ROOT, 'test-inputs', 'manual-input.json');
 const POSTS_DIR = path.join(ROOT, 'outputs', 'posts');
+
+function isSupabaseMode() { return persistenceMode(process.env) === 'supabase'; }
+function portalRepository() { return new PortalSupabaseService(process.env); }
+function hostedPortalEnabled(env = process.env) {
+  return env.METAFI_LOCAL_OPERATOR !== 'true' && persistenceMode(env) === 'supabase' && (env.VERCEL === '1' || env.METAFI_HOSTED_PORTAL === '1');
+}
+function isHostedPortal() { return hostedPortalEnabled(process.env); }
+
+function quickSavePostDir(campaignId, postId) {
+  const postDir = safePostFolder(postId);
+  if (!postDir || !fs.existsSync(postDir)) return null;
+  try {
+    const metadata = JSON.parse(fs.readFileSync(path.join(postDir, 'metadata.json'), 'utf8'));
+    return metadata.campaign_id === campaignId ? { postDir, metadata } : null;
+  } catch { return null; }
+}
+
+function quickSaveData(campaignId) {
+  const campaign = getCampaign(campaignId);
+  if (!campaign) return null;
+  const planPath = path.join(ROOT, 'data', 'campaigns', `${campaignId}-plan.json`);
+  if (!fs.existsSync(planPath)) return { campaign, posts: [] };
+  const publications = new Map(readPublicationHistory().publications.map((item) => [item.post_id, item]));
+  const plan = JSON.parse(fs.readFileSync(planPath, 'utf8'));
+  const posts = (plan.slots || []).filter((slot) => slot && slot.post_id).map((slot) => {
+    const found = quickSavePostDir(campaignId, slot.post_id);
+    if (!found || !found.metadata.statuses || found.metadata.statuses.generation !== 'completed') return null;
+    const pkgPath = path.join(found.postDir, 'publish-package.json');
+    let pkg = {}; try { pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8')); } catch {}
+    const rendered = path.join(found.postDir, 'rendered');
+    const slides = fs.existsSync(rendered) ? fs.readdirSync(rendered).filter((name) => /^slide-\d+\.png$/.test(name)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })) : [];
+    return { post_id: slot.post_id, scheduled_date: slot.date, scheduled_time: slot.time, language: found.metadata.language, account_handle: campaign.account_username || campaign.account_internal_name || '', saved_at: found.metadata.saved_at || null, publication: publications.get(slot.post_id) || null, first_slide_text: pkg.slides?.[0]?.text || pkg.hook_text || '', caption: fs.existsSync(path.join(found.postDir, 'caption.txt')) ? fs.readFileSync(path.join(found.postDir, 'caption.txt'), 'utf8') : (pkg.caption || ''), slide_urls: slides.map((name) => `/outputs/posts/${encodeURIComponent(slot.post_id)}/rendered/${encodeURIComponent(name)}`) };
+  }).filter(Boolean).sort((a, b) => `${a.scheduled_date} ${a.scheduled_time}`.localeCompare(`${b.scheduled_date} ${b.scheduled_time}`));
+  return { campaign_id: campaignId, posts };
+}
+
+function createInjectionRouter(options = {}) {
+  const router = express.Router();
+  const handlers = createInjectionHandlers({
+    writeService: options.writeService || createScriptLibraryWriteService(),
+    taxonomyService: options.taxonomyService || createApprovedTaxonomyService(),
+    requestStore: options.requestStore || createInjectionRequestStore(),
+    getCampaign: options.getCampaign || getCampaign,
+    listCampaigns: options.listCampaigns || listCampaigns,
+  });
+  router.get('/taxonomy', handlers.taxonomy);
+  router.get('/source-sets', handlers.sourceSets);
+  router.get('/available-source-sets', handlers.availableSourceSets);
+  router.post('/source-sets', handlers.createSourceSet);
+  router.get('/campaigns', handlers.activeCampaigns);
+  router.get('/requests', handlers.requests);
+  router.post('/campaign-requests', handlers.createCampaignRequest);
+  return router;
+}
 
 const PIPELINE = ['intake', 'planning', 'hook', 'body', 'final-slide', 'assembly:build', 'assemble:test', 'caption', 'strategy-check'];
 
@@ -93,6 +156,20 @@ function safePostFolder(postId) {
   if (typeof postId !== 'string' || !/^post-[A-Za-z0-9_-]+$/.test(postId)) return null;
   const postDir = path.resolve(POSTS_DIR, postId);
   return path.dirname(postDir) === path.resolve(POSTS_DIR) ? postDir : null;
+}
+
+function postBufferChannelError(postDir) {
+  const metadataPath = path.join(postDir, 'metadata.json');
+  if (!fs.existsSync(metadataPath)) return null;
+  try {
+    const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
+    if (!metadata.account_id) return null;
+    const account = getAccount(metadata.account_id);
+    if (account && !account.buffer_channel_id) return 'Post account has no Buffer channel configured';
+  } catch {
+    return null;
+  }
+  return null;
 }
 
 function renderedImageCount(postDir) {
@@ -214,10 +291,41 @@ async function uploadPost(postId, log) {
 
 const app = express();
 app.use(express.json());
+app.use((req, res, next) => {
+  if (!isHostedPortal()) return next();
+  const allowed = [
+    ['GET', /^\/api\/health$/], ['GET', /^\/api\/accounts(?:\/[^/]+)?$/], ['POST', /^\/api\/accounts$/], ['PATCH', /^\/api\/accounts\/[^/]+$/],
+    ['POST', /^\/api\/accounts\/[^/]+\/(?:avatar|hook-images)$/], ['POST', /^\/api\/accounts\/[^/]+\/app-cta-images\/(?:ar|en|es|fr)$/],
+    ['GET', /^\/api\/campaigns(?:\/[^/]+)?$/], ['POST', /^\/api\/campaigns$/], ['PATCH', /^\/api\/campaigns\/[^/]+$/], ['DELETE', /^\/api\/campaigns\/[^/]+$/],
+    ['GET', /^\/api\/campaigns\/[^/]+\/quick-save$/], ['POST', /^\/api\/campaigns\/[^/]+\/posts\/[^/]+\/mark-saved$/],
+    ['GET', /^\/api\/campaigns\/[^/]+\/posts\/[^/]+\/slides\.zip$/], ['POST', /^\/api\/posts\/[^/]+\/mark-posted$/],
+  ];
+  if (allowed.some(([method, pattern]) => req.method === method && pattern.test(req.path))) return next();
+  if (req.path === '/' && req.method === 'GET') return next();
+  return res.status(503).json({ error: 'This action requires the separate Metafi rendering/publication worker', reason_code: 'WORKER_NOT_DEPLOYED' });
+});
+app.use((req, res, next) => {
+  if (!isSupabaseMode() || process.env.BUFFER_ENABLED === 'true') return next();
+  const bufferRoute = req.path === '/api/accounts/refresh-buffer-channels'
+    || /\/upload-approved$|\/send-uploaded-to-buffer$|\/retry-buffer$|\/send-to-buffer$|\/schedule-buffer$|\/buffer$/.test(req.path);
+  if (!bufferRoute) return next();
+  return res.status(503).json({ error: 'Buffer actions are disabled for this local operator', reason_code: 'BUFFER_DISABLED' });
+});
+app.use('/api/injection', createInjectionRouter());
 app.use('/renders', express.static(RENDERS_DIR));
 app.use('/outputs', express.static(path.join(ROOT, 'outputs')));
 app.use('/assets', express.static(path.join(ROOT, 'assets')));
 app.use(express.static(path.join(__dirname)));
+
+app.get('/api/health', async (_req, res) => {
+  try {
+    if (!isSupabaseMode()) return res.json({ status: 'ok', persistence_mode: 'local', checked_at: new Date().toISOString() });
+    return res.json(await portalRepository().health());
+  } catch (error) {
+    console.error(`[health] dependency check failed: ${error.message}`);
+    return res.status(503).json({ status: 'degraded', persistence_mode: isSupabaseMode() ? 'supabase' : 'local', database: 'unreachable', checked_at: new Date().toISOString() });
+  }
+});
 
 const HOOK_IMAGE_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp']);
 const APP_CTA_LANGUAGES = Object.freeze(['ar', 'en', 'es', 'fr']);
@@ -249,8 +357,9 @@ function accountWithHookBank(account) {
   return { ...account, hook_image_count: hookImages.length, hook_images: hookImages, app_cta_banks: appCtaBanks };
 }
 
-app.get('/api/accounts', (_req, res) => {
+app.get('/api/accounts', async (_req, res) => {
   try {
+    if (isSupabaseMode()) return res.json(await portalRepository().listAccounts());
     return res.json(listAccounts().map(accountWithHookBank));
   } catch (error) {
     console.error(`[accounts] list failed: ${error.message}`);
@@ -258,8 +367,9 @@ app.get('/api/accounts', (_req, res) => {
   }
 });
 
-app.get('/api/accounts/:accountId', (req, res) => {
+app.get('/api/accounts/:accountId', async (req, res) => {
   try {
+    if (isSupabaseMode()) { const account = await portalRepository().getAccount(req.params.accountId); return account ? res.json(account) : res.status(404).json({ error: 'Account not found' }); }
     const account = getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     return res.json(accountWithHookBank(account));
@@ -270,8 +380,9 @@ app.get('/api/accounts/:accountId', (req, res) => {
   }
 });
 
-app.post('/api/accounts', (req, res) => {
+app.post('/api/accounts', async (req, res) => {
   try {
+    if (isSupabaseMode()) return res.status(201).json(await portalRepository().createAccount(req.body));
     return res.status(201).json(accountWithHookBank(createAccount(req.body)));
   } catch (error) {
     if (error instanceof AccountValidationError) return res.status(400).json({ error: error.message });
@@ -301,13 +412,17 @@ app.post('/api/accounts/:accountId/avatar', (req, res, next) => {
     if (!error) return next();
     return res.status(error.type === 'entity.too.large' ? 413 : 400).json({ error: error.type === 'entity.too.large' ? 'Avatar image is too large' : 'Invalid avatar upload' });
   });
-}, (req, res) => {
+}, async (req, res) => {
   try {
-    const account = getAccount(req.params.accountId);
+    const account = isSupabaseMode() ? await portalRepository().getAccount(req.params.accountId) : getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     const declaredExtension = AVATAR_TYPES.get(String(req.headers['content-type'] || '').split(';')[0].toLowerCase());
     const detectedExtension = Buffer.isBuffer(req.body) ? avatarExtension(req.body) : null;
     if (!declaredExtension || !detectedExtension || declaredExtension !== detectedExtension) return res.status(415).json({ error: 'Avatar must be a JPG, JPEG, PNG, or WEBP image' });
+    if (isSupabaseMode()) {
+      const asset = await portalRepository().uploadAccountAsset(account.account_id, 'profile', null, req.body, String(req.headers['content-type']).split(';')[0], `avatar.${detectedExtension}`);
+      return res.json({ account_id: account.account_id, avatar_path: asset.storage_key, avatar_url: asset.url });
+    }
     const avatarDir = path.join(ROOT, 'assets', 'account-avatars', account.account_id);
     fs.mkdirSync(avatarDir, { recursive: true });
     const filename = `avatar.${detectedExtension}`;
@@ -333,14 +448,19 @@ app.post('/api/accounts/:accountId/hook-images', (req, res, next) => {
     if (!error) return next();
     return res.status(error.type === 'entity.too.large' ? 413 : 400).json({ error: error.type === 'entity.too.large' ? 'Character hook image is too large' : 'Invalid character hook image upload' });
   });
-}, (req, res) => {
+}, async (req, res) => {
   try {
-    const account = getAccount(req.params.accountId);
+    const account = isSupabaseMode() ? await portalRepository().getAccount(req.params.accountId) : getAccount(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     const declaredExtension = AVATAR_TYPES.get(String(req.headers['content-type'] || '').split(';')[0].toLowerCase());
     const detectedExtension = Buffer.isBuffer(req.body) ? avatarExtension(req.body) : null;
     if (!declaredExtension || !detectedExtension || declaredExtension !== detectedExtension) {
       return res.status(415).json({ error: 'Character hook image must be JPG, JPEG, PNG, or WEBP' });
+    }
+    if (isSupabaseMode()) {
+      const filename = `hook-${Date.now()}-${process.hrtime.bigint()}.${detectedExtension}`;
+      const asset = await portalRepository().uploadAccountAsset(account.account_id, 'hook', null, req.body, String(req.headers['content-type']).split(';')[0], filename);
+      return res.status(201).json({ account_id: account.account_id, filename, asset_path: asset.storage_key, url: asset.url });
     }
     const hookDir = path.join(ROOT, 'assets', 'account-hook-images', account.account_id);
     fs.mkdirSync(hookDir, { recursive: true });
@@ -392,9 +512,9 @@ app.post('/api/accounts/:accountId/app-cta-images/:language', (req, res, next) =
       rejected_files: [{ error: error.type === 'entity.too.large' ? 'File is too large' : 'Invalid image upload' }],
     });
   });
-}, (req, res) => {
+}, async (req, res) => {
   try {
-    const account = accountForAssetRequest(req.params.accountId);
+    const account = isSupabaseMode() ? await portalRepository().getAccount(req.params.accountId) : accountForAssetRequest(req.params.accountId);
     if (!account) return res.status(404).json({ error: 'Account not found', uploaded_files: [], rejected_files: [] });
     const language = String(req.params.language || '').toLowerCase();
     if (!APP_CTA_LANGUAGES.includes(language)) {
@@ -408,6 +528,11 @@ app.post('/api/accounts/:accountId/app-cta-images/:language', (req, res, next) =
         uploaded_files: [],
         rejected_files: [{ error: 'Unsupported image or MIME mismatch' }],
       });
+    }
+    if (isSupabaseMode()) {
+      const filename = `app-cta-${Date.now()}-${process.hrtime.bigint()}.${detectedExtension}`;
+      const asset = await portalRepository().uploadAccountAsset(account.account_id, 'localized_cta', language, req.body, String(req.headers['content-type']).split(';')[0], filename);
+      return res.status(201).json({ account_id: account.account_id, language, uploaded_files: [{ filename, url: asset.url }], rejected_files: [], image_count: 1, images: [{ filename, url: asset.url }] });
     }
     const ctaDir = path.join(ROOT, 'assets', 'account-app-cta-images', account.account_id, language);
     fs.mkdirSync(ctaDir, { recursive: true });
@@ -468,7 +593,7 @@ app.post('/api/accounts/refresh-buffer-channels', async (_req, res) => {
       discoverBufferTikTokChannels(),
       Promise.resolve(listAccounts()),
     ]);
-    const accountsByChannel = new Map(accounts.map((account) => [account.buffer_channel_id, account]));
+    const accountsByChannel = new Map(accounts.filter((account) => account.buffer_channel_id).map((account) => [account.buffer_channel_id, account]));
     const safeChannel = (channel, linkedAccountId = null) => ({
       organization_id: channel.organization_id,
       organization_name: channel.organization_name,
@@ -486,7 +611,7 @@ app.post('/api/accounts/refresh-buffer-channels', async (_req, res) => {
     const unlinkedChannels = connectedChannels
       .filter((channel) => !accountsByChannel.has(channel.channel_id))
       .map((channel) => safeChannel(channel));
-    const disconnectedSavedAccounts = accounts.filter((account) => !connectedIds.has(account.buffer_channel_id)).map((account) => {
+    const disconnectedSavedAccounts = accounts.filter((account) => account.buffer_channel_id && !connectedIds.has(account.buffer_channel_id)).map((account) => {
       const discovered = channels.find((channel) => channel.channel_id === account.buffer_channel_id);
       return {
         organization_id: discovered ? discovered.organization_id : account.buffer_organization_id,
@@ -510,8 +635,9 @@ app.post('/api/accounts/refresh-buffer-channels', async (_req, res) => {
   }
 });
 
-app.patch('/api/accounts/:accountId', (req, res) => {
+app.patch('/api/accounts/:accountId', async (req, res) => {
   try {
+    if (isSupabaseMode()) { const account = await portalRepository().updateAccount(req.params.accountId, req.body); return account ? res.json(account) : res.status(404).json({ error: 'Account not found' }); }
     const account = updateAccount(req.params.accountId, req.body);
     if (!account) return res.status(404).json({ error: 'Account not found' });
     return res.json(accountWithHookBank(account));
@@ -523,8 +649,9 @@ app.patch('/api/accounts/:accountId', (req, res) => {
   }
 });
 
-app.get('/api/campaigns', (_req, res) => {
+app.get('/api/campaigns', async (_req, res) => {
   try {
+    if (isSupabaseMode()) return res.json(await portalRepository().listCampaigns());
     return res.json(listCampaigns());
   } catch (error) {
     if (error instanceof CampaignValidationError) return res.status(400).json({ error: error.message });
@@ -533,8 +660,9 @@ app.get('/api/campaigns', (_req, res) => {
   }
 });
 
-app.get('/api/campaigns/:campaignId', (req, res) => {
+app.get('/api/campaigns/:campaignId', async (req, res) => {
   try {
+    if (isSupabaseMode()) { const campaign = await portalRepository().getCampaign(req.params.campaignId); return campaign ? res.json(campaign) : res.status(404).json({ error: 'Campaign not found' }); }
     const campaign = getCampaign(req.params.campaignId);
     if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
     return res.json(campaign);
@@ -545,8 +673,12 @@ app.get('/api/campaigns/:campaignId', (req, res) => {
   }
 });
 
-app.post('/api/campaigns/:campaignId/plan', (req, res) => {
+app.post('/api/campaigns/:campaignId/plan', async (req, res) => {
   try {
+    if (isSupabaseMode()) {
+      const plan = await portalRepository().getCampaignPlan(req.params.campaignId);
+      return plan ? res.json(plan) : res.status(404).json({ error: 'Campaign not found' });
+    }
     const result = planCampaign(req.params.campaignId);
     if (!result) return res.status(404).json({ error: 'Campaign not found' });
     return res.status(result.existing ? 200 : 201).json(result.plan);
@@ -559,17 +691,47 @@ app.post('/api/campaigns/:campaignId/plan', (req, res) => {
   }
 });
 
-app.post('/api/campaigns/:campaignId/generate-window', (req, res) => {
+app.post('/api/campaigns/:campaignId/generate-window', async (req, res) => {
+  const startedAt = Date.now();
+  const campaignId = req.params.campaignId;
+  console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=start`);
   try {
-    const summary = executeCampaignWindow(req.params.campaignId);
+    const summary = await executeCampaignWindow(campaignId);
     if (!summary) return res.status(404).json({ error: 'Campaign not found' });
+    console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=return elapsed_ms=${Date.now() - startedAt}`);
     return res.json(summary);
   } catch (error) {
+    console.error(`[campaign-generation] ${new Date().toISOString()} campaign_id=${campaignId} stage=http_route event=error elapsed_ms=${Date.now() - startedAt} error=${JSON.stringify(error.message || String(error))}`);
+    if (res.headersSent) return res.end();
     if (error instanceof CampaignValidationError || error instanceof CampaignExecutionError) {
-      return res.status(400).json({ error: error.message });
+      return res.status(400).json({
+        error: error.message,
+        reason: error.message,
+        reason_code: error.code || (error instanceof CampaignValidationError ? 'CAMPAIGN_CONFIG_INVALID' : 'CAMPAIGN_EXECUTION_ERROR'),
+        details: error.details || {},
+        outcome: 'blocked',
+        generated_count: 0,
+        skipped_count: 0,
+        failed_count: 0,
+      });
     }
     console.error(`[campaigns] execution failed: ${error.message}`);
     return res.status(500).json({ error: 'Unable to execute campaign window' });
+  }
+});
+
+app.post('/api/campaigns/:campaignId/slots/:slotId/swap', (req, res) => {
+  try {
+    if (isSupabaseMode()) return res.status(409).json({ error: 'Campaign swaps are not available in the Supabase local operator', reason_code: 'SUPABASE_SWAP_UNAVAILABLE' });
+    const result = swapCampaignPost(req.params.campaignId, req.params.slotId);
+    if (!result) return res.status(404).json({ error: 'Campaign not found' });
+    return res.json(result);
+  } catch (error) {
+    if (error instanceof CampaignValidationError || error instanceof CampaignExecutionError || error instanceof CampaignSwapError) {
+      return res.status(400).json({ error: error.message });
+    }
+    console.error(`[campaigns] swap failed: ${error.message}`);
+    return res.status(500).json({ error: 'Unable to swap campaign post' });
   }
 });
 
@@ -615,8 +777,9 @@ app.post('/api/campaigns/:campaignId/posts/:postId/retry-buffer', async (req, re
   }
 });
 
-app.post('/api/campaigns', (req, res) => {
+app.post('/api/campaigns', async (req, res) => {
   try {
+    if (isSupabaseMode()) return res.status(201).json(await portalRepository().createCampaign(req.body));
     return res.status(201).json(createCampaign(req.body));
   } catch (error) {
     if (error instanceof CampaignValidationError) return res.status(400).json({ error: error.message });
@@ -628,20 +791,38 @@ app.post('/api/campaigns', (req, res) => {
   }
 });
 
-app.patch('/api/campaigns/:campaignId', (req, res) => {
+app.patch('/api/campaigns/:campaignId', async (req, res) => {
   try {
+    if (isSupabaseMode()) {
+      const campaign = await portalRepository().updateCampaign(req.params.campaignId, req.body || {});
+      return campaign ? res.json(campaign) : res.status(404).json({ error: 'Campaign not found' });
+    }
+    // An active campaign is only usable if its plan can be created first.
+    // Planning before the status write prevents a failed activation from
+    // leaving an ACTIVE campaign without a plan.
+    if (req.body && req.body.status === 'active') {
+      const planned = planCampaign(req.params.campaignId);
+      if (!planned) return res.status(404).json({ error: 'Campaign not found' });
+      if (!Array.isArray(planned.plan.slots) || planned.plan.slots.length === 0) {
+        throw new CampaignPlannerError('Campaign plan contains zero slots');
+      }
+    }
     const campaign = updateCampaign(req.params.campaignId, req.body);
     if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
     return res.json(campaign);
   } catch (error) {
-    if (error instanceof CampaignValidationError) return res.status(400).json({ error: error.message });
+    if (error instanceof CampaignValidationError || error instanceof CampaignPlannerError) return res.status(400).json({ error: error.message, reason_code: 'ACTIVATION_PLAN_INVALID', reason: error.message });
     console.error(`[campaigns] update failed: ${error.message}`);
     return res.status(500).json({ error: 'Unable to update campaign' });
   }
 });
 
-app.delete('/api/campaigns/:campaignId', (req, res) => {
+app.delete('/api/campaigns/:campaignId', async (req, res) => {
   try {
+    if (isSupabaseMode()) {
+      const campaign = await portalRepository().deleteCampaign(req.params.campaignId);
+      return campaign ? res.json({ campaign_id: req.params.campaignId, status: 'deleted' }) : res.status(404).json({ error: 'Campaign not found' });
+    }
     if (!deleteCampaign(req.params.campaignId)) return res.status(404).json({ error: 'Campaign not found' });
     return res.json({ campaign_id: req.params.campaignId, status: 'deleted' });
   } catch (error) {
@@ -658,6 +839,12 @@ app.get('/posts', (_req, res) => {
     .filter((name) => fs.statSync(path.join(postsDir, name)).isDirectory())
     .sort()
     .reverse();
+  let publicationsByPostId = new Map();
+  try {
+    publicationsByPostId = new Map(readPublicationHistory().publications.map((record) => [record.post_id, record]));
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
   const posts = folders.map((name) => {
     const metaPath = path.join(postsDir, name, 'metadata.json');
     let m = { post_id: name, status: 'unknown', statuses: { generation: 'unknown', review: 'unknown', upload: 'unknown', buffer: 'unknown', publish: 'unknown', strategy: 'not_checked' }, created_at: null, slide_count: 5 };
@@ -665,7 +852,7 @@ app.get('/posts', (_req, res) => {
       try { m = JSON.parse(fs.readFileSync(metaPath, 'utf8')); } catch {}
     }
     const statuses = resolveStatuses(m, null);
-    return { ...m, statuses, upload_readiness: computeReadiness(statuses), buffer_readiness: computeBufferReadiness(statuses) };
+    return { ...m, statuses, upload_readiness: computeReadiness(statuses), buffer_readiness: computeBufferReadiness(statuses), publication: publicationsByPostId.get(name) || null };
   });
   res.json(posts);
 });
@@ -717,7 +904,103 @@ app.get('/posts/:postId', (req, res) => {
   const buffer_status = meta.buffer_status === 'scheduled'
     ? 'scheduled'
     : bufferDraft?.buffer_post_id ? 'draft_created' : (meta.buffer_status || 'not_sent');
-  res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, buffer_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata, rendered_count, has_rendered_slides: rendered_count > 0, buffer_status, buffer_post_id: bufferDraft?.buffer_post_id || meta.buffer_post_id || null, r2_uploaded: fs.existsSync(path.join(postDir, 'r2-upload.json')) });
+  let publication;
+  try {
+    publication = readPublicationHistory().publications.find((record) => record.post_id === req.params.postId) || null;
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+  res.json({ ...meta, status: derivedStatus, statuses, upload_readiness, buffer_readiness, caption, hashtags, slide_urls, caption_url, supabase, strategy_metadata, rendered_count, has_rendered_slides: rendered_count > 0, buffer_status, buffer_post_id: bufferDraft?.buffer_post_id || meta.buffer_post_id || null, r2_uploaded: fs.existsSync(path.join(postDir, 'r2-upload.json')), publication });
+});
+
+app.post('/api/posts/:postId/mark-posted', async (req, res) => {
+  try {
+    if (isSupabaseMode()) {
+      const result = await portalRepository().markQuickSavePosted(req.params.postId, req.body || {});
+      return result ? res.status(result.existing ? 200 : 201).json(result) : res.status(404).json({ error: 'Post not found' });
+    }
+    const result = markPostPosted(req.params.postId, req.body || {});
+    return res.status(result.existing ? 200 : 201).json(result);
+  } catch (error) {
+    if (error instanceof PublicationValidationError || error instanceof QuickSaveOutputError) return res.status(error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 400).json({ error: error.message, reason_code: error.code });
+    console.error(`[publication] manual confirmation failed: ${error.message}`);
+    return res.status(500).json({ error: 'Unable to confirm publication' });
+  }
+});
+
+app.get('/api/campaigns/:campaignId/team-publish-status', async (req, res) => {
+  if (isSupabaseMode()) return res.status(409).json({ error: 'Team publishing is for locally generated campaigns', reason_code: 'TEAM_PUBLISH_LOCAL_ONLY' });
+  try { return res.json(await new LocalTeamPublisher({ root: ROOT }).status(req.params.campaignId)); }
+  catch (error) { return res.status(error instanceof TeamPublishError ? 400 : 503).json({ error: error.message, reason_code: error.code || 'TEAM_PUBLISH_STATUS_FAILED' }); }
+});
+
+app.post('/api/campaigns/:campaignId/posts/:postId/publish-team', async (req, res) => {
+  if (isSupabaseMode()) return res.status(409).json({ error: 'Team publishing is for locally generated campaigns', reason_code: 'TEAM_PUBLISH_LOCAL_ONLY' });
+  try { return res.json(await new LocalTeamPublisher({ root: ROOT }).publishPost(req.params.campaignId, req.params.postId)); }
+  catch (error) {
+    console.error(`[team-publish] campaign_id=${req.params.campaignId} post_id=${req.params.postId} error=${JSON.stringify(error.message)}`);
+    return res.status(error instanceof TeamPublishError ? 400 : 503).json({ error: error.message, reason_code: error.code || 'TEAM_PUBLISH_FAILED' });
+  }
+});
+
+app.post('/api/campaigns/:campaignId/publish-ready-team', async (req, res) => {
+  if (isSupabaseMode()) return res.status(409).json({ error: 'Team publishing is for locally generated campaigns', reason_code: 'TEAM_PUBLISH_LOCAL_ONLY' });
+  try { return res.json(await new LocalTeamPublisher({ root: ROOT }).publishReady(req.params.campaignId)); }
+  catch (error) {
+    console.error(`[team-publish] campaign_id=${req.params.campaignId} error=${JSON.stringify(error.message)}`);
+    return res.status(error instanceof TeamPublishError ? 400 : 503).json({ error: error.message, reason_code: error.code || 'TEAM_PUBLISH_FAILED' });
+  }
+});
+
+app.get('/api/campaigns/:campaignId/quick-save', async (req, res) => {
+  try {
+    const data = isSupabaseMode() ? await portalRepository().quickSaveData(req.params.campaignId) : quickSaveData(req.params.campaignId);
+    return data ? res.json(data) : res.status(404).json({ error: 'Campaign not found' });
+  } catch (error) {
+    return res.status(error instanceof QuickSaveOutputError ? (error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 409) : 400).json({ error: error.message, reason_code: error.code || 'QUICK_SAVE_READ_FAILED' });
+  }
+});
+
+app.post('/api/campaigns/:campaignId/posts/:postId/mark-saved', async (req, res) => {
+  if (isSupabaseMode()) {
+    try {
+      const result = await portalRepository().setQuickSaveSaved(req.params.campaignId, req.params.postId, req.body?.saved !== false);
+      return result ? res.json(result) : res.status(404).json({ error: 'Campaign post not found' });
+    } catch (error) {
+      return res.status(error instanceof QuickSaveOutputError ? (error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 409) : 400).json({ error: error.message, reason_code: error.code || 'QUICK_SAVE_SAVE_FAILED' });
+    }
+  }
+  const found = quickSavePostDir(req.params.campaignId, req.params.postId);
+  if (!found) return res.status(404).json({ error: 'Campaign post not found' });
+  if (!found.metadata.statuses || found.metadata.statuses.generation !== 'completed') return res.status(400).json({ error: 'Only generated posts can be saved' });
+  if (!found.metadata.saved_at) {
+    found.metadata.saved_at = new Date().toISOString();
+    fs.writeFileSync(path.join(found.postDir, 'metadata.json'), JSON.stringify(found.metadata, null, 2), 'utf8');
+  }
+  return res.json({ post_id: req.params.postId, saved_at: found.metadata.saved_at });
+});
+
+app.get('/api/campaigns/:campaignId/posts/:postId/slides.zip', async (req, res) => {
+  if (isSupabaseMode()) {
+    try {
+      const signedUrl = await portalRepository().quickSaveZipUrl(req.params.campaignId, req.params.postId);
+      return signedUrl ? res.redirect(302, signedUrl) : res.status(404).json({ error: 'Campaign post not found' });
+    } catch (error) {
+      return res.status(error instanceof QuickSaveOutputError ? (error.code === 'QUICK_SAVE_ACCESS_DENIED' ? 403 : 409) : 400).json({ error: error.message, reason_code: error.code || 'QUICK_SAVE_ZIP_FAILED' });
+    }
+  }
+  const found = quickSavePostDir(req.params.campaignId, req.params.postId);
+  if (!found) return res.status(404).json({ error: 'Campaign post not found' });
+  const rendered = path.join(found.postDir, 'rendered');
+  const files = fs.existsSync(rendered) ? fs.readdirSync(rendered).filter((name) => /^slide-\d+\.png$/.test(name)).sort((a, b) => a.localeCompare(b, undefined, { numeric: true })) : [];
+  if (!files.length) return res.status(404).json({ error: 'Rendered slides are missing' });
+  // Store-only ZIP: avoids a dependency and preserves each existing PNG byte-for-byte.
+  const crcTable = Array.from({ length: 256 }, (_, n) => { let c = n; for (let i = 0; i < 8; i += 1) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
+  const crc = (buffer) => { let c = 0xffffffff; for (const byte of buffer) c = crcTable[(c ^ byte) & 255] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; };
+  const parts = [], central = []; let offset = 0;
+  for (const name of files) { const data = fs.readFileSync(path.join(rendered, name)); const n = Buffer.from(name); const c = crc(data); const local = Buffer.alloc(30); local.writeUInt32LE(0x04034b50, 0); local.writeUInt16LE(20, 4); local.writeUInt32LE(c, 14); local.writeUInt32LE(data.length, 18); local.writeUInt32LE(data.length, 22); local.writeUInt16LE(n.length, 26); parts.push(local, n, data); const cd = Buffer.alloc(46); cd.writeUInt32LE(0x02014b50, 0); cd.writeUInt16LE(20, 4); cd.writeUInt16LE(20, 6); cd.writeUInt32LE(c, 16); cd.writeUInt32LE(data.length, 20); cd.writeUInt32LE(data.length, 24); cd.writeUInt16LE(n.length, 28); cd.writeUInt32LE(offset, 42); central.push(cd, n); offset += local.length + n.length + data.length; }
+  const centralSize = central.reduce((n, b) => n + b.length, 0); const end = Buffer.alloc(22); end.writeUInt32LE(0x06054b50, 0); end.writeUInt16LE(files.length, 8); end.writeUInt16LE(files.length, 10); end.writeUInt32LE(centralSize, 12); end.writeUInt32LE(offset, 16);
+  res.setHeader('Content-Type', 'application/zip'); res.setHeader('Content-Disposition', `attachment; filename="${req.params.postId}-slides.zip"`); return res.send(Buffer.concat([...parts, ...central, end]));
 });
 
 app.post('/api/posts/:postId/send-to-buffer', async (req, res) => {
@@ -726,6 +1009,8 @@ app.post('/api/posts/:postId/send-to-buffer', async (req, res) => {
   if (!fs.existsSync(postDir) || !fs.statSync(postDir).isDirectory()) {
     return res.status(404).json({ error: 'Post not found' });
   }
+  const bufferChannelError = postBufferChannelError(postDir);
+  if (bufferChannelError) return res.status(400).json({ error: bufferChannelError });
   if (renderedImageCount(postDir) === 0) {
     return res.status(400).json({ error: 'Rendered slides are missing' });
   }
@@ -777,6 +1062,8 @@ app.post('/api/posts/:postId/schedule-buffer', async (req, res) => {
   if (!fs.existsSync(postDir) || !fs.statSync(postDir).isDirectory()) {
     return res.status(404).json({ error: 'Post not found' });
   }
+  const bufferChannelError = postBufferChannelError(postDir);
+  if (bufferChannelError) return res.status(400).json({ error: bufferChannelError });
 
   const { local_date: localDate, local_time: localTime, timezone } = req.body || {};
   if (typeof localDate !== 'string' || typeof localTime !== 'string' || typeof timezone !== 'string') {
@@ -1015,6 +1302,8 @@ app.post('/generate', async (req, res) => {
 });
 
 const PORT = 3333;
-app.listen(PORT, () => {
-  console.log(`Creator UI running at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Creator UI running at http://localhost:${PORT}`));
+}
+
+module.exports = { app, createInjectionRouter, hostedPortalEnabled };

@@ -1,0 +1,16 @@
+{
+  "campaign_id": "campaign-20260720062422-0d810d35",
+  "outcome": "no_work",
+  "reason_code": "NO_ELIGIBLE_SLOTS",
+  "reason": "No eligible slots in the current three-day window; existing slots are already processed or claimed.",
+  "execution_window_days": 3,
+  "window_start": "2026-07-20",
+  "window_end": "2026-07-22",
+  "generated_count": 0,
+  "skipped_count": 3,
+  "skipped_claimed_count": 0,
+  "failed_count": 0,
+  "generated_post_ids": [],
+  "failed_slots": [],
+  "updated_at": "2026-07-20T20:13:22.795Z"
+}

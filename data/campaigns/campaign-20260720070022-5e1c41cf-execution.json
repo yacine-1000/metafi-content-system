@@ -1,0 +1,49 @@
+{
+  "campaign_id": "campaign-20260720070022-5e1c41cf",
+  "outcome": "completed_with_failures",
+  "execution_window_days": 3,
+  "window_start": "2026-07-20",
+  "window_end": "2026-07-22",
+  "generated_count": 4,
+  "failed_count": 5,
+  "generated_post_ids": [
+    "post-20260720-100030-p2-listicle-ar",
+    "post-20260720-100142-p1-how-to-ar",
+    "post-20260720-100341-p2-original-ar",
+    "post-20260720-100634-p2-tips-things-ar"
+  ],
+  "failed_slots": [
+    {
+      "slot_id": "campaign-20260720070022-5e1c41cf-slot-0004",
+      "reason": "src/generation/renderResolvedPost.js failed with exit code 1 [post-20260720-100453-p3-mistakes-ar] ✓ slide-1.png [post-20260720-100453-p3-mistakes-ar] ✓ slide-2.png [post-20260720-100453-p3-mistakes-ar] ✓ slide-3.png [post-20260720-100453-p3-mistakes-ar] ✓ slide-4.png [post-20260720-100453-p3-mistakes-ar] ✓ slide-5.png [post-20260720-100453-p3-mistakes-ar] ✓ slide-6.png [renderer] 2026-07-20T07:04:56.845Z stage=browser_launch event=complete elapsed_ms=854.27 scope=batch [renderer] 2026-07-20T07:04:59.429Z stage=browser_context event=complete elapsed_ms=2430.78 [renderer] 2026-07-20T07:05:00.407Z stage=page_creation event=complete elapsed_ms=976.01 scope=post [renderer] 2026-07-20T07:05:00.515Z stage=image_source event=complete elapsed_ms=103.67 slide=1 mode=base64 bytes=2122382 [renderer] 2026-07-20T07:05:02.158Z stage=html_setup event=complete elapsed_ms=1638.63 slide=1 [renderer] 2026-07-20T07:05:02.625Z stage=background_image event=ready elapsed_ms=462.19 slide=1 [renderer] 2026-07-",
+      "reason_code": "SLOT_GENERATION_FAILED",
+      "retryable": true
+    },
+    {
+      "slot_id": "campaign-20260720070022-5e1c41cf-slot-0006",
+      "reason": "src/generation/resolvePostAssets.js failed with exit code 1073807364",
+      "reason_code": "SLOT_GENERATION_FAILED",
+      "retryable": true
+    },
+    {
+      "slot_id": "campaign-20260720070022-5e1c41cf-slot-0007",
+      "reason": "src/generation/resolvePostAssets.js failed with exit code 3221226091",
+      "reason_code": "SLOT_GENERATION_FAILED",
+      "retryable": true
+    },
+    {
+      "slot_id": "campaign-20260720070022-5e1c41cf-slot-0008",
+      "reason": "src/generation/resolvePostAssets.js failed with exit code 3221226091",
+      "reason_code": "SLOT_GENERATION_FAILED",
+      "retryable": true
+    },
+    {
+      "slot_id": "campaign-20260720070022-5e1c41cf-slot-0009",
+      "reason": "src/generation/resolvePostAssets.js failed with exit code 3221226091",
+      "reason_code": "SLOT_GENERATION_FAILED",
+      "retryable": true
+    }
+  ],
+  "skipped_claimed_count": 0,
+  "updated_at": "2026-07-20T07:08:22.095Z"
+}

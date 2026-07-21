@@ -1,5 +1,6 @@
 
 .env
+.env.supabase.local
 node_modules/
 outputs/
 renders/
@@ -10,3 +11,7 @@ test-outputs/
 .claude/
 outputs/debug/
 outputs/jobs/
+
+supabase/.temp/
+.vercel
+.env.team.local

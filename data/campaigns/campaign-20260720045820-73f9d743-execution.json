@@ -1,0 +1,17 @@
+{
+  "campaign_id": "campaign-20260720045820-73f9d743",
+  "outcome": "completed",
+  "execution_window_days": 3,
+  "window_start": "2026-07-20",
+  "window_end": "2026-07-22",
+  "generated_count": 3,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260720-075824-p2-listicle-ar",
+    "post-20260720-075849-p3-contrarian-warning-ar",
+    "post-20260720-075853-p2-how-to-ar"
+  ],
+  "failed_slots": [],
+  "skipped_claimed_count": 0,
+  "updated_at": "2026-07-20T04:59:32.741Z"
+}

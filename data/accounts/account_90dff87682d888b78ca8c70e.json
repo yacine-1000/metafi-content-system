@@ -1,0 +1,19 @@
+{
+  "account_id": "account_90dff87682d888b78ca8c70e",
+  "internal_name": "Mohammed",
+  "display_name": "Mohammed",
+  "username": "@moh.22",
+  "avatar_path": "/assets/account-avatars/account_90dff87682d888b78ca8c70e/avatar.png",
+  "platform": "tiktok",
+  "country": "Saudi Arabia",
+  "language": "ar",
+  "gender": "male",
+  "timezone": "Asia/Riyadh",
+  "buffer_organization_id": "",
+  "buffer_channel_id": "",
+  "buffer_channel_name": "",
+  "connection_status": "manual_only",
+  "active": true,
+  "created_at": "2026-07-20T21:13:37.911Z",
+  "updated_at": "2026-07-20T21:49:10.654Z"
+}

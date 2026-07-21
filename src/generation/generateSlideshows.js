@@ -3,9 +3,15 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { selectMasterScriptPost } = require('./selectMasterScript');
 
 const ROOT = path.resolve(__dirname, '../..');
 const LANGUAGE_ORDER = ['ar', 'en', 'es', 'fr'];
+const PROCESS_TIMEOUTS_MS = Object.freeze({ script_selection: 120000, asset_resolution: 120000, renderer: 180000 });
+
+function diagnostic(stage, event, startedAt, details = '') {
+  console.error(`[campaign-generation] ${new Date().toISOString()} stage=${stage} event=${event} elapsed_ms=${Date.now() - startedAt}${details ? ` ${details}` : ''}`);
+}
 
 function parseArgs(argv) {
   const args = {};
@@ -37,22 +43,33 @@ function parseLanguages(raw) {
   return LANGUAGE_ORDER.filter((language) => requested.has(language));
 }
 
-function runNode(script, args) {
+function runNode(script, args, stage, timeoutMs) {
+  const startedAt = Date.now();
+  diagnostic(stage, 'start', startedAt, `script=${script} timeout_ms=${timeoutMs}`);
   const result = spawnSync(process.execPath, [script, ...args], {
     cwd: ROOT,
     encoding: 'utf8',
+    timeout: timeoutMs,
+    killSignal: 'SIGKILL',
+    maxBuffer: 20 * 1024 * 1024,
+    // Playwright's pw:channel trace can exceed maxBuffer in seconds. It is a
+    // developer diagnostic and must never be inherited by campaign workers.
+    env: { ...process.env, DEBUG: '' },
   });
+  if (result.error && result.error.code === 'ETIMEDOUT') {
+    diagnostic(stage, 'timeout', startedAt, `script=${script}`);
+    throw new Error(`${stage} timed out after ${timeoutMs}ms (${script})`);
+  }
+  if (result.error) {
+    throw new Error(`${stage} process failed (${result.error.code || 'PROCESS_ERROR'}): ${result.error.message}`);
+  }
   if (result.status !== 0) {
     const details = [result.stdout, result.stderr].filter(Boolean).join('\n');
     throw new Error(`${script} failed with exit code ${result.status}\n${details}`);
   }
+  if (result.stderr) process.stderr.write(result.stderr);
+  diagnostic(stage, 'complete', startedAt, `script=${script}`);
   return result.stdout.trim();
-}
-
-function parseJsonFromOutput(output) {
-  const start = output.lastIndexOf('\n{');
-  const jsonText = start >= 0 ? output.slice(start + 1) : output;
-  return JSON.parse(jsonText);
 }
 
 function pngFiles(renderedDir) {
@@ -67,8 +84,11 @@ function generateSlideshows({
   hook,
   languages: rawLanguages,
   usedScriptIds = [],
+  excludedScriptIds = [],
+  requiredSourceSetId = null,
   avoidedSourceSetIds = [],
   accountId = null,
+  coolingScriptIds = null,
 }) {
   if (!pillar) throw new Error('Missing required argument: --pillar p1|p2|p3|p4');
   if (!hook) throw new Error('Missing required argument: --hook listicle');
@@ -82,28 +102,50 @@ function generateSlideshows({
     languages,
     posts: [],
   };
+  const pendingRenders = [];
 
   for (const language of languages) {
-    const selectorArgs = [
-      '--pillar', pillar,
-      '--hook', hook,
-      '--language', language,
-    ];
-    if (language === 'ar' && usedScriptIds.length) selectorArgs.push('--used-script-ids', usedScriptIds.join(','));
-    if (language === 'ar' && avoidedSourceSetIds.length) selectorArgs.push('--avoid-source-set-ids', avoidedSourceSetIds.join(','));
-    const selection = parseJsonFromOutput(runNode('src/generation/selectMasterScript.js', selectorArgs));
+    const postStartedAt = Date.now();
+    const selectionArgs = {
+      pillar, hook, language,
+      usedScriptIds: language === 'ar' ? usedScriptIds : [],
+      excludedScriptIds: language === 'ar' ? excludedScriptIds : [],
+      requiredSourceSetId: language === 'ar' ? requiredSourceSetId : null,
+      avoidedSourceSetIds: language === 'ar' ? avoidedSourceSetIds : [],
+      accountId: language === 'ar' ? accountId : null,
+    };
+    const selectionTimings = {};
+    const selectionStartedAt = Date.now();
+    diagnostic('script_selection', 'start', selectionStartedAt, 'mode=in_process');
+    const selection = selectMasterScriptPost(selectionArgs, { timings: selectionTimings, coolingScriptIds });
+    diagnostic('script_selection', 'complete', selectionStartedAt, `profile=${JSON.stringify(selectionTimings)}`);
 
     const resolverArgs = [
       '--post', selection.output_path,
       '--language-lane', language,
     ];
     if (accountId) resolverArgs.push('--account-id', accountId);
-    runNode('src/generation/resolvePostAssets.js', resolverArgs);
+    runNode('src/generation/resolvePostAssets.js', resolverArgs, 'asset_resolution', PROCESS_TIMEOUTS_MS.asset_resolution);
 
-    runNode('src/generation/renderResolvedPost.js', [
-      '--post', selection.output_path,
-    ]);
+    pendingRenders.push({ language, selection, postStartedAt });
+  }
 
+  if (pendingRenders.length) {
+    fs.mkdirSync(path.join(ROOT, 'tmp'), { recursive: true });
+    const scratchDir = fs.mkdtempSync(path.join(ROOT, 'tmp', 'renderer-'));
+    const inputPath = path.join(scratchDir, 'input.json'); const resultPath = path.join(scratchDir, 'result.json');
+    let rendered;
+    try {
+      fs.writeFileSync(inputPath, JSON.stringify({ persistence_mode: process.env.METAFI_PERSISTENCE_MODE || 'local', result_path: resultPath,
+        posts: pendingRenders.map(({ selection }) => ({ post_folder: selection.output_path, metadata: selection.metadata, publish_package: selection.publish_package,
+          post_id: selection.post_id, campaign_id: selection.metadata?.campaign_id || null, slot_id: selection.metadata?.slot_id || null, account_id: selection.metadata?.account_id || null })) }, null, 2));
+      runNode('src/generation/renderResolvedPost.js', ['--scratch-input', inputPath], 'renderer', PROCESS_TIMEOUTS_MS.renderer);
+      rendered = JSON.parse(fs.readFileSync(resultPath, 'utf8')); rendered = rendered.posts || [rendered];
+    } finally { fs.rmSync(scratchDir, { recursive: true, force: true }); }
+    pendingRenders.forEach((entry, index) => { entry.rendered = rendered[index]; });
+  }
+
+  for (const { language, selection, postStartedAt, rendered } of pendingRenders) {
     const renderedDir = path.join(ROOT, selection.output_path, 'rendered');
     summary.posts.push({
       language,
@@ -111,7 +153,9 @@ function generateSlideshows({
       post_folder: selection.output_path,
       slide_count: selection.slide_count,
       rendered_files: pngFiles(renderedDir),
+      render_result: rendered,
     });
+    diagnostic('post', 'complete', postStartedAt, `language=${language} post_id=${selection.post_id}`);
   }
 
   return summary;

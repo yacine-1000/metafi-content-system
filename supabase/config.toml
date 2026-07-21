@@ -1,0 +1,38 @@
+project_id = "metafi-content-system"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[db.pooler]
+enabled = false
+
+[realtime]
+enabled = false
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = false
+
+[storage]
+enabled = true
+file_size_limit = "100MiB"
+
+# Hosted V1 deliberately has no Supabase Auth surface.
+[auth]
+enabled = false
+
+[analytics]
+enabled = false
+

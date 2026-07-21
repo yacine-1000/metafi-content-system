@@ -1,0 +1,42 @@
+{
+  "campaign_id": "campaign-20260720071436-577b8b2e",
+  "name": "Main Account - 7 day - YAZEED",
+  "objective": "app_installs",
+  "account_id": "account_6a5577dd80cc80cdcaae1ff1",
+  "buffer_channel_id": "6a5577dd80cc80cdcaae1ff1",
+  "account_internal_name": "Yazeed",
+  "account_username": "metafi.app",
+  "account_language": "ar",
+  "account_timezone": "Asia/Riyadh",
+  "language": "ar",
+  "start_date": "2026-07-20",
+  "duration_days": 2,
+  "posts_per_day": 3,
+  "pillars": [
+    {
+      "pillar_id": "p1",
+      "percentage": 20
+    },
+    {
+      "pillar_id": "p2",
+      "percentage": 60
+    },
+    {
+      "pillar_id": "p3",
+      "percentage": 20
+    }
+  ],
+  "hook_types": [
+    "listicle",
+    "How-to",
+    "Original",
+    "Mistakes"
+  ],
+  "posting_time_mode": "random",
+  "posting_times": [],
+  "publishing_mode": "team_manual",
+  "timezone": "Asia/Riyadh",
+  "status": "active",
+  "created_at": "2026-07-20T07:14:36.840Z",
+  "updated_at": "2026-07-20T07:14:37.958Z"
+}

@@ -699,10 +699,22 @@
     .account-form-actions { display: flex; align-items: center; justify-content: flex-end; gap: 9px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
     .account-form-check { display: flex; align-items: center; gap: 7px; min-height: 42px; color: var(--text-sec); font-size: 11px; }
     .account-form-check input { accent-color: var(--mint); }
+    .injection-layout { display:grid; grid-template-columns:minmax(0, 1fr) 280px; gap:18px; align-items:start; }
+    .injection-card { padding:22px; border:1px solid var(--border); border-radius:12px; background:var(--card); }
+    .injection-script { margin-top:14px; padding:15px; border:1px solid var(--border); border-radius:9px; background:var(--raised); }
+    .injection-script-head { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px; }
+    .injection-slides { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px; margin-top:12px; }
+    .injection-slides textarea { width:100%; min-height:70px; resize:vertical; }
+    .injection-recent { display:grid; gap:8px; }
+    .injection-recent-item { padding:10px; border:1px solid var(--border); border-radius:8px; background:var(--raised); }
+    .injection-recent-id { color:var(--mint); font:700 11px monospace; }
+    .injection-recent-topic { margin-top:4px; color:var(--text-sec); font-size:11px; }
     @media (max-width: 760px) {
       .accounts-header { flex-direction: column; }
       .account-form-grid { grid-template-columns: 1fr; }
       .account-channel-row { align-items: flex-start; flex-wrap: wrap; }
+      .injection-layout { grid-template-columns:1fr; }
+      .injection-slides { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -719,6 +731,9 @@
       </button>
       <button class="sidebar-tab" data-section="library" onclick="switchSection('library')">
         <span class="tab-icon">▤</span> Library
+      </button>
+      <button class="sidebar-tab" data-section="injection" onclick="switchSection('injection')">
+        <span class="tab-icon">+</span> Injection
       </button>
       <button class="sidebar-tab" data-section="insights" onclick="switchSection('insights')">
         <span class="tab-icon">◎</span> Insights
@@ -888,6 +903,29 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Injection Section -->
+    <div id="injection-section" class="app-section">
+      <div class="page-header"><div class="page-title">Injection</div><div class="page-sub">Add an approved Script Library source set.</div></div>
+      <div class="injection-layout">
+        <form class="injection-card" id="injection-form" onsubmit="submitInjection(event)">
+          <div class="campaign-detail-title" style="font-size:15px;">New Script</div>
+          <div class="campaign-detail-sub" style="margin-bottom:16px;">Original script plus one or more hook variations.</div>
+          <div class="account-form-grid">
+            <div class="campaign-field"><label class="campaign-label" for="injection-pillar">Pillar</label><select class="campaign-input" id="injection-pillar" required onchange="refreshInjectionSubtopics()"></select></div>
+            <div class="campaign-field"><label class="campaign-label" for="injection-subtopic">Subtopic</label><select class="campaign-input" id="injection-subtopic" required></select></div>
+            <div class="campaign-field" style="grid-column:1 / -1;"><label class="campaign-label" for="injection-topic">Topic</label><input class="campaign-input" id="injection-topic" required maxlength="240" placeholder="Specific topic"></div>
+          </div>
+          <div id="injection-scripts"></div>
+          <div style="display:flex;gap:9px;align-items:center;margin-top:14px;"><button class="campaign-secondary" type="button" onclick="addInjectionVariation()">+ Add variation</button><span id="injection-error" style="font-size:11px;color:#e07070;"></span></div>
+          <div class="account-form-actions"><span id="injection-result" style="margin-right:auto;font-size:11px;"></span><button class="campaign-primary" id="injection-submit" type="submit">Create Source Set</button></div>
+        </form>
+        <aside style="display:grid;gap:18px;">
+          <div class="injection-card"><div class="campaign-detail-title" style="font-size:14px;">Recent source sets</div><div class="campaign-detail-sub" style="margin-bottom:13px;">Latest approved additions</div><div id="injection-recent" class="injection-recent"></div></div>
+          <form class="injection-card" onsubmit="submitCampaignInjection(event)"><div class="campaign-detail-title" style="font-size:14px;">Try in Campaign</div><div class="campaign-detail-sub" style="margin-bottom:13px;">Queue a pending request only.</div><div class="campaign-field"><label class="campaign-label">Source set</label><select class="campaign-input" id="campaign-injection-source" required></select></div><div class="campaign-field" style="margin-top:10px;"><label class="campaign-label">Active campaign</label><select class="campaign-input" id="campaign-injection-campaign" required></select></div><div class="campaign-field" style="margin-top:10px;"><label class="campaign-label">Target date (optional)</label><input class="campaign-input" id="campaign-injection-date" type="date"></div><div id="campaign-injection-error" style="min-height:16px;margin-top:10px;color:#e07070;font-size:11px;"></div><button class="campaign-primary" id="campaign-injection-submit" style="margin-top:8px;" type="submit">Queue Request</button><div class="campaign-detail-title" style="font-size:12px;margin-top:20px;">Pending requests</div><div id="campaign-injection-requests" class="injection-recent"></div></form>
+        </aside>
+      </div>
     </div>
 
     <!-- Library Section -->
@@ -1080,6 +1118,7 @@
             <button class="campaign-detail-tab active" type="button" role="tab" aria-selected="true" data-campaign-tab="overview" onclick="setCampaignDetailTab('overview')">Overview</button>
             <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="content" onclick="setCampaignDetailTab('content')">Content</button>
             <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="schedule" onclick="setCampaignDetailTab('schedule')">Schedule</button>
+            <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="quick-save" onclick="setCampaignDetailTab('quick-save')">Quick Save</button>
             <button class="campaign-detail-tab" type="button" role="tab" aria-selected="false" data-campaign-tab="settings" onclick="setCampaignDetailTab('settings')">Settings</button>
           </div>
           <div class="campaign-detail-panel active" data-campaign-panel="overview">
@@ -1095,7 +1134,7 @@
             <div class="campaign-workspace-grid">
               <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Campaign Health</div><div id="campaign-health" class="campaign-health-value"></div></section>
               <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Pipeline</div><div id="campaign-pipeline" class="campaign-pipeline"></div></section>
-              <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Quick Actions</div><div class="campaign-quick-actions"><button class="campaign-primary" id="campaign-generate-window" type="button" onclick="generateCampaignWindow()">Generate Next 3 Days</button><button class="campaign-secondary" id="campaign-upload-approved" type="button" onclick="uploadApprovedCampaignPosts()">Upload Approved</button><button class="campaign-secondary" id="campaign-send-buffer" type="button" onclick="sendUploadedCampaignPostsToBuffer()">Send Uploaded to Buffer</button></div><div id="campaign-execution-result" style="margin-top:12px;font-size:11px;color:var(--text-muted);"></div></section>
+              <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Quick Actions</div><div class="campaign-quick-actions"><button class="campaign-primary" id="campaign-generate-window" type="button" onclick="generateCampaignWindow()">Generate Next 3 Days</button><button class="campaign-secondary" id="campaign-publish-team" type="button" onclick="publishReadyCampaignPostsToTeam()" hidden>Publish Ready Posts to Team Portal</button><button class="campaign-secondary" id="campaign-upload-approved" type="button" onclick="uploadApprovedCampaignPosts()">Upload Approved</button><button class="campaign-secondary" id="campaign-send-buffer" type="button" onclick="sendUploadedCampaignPostsToBuffer()">Send Uploaded to Buffer</button></div><div id="campaign-execution-result" style="margin-top:12px;font-size:11px;color:var(--text-muted);"></div></section>
               <section class="campaign-workspace-card"><div class="campaign-workspace-card-title">Recent Activity</div><div id="campaign-recent-activity" class="campaign-activity-list"></div></section>
             </div>
             <div class="campaign-detail-action-row"><div></div><div id="campaign-detail-toggle"></div></div>
@@ -1135,6 +1174,7 @@
             <div id="campaign-calendar-error" class="campaign-calendar-error" role="alert"></div>
             <div id="campaign-calendar-day-detail" class="campaign-calendar-day-detail"></div>
           </div>
+          <div class="campaign-detail-panel" data-campaign-panel="quick-save"><div class="campaign-content-toolbar"><button class="campaign-secondary" type="button" onclick="setQuickSaveFilter('pending')">Pending</button><button class="campaign-secondary" type="button" onclick="setQuickSaveFilter('completed')">Completed</button><span id="quick-save-feedback" style="font-size:11px;color:var(--text-muted);"></span></div><div id="quick-save-posts" style="display:grid;gap:12px;"></div></div>
           <div class="campaign-detail-panel" data-campaign-panel="settings">
             <div class="campaign-detail-summary" style="margin-top:0;"><div class="campaign-detail-item"><span class="campaign-detail-key">Account</span><span class="campaign-detail-value" id="campaign-settings-account"></span></div><div class="campaign-detail-item"><span class="campaign-detail-key">Publishing mode</span><span class="campaign-detail-value" id="campaign-settings-publishing-mode"></span></div></div>
             <div class="campaign-detail-action-group"><button class="campaign-primary" id="campaign-detail-edit" type="button">Edit Campaign</button></div>
@@ -1200,6 +1240,7 @@
               <div class="campaign-objectives">
                 <div><input class="campaign-objective-input" id="publishing-automatic" name="campaign-publishing-mode" type="radio" value="automatic" onchange="setCampaignPublishingMode('automatic')"><label class="campaign-objective-card" for="publishing-automatic"><span class="campaign-objective-title">Automatic Publish</span><span class="campaign-objective-copy">Buffer publishes automatically. Native TikTok sound cannot be added.</span></label></div>
                 <div><input class="campaign-objective-input" id="publishing-mobile-finish" name="campaign-publishing-mode" type="radio" value="mobile_finish" checked onchange="setCampaignPublishingMode('mobile_finish')"><label class="campaign-objective-card" for="publishing-mobile-finish"><span class="campaign-objective-title">Mobile Finish &mdash; Add TikTok Sound</span><span class="campaign-objective-copy">Buffer sends the post to the phone so the sound can be added before publishing.</span></label></div>
+                <div><input class="campaign-objective-input" id="publishing-team-manual" name="campaign-publishing-mode" type="radio" value="team_manual" onchange="setCampaignPublishingMode('team_manual')"><label class="campaign-objective-card" for="publishing-team-manual"><span class="campaign-objective-title">Team Portal &mdash; Manual Posting</span><span class="campaign-objective-copy">Generate locally, then publish finished slides to the team portal for manual posting.</span></label></div>
               </div>
             </div>
             <div class="campaign-field" style="margin-top:16px;"><label class="campaign-label" for="campaign-timezone">Timezone</label><input class="campaign-input" id="campaign-timezone" type="text" value="Asia/Riyadh" oninput="updateCampaignWizard()"></div>
@@ -1231,7 +1272,7 @@
     <div id="accounts-section" class="app-section">
       <div class="accounts-header">
         <div><div class="page-title">Army</div><div class="page-sub">Manage connected TikTok publishing accounts.</div></div>
-        <button class="campaign-primary" id="refresh-buffer-channels" type="button" onclick="refreshBufferChannels()">Refresh Buffer Channels</button>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;"><button class="campaign-primary" type="button" onclick="startAddAccount()">Add an Account</button><button class="campaign-secondary" id="refresh-buffer-channels" type="button" onclick="refreshBufferChannels()">Refresh Buffer Channels</button></div>
       </div>
       <div id="accounts-status" style="min-height:16px;margin-bottom:12px;color:var(--text-muted);font-size:11px;"></div>
       <div id="accounts-list" class="accounts-grid"></div>
@@ -1243,11 +1284,13 @@
       <div id="account-form-card" class="account-form-card">
         <div class="campaign-detail-head"><div><div class="campaign-detail-title"><span class="campaign-detail-icon">@</span><span id="account-form-title">Configure Account</span></div><div class="campaign-detail-sub" id="account-form-channel"></div></div><button class="campaign-secondary" type="button" onclick="closeAccountForm()">Close</button></div>
         <div class="account-form-grid">
-          <div class="campaign-field"><label class="campaign-label" for="account-internal-name">Internal name</label><input class="campaign-input" id="account-internal-name" type="text"></div>
-          <div class="campaign-field"><span class="campaign-label">TikTok identity</span><div class="campaign-fixed-account" id="account-buffer-identity"></div></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-internal-name">Display / internal name</label><input class="campaign-input" id="account-internal-name" type="text"></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-username">Username</label><input class="campaign-input" id="account-username" type="text" placeholder="@username"></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-platform">Platform</label><select class="campaign-input" id="account-platform"><option value="tiktok">TikTok</option></select></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-buffer-channel">Buffer channel <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label><select class="campaign-input" id="account-buffer-channel" onchange="selectAccountBufferChannel(this.value)"><option value="">Manual only — no Buffer channel</option></select></div>
           <div class="campaign-field"><span class="campaign-label">Profile picture</span><div class="account-avatar-upload"><div class="account-avatar-preview" id="account-avatar-preview">&#9835;</div><div class="account-avatar-picker"><label class="account-avatar-action" for="account-avatar-file" id="account-avatar-action">Upload Profile Picture</label><input id="account-avatar-file" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" onchange="previewAccountAvatar(this)"><span style="color:var(--text-muted);font-size:10px;">JPG, JPEG, PNG, or WEBP</span></div></div></div>
           <div class="campaign-field"><label class="campaign-label" for="account-country">Country</label><input class="campaign-input" id="account-country" type="text"></div>
-          <div class="campaign-field"><label class="campaign-label" for="account-language">Language</label><select class="campaign-input" id="account-language"><option value="ar">Arabic</option><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="zh">Chinese</option></select></div>
+          <div class="campaign-field"><label class="campaign-label" for="account-language">Default language</label><select class="campaign-input" id="account-language"><option value="ar">Arabic</option><option value="en">English</option><option value="es">Spanish</option><option value="fr">French</option><option value="zh">Chinese</option></select></div>
           <div class="campaign-field"><label class="campaign-label" for="account-gender">Gender</label><select class="campaign-input" id="account-gender"><option value="male">Male</option><option value="female">Female</option></select></div>
           <div class="campaign-field"><label class="campaign-label" for="account-timezone">Timezone</label><input class="campaign-input" id="account-timezone" type="text" value="Asia/Riyadh"></div>
           <div class="campaign-field"><span class="campaign-label">Status</span><label class="account-form-check"><input id="account-active" type="checkbox" checked> Active</label></div>
@@ -1332,6 +1375,152 @@
       if (name === 'dashboard') loadDashboard();
       if (name === 'campaigns') loadCampaigns();
       if (name === 'accounts') loadAccounts();
+      if (name === 'injection') loadInjection();
+    }
+
+    let _injectionTaxonomy = null;
+    let _injectionScripts = [];
+
+    function injectionOptions(values) {
+      return values.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join('');
+    }
+
+    function resetInjectionScripts() {
+      _injectionScripts = [{ version: 'Original', count: 5 }, { version: 'Variation 1', count: 5 }];
+      renderInjectionScripts();
+    }
+
+    function refreshInjectionSubtopics() {
+      if (!_injectionTaxonomy) return;
+      const pillar = document.getElementById('injection-pillar').value;
+      const select = document.getElementById('injection-subtopic');
+      select.innerHTML = injectionOptions(_injectionTaxonomy.subtopics.filter(item => item.pillar === pillar).map(item => item.subtopic));
+    }
+
+    function renderInjectionSlides(index) {
+      const slot = _injectionScripts[index];
+      const target = document.getElementById(`injection-slides-${index}`);
+      target.innerHTML = Array.from({ length: slot.count }, (_, offset) => {
+        const number = offset + 1;
+        const label = number === 4 ? 'Slide 4 — Metafi' : `Slide ${number}`;
+        return `<label class="campaign-label" style="text-transform:none;letter-spacing:0;">${label}<textarea class="campaign-input" data-injection-slide="${number}" required placeholder="Slide ${number} text"></textarea></label>`;
+      }).join('');
+    }
+
+    function renderInjectionScripts() {
+      if (!_injectionTaxonomy) return;
+      const container = document.getElementById('injection-scripts');
+      container.innerHTML = _injectionScripts.map((slot, index) => `<section class="injection-script" data-injection-script="${index}"><div class="injection-script-head"><strong style="font-size:12px;color:var(--text);">${escapeHtml(slot.version)}</strong>${index === 0 ? '<span style="font-size:10px;color:var(--mint);">Required</span>' : _injectionScripts.length === 2 ? '<span style="font-size:10px;color:var(--mint);">Required variation</span>' : `<button class="campaign-secondary" type="button" style="padding:5px 8px;" onclick="removeInjectionVariation(${index})">Remove</button>`}</div><div class="account-form-grid"><div class="campaign-field"><label class="campaign-label">Hook type</label><select class="campaign-input" data-injection-hook>${injectionOptions(_injectionTaxonomy.hook_types)}</select></div><div class="campaign-field"><label class="campaign-label">Format</label><select class="campaign-input" data-injection-format>${injectionOptions(_injectionTaxonomy.formats)}</select></div><div class="campaign-field"><label class="campaign-label">Slide count</label><input class="campaign-input" data-injection-count type="number" min="4" max="12" value="${slot.count}" onchange="changeInjectionSlideCount(${index}, this.value)"></div></div><div class="injection-slides" id="injection-slides-${index}"></div></section>`).join('');
+      _injectionScripts.forEach((_slot, index) => {
+        renderInjectionSlides(index);
+        if (index === 0) document.querySelector(`[data-injection-script="0"] [data-injection-hook]`).value = 'Original';
+      });
+    }
+
+    function changeInjectionSlideCount(index, value) {
+      _injectionScripts[index].count = Math.max(4, Math.min(12, Number(value) || 4));
+      renderInjectionScripts();
+    }
+
+    function addInjectionVariation() {
+      const number = _injectionScripts.length;
+      _injectionScripts.push({ version: `Variation ${number}`, count: 5 });
+      renderInjectionScripts();
+    }
+
+    function removeInjectionVariation(index) {
+      if (_injectionScripts.length <= 2) return;
+      _injectionScripts.splice(index, 1);
+      renderInjectionScripts();
+    }
+
+    async function loadInjection() {
+      try {
+        if (!_injectionTaxonomy) {
+          _injectionTaxonomy = await fetch('/api/injection/taxonomy').then(async response => {
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Unable to load Script Library taxonomy');
+            return result;
+          });
+          document.getElementById('injection-pillar').innerHTML = injectionOptions(_injectionTaxonomy.pillars);
+          refreshInjectionSubtopics();
+          resetInjectionScripts();
+        }
+        const recent = await fetch('/api/injection/source-sets?limit=8').then(response => response.json());
+        document.getElementById('injection-recent').innerHTML = recent.length ? recent.map(item => `<div class="injection-recent-item"><div class="injection-recent-id">${escapeHtml(item.source_set_id)}</div><div class="injection-recent-topic">${escapeHtml(item.topic)}</div></div>`).join('') : '<span style="font-size:11px;color:var(--text-muted);">No source sets yet.</span>';
+        const [sourceSets, campaigns, requests] = await Promise.all([
+          fetch('/api/injection/available-source-sets').then(response => response.json()),
+          fetch('/api/injection/campaigns').then(response => response.json()),
+          fetch('/api/injection/requests').then(response => response.json()),
+        ]);
+        document.getElementById('campaign-injection-source').innerHTML = sourceSets.map(item => `<option value="${escapeHtml(item.source_set_id)}">${escapeHtml(item.source_set_id)} · ${escapeHtml(item.topic)}</option>`).join('');
+        document.getElementById('campaign-injection-campaign').innerHTML = campaigns.length ? campaigns.map(item => `<option value="${escapeHtml(item.campaign_id)}">${escapeHtml(item.name)} (${escapeHtml(item.start_date)})</option>`).join('') : '<option value="">No active campaigns</option>';
+        document.getElementById('campaign-injection-submit').disabled = !campaigns.length || !sourceSets.length;
+        document.getElementById('campaign-injection-requests').innerHTML = requests.filter(item => item.status === 'pending').length ? requests.filter(item => item.status === 'pending').map(item => `<div class="injection-recent-item"><div class="injection-recent-id">${escapeHtml(item.source_set_id)} → ${escapeHtml(item.campaign_id)}</div><div class="injection-recent-topic">Pending${item.target_date ? ` · ${escapeHtml(item.target_date)}` : ''}</div></div>`).join('') : '<span style="font-size:11px;color:var(--text-muted);">No pending requests.</span>';
+      } catch (error) {
+        document.getElementById('injection-error').textContent = error.message;
+      }
+    }
+
+    async function submitInjection(event) {
+      event.preventDefault();
+      const errorElement = document.getElementById('injection-error');
+      const resultElement = document.getElementById('injection-result');
+      const button = document.getElementById('injection-submit');
+      errorElement.textContent = '';
+      resultElement.textContent = '';
+      const scripts = [...document.querySelectorAll('[data-injection-script]')].map((element, index) => {
+        const count = Number(element.querySelector('[data-injection-count]').value);
+        return {
+          script_version: _injectionScripts[index].version,
+          hook_type: element.querySelector('[data-injection-hook]').value,
+          format: element.querySelector('[data-injection-format]').value,
+          original_slide_count: count - 1,
+          final_slide_count: count,
+          slides: [...element.querySelectorAll('[data-injection-slide]')].map((field, offset) => {
+            const number = offset + 1;
+            return { slide_number: number, slide_label: number === 4 ? 'Slide 4 — Metafi' : `Slide ${number}`, is_metafi_slide: number === 4, text: field.value };
+          }),
+        };
+      });
+      button.disabled = true;
+      button.textContent = 'Creating…';
+      try {
+        const response = await fetch('/api/injection/source-sets', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pillar: document.getElementById('injection-pillar').value, subtopic: document.getElementById('injection-subtopic').value, topic: document.getElementById('injection-topic').value, scripts }) });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to create source set');
+        resultElement.style.color = 'var(--mint)';
+        resultElement.textContent = `Created ${result.source_set.source_set_id}`;
+        document.getElementById('injection-topic').value = '';
+        resetInjectionScripts();
+        await loadInjection();
+      } catch (error) {
+        errorElement.textContent = error.message;
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Create Source Set';
+      }
+    }
+
+    async function submitCampaignInjection(event) {
+      event.preventDefault();
+      const errorElement = document.getElementById('campaign-injection-error');
+      const button = document.getElementById('campaign-injection-submit');
+      errorElement.textContent = '';
+      button.disabled = true;
+      try {
+        const response = await fetch('/api/injection/campaign-requests', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ source_set_id: document.getElementById('campaign-injection-source').value, campaign_id: document.getElementById('campaign-injection-campaign').value, target_date: document.getElementById('campaign-injection-date').value || null }) });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to queue request');
+        errorElement.style.color = 'var(--mint)';
+        errorElement.textContent = `Queued ${result.request.injection_id}`;
+        await loadInjection();
+      } catch (error) {
+        errorElement.style.color = '#e07070';
+        errorElement.textContent = error.message;
+      } finally {
+        button.disabled = false;
+      }
     }
 
     let _accounts = [];
@@ -1347,13 +1536,27 @@
       return '&#9835;';
     }
 
-    function previewAccountAvatar(input) {
+    async function previewAccountAvatar(input) {
       const file = input.files && input.files[0];
       _accountAvatarFile = file || null;
       const preview = document.getElementById('account-avatar-preview');
       if (!file) { preview.innerHTML = '&#9835;'; return; }
       preview.innerHTML = `<img src="${escapeHtml(URL.createObjectURL(file))}" alt="Profile picture preview">`;
       document.getElementById('account-avatar-action').textContent = 'Replace image';
+      if (!_accountEditingId) return;
+      const errorElement = document.getElementById('account-form-error');
+      try {
+        const response = await fetch(`/api/accounts/${encodeURIComponent(_accountEditingId)}/avatar`, { method: 'POST', headers: { 'Content-Type': file.type }, body: file });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to upload profile picture');
+        _accountAvatarFile = null;
+        await loadAccounts();
+        errorElement.style.color = 'var(--mint)';
+        errorElement.textContent = 'Profile picture uploaded independently.';
+      } catch (error) {
+        errorElement.style.color = '#e07070';
+        errorElement.textContent = error.message;
+      }
     }
 
     function accountCard(account) {
@@ -1362,8 +1565,9 @@
       const platformLabel = ({ tiktok: 'TikTok', instagram: 'Instagram', youtube: 'YouTube' })[platform.toLowerCase()]
         || (platform === '—' ? platform : platform.charAt(0).toUpperCase() + platform.slice(1));
       const connected = account.connection_status === 'connected';
-      const stateLabel = account.active === false ? 'Inactive' : connected ? 'Connected' : 'Disconnected';
-      const stateClass = account.active === false || !connected ? 'disconnected' : 'connected';
+      const manualOnly = account.connection_status === 'manual_only';
+      const stateLabel = account.active === false ? 'Inactive' : manualOnly ? 'Manual only' : connected ? 'Connected' : 'Disconnected';
+      const stateClass = account.active === false || (!connected && !manualOnly) ? 'disconnected' : 'connected';
       return `<article class="account-card"><div class="account-card-head"><div class="account-avatar">${accountAvatarMarkup(account)}</div><div style="min-width:0;"><div class="account-name">${escapeHtml(account.internal_name || account.display_name || '—')}</div><div class="account-username">@${escapeHtml(String(account.username || '').replace(/^@/, ''))}</div></div><div class="account-badges"><span class="account-badge ${stateClass}">${stateLabel}</span></div></div><div class="account-meta-grid"><div><span class="account-meta-label">Country</span><span class="account-meta-value">${escapeHtml(account.country || '—')}</span></div><div><span class="account-meta-label">Platform</span><span class="account-meta-value">${escapeHtml(platformLabel)}</span></div><div><span class="account-meta-label">Character hooks</span><span class="account-meta-value">${Number(account.hook_image_count) || 0}</span></div></div><button class="campaign-secondary" type="button" onclick="openAccount('${safeId}')">Open Account</button></article>`;
     }
 
@@ -1589,20 +1793,26 @@
 
     function fillAccountForm(account, channel) {
       _accountEditingId = account ? account.account_id : null;
-      _accountChannel = channel || (account ? {
-        organization_id: account.buffer_organization_id,
-        channel_id: account.buffer_channel_id,
-        channel_name: account.buffer_channel_name,
-        username: account.username,
+      _accountChannel = channel || (account && account.buffer_channel_id ? {
+        organization_id: account.buffer_organization_id, channel_id: account.buffer_channel_id,
+        channel_name: account.buffer_channel_name, username: account.username,
       } : null);
-      document.getElementById('account-form-title').textContent = account ? 'Edit Account' : 'Configure Account';
-      document.getElementById('account-form-channel').textContent = _accountChannel ? `TikTok · @${String(_accountChannel.username || '').replace(/^@/, '')}` : '';
+      document.getElementById('account-form-title').textContent = account ? 'Manage Account' : 'Add an Account';
+      document.getElementById('account-form-channel').textContent = account ? account.account_id : 'Create the account first; visual uploads unlock after a stable account ID is returned.';
       document.getElementById('account-internal-name').value = account ? account.internal_name : '';
-      const identityName = account ? account.display_name : (_accountChannel ? _accountChannel.channel_name : '');
-      const identityUsername = account ? account.username : (_accountChannel ? _accountChannel.username : '');
-      document.getElementById('account-buffer-identity').innerHTML = `<span class="campaign-account-icon">@</span><span><strong style="display:block;color:var(--text);font-size:12px;">${escapeHtml(identityName || 'TikTok account')}</strong><span style="color:var(--text-muted);font-size:10px;">@${escapeHtml(String(identityUsername || '').replace(/^@/, ''))}</span></span>`;
+      document.getElementById('account-username').value = account ? account.username : (_accountChannel ? _accountChannel.username || '' : '');
+      document.getElementById('account-platform').value = account ? account.platform : 'tiktok';
+      const selectedChannelId = account ? account.buffer_channel_id : (_accountChannel ? _accountChannel.channel_id : '');
+      const bufferSelect = document.getElementById('account-buffer-channel');
+      bufferSelect.innerHTML = accountBufferOptions(selectedChannelId);
+      if (selectedChannelId && ![...bufferSelect.options].some((option) => option.value === selectedChannelId)) {
+        bufferSelect.insertAdjacentHTML('beforeend', `<option value="${escapeHtml(selectedChannelId)}" selected>${escapeHtml(account.buffer_channel_name || selectedChannelId)}</option>`);
+      }
+      bufferSelect.value = selectedChannelId || '';
+      bufferSelect.disabled = Boolean(account);
       _accountAvatarFile = null;
       document.getElementById('account-avatar-file').value = '';
+      document.getElementById('account-avatar-file').disabled = !account;
       document.getElementById('account-avatar-preview').innerHTML = account ? accountAvatarMarkup(account) : '&#9835;';
       document.getElementById('account-avatar-action').textContent = account && account.avatar_path ? 'Replace image' : 'Upload Profile Picture';
       document.getElementById('account-country').value = account ? account.country : '';
@@ -1614,6 +1824,7 @@
       _accountAppCtaLanguage = account && ['ar', 'en', 'es', 'fr'].includes(account.language) ? account.language : 'ar';
       renderAccountAppCtaBank(account);
       document.getElementById('account-form-error').textContent = '';
+      document.getElementById('account-form-error').style.color = '#e07070';
       document.getElementById('account-form-card').classList.add('visible');
       document.getElementById('account-form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -1621,6 +1832,20 @@
     function configureAccountChannel(channelId) {
       const channel = _discoveredChannels.find((item) => item.channel_id === channelId);
       if (channel) fillAccountForm(null, channel);
+    }
+
+    function startAddAccount() {
+      fillAccountForm(null, null);
+    }
+
+    function accountBufferOptions(selectedId = '') {
+      const available = _discoveredChannels.filter((channel) => !channel.linked_account_id || channel.channel_id === selectedId);
+      return `<option value="">Manual only — no Buffer channel</option>${available.map((channel) => `<option value="${escapeHtml(channel.channel_id)}" ${channel.channel_id === selectedId ? 'selected' : ''}>${escapeHtml(channel.channel_name || channel.username || channel.channel_id)} · @${escapeHtml(String(channel.username || '').replace(/^@/, ''))}</option>`).join('')}`;
+    }
+
+    function selectAccountBufferChannel(channelId) {
+      _accountChannel = channelId ? _discoveredChannels.find((item) => item.channel_id === channelId) || null : null;
+      if (_accountChannel) document.getElementById('account-username').value = _accountChannel.username || '';
     }
 
     function openAccount(accountId) {
@@ -1636,17 +1861,14 @@
       document.getElementById('account-form-card').classList.remove('visible');
     }
 
-    function newAccountId(channelId) {
-      const suffix = String(channelId).toLowerCase().replace(/[^a-z0-9_-]/g, '-').replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, '').slice(-48) || String(Date.now());
-      return `account_${suffix}`;
-    }
-
     async function saveAccount() {
-      if (!_accountChannel) return;
       const button = document.getElementById('account-save');
       const errorElement = document.getElementById('account-form-error');
       const editable = {
         internal_name: document.getElementById('account-internal-name').value.trim(),
+        display_name: document.getElementById('account-internal-name').value.trim(),
+        username: document.getElementById('account-username').value.trim(),
+        platform: document.getElementById('account-platform').value,
         country: document.getElementById('account-country').value.trim(),
         language: document.getElementById('account-language').value,
         gender: document.getElementById('account-gender').value,
@@ -1654,15 +1876,10 @@
         active: document.getElementById('account-active').checked,
       };
       const payload = _accountEditingId ? editable : {
-        account_id: newAccountId(_accountChannel.channel_id),
         ...editable,
-        display_name: _accountChannel.channel_name || _accountChannel.username || 'TikTok account',
-        username: _accountChannel.username || _accountChannel.channel_name,
-        platform: 'tiktok',
-        buffer_organization_id: _accountChannel.organization_id || '',
-        buffer_channel_id: _accountChannel.channel_id,
-        buffer_channel_name: _accountChannel.channel_name || '',
-        connection_status: 'connected',
+        buffer_organization_id: _accountChannel ? _accountChannel.organization_id || '' : '',
+        buffer_channel_id: _accountChannel ? _accountChannel.channel_id : '',
+        buffer_channel_name: _accountChannel ? _accountChannel.channel_name || '' : '',
       };
       button.disabled = true;
       button.textContent = 'Saving…';
@@ -1676,19 +1893,11 @@
         });
         const result = await response.json();
         if (!response.ok) throw new Error(result.error || 'Unable to save account');
-        if (_accountAvatarFile) {
-          const avatarResponse = await fetch(`/api/accounts/${encodeURIComponent(result.account_id)}/avatar`, {
-            method: 'POST',
-            headers: { 'Content-Type': _accountAvatarFile.type },
-            body: _accountAvatarFile,
-          });
-          const avatarResult = await avatarResponse.json();
-          if (!avatarResponse.ok) throw new Error(avatarResult.error || 'Unable to upload profile picture');
-        }
-        closeAccountForm();
         await loadAccounts();
-        document.getElementById('accounts-status').style.color = 'var(--mint)';
-        document.getElementById('accounts-status').textContent = wasEditing ? 'Account updated.' : 'Account configured.';
+        const refreshed = _accounts.find((account) => account.account_id === result.account_id) || result;
+        fillAccountForm(refreshed, null);
+        errorElement.style.color = 'var(--mint)';
+        errorElement.textContent = wasEditing ? 'Account updated.' : `Account created. Visual uploads now use ${result.account_id}.`;
       } catch (error) {
         errorElement.textContent = error.message;
       } finally {
@@ -1721,18 +1930,23 @@
     let _campaignExecutionRunning = false;
     let _campaignExecutionSummary = null;
     let _campaignSelectedPosts = new Set();
+    const _campaignPublicationRunning = new Set();
+    const _campaignSwapRunning = new Set();
     let _campaignSelectionCampaignId = null;
     let _campaignContentExpandedGroups = new Set(['today']);
     let _campaignApprovalRunning = false;
     let _campaignUploadRunning = false;
     let _campaignBufferRunning = false;
+    let _teamPublishCampaignRunning = false;
+    const _teamPublishRunning = new Set();
+    const _teamPublishStates = new Map();
     let _campaignRetryPostId = null;
     let _campaignRetryRunning = false;
     let _campaigns = [];
     let _campaignToastTimer = null;
 
     const CAMPAIGN_LANGUAGE_LABELS = { ar: 'Arabic', en: 'English', es: 'Spanish', fr: 'French' };
-    const CAMPAIGN_PUBLISHING_MODE_LABELS = { automatic: 'Automatic Publish', mobile_finish: 'Mobile Finish — Add TikTok Sound' };
+    const CAMPAIGN_PUBLISHING_MODE_LABELS = { automatic: 'Automatic Publish', mobile_finish: 'Mobile Finish — Add TikTok Sound', team_manual: 'Team Portal — Manual Posting' };
     const CAMPAIGN_OBJECTIVE_LABELS = {
       brand_awareness: 'Brand Awareness',
       app_installs: 'App Installs',
@@ -1741,7 +1955,7 @@
     };
 
     function campaignAccountEligible(account) {
-      return account && account.active === true && account.connection_status === 'connected';
+      return account && account.active === true && ['connected', 'manual_only'].includes(account.connection_status);
     }
 
     function campaignAccountDisplay(campaign) {
@@ -1764,7 +1978,7 @@
         const eligible = campaignAccountEligible(account);
         const selectable = eligible && _campaignAccountCanChange;
         const selected = account.account_id === _campaignAccountId;
-        const disabledLabel = !account.active ? 'Inactive' : account.connection_status !== 'connected' ? 'Disconnected' : !_campaignAccountCanChange ? 'Locked' : 'Connected';
+        const disabledLabel = !account.active ? 'Inactive' : !campaignAccountEligible(account) ? 'Disconnected' : !_campaignAccountCanChange ? 'Locked' : account.connection_status === 'manual_only' ? 'Manual only' : 'Connected';
         return `<button class="campaign-account-option${selected ? ' selected' : ''}" type="button" onclick="selectCampaignAccount('${escapeHtml(account.account_id)}')" ${selectable ? '' : 'disabled'}><span class="account-avatar" style="width:34px;height:34px;font-size:11px;">${accountAvatarMarkup(account)}</span><span class="campaign-account-option-copy"><span class="campaign-account-option-name">${escapeHtml(account.internal_name)}</span><span class="campaign-account-option-sub"><span>@${escapeHtml(String(account.username || '').replace(/^@/, ''))}</span><span>•</span><span class="campaign-account-option-country">${escapeHtml(account.country || '—')}</span></span></span><span class="account-badge ${eligible ? 'connected' : !account.active ? 'unlinked' : 'disconnected'}">${disabledLabel}</span></button>`;
       }).join('');
       container.classList.toggle('open', _campaignAccountMenuOpen);
@@ -1893,13 +2107,38 @@
         const campaign = _campaigns.find((item) => item.campaign_id === _currentCampaignId);
         _campaignLibraryId = _currentCampaignId;
         _campaignLibraryName = campaign ? campaign.name : '';
-        loadCampaignWorkspaceData(_currentCampaignId).then(renderCampaignContent);
+        loadCampaignWorkspaceData(_currentCampaignId).then(async () => {
+          if (campaign && campaign.publishing_mode === 'team_manual') await loadTeamPublishStatus(_currentCampaignId);
+          renderCampaignContent();
+        });
       }
       if (tabName === 'schedule') {
         _campaignLibraryId = _currentCampaignId;
         loadCampaignSchedule();
       }
+      if (tabName === 'quick-save') loadQuickSave();
     }
+
+    let _quickSaveData = null;
+    let _quickSaveFilter = 'pending';
+    function setQuickSaveFilter(value) { _quickSaveFilter = value; renderQuickSave(); }
+    async function loadQuickSave() {
+      if (!_currentCampaignId) return;
+      const response = await fetch(`/api/campaigns/${encodeURIComponent(_currentCampaignId)}/quick-save`);
+      const data = await response.json();
+      if (!response.ok) { document.getElementById('quick-save-feedback').textContent = data.error || 'Unable to load Quick Save'; return; }
+      _quickSaveData = data; renderQuickSave();
+    }
+    function renderQuickSave() {
+      const target = document.getElementById('quick-save-posts'); if (!_quickSaveData) return;
+      const posts = _quickSaveData.posts.filter((post) => _quickSaveFilter === 'completed' ? post.publication : !post.publication);
+      const groups = new Map(); posts.forEach((post) => { const key = `${post.scheduled_date} ${post.scheduled_time}`; if (!groups.has(key)) groups.set(key, []); groups.get(key).push(post); });
+      target.innerHTML = [...groups.entries()].map(([key, items]) => `<section class="campaign-workspace-card"><div class="campaign-workspace-card-title">${escapeHtml(key)}</div>${items.map((p) => `<div style="display:grid;grid-template-columns:72px 1fr;gap:12px;margin-top:12px;"><img style="width:72px;height:96px;object-fit:cover;border-radius:7px;" src="${p.slide_urls[0] || ''}" alt=""><div><div style="font-size:12px;white-space:pre-wrap;">${escapeHtml(p.first_slide_text || p.post_id)}</div><div style="font-size:10px;color:var(--text-muted);margin:6px 0;">@${escapeHtml(p.account_handle)} · ${escapeHtml(String(p.language).toUpperCase())} · ${p.publication ? 'Posted' : p.saved_at ? 'Saved' : 'Ready'}</div><div style="display:flex;gap:6px;flex-wrap:wrap;"><button class="campaign-secondary" onclick="quickSaveCopy('${escapeHtml(p.post_id)}')">Copy Caption</button><button class="campaign-secondary" onclick="quickSaveSlides('${escapeHtml(p.post_id)}')">Share Slides</button>${p.publication ? '' : `<button class="campaign-secondary" onclick="quickSaveSaved('${escapeHtml(p.post_id)}')">Mark as Saved</button><button class="campaign-primary" onclick="markCampaignPostPosted('${escapeHtml(p.post_id)}')">Mark as Posted</button>`}</div></div></div>`).join('')}</section>`).join('') || '<div class="campaign-empty">No posts in this section.</div>';
+    }
+    function quickSavePost(id) { return _quickSaveData && _quickSaveData.posts.find((item) => item.post_id === id); }
+    async function quickSaveCopy(id) { const post = quickSavePost(id); try { await navigator.clipboard.writeText(post.caption || ''); document.getElementById('quick-save-feedback').textContent = 'Caption copied.'; } catch { document.getElementById('quick-save-feedback').textContent = 'Unable to copy caption.'; } }
+    async function quickSaveSlides(id) { const post = quickSavePost(id); try { if (navigator.share && navigator.canShare && post.slide_urls.length) { const files = await Promise.all(post.slide_urls.map(async (url, i) => new File([await fetch(url).then((r) => r.blob())], `slide-${i + 1}.png`, { type: 'image/png' }))); if (navigator.canShare({ files })) { await navigator.share({ files }); return; } } } catch {} window.location.href = `/api/campaigns/${encodeURIComponent(_currentCampaignId)}/posts/${encodeURIComponent(id)}/slides.zip`; }
+    async function quickSaveSaved(id) { const response = await fetch(`/api/campaigns/${encodeURIComponent(_currentCampaignId)}/posts/${encodeURIComponent(id)}/mark-saved`, { method: 'POST' }); const data = await response.json(); document.getElementById('quick-save-feedback').textContent = response.ok ? 'Marked as saved.' : (data.error || 'Unable to save'); if (response.ok) loadQuickSave(); }
 
     function campaignWorkspaceWindow(campaign) {
       if (_campaignExecutionSummary && _campaignExecutionSummary.campaign_id === campaign.campaign_id) {
@@ -1917,13 +2156,17 @@
       if (!campaign) return;
       const status = String(campaign.status || 'draft').toLowerCase();
       const campaignPosts = _allPosts.filter((post) => post.campaign_id === campaign.campaign_id);
+      const teamManual = campaign.publishing_mode === 'team_manual';
       const slots = _campaignPlan && _campaignPlan.campaign_id === campaign.campaign_id && Array.isArray(_campaignPlan.slots) ? _campaignPlan.slots : [];
       const counts = {
-        Planned: slots.filter((slot) => slot.status === 'planned').length,
+        // Pipeline stages are cumulative; a generated slot is still a slot
+        // that was planned. Showing only outstanding `planned` statuses made
+        // healthy one-slot campaigns misleadingly display Planned: 0.
+        Planned: slots.length,
         Generated: campaignPosts.filter(isGeneratedCampaignPost).length,
         Approved: campaignPosts.filter((post) => post.statuses && post.statuses.review === 'approved').length,
         Uploaded: campaignPosts.filter((post) => post.upload_status === 'uploaded' || (post.statuses && post.statuses.upload === 'uploaded')).length,
-        [campaign.publishing_mode === 'mobile_finish' ? 'Notification Scheduled' : 'Buffered']: campaignPosts.filter((post) => campaign.publishing_mode === 'mobile_finish' ? post.buffer_status === 'notification_scheduled' : (post.buffer_status === 'buffered' || (post.statuses && post.statuses.buffer === 'buffered'))).length,
+        [teamManual ? 'Published to Team' : campaign.publishing_mode === 'mobile_finish' ? 'Notification Scheduled' : 'Buffered']: campaignPosts.filter((post) => teamManual ? _teamPublishStates.get(post.post_id)?.state === 'published' : campaign.publishing_mode === 'mobile_finish' ? post.buffer_status === 'notification_scheduled' : (post.buffer_status === 'buffered' || (post.statuses && post.statuses.buffer === 'buffered'))).length,
         Published: campaignPosts.filter((post) => post.statuses && post.statuses.publish === 'published').length,
         Failed: slots.filter((slot) => slot.status === 'failed').length,
       };
@@ -1942,6 +2185,9 @@
       healthElement.className = `campaign-health-value${health === 'Needs Review' ? ' review' : health === 'Action Required' ? ' action' : ''}`;
       healthElement.textContent = health;
       document.getElementById('campaign-pipeline').innerHTML = Object.entries(counts).map(([label, count]) => `<div class="campaign-pipeline-item"><span class="campaign-pipeline-count">${count}</span><span class="campaign-pipeline-label">${label}</span></div>`).join('');
+      document.getElementById('campaign-publish-team').hidden = !teamManual;
+      document.getElementById('campaign-upload-approved').hidden = teamManual;
+      document.getElementById('campaign-send-buffer').hidden = teamManual;
       const activity = campaignPosts.map((post) => {
         const label = post.buffer_status === 'notification_scheduled' ? 'Notification Scheduled' : post.buffer_status === 'buffered' && post.publishing_mode !== 'mobile_finish' ? 'Buffered' : post.upload_status === 'uploaded' ? 'Uploaded' : post.statuses && post.statuses.review === 'approved' ? 'Approved' : 'Generated';
         return { label: `${label}: ${post.post_id}`, time: post.buffered_at || post.updated_at || post.created_at || '' };
@@ -2030,25 +2276,32 @@
       button.textContent = 'Generating…';
       resultElement.style.color = 'var(--text-muted)';
       resultElement.textContent = '';
+      const controller = new AbortController();
+      const requestTimeout = setTimeout(() => controller.abort(), 240000);
       try {
-        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/generate-window`, { method: 'POST' });
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/generate-window`, { method: 'POST', signal: controller.signal });
         const result = await response.json();
-        if (!response.ok) throw new Error(result.error || 'Unable to generate campaign window');
+        if (!response.ok) throw new Error(result.reason || result.error || 'Unable to generate campaign window');
         if (_currentCampaignId !== campaignId) return;
         _campaignExecutionSummary = result;
+        const skippedCount = Number(result.skipped_count || 0) + Number(result.skipped_claimed_count || 0);
         resultElement.style.color = result.failed_count ? '#e0b070' : 'var(--mint)';
-        resultElement.textContent = result.generated_count === 0 && result.failed_count === 0
-          ? `No eligible planned slots · ${result.window_start} — ${result.window_end}`
-          : `Generated ${result.generated_count} · Failed ${result.failed_count} · ${result.window_start} — ${result.window_end}`;
+        const actionableFailure = Array.isArray(result.failed_slots) && result.failed_slots[0] && result.failed_slots[0].reason;
+        resultElement.textContent = actionableFailure
+          ? `${actionableFailure} · Generated ${result.generated_count} · Failed ${result.failed_count}`
+          : result.outcome === 'no_work'
+          ? `${result.reason} · Generated 0 · Skipped ${skippedCount} · Failed 0`
+          : `Generated ${result.generated_count} · Skipped ${skippedCount} · Failed ${result.failed_count} · ${result.window_start} — ${result.window_end}`;
         await loadCampaignSchedule();
         renderCampaignContent();
         renderCampaignOverview();
       } catch (error) {
         if (_currentCampaignId === campaignId) {
           resultElement.style.color = '#e07070';
-          resultElement.textContent = error.message;
+          resultElement.textContent = error.name === 'AbortError' ? 'Generation timed out after 4 minutes' : error.message;
         }
       } finally {
+        clearTimeout(requestTimeout);
         _campaignExecutionRunning = false;
         button.disabled = false;
         button.textContent = 'Generate Next 3 Days';
@@ -3243,6 +3496,7 @@
     }
 
     function campaignContentStatus(slot, post) {
+      if (post && post.publication) return 'Published';
       if (post && post.statuses && post.statuses.publish === 'published') return 'Published';
       if (post && (post.buffer_status === 'notification_scheduled' || (post.statuses && post.statuses.buffer === 'notification_scheduled'))) return 'Notification Scheduled';
       if (post && post.publishing_mode !== 'mobile_finish' && (post.buffer_status === 'buffered' || (post.statuses && post.statuses.buffer === 'buffered'))) return 'Buffered';
@@ -3272,8 +3526,18 @@
       const publishingMode = CAMPAIGN_PUBLISHING_MODE_LABELS[(post && post.publishing_mode) || slot.publishing_mode || campaign.publishing_mode || 'mobile_finish'];
       const updatedAt = post && (post.buffered_at || post.updated_at || post.created_at) || slot.scheduled_at;
       const actions = [];
+      const teamManual = campaign.publishing_mode === 'team_manual';
       if (post) actions.push(`<button class="campaign-secondary" type="button" onclick="viewPost('${escapeHtml(post.post_id)}')">Open</button>`);
+      if (post && !teamManual && !post.publication && status !== 'Published') actions.push(`<button class="campaign-secondary" type="button" onclick="markCampaignPostPosted('${escapeHtml(post.post_id)}')" ${_campaignPublicationRunning.has(post.post_id) ? 'disabled' : ''}>${_campaignPublicationRunning.has(post.post_id) ? 'Confirming…' : 'Mark as Posted'}</button>`);
+      if (post && canSwapCampaignPost(post)) actions.push(`<button class="campaign-secondary" type="button" onclick="swapCampaignPost('${escapeHtml(slot.slot_id)}','${escapeHtml(post.post_id)}')" ${_campaignSwapRunning.has(post.post_id) ? 'disabled' : ''}>${_campaignSwapRunning.has(post.post_id) ? 'Swapping…' : 'Swap'}</button>`);
       if (post && isGeneratedCampaignPost(post) && !approved) actions.push(`<button class="campaign-secondary" type="button" onclick="approveSingleCampaignPost('${escapeHtml(post.post_id)}')">Approve</button>`);
+      if (teamManual && post && isGeneratedCampaignPost(post)) {
+        const sync = _teamPublishStates.get(post.post_id) || { state: 'not_published' };
+        const running = _teamPublishRunning.has(post.post_id) || sync.state === 'publishing';
+        const label = running ? 'Publishing…' : sync.state === 'published' ? 'Sync Again' : 'Publish to Team Portal';
+        const stateLabel = running ? 'Publishing' : sync.state === 'published' ? 'Published to Team' : sync.state === 'failed' ? 'Publish Failed' : 'Not Published to Team';
+        actions.push(`<span class="campaign-row-status ${escapeHtml(sync.state)}">${escapeHtml(stateLabel)}</span><button class="campaign-primary" type="button" onclick="publishCampaignPostToTeam('${escapeHtml(post.post_id)}')" ${running ? 'disabled' : ''}>${label}</button>`);
+      }
       const bufferRetryEligible = Boolean(post && post.publishing_mode === 'mobile_finish' && post.buffer_status === 'not_sent');
       if (bufferRetryEligible) actions.push(`<button class="campaign-secondary" type="button" onclick="toggleCampaignBufferRetry('${escapeHtml(post.post_id)}')">Retry</button>`);
       else if (status === 'Failed') actions.push('<button class="campaign-secondary" type="button" onclick="generateCampaignWindow()">Retry</button>');
@@ -3284,10 +3548,65 @@
       return `<div class="campaign-content-row"><div class="campaign-post-select">${checkbox}</div><div><span class="campaign-row-status ${escapeHtml(statusClass)}"><span class="campaign-status-dot ${escapeHtml(statusClass)}"></span>${escapeHtml(status)}</span></div><div>${preview}</div><div class="campaign-content-title" title="${escapeHtml(title)}">${escapeHtml(title)}</div><div>${escapeHtml(String(slot.pillar_id).toUpperCase())}</div><div>${escapeHtml(String(slot.language).toUpperCase())}</div><div>${escapeHtml(publishingMode)}</div><div>${escapeHtml(updatedAt ? new Date(updatedAt).toLocaleString() : '—')}</div><div class="campaign-content-actions">${actions.join('')}</div></div>${retryPanel}`;
     }
 
+    function canSwapCampaignPost(post) {
+      if (!post || !isGeneratedCampaignPost(post) || post.publication || (post.statuses && post.statuses.publish === 'published')) return false;
+      const bufferState = post.buffer_status || (post.statuses && post.statuses.buffer);
+      return !['scheduled', 'notification_scheduled', 'buffered'].includes(bufferState);
+    }
+
+    async function markCampaignPostPosted(postId) {
+      const post = _allPosts.find((item) => item.post_id === postId);
+      if (!post || post.publication || !post.campaign_id || !post.slot_id || _campaignPublicationRunning.has(postId)) return;
+      if (!window.confirm('Confirm that this post was manually published? This cannot be undone here.')) return;
+      _campaignPublicationRunning.add(postId);
+      renderCampaignContent();
+      try {
+        const response = await fetch(`/api/posts/${encodeURIComponent(postId)}/mark-posted`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: '{}',
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to confirm publication');
+        post.publication = result.publication;
+        renderCampaignContent();
+        renderCampaignOverview();
+        if (_quickSaveData) loadQuickSave();
+      } catch (error) {
+        window.alert(error.message);
+      } finally {
+        _campaignPublicationRunning.delete(postId);
+        renderCampaignContent();
+      }
+    }
+
     function toggleCampaignBufferRetry(postId) {
       if (_campaignRetryRunning) return;
       _campaignRetryPostId = _campaignRetryPostId === postId ? null : postId;
       renderCampaignContent();
+    }
+
+    async function swapCampaignPost(slotId, postId) {
+      if (!_currentCampaignId || _campaignSwapRunning.has(postId)) return;
+      const post = _allPosts.find((item) => item.post_id === postId);
+      if (!canSwapCampaignPost(post)) return;
+      if (!window.confirm('Replace this unpublished post with another eligible script? The current post will remain available for audit.')) return;
+      _campaignSwapRunning.add(postId);
+      renderCampaignContent();
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(_currentCampaignId)}/slots/${encodeURIComponent(slotId)}/swap`, { method: 'POST' });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to swap campaign post');
+        await loadCampaignSchedule();
+        renderCampaignContent();
+        renderCampaignSchedule();
+        renderCampaignOverview();
+      } catch (error) {
+        window.alert(error.message);
+      } finally {
+        _campaignSwapRunning.delete(postId);
+        renderCampaignContent();
+      }
     }
 
     async function retryCampaignBufferNotification(postId) {
@@ -3490,6 +3809,66 @@
         _campaignUploadRunning = false;
         button.disabled = false;
         button.textContent = 'Upload Approved';
+      }
+    }
+
+    async function loadTeamPublishStatus(campaignId) {
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/team-publish-status`);
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to load team publish status');
+        (result.posts || []).forEach((item) => _teamPublishStates.set(item.post_id, item));
+      } catch {
+        // Supabase availability never blocks local campaign review or generation.
+      }
+    }
+
+    async function publishCampaignPostToTeam(postId) {
+      if (!_currentCampaignId || _teamPublishRunning.has(postId)) return;
+      const campaignId = _currentCampaignId;
+      _teamPublishRunning.add(postId);
+      _teamPublishStates.set(postId, { post_id: postId, state: 'publishing' });
+      renderCampaignContent();
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/posts/${encodeURIComponent(postId)}/publish-team`, { method: 'POST' });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to publish to the team portal');
+        _teamPublishStates.set(postId, { post_id: postId, state: 'published', published_at: result.published_at });
+        showCampaignToast('Published to Team Portal');
+      } catch (error) {
+        _teamPublishStates.set(postId, { post_id: postId, state: 'failed', error: error.message });
+        showCampaignToast(error.message, 'error');
+      } finally {
+        _teamPublishRunning.delete(postId);
+        if (_currentCampaignId === campaignId) { renderCampaignContent(); renderCampaignOverview(); }
+      }
+    }
+
+    async function publishReadyCampaignPostsToTeam() {
+      if (!_currentCampaignId || _teamPublishCampaignRunning) return;
+      const campaignId = _currentCampaignId;
+      const ready = _allPosts.filter((post) => post.campaign_id === campaignId && isGeneratedCampaignPost(post));
+      ready.forEach((post) => { _teamPublishRunning.add(post.post_id); _teamPublishStates.set(post.post_id, { post_id: post.post_id, state: 'publishing' }); });
+      _teamPublishCampaignRunning = true;
+      const button = document.getElementById('campaign-publish-team');
+      button.disabled = true;
+      button.textContent = 'Publishing…';
+      renderCampaignContent();
+      try {
+        const response = await fetch(`/api/campaigns/${encodeURIComponent(campaignId)}/publish-ready-team`, { method: 'POST' });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || 'Unable to publish ready posts');
+        (result.results || []).forEach((item) => _teamPublishStates.set(item.post_id, { post_id: item.post_id, state: item.state === 'published' ? 'published' : 'failed', error: item.error }));
+        showCampaignToast(`Published ${result.published_count || 0} post${result.published_count === 1 ? '' : 's'} to Team Portal`);
+      } catch (error) {
+        ready.forEach((post) => _teamPublishStates.set(post.post_id, { post_id: post.post_id, state: 'failed', error: error.message }));
+        showCampaignToast(error.message, 'error');
+      } finally {
+        ready.forEach((post) => _teamPublishRunning.delete(post.post_id));
+        _teamPublishCampaignRunning = false;
+        button.disabled = false;
+        button.textContent = 'Publish Ready Posts to Team Portal';
+        if (_currentCampaignId === campaignId) { renderCampaignContent(); renderCampaignOverview(); }
       }
     }
 
