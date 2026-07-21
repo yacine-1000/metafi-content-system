@@ -1,0 +1,20 @@
+{
+  "campaign_id": "campaign-20260720071436-577b8b2e",
+  "outcome": "completed",
+  "execution_window_days": 3,
+  "window_start": "2026-07-20",
+  "window_end": "2026-07-22",
+  "generated_count": 6,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260720-101442-p2-listicle-ar",
+    "post-20260720-101501-p1-how-to-ar",
+    "post-20260720-101505-p2-original-ar",
+    "post-20260720-101509-p3-mistakes-ar",
+    "post-20260720-101513-p2-listicle-ar",
+    "post-20260720-101517-p2-how-to-ar"
+  ],
+  "failed_slots": [],
+  "skipped_claimed_count": 0,
+  "updated_at": "2026-07-20T07:15:21.551Z"
+}

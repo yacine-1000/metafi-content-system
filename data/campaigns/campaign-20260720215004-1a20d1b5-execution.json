@@ -1,0 +1,17 @@
+{
+  "campaign_id": "campaign-20260720215004-1a20d1b5",
+  "outcome": "completed",
+  "execution_window_days": 3,
+  "window_start": "2026-07-21",
+  "window_end": "2026-07-23",
+  "generated_count": 3,
+  "failed_count": 0,
+  "generated_post_ids": [
+    "post-20260721-005006-p2-original-ar",
+    "post-20260721-005012-p3-mistakes-ar",
+    "post-20260721-005016-p2-identity-callout-ar"
+  ],
+  "failed_slots": [],
+  "skipped_claimed_count": 0,
+  "updated_at": "2026-07-20T21:50:20.890Z"
+}

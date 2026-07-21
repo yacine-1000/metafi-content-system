@@ -1,15 +1,15 @@
 {
-  "campaign_id": "campaign-20260720045820-73f9d743",
-  "name": "mohammed campaign",
+  "campaign_id": "campaign-20260720215004-1a20d1b5",
+  "name": "Aziz Slides - 7 DAYS",
   "objective": "app_installs",
-  "account_id": "account_1c849d394821b80c3a3c8f61",
+  "account_id": "account_90dff87682d888b78ca8c70e",
   "buffer_channel_id": "",
   "account_internal_name": "Mohammed",
-  "account_username": "@mohh.a22",
+  "account_username": "@moh.22",
   "account_language": "ar",
   "account_timezone": "Asia/Riyadh",
   "language": "ar",
-  "start_date": "2026-07-20",
+  "start_date": "2026-07-21",
   "duration_days": 1,
   "posts_per_day": 3,
   "pillars": [
@@ -23,21 +23,16 @@
     }
   ],
   "hook_types": [
-    "listicle",
-    "Contrarian / Warning",
-    "How-to",
     "Original",
     "Mistakes",
     "Identity Callout",
-    "POV / Question",
-    "Story / Regret / Realization",
-    "Tips / Things"
+    "How-to"
   ],
   "posting_time_mode": "random",
   "posting_times": [],
-  "publishing_mode": "mobile_finish",
+  "publishing_mode": "team_manual",
   "timezone": "Asia/Riyadh",
   "status": "active",
-  "created_at": "2026-07-20T04:58:20.315Z",
-  "updated_at": "2026-07-20T04:58:21.263Z"
+  "created_at": "2026-07-20T21:50:04.576Z",
+  "updated_at": "2026-07-20T21:50:05.447Z"
 }
