@@ -203,8 +203,15 @@ function assertSlideBank(slide) {
   if (slide.asset_bank !== 'body_slides') throw new Error(`Body slide ${slide.slide_number} must use asset_bank "body_slides"`);
 }
 
-function eligibleImages(bank, images, laneIndex) {
-  if (laneIndex == null || bank === CTA_ASSET_BANK) return images;
+function eligibleImages(bank, images, laneIndex, assetFolderRelative) {
+  const isAccountHookBank = bank === 'visual_hooks'
+    && typeof assetFolderRelative === 'string'
+    && assetFolderRelative.startsWith('assets/account-hook-images/');
+
+  // Account-owned character hooks are already isolated by account. They must rotate
+  // across the full uploaded bank regardless of campaign language or campaign ID.
+  if (laneIndex == null || bank === CTA_ASSET_BANK || isAccountHookBank) return images;
+
   return images.filter((_filename, index) => index % Object.keys(LANGUAGE_LANES).length === laneIndex);
 }
 
@@ -239,7 +246,12 @@ function resolveSlide(slide, assetCache, assetFolders, usage, usedInPost, postId
     throw new Error(`Unknown asset_bank on slide ${slide.slide_number}: ${slide.asset_bank}`);
   }
 
-  const images = eligibleImages(slide.asset_bank, assetCache[slide.asset_bank], laneIndex);
+  const images = eligibleImages(
+    slide.asset_bank,
+    assetCache[slide.asset_bank],
+    laneIndex,
+    assetFolderRelative
+  );
   if (!images || images.length === 0) {
     throw new Error(`No valid image files found for asset_bank "${slide.asset_bank}"`);
   }
