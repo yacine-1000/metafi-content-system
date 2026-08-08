@@ -1,0 +1,204 @@
+{
+  "source_set_id": "SET-021",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
+  "subtopic": "Hormones",
+  "topic": "Increasing Testosterone Naturally",
+  "scripts": [
+    {
+      "script_id": "SET-021-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Educational",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "raise your testosterone naturally, no injections"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "testosterone helps your body turn food and training into muscle and strength."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "if it's low, you feel like you're training hard but your body's just not responding."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "the rule's simple: strong, resistance-based training, enough of it."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "heavy weights + big muscle groups = stronger stimulus for your body."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "key lifts:\n• squat. hits your whole body\n• deadlift. works the posterior chain"
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "• bench press. foundation for upper body strength\n• bent over row. builds back thickness\n• overhead press. strengthens shoulders"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Educational",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "low testosterone? you're probably training wrong"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "heavy weights + big muscle groups = stronger stimulus for your body."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "the rule's simple: strong, resistance-based training, enough volume."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "testosterone helps your body turn food and training into muscle and strength."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "if it's low, you feel like you're grinding but your body's not responding."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "key lifts:\n• squat. full body stimulus\n• deadlift. posterior chain"
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "• bench. upper body foundation\n• bent over row. back thickness\n• overhead press. shoulder strength"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-021-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Educational",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "not every lift raises your testosterone"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "heavy weights + big muscle groups = stronger stimulus."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "the rule's simple: strong resistance training, enough of it."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "testosterone turns your food and training into muscle and strength."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "if it's low, you're grinding and your body's just not responding."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "key lifts:\n• squat. full body\n• deadlift. posterior chain"
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "• bench. upper body base\n• bent over row. back thickness\n• overhead press. shoulders"
+        }
+      ]
+    }
+  ]
+}

@@ -5,19 +5,39 @@ const path = require('path');
 const ExcelJS = require('exceljs');
 
 const ROOT = path.resolve(__dirname, '..');
-const LIBRARY_DIR = path.join(ROOT, 'content', 'script-library');
-const WORKBOOK_PATH = path.join(LIBRARY_DIR, 'source', 'script-library.xlsx');
-const SOURCE_SETS_DIR = path.join(LIBRARY_DIR, 'source-sets');
-const INDEX_PATH = path.join(LIBRARY_DIR, 'index.json');
+const ARABIC_LIBRARY_DIR = path.join(ROOT, 'content', 'script-library');
+const DEFAULT_WORKBOOK = 'nail_spa_script_library_final.xlsx';
+const SHEET_NAME = 'Script Library';
+const SLIDE_TWO_TEXT = 'احفظي المقطع\nبتحتاجينه';
 const EXPECTED_HEADERS = [
-  'Script ID', 'Source Set ID', 'Script Version', 'Pillar', 'Subtopic', 'Topic',
-  'Hook Type', 'Format', 'Original Slide Count', 'Final Slide Count',
-  'Slide 1', 'Slide 2', 'Slide 3', 'Slide 4 — Metafi', 'Slide 5', 'Slide 6',
+  'Source Set ID', 'Script ID', 'Pillar', 'Pillar Name', 'Version', 'Status',
+  'Slide 1', 'Slide 2', 'Slide 3', 'Slide 4', 'Slide 5', 'Slide 6',
   'Slide 7', 'Slide 8', 'Slide 9', 'Slide 10', 'Slide 11', 'Slide 12',
 ];
 const SOURCE_SET_ID_PATTERN = /^SET-\d{3,}$/;
+const PILLAR_PATTERN = /^P[1-4]$/;
+const ENGLISH_SHEET_NAME = '111 Scripts (EN)';
+const ENGLISH_HEADERS = [
+  '#', 'Script ID', 'Variant', 'Pillar', 'Subtopic', 'Topic', 'Format', 'Slide Count',
+  'Slide 1', 'Slide 2', 'Slide 3', 'Slide 4', 'Slide 5', 'Slide 6',
+  'Slide 7', 'Slide 8', 'Slide 9', 'Slide 10', 'Slide 11', 'Slide 12',
+];
+const ENGLISH_PILLARS = Object.freeze({
+  'Hybrid Athlete / Sport + Gym Balance': 'P2',
+  'Workout Programming / Exercise Selection': 'P3',
+});
+const ENGLISH_NEW_SOURCE_SETS = Object.freeze({
+  'NEW-001': 'SET-045', 'NEW-002': 'SET-046', 'NEW-003': 'SET-047', 'NEW-004': 'SET-048',
+  'NEW-005': 'SET-049', 'NEW-006': 'SET-050', 'NEW-007': 'SET-051',
+});
 
-class ScriptLibraryImportError extends Error {}
+class ScriptLibraryImportError extends Error {
+  constructor(message, report = null) {
+    super(message);
+    this.name = 'ScriptLibraryImportError';
+    this.report = report;
+  }
+}
 
 function textValue(cell, location, { required = false } = {}) {
   const value = cell.value;
@@ -34,12 +54,6 @@ function textValue(cell, location, { required = false } = {}) {
   throw new ScriptLibraryImportError(`${location} contains an unsupported Excel value`);
 }
 
-function integerValue(cell, location) {
-  const value = cell.value;
-  if (!Number.isInteger(value) || value <= 0) throw new ScriptLibraryImportError(`${location} must be a positive integer`);
-  return value;
-}
-
 function writeJsonAtomic(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   const temporaryPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
@@ -47,127 +61,250 @@ function writeJsonAtomic(filePath, value) {
   fs.renameSync(temporaryPath, filePath);
 }
 
-function taxonomyValues(sheet) {
-  if (!sheet) throw new ScriptLibraryImportError('Workbook is missing the "Taxonomy" sheet');
-  const sections = { pillars: new Set(), hookTypes: new Set(), formats: new Set(), subtopics: new Map() };
-  let section = null;
-  sheet.eachRow({ includeEmpty: true }, (row) => {
-    const first = textValue(row.getCell(1), `Taxonomy!A${row.number}`);
-    const second = textValue(row.getCell(2), `Taxonomy!B${row.number}`);
-    if (first === 'Section A — Pillars') { section = 'pillars'; return; }
-    if (first === 'Section B — Hook Types') { section = 'hookTypes'; return; }
-    if (first === 'Section C — Formats') { section = 'formats'; return; }
-    if (first === 'Section D — Suggested Subtopics') { section = 'subtopics'; return; }
-    if (!first) return;
-    if (section === 'pillars') sections.pillars.add(first);
-    else if (section === 'hookTypes') sections.hookTypes.add(first);
-    else if (section === 'formats') sections.formats.add(first);
-    else if (section === 'subtopics') sections.subtopics.set(first, second);
-  });
-  if (!sections.pillars.size || !sections.hookTypes.size || !sections.formats.size) {
-    throw new ScriptLibraryImportError('Taxonomy sheet is missing required Pillars, Hook Types, or Formats sections');
-  }
-  return sections;
-}
-
 function validateHeaders(sheet) {
-  if (!sheet) throw new ScriptLibraryImportError('Workbook is missing the "Scripts" sheet');
-  const actual = EXPECTED_HEADERS.map((_header, index) => textValue(sheet.getRow(1).getCell(index + 1), `Scripts!${sheet.getRow(1).getCell(index + 1).address}`));
+  if (!sheet) throw new ScriptLibraryImportError(`Workbook is missing the "${SHEET_NAME}" sheet`);
+  const actual = EXPECTED_HEADERS.map((_header, index) => textValue(
+    sheet.getRow(1).getCell(index + 1),
+    `${SHEET_NAME}!${sheet.getRow(1).getCell(index + 1).address}`,
+  ));
   EXPECTED_HEADERS.forEach((expected, index) => {
-    if (actual[index] !== expected) throw new ScriptLibraryImportError(`Scripts column ${index + 1} must be "${expected}"; found "${actual[index] || ''}"`);
+    if (actual[index] !== expected) {
+      throw new ScriptLibraryImportError(
+        `${SHEET_NAME} column ${index + 1} must be "${expected}"; found "${actual[index] || ''}"`,
+      );
+    }
   });
 }
 
-function parseScripts(sheet, taxonomy) {
+function parseAndValidate(sheet) {
+  const errors = [];
+  const warnings = [];
   const scriptIds = new Set();
+  const duplicateScriptIds = new Set();
   const sourceSets = new Map();
+  const scriptsPerPillar = { P1: 0, P2: 0, P3: 0, P4: 0 };
+  let scriptCount = 0;
+
   for (let rowNumber = 2; rowNumber <= sheet.rowCount; rowNumber += 1) {
     const row = sheet.getRow(rowNumber);
     if (!row.hasValues) continue;
-    const at = (column) => `Scripts!${row.getCell(column).address}`;
-    const scriptId = textValue(row.getCell(1), at(1), { required: true });
-    const sourceSetId = textValue(row.getCell(2), at(2), { required: true });
-    const scriptVersion = textValue(row.getCell(3), at(3), { required: true });
-    const pillar = textValue(row.getCell(4), at(4), { required: true });
-    const subtopic = textValue(row.getCell(5), at(5), { required: true });
-    const topic = textValue(row.getCell(6), at(6), { required: true });
-    const hookType = textValue(row.getCell(7), at(7), { required: true });
-    const format = textValue(row.getCell(8), at(8), { required: true });
-    const originalSlideCount = integerValue(row.getCell(9), at(9));
-    const finalSlideCount = integerValue(row.getCell(10), at(10));
+    const at = (column) => `${SHEET_NAME}!${row.getCell(column).address}`;
+    const readRequired = (column, label) => {
+      try {
+        return textValue(row.getCell(column), at(column), { required: true });
+      } catch (error) {
+        errors.push(`${label}: ${error.message}`);
+        return null;
+      }
+    };
+    const sourceSetId = readRequired(1, 'missing Source Set ID');
+    const scriptId = readRequired(2, 'missing Script ID');
+    const pillar = readRequired(3, 'missing Pillar');
+    const pillarName = readRequired(4, 'missing Pillar Name');
+    const version = readRequired(5, 'missing Version');
+    const status = readRequired(6, 'missing Status');
 
-    if (scriptIds.has(scriptId)) throw new ScriptLibraryImportError(`${at(1)} duplicates Script ID "${scriptId}"`);
+    if (!sourceSetId || !scriptId || !pillar || !pillarName || !version || !status) continue;
+    scriptCount += 1;
+    if (!SOURCE_SET_ID_PATTERN.test(sourceSetId)) errors.push(`${at(1)} has invalid Source Set ID "${sourceSetId}"`);
+    if (!PILLAR_PATTERN.test(pillar)) errors.push(`${at(3)} must be P1, P2, P3, or P4`);
+    if (scriptIds.has(scriptId)) duplicateScriptIds.add(scriptId);
     scriptIds.add(scriptId);
-    if (!SOURCE_SET_ID_PATTERN.test(sourceSetId)) throw new ScriptLibraryImportError(`${at(2)} has unsafe Source Set ID "${sourceSetId}"`);
-    if (!scriptId.startsWith(`${sourceSetId}-`)) throw new ScriptLibraryImportError(`${at(1)} must begin with "${sourceSetId}-"`);
-    if (!taxonomy.pillars.has(pillar)) throw new ScriptLibraryImportError(`${at(4)} uses unknown Pillar "${pillar}"`);
-    if (!taxonomy.hookTypes.has(hookType)) throw new ScriptLibraryImportError(`${at(7)} uses unknown Hook Type "${hookType}"`);
-    if (!taxonomy.formats.has(format)) throw new ScriptLibraryImportError(`${at(8)} uses unknown Format "${format}"`);
-    if (taxonomy.subtopics.has(subtopic) && taxonomy.subtopics.get(subtopic) !== pillar) {
-      throw new ScriptLibraryImportError(`${at(5)} maps Subtopic "${subtopic}" to the wrong Pillar`);
-    }
-    if (finalSlideCount > 12) throw new ScriptLibraryImportError(`${at(10)} cannot exceed the workbook's 12 slide columns`);
+    if (PILLAR_PATTERN.test(pillar)) scriptsPerPillar[pillar] += 1;
 
-    const slides = [];
+    const slideValues = [];
     for (let slideNumber = 1; slideNumber <= 12; slideNumber += 1) {
-      const column = 10 + slideNumber;
-      const text = textValue(row.getCell(column), at(column));
-      if (slideNumber <= finalSlideCount && text == null) throw new ScriptLibraryImportError(`${at(column)} is required by Final Slide Count ${finalSlideCount}`);
-      if (slideNumber > finalSlideCount && text != null) throw new ScriptLibraryImportError(`${at(column)} contains text beyond Final Slide Count ${finalSlideCount}`);
-      if (text != null) {
-        slides.push({
-          slide_number: slideNumber,
-          slide_label: EXPECTED_HEADERS[column - 1],
-          is_metafi_slide: EXPECTED_HEADERS[column - 1].includes('— Metafi'),
-          text,
-        });
+      try {
+        slideValues.push(textValue(row.getCell(6 + slideNumber), at(6 + slideNumber)));
+      } catch (error) {
+        errors.push(error.message);
+        slideValues.push(null);
       }
     }
-    if (slides.length !== finalSlideCount) throw new ScriptLibraryImportError(`${at(10)} does not match populated slide cells`);
+    const populatedNumbers = slideValues
+      .map((text, index) => (text == null ? null : index + 1))
+      .filter((number) => number != null);
+    const lastSlideNumber = populatedNumbers.length ? populatedNumbers[populatedNumbers.length - 1] : 0;
 
-    const setMetadata = { source_set_id: sourceSetId, pillar, subtopic, topic };
-    if (!sourceSets.has(sourceSetId)) sourceSets.set(sourceSetId, { ...setMetadata, scripts: [] });
-    const sourceSet = sourceSets.get(sourceSetId);
-    for (const field of ['pillar', 'subtopic', 'topic']) {
-      if (sourceSet[field] !== setMetadata[field]) throw new ScriptLibraryImportError(`${at(2)} conflicts with ${field} already stored for ${sourceSetId}`);
+    if (slideValues[0] == null) errors.push(`${at(7)} is missing Slide 1`);
+    if (slideValues[1] !== SLIDE_TWO_TEXT) errors.push(`${at(8)} has incorrect Slide 2`);
+    if (lastSlideNumber < 3 || lastSlideNumber > 12) {
+      errors.push(`${at(7)}:${at(18)} has ${lastSlideNumber} slides; expected 3 through 12`);
     }
-    if (sourceSet.scripts.some((script) => script.script_version === scriptVersion)) {
-      throw new ScriptLibraryImportError(`${at(3)} duplicates Script Version "${scriptVersion}" within ${sourceSetId}`);
+    for (let slideNumber = 1; slideNumber <= lastSlideNumber; slideNumber += 1) {
+      if (slideValues[slideNumber - 1] == null) {
+        errors.push(`${at(6 + slideNumber)} is a blank gap before Slide ${lastSlideNumber}`);
+      }
+    }
+    if (!lastSlideNumber || slideValues[lastSlideNumber - 1] == null) {
+      errors.push(`${at(6 + Math.max(lastSlideNumber, 1))} has an empty final CTA`);
+    }
+
+    const slides = [];
+    for (let slideNumber = 1; slideNumber <= lastSlideNumber; slideNumber += 1) {
+      const text = slideValues[slideNumber - 1];
+      if (text == null) continue;
+      slides.push({
+        slide_number: slideNumber,
+        slide_label: `Slide ${slideNumber}`,
+        is_metafi_slide: slideNumber === lastSlideNumber,
+        text,
+      });
+    }
+
+    const metadata = {
+      source_set_id: sourceSetId,
+      pillar,
+      pillar_name: pillarName,
+      subtopic: pillarName,
+      topic: pillarName,
+    };
+    if (!sourceSets.has(sourceSetId)) sourceSets.set(sourceSetId, { ...metadata, scripts: [] });
+    const sourceSet = sourceSets.get(sourceSetId);
+    for (const field of ['pillar', 'pillar_name']) {
+      if (sourceSet[field] !== metadata[field]) {
+        errors.push(`${at(1)} conflicts with ${field} already stored for ${sourceSetId}`);
+      }
     }
     sourceSet.scripts.push({
       script_id: scriptId,
-      script_version: scriptVersion,
-      hook_type: hookType,
-      format,
-      original_slide_count: originalSlideCount,
-      final_slide_count: finalSlideCount,
+      script_version: version,
+      status,
+      hook_type: version,
+      format: 'listicle',
+      original_slide_count: lastSlideNumber,
+      final_slide_count: lastSlideNumber,
       slides,
     });
   }
-  if (!sourceSets.size) throw new ScriptLibraryImportError('Scripts sheet contains no Source Sets');
-  for (const sourceSet of sourceSets.values()) {
-    if (!sourceSet.scripts.some((script) => script.script_version === 'Original')) {
-      throw new ScriptLibraryImportError(`${sourceSet.source_set_id} is missing its Original script`);
-    }
-  }
-  return sourceSets;
+
+  for (const scriptId of duplicateScriptIds) errors.push(`duplicate Script ID "${scriptId}"`);
+  if (!sourceSets.size) errors.push(`${SHEET_NAME} contains no Source Sets`);
+  const report = {
+    source_set_count: sourceSets.size,
+    script_count: scriptCount,
+    scripts_per_pillar: scriptsPerPillar,
+    duplicate_script_ids: [...duplicateScriptIds].sort(),
+    missing_source_set_ids: errors.filter((error) => error.startsWith('missing Source Set ID')).length,
+    missing_slide_1: errors.filter((error) => error.endsWith('is missing Slide 1')).length,
+    incorrect_slide_2: errors.filter((error) => error.endsWith('has incorrect Slide 2')).length,
+    invalid_slide_counts: errors.filter((error) => error.includes('slides; expected 3 through 12')).length,
+    blank_slide_gaps: errors.filter((error) => error.includes('is a blank gap before Slide')).length,
+    empty_final_cta: errors.filter((error) => error.endsWith('has an empty final CTA')).length,
+    warnings,
+    errors,
+  };
+  return { sourceSets, report };
 }
 
-async function importScriptLibrary() {
-  if (!fs.existsSync(WORKBOOK_PATH)) throw new ScriptLibraryImportError(`Workbook is missing: ${path.relative(ROOT, WORKBOOK_PATH)}`);
+function parseEnglishAndValidate(sheet) {
+  if (!sheet) throw new ScriptLibraryImportError(`Workbook is missing the "${ENGLISH_SHEET_NAME}" sheet`);
+  ENGLISH_HEADERS.forEach((header, offset) => {
+    const actual = textValue(sheet.getRow(1).getCell(offset + 1), `${ENGLISH_SHEET_NAME}!${sheet.getRow(1).getCell(offset + 1).address}`);
+    if (actual !== header) throw new ScriptLibraryImportError(`${ENGLISH_SHEET_NAME} column ${offset + 1} must be "${header}"; found "${actual || ''}"`);
+  });
+  const errors = [];
+  const duplicateScriptIds = new Set();
+  const scriptIds = new Set();
+  const sourceSets = new Map();
+  const scriptsPerPillar = { P1: 0, P2: 0, P3: 0, P4: 0 };
+  let scriptCount = 0;
+  for (let rowNumber = 2; rowNumber <= sheet.rowCount; rowNumber += 1) {
+    const row = sheet.getRow(rowNumber);
+    if (!row.hasValues) continue;
+    const at = (column) => `${ENGLISH_SHEET_NAME}!${row.getCell(column).address}`;
+    const required = (column, label) => {
+      try { return textValue(row.getCell(column), at(column), { required: true }); } catch (error) { errors.push(`${label}: ${error.message}`); return null; }
+    };
+    const originalId = required(2, 'missing Script ID');
+    const variant = required(3, 'missing Variant');
+    const pillarName = required(4, 'missing Pillar');
+    const subtopic = required(5, 'missing Subtopic');
+    const topic = required(6, 'missing Topic');
+    const format = required(7, 'missing Format');
+    const declaredSlideCount = required(8, 'missing Slide Count');
+    if (!originalId || !variant || !pillarName || !subtopic || !topic || !format || !declaredSlideCount) continue;
+    const sourceSetId = originalId.match(/^(SET-\d{3,})-/)?.[1] || ENGLISH_NEW_SOURCE_SETS[originalId];
+    const variantNumber = variant.match(/^Variant (\d+)$/)?.[1];
+    const version = variant === 'Original' ? 'ORIGINAL' : variantNumber ? `V${variantNumber}` : null;
+    const pillar = ENGLISH_PILLARS[pillarName];
+    if (!sourceSetId) errors.push(`${at(2)} cannot derive Source Set ID from "${originalId}"`);
+    if (!version) errors.push(`${at(3)} has unsupported Variant "${variant}"`);
+    if (!pillar) errors.push(`${at(4)} has unmapped Pillar "${pillarName}"`);
+    if (!sourceSetId || !version || !pillar) continue;
+    scriptCount += 1;
+    const scriptId = `${sourceSetId}-${version}`;
+    if (scriptIds.has(scriptId)) duplicateScriptIds.add(scriptId);
+    scriptIds.add(scriptId);
+    scriptsPerPillar[pillar] += 1;
+    const slideValues = [];
+    for (let slideNumber = 1; slideNumber <= 12; slideNumber += 1) {
+      let text;
+      try { text = textValue(row.getCell(8 + slideNumber), at(8 + slideNumber)); } catch (error) { errors.push(error.message); text = null; }
+      slideValues.push(text);
+    }
+    const expectedSlideCount = Number(declaredSlideCount);
+    if (!Number.isInteger(expectedSlideCount) || expectedSlideCount < 3 || expectedSlideCount > 12) errors.push(`${at(8)} must be an integer from 3 to 12`);
+    if (slideValues[0] == null) errors.push(`${at(9)} is missing Slide 1`);
+    if (slideValues.slice(expectedSlideCount).some((text) => text != null)) errors.push(`${at(8)} has content after Slide Count`);
+    const slides = slideValues.slice(0, expectedSlideCount).map((text, offset) => ({
+      slide_number: offset + 1,
+      slide_label: `Slide ${offset + 1}`,
+      is_metafi_slide: offset + 1 === 5,
+      // A blank source cell remains a blank slide; no script text is changed or synthesized.
+      text: text == null ? '' : text,
+    }));
+    if (slideValues[4] == null) errors.push(`Script ID "${scriptId}" (${at(13)}) is missing the designated Slide 5 Metafi promotion`);
+    if (slides.filter((slide) => slide.is_metafi_slide).length !== 1) errors.push(`Script ID "${scriptId}" must contain exactly one Metafi slide marker`);
+    const metadata = { source_set_id: sourceSetId, pillar, pillar_name: pillarName, subtopic, topic };
+    if (!sourceSets.has(sourceSetId)) sourceSets.set(sourceSetId, { ...metadata, scripts: [] });
+    const sourceSet = sourceSets.get(sourceSetId);
+    for (const field of ['pillar', 'pillar_name', 'subtopic', 'topic']) if (sourceSet[field] !== metadata[field]) errors.push(`${at(2)} conflicts with ${field} already stored for ${sourceSetId}`);
+    sourceSet.scripts.push({ script_id: scriptId, script_version: version, status: 'Ready', hook_type: version, format, original_slide_count: expectedSlideCount, final_slide_count: expectedSlideCount, slides });
+  }
+  for (const scriptId of duplicateScriptIds) errors.push(`duplicate Script ID "${scriptId}"`);
+  if (!sourceSets.size) errors.push(`${ENGLISH_SHEET_NAME} contains no Source Sets`);
+  return { sourceSets, report: { source_set_count: sourceSets.size, script_count: scriptCount, scripts_per_pillar: scriptsPerPillar, duplicate_script_ids: [...duplicateScriptIds].sort(), missing_source_set_ids: 0, missing_slide_1: errors.filter((error) => error.endsWith('is missing Slide 1')).length, incorrect_slide_2: 0, invalid_slide_counts: errors.filter((error) => error.includes('Slide Count')).length, blank_slide_gaps: 0, empty_final_cta: 0, warnings: [], errors } };
+}
+
+function resolveLibraryOptions({ libraryDir = ARABIC_LIBRARY_DIR, workbookName = DEFAULT_WORKBOOK, language = 'ar' } = {}) {
+  const resolvedLibraryDir = path.resolve(libraryDir);
+  return {
+    libraryDir: resolvedLibraryDir,
+    workbookPath: path.join(resolvedLibraryDir, 'source', workbookName),
+    sourceSetsDir: path.join(resolvedLibraryDir, 'source-sets'),
+    indexPath: path.join(resolvedLibraryDir, 'index.json'),
+    language,
+  };
+}
+
+async function importScriptLibrary(options = {}) {
+  const { workbookPath, sourceSetsDir, indexPath, language } = resolveLibraryOptions(options);
+  if (!fs.existsSync(workbookPath)) {
+    throw new ScriptLibraryImportError(`Workbook is missing: ${path.relative(ROOT, workbookPath)}`);
+  }
   const workbook = new ExcelJS.Workbook();
-  await workbook.xlsx.readFile(WORKBOOK_PATH);
-  const scriptsSheet = workbook.getWorksheet('Scripts');
-  validateHeaders(scriptsSheet);
-  const taxonomy = taxonomyValues(workbook.getWorksheet('Taxonomy'));
-  const sourceSets = parseScripts(scriptsSheet, taxonomy);
-  const ordered = Array.from(sourceSets.values()).sort((left, right) => left.source_set_id.localeCompare(right.source_set_id, undefined, { numeric: true }));
-  fs.mkdirSync(SOURCE_SETS_DIR, { recursive: true });
-  for (const sourceSet of ordered) writeJsonAtomic(path.join(SOURCE_SETS_DIR, `${sourceSet.source_set_id}.json`), sourceSet);
+  await workbook.xlsx.readFile(workbookPath);
+  const sheet = workbook.getWorksheet(language === 'en' ? ENGLISH_SHEET_NAME : SHEET_NAME);
+  if (language === 'en') {
+    // The workbook remains read-only; English metadata is normalized only in memory.
+  } else validateHeaders(sheet);
+  const { sourceSets, report } = language === 'en' ? parseEnglishAndValidate(sheet) : parseAndValidate(sheet);
+  if (report.errors.length) {
+    throw new ScriptLibraryImportError(`Validation failed with ${report.errors.length} error(s)`, report);
+  }
+
+  const ordered = Array.from(sourceSets.values()).sort((left, right) => (
+    left.source_set_id.localeCompare(right.source_set_id, undefined, { numeric: true })
+  ));
+  fs.mkdirSync(sourceSetsDir, { recursive: true });
+  for (const sourceSet of ordered) {
+    writeJsonAtomic(path.join(sourceSetsDir, `${sourceSet.source_set_id}.json`), sourceSet);
+  }
   const expectedFiles = new Set(ordered.map((sourceSet) => `${sourceSet.source_set_id}.json`));
-  for (const filename of fs.readdirSync(SOURCE_SETS_DIR)) {
-    if (SOURCE_SET_ID_PATTERN.test(path.parse(filename).name) && path.extname(filename) === '.json' && !expectedFiles.has(filename)) {
-      fs.unlinkSync(path.join(SOURCE_SETS_DIR, filename));
+  for (const filename of fs.readdirSync(sourceSetsDir)) {
+    if (path.extname(filename).toLowerCase() === '.json' && !expectedFiles.has(filename)) {
+      fs.unlinkSync(path.join(sourceSetsDir, filename));
     }
   }
   const index = {
@@ -175,23 +312,30 @@ async function importScriptLibrary() {
       source_set_id: sourceSet.source_set_id,
       file: `source-sets/${sourceSet.source_set_id}.json`,
       pillar: sourceSet.pillar,
+      pillar_name: sourceSet.pillar_name,
       subtopic: sourceSet.subtopic,
       topic: sourceSet.topic,
       hook_types: Array.from(new Set(sourceSet.scripts.map((script) => script.hook_type))),
       script_count: sourceSet.scripts.length,
     })),
   };
-  writeJsonAtomic(INDEX_PATH, index);
-  return { source_set_count: ordered.length, script_count: ordered.reduce((count, sourceSet) => count + sourceSet.scripts.length, 0) };
+  writeJsonAtomic(indexPath, index);
+  return report;
 }
 
 if (require.main === module) {
-  importScriptLibrary()
-    .then((summary) => console.log(`Imported ${summary.script_count} scripts across ${summary.source_set_count} Source Sets.`))
+  const english = process.argv.includes('--language=en');
+  importScriptLibrary(english ? {
+    libraryDir: path.join(ROOT, 'content', 'script-library-en'),
+    workbookName: 'script-library.xlsx',
+    language: 'en',
+  } : undefined)
+    .then((report) => console.log(JSON.stringify(report, null, 2)))
     .catch((error) => {
       console.error(`Script Library import failed: ${error.message}`);
+      if (error.report) console.error(JSON.stringify(error.report, null, 2));
       process.exitCode = 1;
     });
 }
 
-module.exports = { ScriptLibraryImportError, importScriptLibrary };
+module.exports = { ScriptLibraryImportError, importScriptLibrary, resolveLibraryOptions };

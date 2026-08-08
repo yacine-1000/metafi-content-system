@@ -105,14 +105,15 @@ function generateSlideshows({
   const pendingRenders = [];
 
   for (const language of languages) {
+    const usesScriptLibrary = ['ar', 'en'].includes(language);
     const postStartedAt = Date.now();
     const selectionArgs = {
       pillar, hook, language,
-      usedScriptIds: language === 'ar' ? usedScriptIds : [],
-      excludedScriptIds: language === 'ar' ? excludedScriptIds : [],
-      requiredSourceSetId: language === 'ar' ? requiredSourceSetId : null,
-      avoidedSourceSetIds: language === 'ar' ? avoidedSourceSetIds : [],
-      accountId: language === 'ar' ? accountId : null,
+      usedScriptIds: usesScriptLibrary ? usedScriptIds : [],
+      excludedScriptIds: usesScriptLibrary ? excludedScriptIds : [],
+      requiredSourceSetId: usesScriptLibrary ? requiredSourceSetId : null,
+      avoidedSourceSetIds: usesScriptLibrary ? avoidedSourceSetIds : [],
+      accountId: usesScriptLibrary ? accountId : null,
     };
     const selectionTimings = {};
     const selectionStartedAt = Date.now();

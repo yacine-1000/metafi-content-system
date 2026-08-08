@@ -1,0 +1,168 @@
+{
+  "source_set_id": "SET-045",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
+  "subtopic": "Workout Split",
+  "topic": "Gym Splits Ranking (Worst to Best)",
+  "scripts": [
+    {
+      "script_id": "SET-045-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "worst vs best gym splits I've tried"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "BRO SPLIT. 1.5/10\nprogress is slow, hard to stick with. giving it one extra point cause it's what got me into lifting."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "ARNOLD SPLIT. 5/10\ngreat for arm size, but it wrecks you. used it the longest, though."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "METAFI\n9/10\nshows you exactly which split fits your goal and your body\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "UL/PPL. 8.5/10\neasy to run, fatigue's manageable, great overall growth."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "FEBOD. 10/10\nrecovery's elite, growth's elite. best one I've run, boosted my strength and fit perfectly with my sports outside the gym."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-045-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "tried every split. one changed my level"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "BRO SPLIT. 1.5/10\nslow progress, hard to stay consistent on. extra point for getting me into lifting in the first place."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "ARNOLD SPLIT. 5/10\ngreat for arm size, brutal on your recovery. ran it the longest though."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "METAFI\n9/10\nshows you exactly which split fits your goal and your body\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "UL/PPL. 8.5/10\neasy to follow, fatigue's manageable, solid overall growth."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "FEBOD. 10/10\nbest split I've run. elite recovery, elite growth, fit perfectly with my other sports."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-045-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "best workout split? my honest ranking"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "FEBOD. 10/10\nbest one I've ever run. elite recovery, elite growth, fit perfectly with my other sports."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "UL/PPL. 8.5/10\neasy to run, manageable fatigue, great overall growth."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "METAFI\n9/10\nshows you exactly which split fits your goal and your body\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "ARNOLD SPLIT. 5/10\ngreat for arms, brutal recovery. ran it the longest anyway."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "BRO SPLIT. 1.5/10\nslow progress, hard to stick with, but it's what got me into lifting."
+        }
+      ]
+    }
+  ]
+}

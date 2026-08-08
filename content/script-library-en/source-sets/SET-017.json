@@ -1,0 +1,186 @@
+{
+  "source_set_id": "SET-017",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Running + Gym",
+  "topic": "Combining Running with Gym",
+  "scripts": [
+    {
+      "script_id": "SET-017-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Routine / Schedule",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "run and lift? don't treat them as separate"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "strength training helps your stability, leg strength, joint durability, and injury prevention. it's not just building muscle, it's building a body that runs more efficiently for longer."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "but the problem starts when you train with no plan. heavy legs before a speed session or a long run = you're running gassed."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "keep heavy leg days away from your hard or long runs. days close to running should be lighter. focused on movement and stability."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "squats, lunges, RDLs, and calf/core work help a ton, just pick the right weight and keep your form clean."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "the goal is for lifting to make you stronger for running, not slower or heavier-legged."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Routine / Schedule",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "this mistake drains your legs before the run"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "the goal is for lifting to make you stronger for running. not slower. that only happens with the right structure."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "problem starts with no plan: heavy legs before a speed or long run = gassed running."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "strength training helps stability, leg strength, and injury prevention. not just muscle."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "keep heavy leg days away from your hard runs."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "squats, lunges, RDLs help a lot, just pick the right weight, keep clean form."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-017-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Routine / Schedule",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "you run and lift? this is you"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "the goal is for lifting to make you stronger for running. that only happens if you structure it right."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "problem starts with no plan: heavy legs before speed work = gassed on the run."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "strength training builds stability, leg strength, injury resistance. not just muscle."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "keep heavy legs away from hard or long run days."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "squats, lunges, RDLs help a ton, just pick the right weight and don't overdo it."
+        }
+      ]
+    }
+  ]
+}

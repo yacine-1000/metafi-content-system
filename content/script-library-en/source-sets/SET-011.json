@@ -1,0 +1,228 @@
+{
+  "source_set_id": "SET-011",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Sport + Muscle Gain",
+  "topic": "Building Muscle While Playing Sports",
+  "scripts": [
+    {
+      "script_id": "SET-011-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Listicle",
+      "original_slide_count": 11,
+      "final_slide_count": 11,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "how I built muscle playing sports outside the gym"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "I used to think running and padel were killing my gains, but it turned out to just be a scheduling problem."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "I made lifting the foundation, and treated other sports as something that completes my week, not wrecks it."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "also. get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "biggest mistake I made: training everything at max intensity like I never got tired."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "learned to keep some days light so I could actually keep going without burning out."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "food made a huge difference. more activity needs more food, not less."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "don't play a sport and assume your body's building muscle while you're barely eating right all day."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "sleep and rest aren't a luxury. they're what lets your body catch up to everything you're putting it through."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "bottom line: lifting, food, rest, and sports you actually enjoy. without turning your week into punishment."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-011-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Listicle",
+      "original_slide_count": 10,
+      "final_slide_count": 10,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "the mistake that almost killed my gains"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "biggest mistake I made: training everything at max intensity like I never got tired."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "used to think running and padel were killing my gains. turned out to just be a scheduling problem."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "also. get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "sleep and rest aren't a luxury. they're what lets your body catch up."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "made lifting the foundation, other sports complete my week instead of wrecking it."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "learned to keep some days light so I could keep going without burning out."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "food made a massive difference. more activity needs more food, not less."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "bottom line: lifting, food, rest, sports you enjoy. no punishment weeks."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-011-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Listicle",
+      "original_slide_count": 10,
+      "final_slide_count": 10,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "you play a sport and want muscle? this is you"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "biggest mistake: training everything full send like I never got tired."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "thought running and padel were killing my gains. it was just a scheduling problem."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "also. get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "sleep and rest aren't a luxury, they're what lets your body catch up."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "lifting became the foundation, other sports complete the week."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "kept some days light to keep going without burning out."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "food made a huge difference. more movement needs more fuel."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "bottom line: lift, eat, rest, play what you love. no punishment."
+        }
+      ]
+    }
+  ]
+}

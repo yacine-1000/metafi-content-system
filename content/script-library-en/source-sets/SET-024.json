@@ -1,0 +1,168 @@
+{
+  "source_set_id": "SET-024",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Running + Gym",
+  "topic": "Running and Lifting Mistakes",
+  "scripts": [
+    {
+      "script_id": "SET-024-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Listicle",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "3 mistakes killing your gains if you lift AND run"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "1- don't put your hard run right next to leg day. leave at least a day between intervals/sprints and heavy legs."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "2- don't make every run hard. keep most of them easy, and only push intensity once or twice a week."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "also. get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "3- don't run the same lifting volume you used to. if your running goes up, cut your leg sets."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "structure your week around your total load. not just your lifting."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-024-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Listicle",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "lifting and running same week? you're probably doing this wrong"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "1- don't put your hard run next to leg day. leave a rest day between intervals/sprints and heavy legs."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "2- don't make every run hard. keep most easy, and bump intensity once or twice a week max."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "also. get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "3- stop running the same leg volume as before. more running = fewer leg sets."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "structure your week around your total load, not just lifting."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-024-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Listicle",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "ran hard, hit legs, expected your body to just cope?"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "don't make every run hard. keep most of them easy, push intensity once or twice a week max."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "don't stack your hard run right next to leg day. leave a day between them."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "also. get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "structure your week around your total load, not just lifting."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "and don't run the same leg volume you used to if your mileage goes up. cut the sets."
+        }
+      ]
+    }
+  ]
+}

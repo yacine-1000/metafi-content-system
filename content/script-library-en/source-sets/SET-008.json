@@ -1,0 +1,258 @@
+{
+  "source_set_id": "SET-008",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
+  "subtopic": "Hormones",
+  "topic": "Habits That Support Testosterone",
+  "scripts": [
+    {
+      "script_id": "SET-008-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Listicle",
+      "original_slide_count": 12,
+      "final_slide_count": 12,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "4 habits that raise your testosterone fast"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "first thing: sleep. if your sleep's a mess, your hormones take the hit. aim for 7-8 hrs, no crazy late nights."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "one week of dialed-in sleep and you'll feel the difference in your energy and your body."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "second thing: your food. your body needs healthy fats to make hormones. olive oil, eggs, avocado, red meat once or twice a week."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "don't live off tuna and rice all day then wonder why your levels are low."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "third thing: lifting. resistance training raises testosterone hard, especially squats, deadlifts, and bench."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "train 3-4 days a week, stay in the 6-8 rep range with real weight. light training doesn't get you the same result."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "fourth thing: supplements that actually matter. vitamin D is huge, most guys are deficient. magnesium before bed improves sleep quality."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "not magic, just fills what's missing. you'll feel the difference within weeks."
+        },
+        {
+          "slide_number": 12,
+          "slide_label": "Slide 12",
+          "is_metafi_slide": false,
+          "text": "these small habits speed up your progress and change your energy, training, and body."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-008-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Listicle",
+      "original_slide_count": 12,
+      "final_slide_count": 12,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "why's your testosterone stuck even though you train hard?"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "first: sleep. messed up sleep = messed up hormones. aim for 7-8 hrs, cut the late nights."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "one week of locked-in sleep and you'll notice it in your energy and your body."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "second: your food. healthy fats to make hormones. olive oil, eggs, avocado, red meat once or twice a week."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "stop living off tuna and rice then wondering why your levels are trash."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "third: lifting. resistance training spikes testosterone, especially squats, deadlifts, bench."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "train 3-4x a week, stay in the 6-8 rep range with real weight. light stuff won't cut it."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "fourth: supplements that actually matter. vitamin D is huge, most guys are low. magnesium before bed = better sleep."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "not a magic fix, just fills the gap. you'll feel it within weeks."
+        },
+        {
+          "slide_number": 12,
+          "slide_label": "Slide 12",
+          "is_metafi_slide": false,
+          "text": "these small habits speed everything up. energy, training, body."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-008-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Listicle",
+      "original_slide_count": 12,
+      "final_slide_count": 12,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "4 habits fixed my testosterone"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "third thing, and the big one: lifting. resistance training raises testosterone hard, especially squats, deadlifts, bench."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "train 3-4 days a week, stay in the 6-8 rep range with real weight. light training doesn't cut it."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "first: sleep. messed up sleep = messed up hormones. aim for 7-8 hrs."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "one week of dialed-in sleep and you'll feel it in your energy."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "second: your food. healthy fats for hormone production. olive oil, eggs, avocado, red meat."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "don't live off tuna and rice then wonder why your levels are low."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "fourth: supplements that matter. vitamin D is huge, magnesium before bed helps your sleep."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "not magic, just fills what's missing."
+        },
+        {
+          "slide_number": 12,
+          "slide_label": "Slide 12",
+          "is_metafi_slide": false,
+          "text": "these small habits speed up everything."
+        }
+      ]
+    }
+  ]
+}

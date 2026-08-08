@@ -1,0 +1,186 @@
+{
+  "source_set_id": "SET-033",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
+  "subtopic": "Chest",
+  "topic": "Chest Exercise Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-033-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "5 exercises for a wide chest"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "Dumbbell fly 2/10. pretty mid, there's way stronger options"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "Flat dumbbell press 5/10. great range of motion, hits your upper chest directly, but there's better"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "Incline dumbbell press 7/10. great range of motion, hits your upper chest directly, but there's better"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "Cable fly 8/10. underrated af, keeps the tension the whole rep, but there's better"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Incline chest press machine 10/10. this one's elite. don't @ me"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-033-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "you're training chest wrong"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "Dumbbell fly 2/10. kinda basic, there's stronger picks out there"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "Flat dumbbell press 5/10. solid ROM, hits your upper chest dead on, but you can do better"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "Incline dumbbell press 7/10. solid ROM, hits your upper chest dead on, but you can do better"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "Cable fly 8/10. slept-on exercise, keeps tension the whole set, but there's better"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Incline chest press machine 10/10. this is the goat, try it and see for yourself"
+        }
+      ]
+    },
+    {
+      "script_id": "SET-033-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "best chest exercise? ranked 5, no cap"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "2/10 for Dumbbell fly. you'll find way stronger options easy"
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "5/10 for Flat dumbbell press. hits your upper chest directly and the ROM is clean, but there's better"
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "7/10 for Incline dumbbell press. hits your upper chest directly and the ROM is clean, but there's better"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "8/10 for Cable fly. one of the most underrated lifts, keeps tension the whole time"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "10/10 for Incline chest press machine. the goat. try it, ignore anyone who says otherwise"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,522 @@
+{
+  "source_sets": [
+    {
+      "source_set_id": "SET-001",
+      "file": "source-sets/SET-001.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Becoming a Hybrid Athlete",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-003",
+      "file": "source-sets/SET-003.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Hybrid Athlete Training Lessons",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-004",
+      "file": "source-sets/SET-004.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Performance & Recovery",
+      "topic": "Cortisol-Raising Habits",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-006",
+      "file": "source-sets/SET-006.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Three Runs with Gym",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-007",
+      "file": "source-sets/SET-007.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Workout Split",
+      "topic": "Workout Split Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-008",
+      "file": "source-sets/SET-008.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Hormones",
+      "topic": "Habits That Support Testosterone",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-010",
+      "file": "source-sets/SET-010.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Tennis + Gym",
+      "topic": "Combining Tennis with Gym",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-011",
+      "file": "source-sets/SET-011.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Sport + Muscle Gain",
+      "topic": "Building Muscle While Playing Sports",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-012",
+      "file": "source-sets/SET-012.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Biceps",
+      "topic": "Biceps Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-014",
+      "file": "source-sets/SET-014.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Training Concepts",
+      "topic": "Gym Mistakes to Avoid",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-015",
+      "file": "source-sets/SET-015.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Football + Gym",
+      "topic": "Combining Football with Gym",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-016",
+      "file": "source-sets/SET-016.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Pilates + Gym",
+      "topic": "Combining Pilates with Gym",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-017",
+      "file": "source-sets/SET-017.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Running with Gym",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-020",
+      "file": "source-sets/SET-020.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Hybrid Athlete Strength and Endurance",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-021",
+      "file": "source-sets/SET-021.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Hormones",
+      "topic": "Increasing Testosterone Naturally",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-024",
+      "file": "source-sets/SET-024.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Running and Lifting Mistakes",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-026",
+      "file": "source-sets/SET-026.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Running + Gym",
+      "topic": "Combining Running and Lifting",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-028",
+      "file": "source-sets/SET-028.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Pilates + Gym",
+      "topic": "Combining Pilates and Lifting",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-029",
+      "file": "source-sets/SET-029.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Hybrid Athlete Weekly Structure",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-031",
+      "file": "source-sets/SET-031.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "RPE",
+      "topic": "Understanding RPE",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-033",
+      "file": "source-sets/SET-033.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Chest",
+      "topic": "Chest Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-034",
+      "file": "source-sets/SET-034.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Back",
+      "topic": "Back Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-035",
+      "file": "source-sets/SET-035.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Shoulders",
+      "topic": "Shoulder Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-037",
+      "file": "source-sets/SET-037.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Triceps",
+      "topic": "Triceps Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-038",
+      "file": "source-sets/SET-038.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Forearms",
+      "topic": "Forearm Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-039",
+      "file": "source-sets/SET-039.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Abs",
+      "topic": "Ab Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-041",
+      "file": "source-sets/SET-041.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Glutes",
+      "topic": "Glute Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-042",
+      "file": "source-sets/SET-042.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Quads",
+      "topic": "Quad Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-043",
+      "file": "source-sets/SET-043.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Hamstrings",
+      "topic": "Hamstring Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-044",
+      "file": "source-sets/SET-044.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Calves",
+      "topic": "Calf Exercise Ranking",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-045",
+      "file": "source-sets/SET-045.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Workout Split",
+      "topic": "Gym Splits Ranking (Worst to Best)",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-046",
+      "file": "source-sets/SET-046.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Training Concepts",
+      "topic": "6 Things I Wish I Knew Before Training",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-047",
+      "file": "source-sets/SET-047.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Biceps",
+      "topic": "Biceps Exercise Ranking (V2)",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-048",
+      "file": "source-sets/SET-048.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Training Concepts",
+      "topic": "7 Things I Wish I Knew Before Lifting",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-049",
+      "file": "source-sets/SET-049.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Training Concepts",
+      "topic": "5 Years of Gym Lessons",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-050",
+      "file": "source-sets/SET-050.json",
+      "pillar": "P3",
+      "pillar_name": "Workout Programming / Exercise Selection",
+      "subtopic": "Shoulders",
+      "topic": "Shoulder Exercise Ranking (V2)",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    },
+    {
+      "source_set_id": "SET-051",
+      "file": "source-sets/SET-051.json",
+      "pillar": "P2",
+      "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+      "subtopic": "Hybrid Athlete",
+      "topic": "Becoming a Hybrid Athlete (V2)",
+      "hook_types": [
+        "ORIGINAL",
+        "V1",
+        "V2"
+      ],
+      "script_count": 3
+    }
+  ]
+}

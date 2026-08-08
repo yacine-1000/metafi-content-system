@@ -35,6 +35,7 @@
     "check:v1": "node scripts/checkV1.js",
     "check:v2": "node scripts/checkV2.js",
     "scripts:import": "node scripts/importScriptLibrary.js",
+    "scripts:import:en": "node scripts/importScriptLibrary.js --language=en",
     "supabase:backfill": "node scripts/supabaseBackfill.js",
     "supabase:upload-assets": "node scripts/supabaseUploadAssets.js",
     "supabase:reconcile-assets": "node scripts/supabaseReconcileAssetMetadata.js",

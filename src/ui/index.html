@@ -1196,7 +1196,7 @@
         <div class="campaign-wizard-card">
           <section class="campaign-step active" data-campaign-step="1" aria-labelledby="campaign-step-1-title">
             <h2 class="campaign-step-title" id="campaign-step-1-title">Set up your campaign</h2>
-            <div class="campaign-step-sub">Define the purpose, account, and audience language.</div>
+            <div class="campaign-step-sub">Define the purpose and account. Language is taken from the selected account.</div>
             <div class="campaign-field"><label class="campaign-label" for="campaign-name">Campaign Name</label><input class="campaign-input" id="campaign-name" type="text" required maxlength="120" oninput="updateCampaignWizard()"></div>
             <div class="campaign-field">
               <span class="campaign-label">Objective</span>
@@ -1210,15 +1210,9 @@
             <div class="campaign-row" style="grid-template-columns:1fr 1fr;">
               <div class="campaign-field"><span class="campaign-label">Account</span><div class="campaign-account-options" id="campaign-account-options"><div class="campaign-random-note">Loading accounts…</div></div></div>
               <div class="campaign-field">
-                <span class="campaign-label">Language</span>
+                <span class="campaign-label">Language (from account)</span>
                 <div class="campaign-dropdown" id="campaign-language-dropdown">
-                  <button class="campaign-dropdown-button" id="campaign-language-button" type="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleCampaignLanguage()"><span id="campaign-language-label">Select language</span><span>&#9662;</span></button>
-                  <div class="campaign-dropdown-menu" role="listbox" aria-label="Language">
-                    <button class="campaign-dropdown-option" type="button" role="option" onclick="selectCampaignLanguage('ar')">Arabic</button>
-                    <button class="campaign-dropdown-option" type="button" role="option" onclick="selectCampaignLanguage('en')">English</button>
-                    <button class="campaign-dropdown-option" type="button" role="option" onclick="selectCampaignLanguage('es')">Spanish</button>
-                    <button class="campaign-dropdown-option" type="button" role="option" onclick="selectCampaignLanguage('fr')">French</button>
-                  </div>
+                  <button class="campaign-dropdown-button" id="campaign-language-button" type="button" disabled><span id="campaign-language-label">Select an account</span></button>
                 </div>
               </div>
             </div>
@@ -2133,11 +2127,11 @@
       const target = document.getElementById('quick-save-posts'); if (!_quickSaveData) return;
       const posts = _quickSaveData.posts.filter((post) => _quickSaveFilter === 'completed' ? post.publication : !post.publication);
       const groups = new Map(); posts.forEach((post) => { const key = `${post.scheduled_date} ${post.scheduled_time}`; if (!groups.has(key)) groups.set(key, []); groups.get(key).push(post); });
-      target.innerHTML = [...groups.entries()].map(([key, items]) => `<section class="campaign-workspace-card"><div class="campaign-workspace-card-title">${escapeHtml(key)}</div>${items.map((p) => `<div style="display:grid;grid-template-columns:72px 1fr;gap:12px;margin-top:12px;"><img style="width:72px;height:96px;object-fit:cover;border-radius:7px;" src="${p.slide_urls[0] || ''}" alt=""><div><div style="font-size:12px;white-space:pre-wrap;">${escapeHtml(p.first_slide_text || p.post_id)}</div><div style="font-size:10px;color:var(--text-muted);margin:6px 0;">@${escapeHtml(p.account_handle)} · ${escapeHtml(String(p.language).toUpperCase())} · ${p.publication ? 'Posted' : p.saved_at ? 'Saved' : 'Ready'}</div><div style="display:flex;gap:6px;flex-wrap:wrap;"><button class="campaign-secondary" onclick="quickSaveCopy('${escapeHtml(p.post_id)}')">Copy Caption</button><button class="campaign-secondary" onclick="quickSaveSlides('${escapeHtml(p.post_id)}')">Share Slides</button>${p.publication ? '' : `<button class="campaign-secondary" onclick="quickSaveSaved('${escapeHtml(p.post_id)}')">Mark as Saved</button><button class="campaign-primary" onclick="markCampaignPostPosted('${escapeHtml(p.post_id)}')">Mark as Posted</button>`}</div></div></div>`).join('')}</section>`).join('') || '<div class="campaign-empty">No posts in this section.</div>';
+      target.innerHTML = [...groups.entries()].map(([key, items]) => `<section class="campaign-workspace-card"><div class="campaign-workspace-card-title">${escapeHtml(key)}</div>${items.map((p) => `<div style="display:grid;grid-template-columns:72px 1fr;gap:12px;margin-top:12px;"><img style="width:72px;height:96px;object-fit:cover;border-radius:7px;" src="${p.slide_urls[0] || ''}" alt=""><div><div style="font-size:12px;white-space:pre-wrap;">${escapeHtml(p.first_slide_text || p.post_id)}</div><div style="font-size:10px;color:var(--text-muted);margin:6px 0;">@${escapeHtml(p.account_handle)} · ${escapeHtml(String(p.language).toUpperCase())} · ${p.publication ? 'Posted' : p.saved_at ? 'Saved' : 'Ready'}</div><div style="display:flex;gap:6px;flex-wrap:wrap;"><button class="campaign-secondary" onclick="quickSaveCopy('${escapeHtml(p.post_id)}')">Copy Caption</button><button class="campaign-secondary" onclick="quickSaveSlides('${escapeHtml(p.post_id)}')">Save All Images</button>${p.publication ? '' : `<button class="campaign-secondary" onclick="quickSaveSaved('${escapeHtml(p.post_id)}')">Mark as Saved</button><button class="campaign-primary" onclick="markCampaignPostPosted('${escapeHtml(p.post_id)}')">Mark as Posted</button>`}</div></div></div>`).join('')}</section>`).join('') || '<div class="campaign-empty">No posts in this section.</div>';
     }
     function quickSavePost(id) { return _quickSaveData && _quickSaveData.posts.find((item) => item.post_id === id); }
     async function quickSaveCopy(id) { const post = quickSavePost(id); try { await navigator.clipboard.writeText(post.caption || ''); document.getElementById('quick-save-feedback').textContent = 'Caption copied.'; } catch { document.getElementById('quick-save-feedback').textContent = 'Unable to copy caption.'; } }
-    async function quickSaveSlides(id) { const post = quickSavePost(id); try { if (navigator.share && navigator.canShare && post.slide_urls.length) { const files = await Promise.all(post.slide_urls.map(async (url, i) => new File([await fetch(url).then((r) => r.blob())], `slide-${i + 1}.png`, { type: 'image/png' }))); if (navigator.canShare({ files })) { await navigator.share({ files }); return; } } } catch {} window.location.href = `/api/campaigns/${encodeURIComponent(_currentCampaignId)}/posts/${encodeURIComponent(id)}/slides.zip`; }
+    function quickSaveSlides(id) { window.location.href = `/api/campaigns/${encodeURIComponent(_currentCampaignId)}/posts/${encodeURIComponent(id)}/slides.zip`; }
     async function quickSaveSaved(id) { const response = await fetch(`/api/campaigns/${encodeURIComponent(_currentCampaignId)}/posts/${encodeURIComponent(id)}/mark-saved`, { method: 'POST' }); const data = await response.json(); document.getElementById('quick-save-feedback').textContent = response.ok ? 'Marked as saved.' : (data.error || 'Unable to save'); if (response.ok) loadQuickSave(); }
 
     function campaignWorkspaceWindow(campaign) {

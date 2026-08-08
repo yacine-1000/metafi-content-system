@@ -1,0 +1,240 @@
+{
+  "source_set_id": "SET-010",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
+  "subtopic": "Tennis + Gym",
+  "topic": "Combining Tennis with Gym",
+  "scripts": [
+    {
+      "script_id": "SET-010-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Routine / Schedule",
+      "original_slide_count": 11,
+      "final_slide_count": 11,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "tennis and the gym? here's the secret"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "Monday. Upper Body Strength: chest, back, shoulders, arms. your legs need to be fresh for tennis tomorrow."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "Tuesday. Tennis: you're playing light, no beat-up legs from yesterday, so you move faster and play better."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "Wednesday. Lower Body Strength: a day after tennis, train legs but keep it smart, not suicidal, so you don't drag the fatigue into the rest of your week."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "Thursday. Rest or light walk: a day to shake off the fatigue. simple walk or mobility, nothing heavy."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Friday. Upper Body + Posterior Chain: back to upper, plus light posterior work (hamstrings, glutes, lower back) without wrecking your legs before tennis."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "Saturday. Tennis: second session, coming off a day with no heavy legs so you walk onto the court fresh."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "Sunday. Rest: close the week out resting. sleep well, eat well, let your body catch up."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "bottom line: tennis twice, gym three times, rest twice. every session gets what it needs without wrecking the other."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-010-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Routine / Schedule",
+      "original_slide_count": 11,
+      "final_slide_count": 11,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "most tennis players wreck their own training"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "bottom line first: tennis twice, gym three times, rest twice. nothing wrecks anything else."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "Monday. Upper Body Strength: chest, back, shoulders, arms. legs need to be fresh for tennis tomorrow."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "Tuesday. Tennis: playing light, no beat-up legs from yesterday."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "Wednesday. Lower Body Strength: legs, but smart, not suicidal."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Thursday. Rest or light walk."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "Friday. Upper + Posterior Chain: upper plus light posterior work."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "Saturday. Tennis: second session, fresh legs."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "Sunday. Rest: sleep well, let your body catch up."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-010-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Routine / Schedule",
+      "original_slide_count": 11,
+      "final_slide_count": 11,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "you play tennis and lift? this is you"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "bottom line: tennis twice, gym three times, rest twice. nothing fights anything else."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "Monday. Upper Body Strength, legs fresh for tomorrow's tennis."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that adjusts around your sport\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "Tuesday. Tennis, light and fresh."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "Wednesday. Lower Body Strength, smart not suicidal."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Thursday. Rest or light walk."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "Friday. Upper + Posterior Chain."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "Saturday. Tennis, second session."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "Sunday. Rest, let your body catch up."
+        }
+      ]
+    }
+  ]
+}

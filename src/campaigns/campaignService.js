@@ -193,7 +193,7 @@ function createCampaign(input) {
   const normalizedInput = {
     ...input,
     account_id: account.account_id,
-    language: input.language || account.language,
+    language: account.language,
     timezone: input.timezone || account.timezone,
     publishing_mode: input.publishing_mode || 'mobile_finish',
   };

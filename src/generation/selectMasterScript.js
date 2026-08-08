@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { selectArabicRuntimeScript } = require('../scripts/scriptLibrary');
+const { selectLibraryRuntimeScript } = require('../scripts/scriptLibrary');
 
 const ROOT = path.resolve(__dirname, '../..');
 
@@ -125,14 +125,16 @@ function selectMasterScriptPost(args, options = {}) {
   if (!['ar', 'en', 'es', 'fr'].includes(language)) {
     throw new Error(`Unsupported language: ${language}`);
   }
-  const legacyVisualSelection = language === 'ar'
+  const usesScriptLibrary = ['ar', 'en'].includes(language);
+  const legacyVisualSelection = usesScriptLibrary
     ? (() => {
       try { return selectMasterScript(topicBank, pillarId); }
       catch { return selectMasterScript(topicBank, getActivePillarIds(pillars)[0]); }
     })()
     : null;
   startedAt = performance.now();
-  const librarySelection = language === 'ar' ? selectArabicRuntimeScript({
+  const librarySelection = usesScriptLibrary ? selectLibraryRuntimeScript({
+    language,
     pillarId,
     hookType: args.hook,
     visualHookType: legacyVisualSelection.script.visual_hook_type,

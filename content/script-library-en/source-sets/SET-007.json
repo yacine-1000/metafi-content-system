@@ -1,0 +1,204 @@
+{
+  "source_set_id": "SET-007",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
+  "subtopic": "Workout Split",
+  "topic": "Workout Split Ranking",
+  "scripts": [
+    {
+      "script_id": "SET-007-ORIGINAL",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "worst vs best workout splits I've tried"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "worst: Bro Split. 0/10. you hit each muscle once a week, and that almost never gives you clear growth."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "PPL and Arnold Split. 5/10. the split trains you 6 days and rests you 1. way too little recovery, especially vs splits that hit muscles twice a week."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "best: Anterior/Posterior. 10/10. hits each muscle twice a week, with at least 3 rest days."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "and the big one: there's no full leg day to wreck you."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Full Body. 8/10. great if you're short on time and can only train 2-3 days a week."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "Upper/Lower. 7/10. close to Anterior/Posterior, just with legs on their own day."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V1",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "6 splits I've tried. one was a huge mistake"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "worst: Bro Split. 0/10. one muscle, once a week. rarely gives you real growth."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "PPL and Arnold Split. 5/10. trains you 6 days, rests you 1. that's way too little recovery vs a split hitting muscles twice weekly."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "the best: Anterior/Posterior. 10/10. hits every muscle twice a week with 3+ rest days."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "and no full leg day to destroy you."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Full Body. 8/10. solid if you're short on time, 2-3 sessions a week."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "Upper/Lower. 7/10. close to Anterior/Posterior, just splits legs onto their own day."
+        }
+      ]
+    },
+    {
+      "script_id": "SET-007-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
+      "slides": [
+        {
+          "slide_number": 1,
+          "slide_label": "Slide 1",
+          "is_metafi_slide": false,
+          "text": "tried every split that exists. my honest ranking"
+        },
+        {
+          "slide_number": 2,
+          "slide_label": "Slide 2",
+          "is_metafi_slide": false,
+          "text": "save this. you'll need it at the gym"
+        },
+        {
+          "slide_number": 3,
+          "slide_label": "Slide 3",
+          "is_metafi_slide": false,
+          "text": "the best: Anterior/Posterior. 10/10. hits every muscle twice a week, 3+ rest days."
+        },
+        {
+          "slide_number": 4,
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "and no full leg day to wreck you."
+        },
+        {
+          "slide_number": 5,
+          "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "get a lifting plan that actually adjusts to your week and your goal\ntry the app"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "Upper/Lower. 7/10. close to Anterior/Posterior, just legs on their own day."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "worst: Bro Split. 0/10. one muscle once a week. rarely real growth."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "PPL and Arnold. 5/10. 6 days on, 1 day off. way too little recovery."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "Full Body. 8/10. great if time's tight, 2-3 sessions a week."
+        }
+      ]
+    }
+  ]
+}
