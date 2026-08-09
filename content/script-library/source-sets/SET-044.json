@@ -1,380 +1,184 @@
 {
   "source_set_id": "SET-044",
-  "pillar": "Workout Programming / Exercise Selection",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
   "subtopic": "Calves",
   "topic": "Calf Exercise Ranking",
   "scripts": [
     {
       "script_id": "SET-044-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Tier List / Ranking",
-      "original_slide_count": 7,
-      "final_slide_count": 7,
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٥ تمارين تخلي حجم البطات عندك أكبر(آخر واحد بيبهرك)"
+          "text": "٥ تمارين تخلي حجم البطات عندك أكبر (آخر واحد بيبهرك)"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏‎Dumbbell calf raise 2/10‎عادي ج ًدا وفيه أقوى منه"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏‎Seated calf raise 4/10‎مو سيء"
+          "text": "‏‎Dumbbell calf raise 2/10‎عادي جدًا وفيه أقوى منه"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏‎Seated calf raise 4/10‎مو سيء"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏‎Leg press calf raise 6/10‎يعطيك تمدد ممتاز ويستهدف ربالتك مباشرة بس فيه أفضل"
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏‎Smith machine calf raise 8/10‎تمرين مظلوم ويعطيك ثبات أسطوري بس فيه أفضل"
+          "text": "‏‎Leg press calf raise 6/10‎يعطيك تمدد ممتاز ويستهدف ربلتك مباشرة بس فيه أفضل"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏‎Standing machine calf raise 10/10‎تمرين فخم بشكل ال تسمع للي يقول جينات وما تكبر"
+          "text": "‏‎Smith machine calf raise 8/10‎تمرين مظلوم ويعطيك ثبات أسطوري بس فيه أفضل"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "‏‎Standing machine calf raise 10/10‎تمرين فخم بشكل لا تسمع للي يقول جينات وما تكبر"
         }
       ]
     },
     {
       "script_id": "SET-044-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أخطاء تسويها تخلي بطاتك ما تكبر وتلوم الجينات"
+          "text": "أغلب الناس تسوي تمارين البطات غلط — هذا ترتيبها من الأسوأ للأفضل"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول غلطة إنك تعتمد على تمارين عادية وضعيفة مثل ‎Dumbbell calf raise‎ اللي ما يعطيك التمدد الكافي."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثاني غلطة إنك تلعب بدون ما تسجل أوزانك وتطور فيها بانتظام، مع إن الاستمرار بالزيادة التدريجية هو الأساس."
+          "text": "Dumbbell calf raise 2/10 — شي عادي وفيه تمارين أقوى بكثير"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "Seated calf raise 4/10 — مقبول، بس مو أفضل خيار"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ثالث غلطة هي سحبتك على تمارين الثبات القوية وتفضيلك للـ ‎Seated calf raise‎ عليه مع إنه مو أفضل خيار."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏ركز على تمارين فخمة تعطيك ثبات عالي وتمدد كامل مثل ‎Leg press‎ أو ‎Standing machine calf raise‎\n‏وبتشوف النتيجة بنفسك."
+          "text": "Leg press calf raise 6/10 — مدى حركة حلو ويشتغل على ربلتك مباشرة، بس فيه أقوى منه"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "Smith machine calf raise 8/10 — تمرين مغبون، يحافظ على الشد طول الحركة، بس فيه أفضل"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Standing machine calf raise 10/10 — تمرين خرافي، جرّبه بنفسك وشوف الفرق"
         }
       ]
     },
     {
       "script_id": "SET-044-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أشياء لازم تسويها عشان تعرض بطاتك وتكبرها صح"
+          "text": "وش أفضل تمرين بطات؟ جربت ٥ ورتبتهم بصراحة"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أواًل، استهدف الربالت مباشرة بتمارين تعطيك تمدد كامل وعميق مثل ‎Leg press calf raise.‎"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثانيًا، العب تمارين تضمن لك ثبات أسطوري عشان تشيل وزن صح وتتحكم بالتكرار مثل الـ ‎Smith machine calf‎\nraise."
+          "text": "2/10 لـDumbbell calf raise — تلقى تمارين أقوى منه بسهولة"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "4/10 لـSeated calf raise — مو خيار سيء، بس مو أول اختيار"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ً\n‏ثالثا، خل تمرين ‎Standing machine calf raise‎ هو خيارك الأساسي والأقوى في جدولك لأنه يفجر العضلة تفعيل."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏الأهم من هذا كله، سجل أوزانك وتطور فيها تدريجيًا وال تتحجج بالجينات لأنها تكبر غصب مع التمرين الصح."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-044-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف ترتب تمارين البطات في جدولك عشان تطلع بنتيجة فعلية؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏ابدأ بالاستغناء عن التمارين الضعيفة مثل ‎Dumbbell calf raise‎ والـ ‎Seated calf raise‎ لأن فعاليتها عادية."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ركز على التمارين اللي تضمن لك تمدد ممتاز واستهداف مباشر للربالت مثل ‎Leg press calf raise.‎"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏استخدم الـ ‎Smith machine calf raise‎ عشان تستفيد من الثبات الأسطوري وتتحكم بالوزن صح."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏وخل خيارك الملكي دائمًا هو ‎Standing machine calf raise‎، مع تسجيل أوزانك باستمرار لتضمن التطور."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-044-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا أنت تتمرن بطات بكل قوتك ومو راضية تكبر، هذا الكالم لك"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏ترى تمرين ‎Dumbbell calf raise‎ أو الـ ‎Seated calf raise‎ لحالهم ما بيفيدونك كثير لأن تقييمهم ضعيف مقارنة\n‏بغيرهم."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏البطات تحتاج تمارين تعطيك ثبات عالي وتمدد قوي للربالت، وهذا بتلقاه في الـ ‎Leg press‎ والـ ‎Smith machine.‎"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
           "is_metafi_slide": true,
           "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏والملك اللي لازم يكون أساسي بجدولك هو ‎Standing machine calf raise‎ لأنه الأقوى لتكبير هذه العضلة."
-        },
-        {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏ال تقول جينات وما تكبر، بس سجل أوزانك وتطور فيها تدريجيًا وبتشوف كيف تتغير."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-044-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏أكبر غلطة تسويها هي إنك تفترض إن بطاتك ما تكبر بسبب الجينات وتلعب تمارين ضعيفة"
+          "text": "6/10 لـLeg press calf raise — يستهدف ربلتك مباشرة ومدى حركته ممتاز، بس فيه أفضل"
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الحقيقة إن تمرين ‎Dumbbell calf raise‎ عادي ج ًدا والـ ‎Seated calf raise‎ مو كافي لبناء حجم حقيقي."
+          "text": "8/10 لـSmith machine calf raise — من التمارين المظلومة، يخلي العضلة تحت شد طول الوقت"
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 8,
+          "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏ربالتك تحتاج تمارين بمدى حركي كامل وثبات عالي، والـ ‎Leg press‎ والـ ‎Smith machine calf raise‎ يعطونك\n‏هذا الشيء بالملي."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏والتمرين اللي فعلاً يستاهل تقييم 10/10هو ‎Standing machine calf raise‎ لأنه الأفضل بال منازع."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏تذكر دايمًا، سجل أوزانك وتطور فيها بذكاء والبطات بتكبر غصب ومو شرط تكون جيناتك أسطورية عشان تتطور."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-044-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحسب بطاتي مستحيل تكبر بسبب جيناتي، لين غيرت طريقة اختياري للتمارين"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏اكتشفت إن تمرين ‎Dumbbell calf raise‎ والـ ‎Seated calf raise‎ خيارات عادية وما تعطي الربالت التحفيز الكافي\n‏للنمو."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏لما بدأت ألعب ‎Leg press‎ والـ ‎Smith machine calf raise‎ حسيت بتمدد وثبات مختلف تمامًا و ّفرت عليّ وقت\n‏طويل."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏والفرق الحقيقي شفته لما التزمت بالـ ‎Standing machine calf raise‎ لأنه تمرين فخم تفعيله مجنون."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏الزبدة، البطات تكبر مثل أي عضلة ثانية إذا سجلت أوزانك وتطورت فيها، ال تسمع للي يقولك مستحيل تكبر."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-044-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏ليه بطاتك ما تكبر مع إنك تتمرنها دايمًا؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏المشكلة غالبًا مو بـ جيناتك، المشكلة بـ اختيارك للتمارين وطريقة تمرينك لها."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏تمرين ‎Dumbbell calf raise‎ تمرين عادي، والـ ‎Leg press calf raise‎ يعطيك تمدد أفضل بكثير ويستهدفها\n‏مباشرة."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏جرب الـ ‎Smith machine calf raise‎ للثبات الأسطوري، أو الـ ‎Standing machine calf raise‎ لأنه الخيار\n‏الأقوى على الإطالق."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏الأهم من كل هذا، عامل البطات كأي عضلة ثانية وسجل أوزانك عشان تضمن التطور المستمر."
+          "text": "10/10 لـStanding machine calf raise — القمة. جرّبه وتجاهل أي حد يقولك غير كذا"
         }
       ]
     }

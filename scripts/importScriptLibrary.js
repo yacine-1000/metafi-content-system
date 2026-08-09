@@ -6,7 +6,7 @@ const ExcelJS = require('exceljs');
 
 const ROOT = path.resolve(__dirname, '..');
 const ARABIC_LIBRARY_DIR = path.join(ROOT, 'content', 'script-library');
-const DEFAULT_WORKBOOK = 'nail_spa_script_library_final.xlsx';
+const DEFAULT_WORKBOOK = 'script-library-updated.xlsx';
 const SHEET_NAME = 'Script Library';
 const SLIDE_TWO_TEXT = 'احفظي المقطع\nبتحتاجينه';
 const EXPECTED_HEADERS = [
@@ -17,6 +17,7 @@ const EXPECTED_HEADERS = [
 const SOURCE_SET_ID_PATTERN = /^SET-\d{3,}$/;
 const PILLAR_PATTERN = /^P[1-4]$/;
 const ENGLISH_SHEET_NAME = '111 Scripts (EN)';
+const ARABIC_UPDATED_SHEET_NAME = '111 Scripts';
 const ENGLISH_HEADERS = [
   '#', 'Script ID', 'Variant', 'Pillar', 'Subtopic', 'Topic', 'Format', 'Slide Count',
   'Slide 1', 'Slide 2', 'Slide 3', 'Slide 4', 'Slide 5', 'Slide 6',
@@ -197,11 +198,11 @@ function parseAndValidate(sheet) {
   return { sourceSets, report };
 }
 
-function parseEnglishAndValidate(sheet) {
-  if (!sheet) throw new ScriptLibraryImportError(`Workbook is missing the "${ENGLISH_SHEET_NAME}" sheet`);
+function parse111ScriptsAndValidate(sheet, sheetName) {
+  if (!sheet) throw new ScriptLibraryImportError(`Workbook is missing the "${sheetName}" sheet`);
   ENGLISH_HEADERS.forEach((header, offset) => {
-    const actual = textValue(sheet.getRow(1).getCell(offset + 1), `${ENGLISH_SHEET_NAME}!${sheet.getRow(1).getCell(offset + 1).address}`);
-    if (actual !== header) throw new ScriptLibraryImportError(`${ENGLISH_SHEET_NAME} column ${offset + 1} must be "${header}"; found "${actual || ''}"`);
+    const actual = textValue(sheet.getRow(1).getCell(offset + 1), `${sheetName}!${sheet.getRow(1).getCell(offset + 1).address}`);
+    if (actual !== header) throw new ScriptLibraryImportError(`${sheetName} column ${offset + 1} must be "${header}"; found "${actual || ''}"`);
   });
   const errors = [];
   const duplicateScriptIds = new Set();
@@ -212,7 +213,7 @@ function parseEnglishAndValidate(sheet) {
   for (let rowNumber = 2; rowNumber <= sheet.rowCount; rowNumber += 1) {
     const row = sheet.getRow(rowNumber);
     if (!row.hasValues) continue;
-    const at = (column) => `${ENGLISH_SHEET_NAME}!${row.getCell(column).address}`;
+    const at = (column) => `${sheetName}!${row.getCell(column).address}`;
     const required = (column, label) => {
       try { return textValue(row.getCell(column), at(column), { required: true }); } catch (error) { errors.push(`${label}: ${error.message}`); return null; }
     };
@@ -244,7 +245,7 @@ function parseEnglishAndValidate(sheet) {
       slideValues.push(text);
     }
     const expectedSlideCount = Number(declaredSlideCount);
-    if (!Number.isInteger(expectedSlideCount) || expectedSlideCount < 3 || expectedSlideCount > 12) errors.push(`${at(8)} must be an integer from 3 to 12`);
+    if (!Number.isInteger(expectedSlideCount) || expectedSlideCount < 5 || expectedSlideCount > 12) errors.push(`${at(8)} must be an integer from 5 to 12`);
     if (slideValues[0] == null) errors.push(`${at(9)} is missing Slide 1`);
     if (slideValues.slice(expectedSlideCount).some((text) => text != null)) errors.push(`${at(8)} has content after Slide Count`);
     const slides = slideValues.slice(0, expectedSlideCount).map((text, offset) => ({
@@ -263,7 +264,7 @@ function parseEnglishAndValidate(sheet) {
     sourceSet.scripts.push({ script_id: scriptId, script_version: version, status: 'Ready', hook_type: version, format, original_slide_count: expectedSlideCount, final_slide_count: expectedSlideCount, slides });
   }
   for (const scriptId of duplicateScriptIds) errors.push(`duplicate Script ID "${scriptId}"`);
-  if (!sourceSets.size) errors.push(`${ENGLISH_SHEET_NAME} contains no Source Sets`);
+  if (!sourceSets.size) errors.push(`${sheetName} contains no Source Sets`);
   return { sourceSets, report: { source_set_count: sourceSets.size, script_count: scriptCount, scripts_per_pillar: scriptsPerPillar, duplicate_script_ids: [...duplicateScriptIds].sort(), missing_source_set_ids: 0, missing_slide_1: errors.filter((error) => error.endsWith('is missing Slide 1')).length, incorrect_slide_2: 0, invalid_slide_counts: errors.filter((error) => error.includes('Slide Count')).length, blank_slide_gaps: 0, empty_final_cta: 0, warnings: [], errors } };
 }
 
@@ -285,11 +286,12 @@ async function importScriptLibrary(options = {}) {
   }
   const workbook = new ExcelJS.Workbook();
   await workbook.xlsx.readFile(workbookPath);
-  const sheet = workbook.getWorksheet(language === 'en' ? ENGLISH_SHEET_NAME : SHEET_NAME);
-  if (language === 'en') {
-    // The workbook remains read-only; English metadata is normalized only in memory.
-  } else validateHeaders(sheet);
-  const { sourceSets, report } = language === 'en' ? parseEnglishAndValidate(sheet) : parseAndValidate(sheet);
+  const uses111Schema = language === 'en' || path.basename(workbookPath) === DEFAULT_WORKBOOK;
+  const sheetName = language === 'en' ? ENGLISH_SHEET_NAME : ARABIC_UPDATED_SHEET_NAME;
+  const sheet = workbook.getWorksheet(uses111Schema ? sheetName : SHEET_NAME);
+  if (!uses111Schema) validateHeaders(sheet);
+  // Workbook content stays read-only; its 111-script schema is normalized only in memory.
+  const { sourceSets, report } = uses111Schema ? parse111ScriptsAndValidate(sheet, sheetName) : parseAndValidate(sheet);
   if (report.errors.length) {
     throw new ScriptLibraryImportError(`Validation failed with ${report.errors.length} error(s)`, report);
   }

@@ -1,386 +1,238 @@
 {
   "source_set_id": "SET-010",
-  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
   "subtopic": "Tennis + Gym",
   "topic": "Combining Tennis with Gym",
   "scripts": [
     {
       "script_id": "SET-010-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Routine / Schedule",
-      "original_slide_count": 9,
-      "final_slide_count": 10,
+      "original_slide_count": 11,
+      "final_slide_count": 11,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏تبغى تجمع بين التنس والنادي؟ السر مو إنك تتمرن أكثر السر إنك ترتب الأسبوع صح"
+          "text": "تبغى تجمع بين التنس والنادي؟ السر مو إنك تتمرن أكثر، السر إنك ترتب الأسبوع صح"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏الأحد ‎Upper body strength‎ نبدأ بتمرين علوي صدر، ظهر، كتف، يدين لأن رجولك لازم تكون فريش للتنس بكرة"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الإثنين ‎Tennis‎ هنا تلعب تنس وأنت خفيف بدون أرجل مكسّرة من تمرين أمس فتتحرك أسرع وتلعب أحسن"
+          "text": "‏الأحد ‎Upper body strength‎ نبدأ بتمرين علوي صدر، ظهر، كتف، يدين لأن رجولك لازم تكون فريش للتنس بكرة"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏الإثنين ‎Tennis‎ هنا تلعب تنس وأنت خفيف بدون أرجل مكسّرة من تمرين أمس فتتحرك أسرع وتلعب أحسن"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الثالثاء ‎Lower body strength‎ بعد التنس بيوم تمرن أرجل بس خله ذكي مو انتحاري عشان ما تسحب تعبك لباقي\n‏الأسبوع"
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الأربعاء راحة أو مشي خفيف هذا يوم يفك التعب مشي بسيط أو موبيلتي بدون جلد زيادة"
+          "text": "الثلاثاء — Lower Body Strength\nبعد التنس بيوم، تمرن أرجل بس خله ذكي مو انتحاري عشان ما تسحب تعبك لباقي الأسبوع."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الخميس ‎Upper body + posterior chain‎ نرجع للجزء العلوي ومعه شغل خفيف للخلفيات هامسترنق، قلووتس، ظهر\n‏سفلي بس بدون ما نكسر الرجول قبل التنس"
+          "text": "الأربعاء — راحة أو مشي خفيف\nهذا يوم يفك التعب: مشي بسيط أو موبيلتي بدون جلد زيادة."
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏الجمعة ‎Tennis‎ ثاني حصة تنس وتجي بعد يوم ما كان فيه أرجل ثقيل عشان تدخل الملعب ورجولك مو منهكة"
+          "text": "الخميس — Upper Body + Posterior Chain\nنرجع للعلوي، ومعه شغل خفيف للخلفيات (هامسترنق، قلوتس، ظهر سفلي) بدون ما نكسر الرجول."
         },
         {
           "slide_number": 9,
           "slide_label": "Slide 9",
           "is_metafi_slide": false,
-          "text": "‏السبت راحة اقفل الأسبوع براحة نام كويس، كل كويس وخلي جسمك يلحق يتعافى"
+          "text": "الجمعة — Tennis\nثاني حصة تنس، تجي بعد يوم بدون أرجل ثقيلة عشان تدخل الملعب ورجولك مو منهكة."
         },
         {
           "slide_number": 10,
           "slide_label": "Slide 10",
           "is_metafi_slide": false,
-          "text": "‏الزبدة تنس يومين نادي ثالث أيام راحة يومين كذا تعطي كل تمرين حقه بدون ما تخلي التنس يخرب النادي وال النادي يخرب\n‏التنس"
+          "text": "السبت — راحة\nاقفل الأسبوع براحة. نام كويس، كل كويس، وخلي جسمك يلحق يتعافى."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "الزبدة: تنس يومين، نادي ثلاث أيام، راحة يومين. كذا تعطي كل تمرين حقه بدون ما يخرب أحدهم الثاني."
         }
       ]
     },
     {
       "script_id": "SET-010-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Routine / Schedule",
+      "original_slide_count": 11,
+      "final_slide_count": 11,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أخطاء تطيح بلياقتك وتخرب عليك تجميع التنس والنادي"
+          "text": "أغلب لاعبين التنس يخربون على أنفسهم بترتيب أسبوعهم غلط"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول غلطة: تلعب أرجل ثقيل قبل مباراة التنس بيوم واحد. هذا الشي يخلي حركتك ثقيلة بالملعب ويعرضك لإلصابات بسهولة."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثاني غلطة: تجمع تمارين الجزء السفلي كلها بيوم واحد انتحاري. الصح تقسم جهدك وتخلي تمارين الأرجل ذكية وبسيطة\n‏عشان ما يضيع أسبوعك كامل."
+          "text": "الأحد — Upper Body Strength: نبدأ بتمرين علوي (صدر، ظهر، كتف، يدين) لأن رجولك لازم تكون فريش للتنس بكرة."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "الإثنين — Tennis: تلعب وأنت خفيف، بدون أرجل مكسّرة من تمرين أمس، فتتحرك أسرع وتلعب أحسن."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ثالث غلطة: تنسى أيام الراحة والموبيلتي بوسط الأسبوع. جسمك مو آلة، وتحتاج يومين راحة كاملة عشان عضالتك\n‏ومفاصلك تلحق تستشفي."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الخالصة عشان تنجح وتتطور بالاثنين: تمرن ٣ أيام حديد، والعب تنس يومين، وخذ يومين راحة حقيقية."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-010-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
-      "format": "Listicle",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏٤ نصايح فرقت معي في تجميع التنس والنادي بدون ما ينهار جسمي"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏النصيحة الأولى: ابدأ أسبوعك الأحد بتمارين الجزء العلوي. كذا تضمن تدخل مباراة الإثنين ورجولك خفيفة وجاهزة للحركة\n‏السريعة."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏النصيحة الثانية: خل تمرين الأرجل يوم الثالثاء بعد التنس مباشرة. هذا التوقيت يضمن لك مسافة كافية للراحة قبل حصة\n‏التنس الثانية بالأسبوع."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏النصيحة الثالثة: استغل يوم الأربعاء للراحة والموبيلتي فقط. مشي خفيف أو شوط إطالات يفك لك الشد بدون ما يجهد\n‏عضالتك."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏النصيحة الرابعة: الخميس ركز علوي مع شغل خفيف للخلفيات والمقعدة. الهدف تشغل عضالتك الخلفية بدون ما تكسر\n‏رجولك قبل التنس يوم الجمعة."
+          "text": "الثلاثاء — Lower Body Strength: بعد التنس بيوم، تمرن أرجل بس خله ذكي مو انتحاري عشان ما تسحب تعبك لباقي الأسبوع."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الزبدة رتب جدولك على نظام ٣ أيام صالة، يومين تنس، ويومين راحة كاملة وبيدعيلك جسمك."
+          "text": "الأربعاء — راحة أو مشي خفيف: يوم يفك التعب — مشي بسيط أو موبيلتي من غير جلد زيادة."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "الخميس — Upper Body + Posterior Chain: نرجع للعلوي، ومعه شغل خفيف للخلفيات (هامسترنق، قلوتس، ظهر سفلي) بدون ما نكسر الرجول."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "الجمعة — Tennis: ثاني حصة، تجي بعد يوم بدون أرجل ثقيلة عشان تدخل الملعب ورجولك مو منهكة."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "السبت — راحة: اقفل الأسبوع براحة. نام كويس، كل كويس، وخلي جسمك يتعافى."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "الزبدة: تنس يومين، نادي ثلاث أيام، راحة يومين — كذا تعطي كل تمرين حقه بدون ما يخرب أحدهم الثاني."
         }
       ]
     },
     {
-      "script_id": "SET-010-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_id": "SET-010-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Routine / Schedule",
+      "original_slide_count": 11,
+      "final_slide_count": 11,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏كيف ترتب جدولك الأسبوعي عشان تنجح في تجميع التنس والنادي؟"
+          "text": "تلعب تنس وتبي تدخل النادي؟ هذا انت"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏الأحد والخميس خليهم للجزء العلوي بالصالة. هذا التوزيع يبعد إجهاد الحديد عن أيام التنس عشان تلعب بكامل طاقتك."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الإثنين والجمعة خلهم مخصصين لمباريات التنس. بتالحظ إن حركتك بالملعب سريعة وخفيفة لأنك ما لعبت أرجل قبلها بيوم."
+          "text": "الزبدة الأول: تنس يومين، نادي ثلاث أيام، راحة يومين — كذا ما يخرب أحدهم على الثاني."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "الأحد — Upper Body Strength: نبدأ علوي (صدر، ظهر، كتف، يدين) لأن رجولك لازم فريش للتنس بكرة."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الثالثاء تمرن أرجل بذكاء وبدون مبالغة بالأوزان. والأربعاء والسبت خليهم أيام راحة كاملة أو مشي خفيف لتسريع الاستشفاء."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏باتباع هالنظام، بتلعب تنس يومين وبتتمرن حديد ٣ أيام بدون ما تخرب رياضة على الثانية."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-010-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا تحب تجميع التنس والنادي بس دايم تدخل الملعب ورجولك ثقيلة، جدولك هو المشكلة"
+          "text": "الإثنين — Tennis: تلعب خفيف بدون أرجل مكسّرة من تمرين أمس."
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏أكبر غلط يعطل مجهودك هو ترتيب الأيام العشوائي بالجدول. ال تلعب تمارين أرجل قوية بالصالة قبل مباريات التنس مباشرة\n‏وتتوقع سرعة بالملعب."
+          "text": "الثلاثاء — Lower Body Strength: أرجل بس ذكي، مو انتحاري."
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 8,
+          "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏جرب تخلي تمرين الأرجل يوم الثالثاء، يعني بعد مباراة التنس الأولى بيوم كامل. كذا تعطي عضالتك وقت ترتاح قبل مباراة\n‏الجمعة الثانية."
+          "text": "الأربعاء — راحة أو مشي خفيف."
         },
         {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "الخميس — Upper Body + Posterior Chain: علوي مع شغل خفيف للخلفيات."
         },
         {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
+          "slide_number": 10,
+          "slide_label": "Slide 10",
           "is_metafi_slide": false,
-          "text": "‏وباقي أيام النادي خل تركيزك فيها على الجزء العلوي والظهر. توزيع الجهد هذا بيحميك من الإصابات ويخليك وحش بالصالة\n‏وبطل بالملعب."
+          "text": "الجمعة — Tennis: ثاني حصة بعد يوم بدون أرجل ثقيلة."
         },
         {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
+          "slide_number": 11,
+          "slide_label": "Slide 11",
           "is_metafi_slide": false,
-          "text": "‏تذكر دايم: التوازن هو الأساس ٣، أيام حديد ويومين تنس ويومين راحة هو المعادلة الصح."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-010-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏وقف تتمرن حديد كأنك العب كمال أجسام إذا تبي تنجح في تجميع التنس والنادي"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏جسمك له طاقة استشفاء محدودة، وما تقدر تجلد رجولك بالصالة وتتوقع ركض سريع بالملعب. الحل مو إنك تتمرن أكثر،\n‏الحل إنك ترتب أسبوعك بطريقة أذكى."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏خل تمارين الجزء السفلي خفيفة وذكية، والعبها بمنتصف الأسبوع بعد التنس. وال تهمل أيام الراحة والموبيلتي لأنها هي اللي\n‏تفك التعب وتخليك تكمل الأسبوع بدون إصابات."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏إذا رتبت أيامك صح، بتعطي كل رياضة حقها بدون ما تظلم النادي أو تخرب التنس."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-010-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحسب إن تجميع التنس والنادي يحتاج كرف يومي، لين انكسر جسمي وعرفت الصح"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏في البداية كنت أروح للنادي وألعب أرجل، وبكرة أدخل ملعب التنس ورجولي ميتة وما أقدر أتحرك. حركتي كانت بطيئة\n‏ولعبي سيء، وحسيت إني قاعد أضيع وقتي بالاثنين."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏لين غيرت النظام وصرت أمرن العلوي الأحد والخميس، وأخلي الأرجل الثالثاء بعد أول مباراة تنس. صار عندي طاقة\n‏خرافية بالملعب، وعضالتي تستشفي بشكل ممتاز بفضل يومين الراحة."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ترتيب الأسبوع على ٣ أيام نادي ويومين تنس ويومين راحة غير مستواي بالكامل ووفر جهدي."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-010-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏ليش تحس إن تجميع التنس والنادي صعب ويخليك تعبان طول الأسبوع؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏لأنك غالبًا تتمرن عشوائي وتلعب أرجل بوجت غلط يضايق حركتك بالملعب. عشان تلعب صح، لازم تبعد تمارين الأرجل\n‏الثقيلة عن أيام التنس بمسافة كافية."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏خل تمارين العلوي الأحد والخميس، والتنس الإثنين والجمعة، والأرجل الثالثاء بس بذكاء وبدون جلد. وال تنسى تفصل بينهم\n‏بأيام راحة كاملة أو مشي خفيف بالأربعاء والسبت."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏هذا الترتيب البسيط يخليك تتطور بالحديد وتلعب تنس خفيف وسريع وبدون أي إجهاد زايد."
+          "text": "السبت — راحة: نام كويس وخلي جسمك يتعافى."
         }
       ]
     }

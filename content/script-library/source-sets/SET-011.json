@@ -1,74 +1,82 @@
 {
   "source_set_id": "SET-011",
-  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
   "subtopic": "Sport + Muscle Gain",
   "topic": "Building Muscle While Playing Sports",
   "scripts": [
     {
       "script_id": "SET-011-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Listicle",
-      "original_slide_count": 9,
-      "final_slide_count": 10,
+      "original_slide_count": 11,
+      "final_slide_count": 11,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏كيف عضّلت وأنا ألعب رياضات خارج النادي؟"
+          "text": "كيف عضّلت وأنا ألعب رياضات خارج النادي؟ (الغلطة اللي كنت أسويها تخرب على أغلبكم)"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏كنت أحسب الجري والبادل بيخربون علي التضخيم، بس طلع الموضوع كله ترتيب."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏خلّيت الحديد هو الأساس، والرياضات الثانية شي يكمّل أسبوعي مو يخربه."
+          "text": "‏كنت أحسب الجري والبادل بيخربون علي التضخيم، بس طلع الموضوع كله ترتيب."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏خلّيت الحديد هو الأساس، والرياضات الثانية شي يكمّل أسبوعي مو يخربه."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏أكبر غلطة كنت أسويها إني أتمرن كل شي بقوة كأني ما أتعب."
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏تعلمت أخلي بعض الأيام خفيفة عشان أقدر أستمر بدون ما أوقف."
+          "text": "‏أكبر غلطة كنت أسويها إني أتمرن كل شي بقوة كأني ما أتعب."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الأكل فرق معي كثير، لأن الحركة الزايدة تحتاج أكل أكثر مو أقل."
+          "text": "‏تعلمت أخلي بعض الأيام خفيفة عشان أقدر أستمر بدون ما أوقف."
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏ال تلعب رياضة وتحسب إن جسمك بيبني عضل وأنت طول اليوم ما أكلت زين."
+          "text": "‏الأكل فرق معي كثير، لأن الحركة الزايدة تحتاج أكل أكثر مو أقل."
         },
         {
           "slide_number": 9,
           "slide_label": "Slide 9",
           "is_metafi_slide": false,
-          "text": "‏النوم والراحة مو رفاهية، هي اللي تخلي جسمك يلحق على كل اللي تسويه."
+          "text": "‏ال تلعب رياضة وتحسب إن جسمك بيبني عضل وأنت طول اليوم ما أكلت زين."
         },
         {
           "slide_number": 10,
           "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "‏النوم والراحة مو رفاهية، هي اللي تخلي جسمك يلحق على كل اللي تسويه."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
           "is_metafi_slide": false,
           "text": "‏الزبدة: حديد، أكل، راحة، ورياضات تحبها بدون ما تحول أسبوعك لعقاب"
         }
@@ -76,293 +84,149 @@
     },
     {
       "script_id": "SET-011-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
       "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "original_slide_count": 11,
+      "final_slide_count": 11,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أغالط تمنعك تبني عضل وتتطور كـ ‎Hybrid Athlete.‎"
+          "text": "أكبر غلطة سويتها وأنا أحاول أعضّل وألعب رياضات بره النادي"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏الأولى: تتمرن حديد وجري وبادل كلهم بأقصى طاقة وتتوقع جسمك يستحمل."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الثانية: ما تزيد أكلك؛ الحركة الزايدة تحتاج سعرات أكثر عشان تبني عضل مو العكس."
+          "text": "كنت أحسب إن الجري والبادل بيخربون علي التضخيم، بس طلع الموضوع كله ترتيب."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "خليت الحديد هو الأساس، والرياضات الثانية شي يكمّل أسبوعي مو يخربه."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الثالثة: تهمّش النوم والراحة وتحسب إن جسمك بيكبر بدون ما تريّحه."
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الخالصة: رتب مجهودك، كِل صح، وخل الحديد هو الأساس بجدولك."
+          "text": "أكبر غلطة كنت أسويها إني أتمرن كل شي بقوة كأني ما أتعب."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "تعلمت أخلي بعض الأيام خفيفة عشان أقدر أستمر بدون ما أوقف."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "الأكل فرق معي كثير، لأن الحركة الزايدة تحتاج أكل أكثر مو أقل."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "لا تلعب رياضة وتحسب إن جسمك بيبني عضل وأنت طول اليوم ما أكلت زين."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "النوم والراحة مو رفاهية، هي اللي تخلي جسمك يلحق على كل اللي تسويه."
+        },
+        {
+          "slide_number": 11,
+          "slide_label": "Slide 11",
+          "is_metafi_slide": false,
+          "text": "الزبدة: حديد، أكل، راحة، ورياضات تحبها بدون ما تحول أسبوعك لعقاب."
         }
       ]
     },
     {
       "script_id": "SET-011-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
       "format": "Listicle",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
+      "original_slide_count": 10,
+      "final_slide_count": 10,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ نصايح فرقت معي كـ ‎Hybrid Athlete‎ عشان أجمع بين الحديد والجري بدون ما يضيع تعبي."
+          "text": "تلعب رياضة بره النادي وتبي تعضّل؟ هذا انت"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول شي، خل الحديد هو أساس جدولك وباقي الرياضات مكملة له مو العكس."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثاني شي، ارفع كمية أكلك لأن حرقك بيزيد ومستحيل تبني عضل بدون طاقة كافية."
+          "text": "أكبر غلطة كنت أسويها إني أتمرن كل شي بقوة كأني ما أتعب."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "كنت أحسب إن الجري والبادل بيخربون علي التضخيم، بس طلع الموضوع كله ترتيب."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏آخر شي، وزع مجهودك بذكاء وخل فيه أيام خفيفة عشان تحمي نفسك من الإصابات."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-011-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف ترتب أسبوعك وتطور جسمك كـ ‎Hybrid Athlete‎؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏أول خطوة، خل تمرين الحديد هو الأساس الثابت اللي تبني عليه أسبوعك."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏بعدين ّ\n‏وزع الرياضات الثانية بذكاء، ومو لازم كل حصة تطلع منها مهدود حيلك."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏زود كمية أكلك اليومية عشان تغطي الحرق العالي اللي تسويه من الحركة الزايدة."
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏وأخيرً ا، النوم والراحة هم اللي يخلون عضالتك تبني فعليًا بعد كل هالتعب."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-011-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا تقول عن نفسك ‎Hybrid Athlete‎ ورجولك دايم ثقيلة وجسمك مهدود، غالبًا ترتيبك غلط."
+          "text": "النوم والراحة مو رفاهية، هي اللي تخلي جسمك يلحق على كل اللي تسويه."
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏ال تعامل الجري أو البادل كأنهم معركة تبي تفوز فيها كل يوم وتضغط على نفسك بزيادة."
+          "text": "خليت الحديد هو الأساس، والرياضات الثانية تكمّل أسبوعي مو تخربه."
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 8,
+          "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏الحديد هو اللي يبني العضل، والرياضات الثانية تضيف للياقتك إذا وزعت مجهودها بذكاء."
+          "text": "تعلمت أخلي بعض الأيام خفيفة عشان أقدر أستمر."
         },
         {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "الأكل فرق معي كثير — الحركة الزايدة تحتاج أكل أكثر مو أقل."
         },
         {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
+          "slide_number": 10,
+          "slide_label": "Slide 10",
           "is_metafi_slide": false,
-          "text": "‏وجسمك ماراح يتطور خطوة وحدة إذا ما رفعت أكلك ونومك عشان تواكب هالمجهود العالي."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-011-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏الـ ‎Hybrid Athlete‎ ما يحتاج يتمرن أكثر، يحتاج يرتب أسبوعه أذكى."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏أكبر غلطة تسويها هي إنك تحسب لازم تلعب كل رياضة بنسبة ٪١٠٠ من قوتك طول الوقت."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏إذا ما أعطيت الحديد الأولوية وخليت الرياضات الثانية مكملة، عضالتك ماراح تتطور بالشكل اللي تبيه."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏وبدون زيادة حقيقية بالأكل والنوم، أنت قاعد تهدم جسمك مو تبنيه."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-011-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحسب إن الجري بيخرب تضخيمي، وتمنيت أعرف هالشي قبل ما أبدأ كـ ‎Hybrid Athlete.‎"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏المشكلة ما كانت بالرياضات الثانية، المشكلة إني كنت أتمرن كل شي بأقوى ما عندي بدون أي راحة."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏يوم خليت الحديد هو الأساس وبديت أكل أكثر عشان أعوض الحرق، تغير جسمي تمامًا وبنيت عضل."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الفكرة مو إنك تحرم نفسك من الرياضة اللي تحبها، الفكرة بس رتب جهدك وأكلك وراحتك."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-011-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏ليش كثير ناس يحاولون يصيرون ‎Hybrid Athlete‎ ويتعبون بدون ما يشوفون نتائج على جسمهم؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏لأنهم يجمعون الحديد والجري ويتمرنون كلهم بأقصى طاقة بدون توازن بجدولهم."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏الحل يبدأ لما تخلي الحديد أساس يومك، وتعدل شدة التمارين الثانية عشان يستشفى جسمك صح."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏والأهم من هذا كله، تاكل وتنام كأنها جزء من تمرينك عشان جسمك يلقى طاقة يبني فيها عضل."
+          "text": "الزبدة: حديد، أكل، راحة، ورياضات تحبها بدون ما تحول أسبوعك لعقاب."
         }
       ]
     }

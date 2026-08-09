@@ -1,434 +1,220 @@
 {
   "source_set_id": "SET-014",
-  "pillar": "Workout Programming / Exercise Selection",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
   "subtopic": "Training Concepts",
   "topic": "Gym Mistakes to Avoid",
   "scripts": [
     {
       "script_id": "SET-014-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Listicle",
-      "original_slide_count": 7,
-      "final_slide_count": 8,
+      "original_slide_count": 10,
+      "final_slide_count": 10,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏أغالط بالنادي لو رجع فيني لازمن ما سويتها: أولها إني كنت أشيل أوزان عالية وأنا تكنيكي مو مضبوط، وأحسب إني كذا\n‏قاعد أتطور أسرع."
+          "text": "٨ أغلاط بالنادي لو رجع فيني الزمن ما سويتها (رقم ٥ أخر شي توقعته)"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏كنت أتمرن بزوايا بعيدة أو بصالات فاضية عشان أخاف أحد يطالعني أو يضحك علي. هذا الخجل خالني ما أركز على\n‏التمرين نفسه، وصرت أراقب الناس أكثر من جسمي."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏كنت أتجنب تمارين الجزء العلوي عشان أخاف جسمي يتضخم، وطلعت الفكرة غلط. تمارين العلوي مهمة للشكل، الشد،\n‏التوازن، وقوة الجسم بشكل عام."
+          "text": "‏كنت أتمرن بزوايا بعيدة أو بصالات فاضية عشان أخاف أحد يطالعني أو يضحك علي. هذا الخجل خالني ما أركز على\n‏التمرين نفسه، وصرت أراقب الناس أكثر من جسمي."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏كنت أتجنب تمارين الجزء العلوي عشان أخاف جسمي يتضخم، وطلعت الفكرة غلط. تمارين العلوي مهمة للشكل، الشد،\n‏التوازن، وقوة الجسم بشكل عام."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏كنت ما أحسب سعراتي وال بروتيني، وآكل بعشوائية. تمرنت فترة طويلة بدون ما أشوف فرق واضح، ولما بدأت أفهم\n‏احتياجي وأرتب أكلي، جسمي تغير أكثر."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏كنت أسهر وأنام أقل من 6ساعات، وبعدها أستغرب ليش طاقتي نازلة وليش جسمي ما يتغير. النوم جزء أساسي من بناء\n‏العضالت والتطور، مو شيء جانبي."
+          "text": "كنت أتجنب تمارين الجزء العلوي عشان أخاف جسمي يتضخم — الفكرة غلط. تمارين العلوي مهمة للشكل والتوازن وقوة الجسم."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏كنت أروح للنادي بدون خطة واضحة، وما أسجل أوزاني وال أتابع التكرارات. كل أسبوع أغير التمارين، فطبيعي ما يكون\n‏فيه تطور واضح ال بالقوة وال بالشكل."
+          "text": "كنت ما أحسب سعراتي ولا بروتيني، وآكل بعشوائية. لما بدأت أرتب أكلي، جسمي تغير أكثر."
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏كنت أتمرن عضلة وحدة بشكل مبالغ فيه وأهمل باقي الجسم. الأفضل يكون تمرينك موزون: رجل، علوي، كور، وتمارين\n‏مساعدة، عشان جسمك يتطور بشكل مرتب."
+          "text": "كنت أسهر وأنام أقل من ٦ ساعات، وأستغرب ليش طاقتي نازلة. النوم جزء أساسي من بناء العضلات، مو شيء جانبي."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "كنت أروح للنادي بدون خطة، وما أسجل أوزاني ولا أتابع التكرارات. طبيعي ما يكون فيه تطور واضح."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "كنت أتمرن عضلة وحدة بشكل مبالغ فيه وأهمل باقي الجسم. الأفضل تمرين موزون: رجل، علوي، كور، وتمارين مساعدة."
         }
       ]
     },
     {
       "script_id": "SET-014-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
       "format": "Listicle",
-      "original_slide_count": 7,
-      "final_slide_count": 8,
+      "original_slide_count": 10,
+      "final_slide_count": 10,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٦ أغالط تضيع تعبك في تمرين الحديد وتبطئ نتيجتك بدون ما تحس."
+          "text": "أغلب اللي يبدأ بالجيم يسوي نفس الأغلاط اللي سويتها — ٨ منها"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أواًل: تشيل وزن ثقيل بتكنيك خربان عشان المظاهر، وهذا يرفع خطر الإصابة وما يفيد العضلة."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثانيًا: تتمرن بالزوايا وتتجنب الناس بسبب الخجل، والنتيجة يضيع تركيزك بمراقبة اللي حولك بدل تمرينك."
+          "text": "أولها: كنت أشيل أوزان عالية وتكنيكي مو مضبوط، وأحسب إني كذا أتطور أسرع."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "كنت أتمرن بزوايا بعيدة أو صالات فاضية عشان أخاف أحد يطالعني أو يضحك علي. هذا الخجل خلاني ما أركز على التمرين، وصرت أراقب الناس أكثر من جسمي."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ً\n‏ثالثا: تهمل تمارين الجزء العلوي خو ًفا من \"التضخم\"، مع إنها أساسية لتناسق وشد الجسم وقوته."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏رابعًا: تاكل بعشوائية تامة وتنسى تحسب بروتينك وسعراتك، فتعلق بنفس الشكل والمستوى."
+          "text": "كنت أتجنب تمارين الجزء العلوي عشان أخاف جسمي يتضخم — فكرة غلط تمامًا. تمارين العلوي مهمة للشكل والتوازن وقوة الجسم."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏خامسًا: تسهر وتنام أقل من ٦ ساعات، وتحرم جسمك من الاستشفاء الطبيعي وبناء العضالت."
+          "text": "كنت ما أحسب سعراتي ولا بروتيني، وآكل بعشوائية. لما بدأت أرتب أكلي، جسمي تغير أكثر بكثير."
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏سادسًا: تدخل الصالة بدون جدول مسجل أو تكرارات واضحة، وتتمرن عضالت وتنسى عضالت ثانية."
+          "text": "كنت أسهر وأنام أقل من ٦ ساعات، وأستغرب ليش طاقتي نازلة. النوم ركن أساسي في بناء العضلات، مو شيء جانبي."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "كنت أروح النادي من غير خطة، وما أسجل أوزاني ولا أتابع تكراراتي. طبيعي ما يكون فيه تطور واضح."
+        },
+        {
+          "slide_number": 10,
+          "slide_label": "Slide 10",
+          "is_metafi_slide": false,
+          "text": "كنت أتمرن عضلة وحدة بشكل مبالغ فيه وأهمل باقي الجسم. الأفضل تمرين موزون: رجل، علوي، كور، وتمارين مساعدة."
         }
       ]
     },
     {
       "script_id": "SET-014-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
       "format": "Listicle",
-      "original_slide_count": 7,
-      "final_slide_count": 8,
+      "original_slide_count": 10,
+      "final_slide_count": 10,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٦ أشياء تمنيت أعرفها أول ما بدأت تمرين الحديد عشان ما يضيع وقتي عالفاضي."
+          "text": "لو رجع فيني الزمن، كذا كنت بغير طريقة تمريني بالكامل"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏التكنيك الصحيح دائمًا يفوز على الوزن العالي؛ ركز على جودة الحركة عشان تبني صح."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الصالة للكل وال أحد فاضي يراقبك، فال تتمرن بخشة وتشتت تفكيرك بخجلك من الناس."
+          "text": "كنت أروح النادي من غير خطة، وما أسجل أوزاني ولا أتابع تكراراتي. طبيعي ما يكون فيه تطور واضح."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "كنت أشيل أوزان عالية وتكنيكي مو مضبوط، وأحسب إني كذا أتطور أسرع."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏تمارين الجزء العلوي ما راح تضخمك فجأة، بالعكس بتعطيك التناسق والشد اللي تبحث عنه."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏أكلك هو المحرك الأساسي؛ بدون حساب سعراتك واحتياجك من البروتين ماراح تشوف النتيجة المرضية."
+          "text": "كنت أتمرن عضلة وحدة بشكل مبالغ فيه وأهمل باقي الجسم. الأفضل تمرين موزون: رجل، علوي، كور، وتمارين مساعدة."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏النوم الكافي مو رفاهية، عضالتك تحتاج ه الـ ٧ إلى ٨ ساعات عشان تستشفي وتكبر."
+          "text": "كنت أتجنب تمارين الجزء العلوي عشان أخاف جسمي يتضخم — فكرة غلط تمامًا."
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏ادخل ومعك جدول واضح تسجل فيه أوزانك، وتأكد إن تمرينك مغطي كل عضالت جسمك بتوازن."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-014-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف ترتب تمرين الحديد وتضمن إنك تتطور كل أسبوع بدون تشتت؟"
+          "text": "كنت أسهر وأنام أقل من ٦ ساعات، وأستغرب ليش طاقتي نازلة. النوم ركن أساسي، مو شيء جانبي."
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 9,
+          "slide_label": "Slide 9",
           "is_metafi_slide": false,
-          "text": "‏ابدأ بضبط التكنيك قبل ما تفكر تزيد الأوزان، عشان تستهدف العضلة المستهدفة بالشكل الصحيح."
+          "text": "كنت أتمرن بزوايا بعيدة أو صالات فاضية خجل من نظرات الناس، وهذا خلاني ما أركز على التمرين نفسه."
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 10,
+          "slide_label": "Slide 10",
           "is_metafi_slide": false,
-          "text": "‏تجاوز الخجل وتمرن في المكان الصح بالجهاز المناسب، لأن كل شخص بالنادي مركز بوزنه وتمرينه بس."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏رتب جدولك بحيث يشمل الجزء العلوي والسفلي بتوازن، لضمان قوة وشد كامل الجسم."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏احسب احتياجك اليومي من السعرات والبروتين، وسجل أوزانك وتكراراتك عشان تتابع تطورك الفعلي."
-        },
-        {
-          "slide_number": 7,
-          "slide_label": "Slide 7",
-          "is_metafi_slide": false,
-          "text": "‏نام فترات كافية وابتعد عن السهر، فالاستشفاء أثناء النوم هو الوقت الفعلي لبناء عضالتك."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-014-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا تحس إنك تبذل مجهود كبير في تمرين الحديد بس جسمك ثابت، غالبًا هذي هي المشكلة."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏ممكن تكون قاعد ترفع أوزان فوق طاقتك وتكنيكك خربان، أو متهرب من تمارين الجزء العلوي خو ًفا من التضخم."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏أو الخجل يخليك تنعزل بالزوايا وتراقب الناس، بدل ما تركز في زوايا تمرينك وأدائك."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏العشوائية في الأكل وإهمال حساب البروتين يخليك تتمرن شهور بدون ما تشوف شكل جسمك يتغير."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏السهر وقلة النوم يدمرون طاقتك اليومية، ويمنعون عضالتك من الاستشفاء والتطور المطلوب."
-        },
-        {
-          "slide_number": 7,
-          "slide_label": "Slide 7",
-          "is_metafi_slide": false,
-          "text": "‏دخولك النادي بدون خطة واستمرارك بتدريب عضالت معينة وإهمال الباقي هو اللي معطل تقدمك."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-014-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏أكبر عائق يمنعك تتطور في تمرين الحديد مو قلة التمارين، بل العشوائية اللي تسويها بالصالة."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏زيادة الأوزان بتكنيك غلط ما تبني جسم قوي، بل تزيد احتمالية الإصابة وتضيع جهدك."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏والتخبي بالزوايا خو ًفا من نظرات الناس يشتت ذهنيتك ويحرمك من أجهزة مهمة تحتاجها."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏إهمال تمارين الجزء العلوي خو ًفا من الضخامة فكرة غلط، وبدونها ماراح تحصل على التوازن والشد المطلوب."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏تقدر تتمرن بأقوى ما عندك، بس بدون نوم كافي وأكل محسوب السعرات والبروتين ماراح يتغير جسمك."
-        },
-        {
-          "slide_number": 7,
-          "slide_label": "Slide 7",
-          "is_metafi_slide": false,
-          "text": "‏تكرار تمارين عشوائية وتدريب عضلة وحدة وإهمال الباقي يخلي جسمك غير متناسق وضعيف."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-014-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحسب نفسي بطل في تمرين الحديد، لين استوعبت إني جالس أضيع وقتي بهالأغالط."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏كنت أهتم برقم الوزن وأنسى التكنيك، وأتخبى بالزوايا الفاضية من الخجل والخوف من التقييم."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏تجنبت تمارين الجزء العلوي تمامًا اعتقا ًدا مني أنها تضخم، وكنت آكل بعشوائية تامة بدون حساب للبروتين."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏نومي كان ملخبط وأقل من ٦ ساعات، وأستغرب دايمًا من الخمول وثبات وزني ومستواي."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏ما كان عندي جدول وال أسجل أوزاني، مجرد تمارين عشوائية أكررها وأركز على مناطق معينة وأهمل الباقي."
-        },
-        {
-          "slide_number": 7,
-          "slide_label": "Slide 7",
-          "is_metafi_slide": false,
-          "text": "‏يوم رتبت أكلي، تكنيكي، نومي، وتمرنت بجدول متوازن لكل الجسم، شفت النتيجة الحقيقية اللي تمنيتها."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-014-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏ليش بعض الناس يلتزمون في تمرين الحديد شهور طويلة بس بدون ما يشوفون فرق واضح بجسمهم؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏لأنهم يركزون على الأوزان العالية بتكنيك خربان، ويتمرنون بخوف وخجل بالزوايا الفاضية بدون تركيز."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ويتجنبون تمارين الجزء العلوي خو ًفا من الضخامة، وياكلون بعشوائية وبدون حساب الحتياجهم من السعرات والبروتين."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏يسهرون وما ينامون كفاية، ويدخلون النادي بدون جدول واضح أو تسجيل ألوزانهم وتكراراتهم السابقة."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏الحل مو بزيادة التمرين، بل بتكنيك مضبوط، تغذية صحيحة، نوم كافٍ، وجدول يغطي كامل الجسم بتوازن."
+          "text": "كنت ما أحسب سعراتي ولا بروتيني، وآكل بعشوائية — لما رتبت أكلي، جسمي تغير أكثر بكثير."
         }
       ]
     }

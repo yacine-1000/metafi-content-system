@@ -1,344 +1,184 @@
 {
   "source_set_id": "SET-033",
-  "pillar": "Workout Programming / Exercise Selection",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
   "subtopic": "Chest",
   "topic": "Chest Exercise Ranking",
   "scripts": [
     {
       "script_id": "SET-033-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Tier List / Ranking",
-      "original_slide_count": 7,
-      "final_slide_count": 7,
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٥ تمارين تخلي صدرك عريض ومليان هيبة (آخر واحد أساسي)"
+          "text": "٥ تمارين تخلي صدرك عريض ومليان هيبة (آخر واحد أساسي)"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏2‎Dumbbell fly 2/10‎عادي ج ًدا وفيه أقوى منه"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏‎Flat dumbbell press 5/10‎مو سيء"
+          "text": "‏2‎Dumbbell fly 2/10‎عادي جدًا وفيه أقوى منه"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏‎Flat dumbbell press 5/10‎مو سيء"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏‎Incline dumbbell press 7/10‎يعطيك مدى حركي ممتاز ويستهدف الصدر العلوي مباشرة بس فيه أفضل"
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏‎Cable fly 8/10‎تمرين مظلوم ويحافظ على التوتر طول الحركة بس فيه أفضل"
+          "text": "‏‎Incline dumbbell press 7/10‎يعطيك مدى حركي ممتاز ويستهدف الصدر العلوي مباشرة بس فيه أفضل"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏‎Incline chest press machine 10/10‎تمرين فخم بشكل ال تسحب عليه وجربه بتركيز عالي"
+          "text": "‏‎Cable fly 8/10‎تمرين مظلوم ويحافظ على التوتر طول الحركة بس فيه أفضل"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "‏‎Incline chest press machine 10/10‎تمرين فخم بشكل لا تسحب عليه وجربه بتركيز عالي"
         }
       ]
     },
     {
       "script_id": "SET-033-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أخطاء بتمارين الصدر تضيع عليك العرض والضخامة"
+          "text": "أغلب الناس تسوي تمارين صدر غلط — هذا ترتيبها من الأسوأ للأفضل"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول غلطة: تضيع وقتك وجهدك على الـ ‎Dumbbell fly‎ وتتوقع منه نتايج خرافية، ترى تمرين عادي وفيه بدائل أقوى\n‏بكثير."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثاني غلطة: تكتفي بالـ ‎Flat press‎ وتنسى زاوية الصدر العلوي والمدى الحركي البطل اللي يعطيك إياه الـ ‎Incline‎\npress."
+          "text": "Dumbbell fly 2/10 — شي عادي وفيه تمارين أقوى بكثير"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "Flat dumbbell press 5/10 — مدى حركة حلو ويشتغل على الصدر العلوي مباشرة، بس فيه أقوى منه"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ثالث غلطة: تسحب على أجهزة الدفع وتتجنب الـ ‎Incline chest press machine‎ اللي يعطيك ثبات عالي واستهداف\n‏للصدر. ١٠/١٠"
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الزبدة، تمرن بذكاء وسجل أوزانك بكل تمرين عشان تضمن التطور المستمر."
+          "text": "Incline dumbbell press 7/10 — مدى حركة حلو ويشتغل على الصدر العلوي مباشرة، بس فيه أقوى منه"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "Cable fly 8/10 — تمرين مغبون، يحافظ على الشد طول الحركة، بس فيه أفضل"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "Incline chest press machine 10/10 — تمرين خرافي، جرّبه بنفسك وشوف الفرق"
         }
       ]
     },
     {
       "script_id": "SET-033-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
-      "format": "Listicle",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Tier List / Ranking",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أشياء لازم تركز عليها بجدول صدرك عشان تبني هيبة وعرض"
+          "text": "وش أفضل تمرين صدر؟ جربت ٥ ورتبتهم بصراحة"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أواًل: ال تهمش الـ ‎Cable fly‎، تمرين مظلوم وممتاز لأنه يحافظ على التوتر مستمر على العضلة طول الحركة."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثانياً: خل الـ ‎Incline chest press machine‎ تمرينك الأساسي، يعطيك تركيز وثبات فخم بشكل مو طبيعي."
+          "text": "2/10 لـDumbbell fly — تلقى تمارين أقوى منه بسهولة"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "5/10 لـFlat dumbbell press — يستهدف الصدر العلوي مباشرة ومدى حركته ممتاز، بس فيه أفضل"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ثالثاً: تبي نتايج حقيقية؟ سجل أوزانك وتطور فيها أسبوع ورا أسبوع بدال ما تتمرن بعشوائية."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-033-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف ترتب تمارين صدرك عشان تطلع بأفضل حجم وعرض ممكن؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏بدال ما تضيع وقتك بتمارين عادية مثل الـ ‎Dumbbell fly‎، ركز على الـ ‎Incline dumbbell press‎ اللي يستهدف\n‏الصدر العلوي مباشرة بمدى حركي ممتاز."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ودخل بجدولك الـ ‎Cable fly‎ للتوتر المستمر، وجهاز الـ ‎Incline chest press machine‎ للتركيز والثبات العالي."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏والأهم من هذا كله، تتبع أوزانك وسجلها بكل حصة تمرين عشان تضمن إنك قاعد تتطور وتتحسن."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-033-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا تتمرن صدر وتبغاه يطلع عريض ومليان هيبة، ركز معي شوي"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏تمارين مثل الـ ‎Dumbbell fly‎ والـ ‎Flat press‎ تعتبر متوسطة وماراح تعطيك الشكل القوي اللي تتمناه لوحدها."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ركز أكثر على الـ ‎Incline dumbbell press‎ لزاوية الصدر العلوي، والـ ‎Cable fly‎ لأنه يحافظ على التوتر طول\n‏الحركة."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
           "is_metafi_slide": true,
           "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
+          "slide_number": 6,
+          "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏والأساسي بجدولك لازم يكون الـ ‎Incline chest press machine‎، تمرين فخم بشكل مستحيل تتخيله لو لعبته بتركيز\n‏عالي وسجلت أوزانك فيه."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-033-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏أكبر غلطة تسويها بتمارين الصدر هي إنك تحسب الـ ‎Dumbbell fly‎ هو سر الضخامة والعرض"
+          "text": "7/10 لـIncline dumbbell press — يستهدف الصدر العلوي مباشرة ومدى حركته ممتاز، بس فيه أفضل"
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏ترى الـ ‎Dumbbell fly‎ تمرين عادي ج ًدا وتقييمه ٢/١٠ وفيه خيارات أقوى منه بكثير."
+          "text": "8/10 لـCable fly — من التمارين المظلومة، يخلي العضلة تحت شد طول الوقت"
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 8,
+          "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏البديل الأفضل للرفرفة هو الـ ‎Cable fly‎ لأنه يحافظ على التوتر طول الحركة، مع الـ ‎Incline chest press‎\n‏‎machine‎ اللي يعطيك ثبات وتركيز. ١٠/١٠"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ال تعقد تمارينك على الفاضي، ركز على الأقوى وسجل أوزانك أول بأول عشان تشوف الفرق."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-033-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحسب إن تمارين الدامبل الحرة هي الطريقة الوحيدة لبناء صدر عريض، لين غيرت طريقة تمريني"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏اكتشفت إن الـ ‎Flat press‎ والـ ‎Dumbbell fly‎ مو هم أفضل خيارات بجدول الصدر."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏الأجهزة وتحديداً الـ ‎Incline chest press machine‎ عطاني ثبات واستهداف للصدر العلوي مستحيل تالقيه بالوزن\n‏الحر."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏لما دمجت معاه الـ ‎Cable fly‎ للتوتر المستمر وصرت أسجل أوزاني بكل جلسة، هنا الصدر اختلف معاي تمامًا."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-033-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏‎POV‎ تبغى ترتب تمارين صدرك من الأضعف لألقوى عشان تبني حجم وعرض حقيقي"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏الـ ‎Dumbbell fly‎ والـ ‎Flat press‎ تعتبر خيارات عادية وماراح تعطيك الفرق الخرافي لحالها."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏الـ ‎Incline dumbbell press‎ والـ ‎Cable fly‎ خيارات قوية وتستهدف العضلة بمدى حركي ممتاز وتوتر مستمر."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏لكن الأقوى بال منازع هو الـ ‎Incline chest press machine‎، جربه بتركيز عالي وسجل أوزانك عشان تضمن\n‏التطور."
+          "text": "10/10 لـIncline chest press machine — القمة. جرّبه وتجاهل أي حد يقولك غير كذا"
         }
       ]
     }

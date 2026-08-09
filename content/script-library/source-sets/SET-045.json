@@ -1,24 +1,24 @@
 {
-  "source_set_id": "SET-038",
+  "source_set_id": "SET-045",
   "pillar": "P3",
   "pillar_name": "Workout Programming / Exercise Selection",
-  "subtopic": "Forearms",
-  "topic": "Forearm Exercise Ranking",
+  "subtopic": "Workout Split",
+  "topic": "Gym Splits Ranking (Worst to Best)",
   "scripts": [
     {
-      "script_id": "SET-038-ORIGINAL",
+      "script_id": "SET-045-ORIGINAL",
       "script_version": "ORIGINAL",
       "status": "Ready",
       "hook_type": "ORIGINAL",
       "format": "Tier List / Ranking",
-      "original_slide_count": 8,
-      "final_slide_count": 8,
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "٥ تمارين تخلي سواعدك تفجر التيشيرت من كبرها (آخر واحد يغير اللعبة)"
+          "text": "أزبل gym splits جرّبتها وأفضلها (آخر واحد أسطوري)"
         },
         {
           "slide_number": 2,
@@ -30,54 +30,48 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏عادي جدًا وفيه أقوى منه ‎Dumbbell wrist curl 2/10‎"
+          "text": "BRO SPLIT\n1.5/10\nالتطور بطيء\nصعب تستمر عليه\nأعطيه نقطة زيادة لأنه دخلني عالم الحديد"
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "‏مو سيء ‎Reverse barbell curl 4/10‎"
+          "text": "ARNOLD SPLIT\n5/10\nممتاز لتضخيم الأذرع\nيتعبك جداً\nاستخدمته اطول فترة"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "text": "METAFI\n9/10\nيعلمك وش الجدول اللي يناسب هدفك وجسمك\nاستخدم التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏يعطيك سمك ممتاز للذراع ويستهدف الساعد مباشرة بس فيه أفضل ‎Hammer curl 6/10‎"
+          "text": "UL/PPL\n8.5/10\nسهل تطبيقه\nالتعب فيه معقول\nممتاز للنمو بشكل عام"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏تمرين مظلوم ويحافظ على التوتر طول الحركة بس فيه أفضل ‎Reverse cable curl 8/10‎"
-        },
-        {
-          "slide_number": 8,
-          "slide_label": "Slide 8",
-          "is_metafi_slide": false,
-          "text": "‏تمرين فخم بشكل لا تسمع للي يقول صعب وغير مريح ‎Behind-the-back barbell wrist curl 10/10‎"
+          "text": "FEBOD\n10/10\nالاستشفاء فيه ممتاز\nالنمو فيه ممتاز\nأفضل واحد، زاد قوتي وتناسب مع رياضاتي خارج النادي"
         }
       ]
     },
     {
-      "script_id": "SET-038-V1",
+      "script_id": "SET-045-V1",
       "script_version": "V1",
       "status": "Ready",
       "hook_type": "V1",
       "format": "Tier List / Ranking",
-      "original_slide_count": 8,
-      "final_slide_count": 8,
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "تسوي تمارين سواعد ما تكبر؟ هذا ترتيبها الصح"
+          "text": "جربت أغلب gym splits الموجودة — وحد منهم غيّر مستواي بالكامل"
         },
         {
           "slide_number": 2,
@@ -89,54 +83,48 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "Dumbbell wrist curl 2/10 — شي عادي وفيه تمارين أقوى بكثير"
+          "text": "BRO SPLIT — 1.5/10\nالتطور بطيء وصعب تستمر عليه، بس أعطيه نقطة زيادة لأنه دخّلني عالم الحديد."
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "Reverse barbell curl 4/10 — مقبول، بس مو أفضل خيار"
+          "text": "ARNOLD SPLIT — 5/10\nرهيب لتضخيم الأذرع، بس يتعبك جدًا. استخدمته أطول فترة."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "text": "METAFI\n9/10\nيعلمك وش الجدول اللي يناسب هدفك وجسمك\nاستخدم التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "Hammer curl 6/10 — مدى حركة حلو ويشتغل على الساعد مباشرة، بس فيه أقوى منه"
+          "text": "UL/PPL — 8.5/10\nسهل تطبيقه، التعب فيه معقول، وممتاز للنمو بشكل عام."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "Reverse cable curl 8/10 — تمرين مغبون، يحافظ على الشد طول الحركة، بس فيه أفضل"
-        },
-        {
-          "slide_number": 8,
-          "slide_label": "Slide 8",
-          "is_metafi_slide": false,
-          "text": "Behind-the-back barbell wrist curl 10/10 — تمرين خرافي، جرّبه بنفسك وشوف الفرق"
+          "text": "FEBOD — 10/10\nالاستشفاء فيه رهيب، والنمو فيه رهيب. أفضل واحد، زاد قوتي وناسب رياضاتي خارج النادي."
         }
       ]
     },
     {
-      "script_id": "SET-038-V2",
+      "script_id": "SET-045-V2",
       "script_version": "V2",
       "status": "Ready",
       "hook_type": "V2",
       "format": "Tier List / Ranking",
-      "original_slide_count": 8,
-      "final_slide_count": 8,
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "وش أفضل تمرين سواعد؟ جربت ٥ ورتبتهم بصراحة"
+          "text": "تبي أفضل جدول تمرين؟ هذا ترتيبي الصريح من الأسوأ للأفضل"
         },
         {
           "slide_number": 2,
@@ -148,37 +136,31 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "2/10 لـDumbbell wrist curl — تلقى تمارين أقوى منه بسهولة"
+          "text": "FEBOD — 10/10\nأفضل واحد جربته. استشفاء رهيب، نمو رهيب، وناسب رياضاتي خارج النادي."
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "4/10 لـReverse barbell curl — مو خيار سيء، بس مو أول اختيار"
+          "text": "UL/PPL — 8.5/10\nسهل تطبيقه، التعب فيه معقول، ونمو ممتاز بشكل عام."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "text": "METAFI\n9/10\nيعلمك وش الجدول اللي يناسب هدفك وجسمك\nاستخدم التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "6/10 لـHammer curl — يستهدف الساعد مباشرة ومدى حركته ممتاز، بس فيه أفضل"
+          "text": "ARNOLD SPLIT — 5/10\nرهيب لتضخيم الأذرع بس يتعبك جدًا — استخدمته أطول فترة."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "8/10 لـReverse cable curl — من التمارين المظلومة، يخلي العضلة تحت شد طول الوقت"
-        },
-        {
-          "slide_number": 8,
-          "slide_label": "Slide 8",
-          "is_metafi_slide": false,
-          "text": "10/10 لـBehind-the-back barbell wrist curl — القمة. جرّبه وتجاهل أي حد يقولك غير كذا"
+          "text": "BRO SPLIT — 1.5/10\nتطور بطيء وصعب تستمر عليه، بس دخّلني عالم الحديد فأعطيه نقطة زيادة."
         }
       ]
     }

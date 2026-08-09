@@ -1,16 +1,16 @@
 {
-  "source_set_id": "SET-029",
-  "pillar": "P2",
-  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
-  "subtopic": "Hybrid Athlete",
-  "topic": "Hybrid Athlete Weekly Structure",
+  "source_set_id": "SET-046",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
+  "subtopic": "Training Concepts",
+  "topic": "6 Things I Wish I Knew Before Training",
   "scripts": [
     {
-      "script_id": "SET-029-ORIGINAL",
+      "script_id": "SET-046-ORIGINAL",
       "script_version": "ORIGINAL",
       "status": "Ready",
       "hook_type": "ORIGINAL",
-      "format": "Routine / Schedule",
+      "format": "Listicle",
       "original_slide_count": 8,
       "final_slide_count": 8,
       "slides": [
@@ -18,7 +18,7 @@
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "كيف تصير hybrid athlete: الجدول اللي يخليك تشيل حديد وتركض بنفس الأسبوع بدون ما تتكسر"
+          "text": "٦ أشياء تمنيت أحد قالي عنها قبل أبدأ أتمرن (الأخيرة وحدها كانت كافية تغيّر جسمي)"
         },
         {
           "slide_number": 2,
@@ -30,46 +30,46 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏٤ أيام تمارين مقاومة بالأسبوع\n• push\n• pull\n• core\n• legs"
+          "text": "١. الترايسبس\nإذا تبغى ذراعك يطلع أعرض، ركز على الترايسبس أكثر من البايسبس"
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "‏٣ أيام ركض بالأسبوع\n• zone 2\n• intervals\n• tempo"
+          "text": "٢. الصدر\nدايم حاول تزود أوزانك شوي شوي، ولا تدخل بنش للفشل بكل سيت لأن التعب بيتراكم عليك مع الوقت"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "الأهم إنك تسجل أوزانك وتعرف وش تتمرن صح\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏استشفاء\n‏• نوم ٨-٧ ساعات\n‏• جهاز مساج\n‏• ساونا\n‏• جاكوزي بارد\n‏• اطالات بعد كل تمرين"
+          "text": "٣. الظهر\nالظهر مو عضلة تشيل فيها أكبر وزن وخلاص\nخفف الوزن شوي، تحكم بالحركة، وخلك نظيف بالعدة"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الأكل\n‏• بروتين عالي\n‏• دهون صحية\n‏• كارب عشان الطاقة\n‏• قاعدة ٨٠/٢٠"
+          "text": "٤. البايسبس\nتمارين الكيبل حسيتها أفضل من الدامبل بكثير بالبايسبس"
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏الهدف بسيط\n‏• اركض أكثر من اللي يلعبون حديد\n‏• ارفع أوزان أكثر من اللي يركضون"
+          "text": "٥. الأرجل والبطن\nلا تخاف تدف الكوادز والهامسترنقز بقوة\nوبرضو مرن أسفل ظهرك لأنه يفرق معك بالثبات بكل التمارين"
         }
       ]
     },
     {
-      "script_id": "SET-029-V1",
+      "script_id": "SET-046-V1",
       "script_version": "V1",
       "status": "Ready",
       "hook_type": "V1",
-      "format": "Routine / Schedule",
+      "format": "Listicle",
       "original_slide_count": 8,
       "final_slide_count": 8,
       "slides": [
@@ -77,7 +77,7 @@
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "تبي تجمع بين الحديد والجري بدون ما تتكسر؟ هذا الجدول"
+          "text": "أغلب المبتدئين يسوون نفس الأغلاط أول سنة — ٦ منها وفرت علي وقت كثير"
         },
         {
           "slide_number": 2,
@@ -89,46 +89,46 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "٤ أيام رفع مقاومة بالأسبوع\n• دفع\n• سحب\n• كور\n• أرجل"
+          "text": "١. الترايسبس\nلو تبغى ذراعك يطلع أعرض، اهتم بالترايسبس أكثر من البايسبس."
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "٣ أيام جري بالأسبوع\n• Zone 2\n• إنترفالز\n• تمبو"
+          "text": "٢. الصدر\nزود أوزانك تدريجيًا، ولا توصل بنش للفشل كل سيت — التعب يتراكم عليك مع الوقت."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "الأهم إنك تسجل أوزانك وتعرف وش تتمرن صح\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "استشفاء\n• نوم ٧-٨ ساعات\n• مساج\n• ساونا\n• جاكوزي بارد\n• إطالات بعد كل تمرين"
+          "text": "٣. الظهر\nمو عضلة تشيل فيها أكبر وزن وخلاص. خفف الوزن شوي، تحكم بالحركة، وخلك نظيف بالعدة."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "الأكل\n• بروتين عالي\n• دهون صحية\n• كارب للطاقة\n• قاعدة ٨٠/٢٠"
+          "text": "٤. البايسبس\nتمارين الكيبل أفضل بكثير من الدامبل بالبايسبس."
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "الهدف بسيط\n• اجري أكثر من أهل الحديد\n• ارفع أثقل من أهل الجري"
+          "text": "٥. الأرجل والبطن\nلا تخاف تشتغل على الكوادز والهامسترنقز بقوة، وبرضو مرن أسفل ظهرك — يفرق كثير بثباتك."
         }
       ]
     },
     {
-      "script_id": "SET-029-V2",
+      "script_id": "SET-046-V2",
       "script_version": "V2",
       "status": "Ready",
       "hook_type": "V2",
-      "format": "Routine / Schedule",
+      "format": "Listicle",
       "original_slide_count": 8,
       "final_slide_count": 8,
       "slides": [
@@ -136,7 +136,7 @@
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "إذا تحب الاثنين، الحديد والجري، هذا انت"
+          "text": "لو تبدأ من جديد بالجيم، هذي ٦ أشياء لازم تعرفها"
         },
         {
           "slide_number": 2,
@@ -148,37 +148,37 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "٣ أيام جري بالأسبوع\n• Zone 2\n• إنترفالز\n• تمبو"
+          "text": "٥. الأرجل والبطن\nلا تخاف تشتغل على الكوادز والهامسترنقز بقوة، ومرن أسفل ظهرك — يفرق كثير بثباتك."
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "٤ أيام حديد بالأسبوع\n• دفع\n• سحب\n• كور\n• أرجل"
+          "text": "١. الترايسبس\nلو تبغى ذراعك أعرض، اهتم بالترايسبس أكثر من البايسبس."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "الأهم إنك تسجل أوزانك وتعرف وش تتمرن صح\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "الأكل\n• بروتين عالي\n• دهون صحية\n• كارب للطاقة\n• توازن ٨٠/٢٠"
+          "text": "٤. البايسبس\nتمارين الكيبل أفضل بكثير من الدامبل."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "استشفاء\n• نوم ٧-٨ ساعات\n• جهاز مساج\n• ساونا\n• جاكوزي بارد\n• إطالة بعد كل تمرين"
+          "text": "٢. الصدر\nزود أوزانك تدريجيًا، ولا توصل بنش للفشل كل سيت."
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "الهدف بسيط\n• اجري أكثر من اللي يشيلون حديد\n• ارفع أثقل من اللي يجرون"
+          "text": "٣. الظهر\nخفف الوزن، تحكم بالحركة، وخلك نظيف بالعدة."
         }
       ]
     }

@@ -1,12 +1,12 @@
 {
-  "source_set_id": "SET-029",
+  "source_set_id": "SET-051",
   "pillar": "P2",
   "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
   "subtopic": "Hybrid Athlete",
-  "topic": "Hybrid Athlete Weekly Structure",
+  "topic": "Becoming a Hybrid Athlete (V2)",
   "scripts": [
     {
-      "script_id": "SET-029-ORIGINAL",
+      "script_id": "SET-051-ORIGINAL",
       "script_version": "ORIGINAL",
       "status": "Ready",
       "hook_type": "ORIGINAL",
@@ -18,7 +18,7 @@
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "كيف تصير hybrid athlete: الجدول اللي يخليك تشيل حديد وتركض بنفس الأسبوع بدون ما تتكسر"
+          "text": "كيف تصير hybrid athlete قادح: الجدول اللي يخليك تشيل حديد وتركض بدون ما تتكسر"
         },
         {
           "slide_number": 2,
@@ -30,42 +30,42 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏٤ أيام تمارين مقاومة بالأسبوع\n• push\n• pull\n• core\n• legs"
+          "text": "تركض ٣ مرات بالأسبوع\n• جري خفيف\n• تمارين سرعة\n• جري طويل"
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "‏٣ أيام ركض بالأسبوع\n• zone 2\n• intervals\n• tempo"
+          "text": "تتمرن نادي ٤ مرات بالأسبوع\n• علوي\n• سفلي\n• دفع\n• سحب"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "يكون عندك جدول حديد يحسب رياضة الجري وما يكون ضدها\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏استشفاء\n‏• نوم ٨-٧ ساعات\n‏• جهاز مساج\n‏• ساونا\n‏• جاكوزي بارد\n‏• اطالات بعد كل تمرين"
+          "text": "أكلك يكون مرتب\n• بروتين عالي\n• دهون كويسة\n• كارب يعطيك طاقة\n• خلك موزون بالأكل"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الأكل\n‏• بروتين عالي\n‏• دهون صحية\n‏• كارب عشان الطاقة\n‏• قاعدة ٨٠/٢٠"
+          "text": "اهتم باستشفاءك\n• نم ٧ إلى ٨ ساعات\n• ساونا\n• ثلج\n• ريكفري بوتس"
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏الهدف بسيط\n‏• اركض أكثر من اللي يلعبون حديد\n‏• ارفع أوزان أكثر من اللي يركضون"
+          "text": "الهدف بسيط\nخل اللي يركض يشوف عضلاتك، وخل اللي يضخم ما يقدر يلحقك 😭"
         }
       ]
     },
     {
-      "script_id": "SET-029-V1",
+      "script_id": "SET-051-V1",
       "script_version": "V1",
       "status": "Ready",
       "hook_type": "V1",
@@ -101,7 +101,7 @@
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "يكون عندك جدول حديد يحسب رياضة الجري وما يكون ضدها\nاستخدم هذا"
         },
         {
           "slide_number": 6,
@@ -124,7 +124,7 @@
       ]
     },
     {
-      "script_id": "SET-029-V2",
+      "script_id": "SET-051-V2",
       "script_version": "V2",
       "status": "Ready",
       "hook_type": "V2",
@@ -160,7 +160,7 @@
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "يكون عندك جدول حديد يحسب رياضة الجري وما يكون ضدها\nاستخدم هذا"
         },
         {
           "slide_number": 6,

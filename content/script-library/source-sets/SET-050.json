@@ -1,16 +1,16 @@
 {
-  "source_set_id": "SET-029",
-  "pillar": "P2",
-  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
-  "subtopic": "Hybrid Athlete",
-  "topic": "Hybrid Athlete Weekly Structure",
+  "source_set_id": "SET-050",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
+  "subtopic": "Shoulders",
+  "topic": "Shoulder Exercise Ranking (V2)",
   "scripts": [
     {
-      "script_id": "SET-029-ORIGINAL",
+      "script_id": "SET-050-ORIGINAL",
       "script_version": "ORIGINAL",
       "status": "Ready",
       "hook_type": "ORIGINAL",
-      "format": "Routine / Schedule",
+      "format": "Tier List / Ranking",
       "original_slide_count": 8,
       "final_slide_count": 8,
       "slides": [
@@ -18,7 +18,7 @@
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "كيف تصير hybrid athlete: الجدول اللي يخليك تشيل حديد وتركض بنفس الأسبوع بدون ما تتكسر"
+          "text": "تبي أكتاف تبان من كل زاوية؟ ٥ تمارين مرتبة من الأسوأ للأفضل"
         },
         {
           "slide_number": 2,
@@ -30,46 +30,46 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏٤ أيام تمارين مقاومة بالأسبوع\n• push\n• pull\n• core\n• legs"
+          "text": "Lateral Raises\n0/10\nالتمرين ممتاز، بس إذا لعبته غلط غالباً بتشغل الترابيس أكثر من الكتف"
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "‏٣ أيام ركض بالأسبوع\n• zone 2\n• intervals\n• tempo"
+          "text": "Dumbbell Raises\n2.5/10\nمناسب كبداية، بس مشكلته صعب تتطور فيه مع الوقت"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "الأهم من كذا: سو جدول يتعدل حسب أسبوعك ورياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏استشفاء\n‏• نوم ٨-٧ ساعات\n‏• جهاز مساج\n‏• ساونا\n‏• جاكوزي بارد\n‏• اطالات بعد كل تمرين"
+          "text": "3. Military Press\n6.7/10\nتمرين قوي جداً، يشغل الكتف الأمامي"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الأكل\n‏• بروتين عالي\n‏• دهون صحية\n‏• كارب عشان الطاقة\n‏• قاعدة ٨٠/٢٠"
+          "text": "4. Venetian Raises\n8.5/10\nتمرين قليل يعرفونه، لكنه فعلياً ممتاز"
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏الهدف بسيط\n‏• اركض أكثر من اللي يلعبون حديد\n‏• ارفع أوزان أكثر من اللي يركضون"
+          "text": "5. Arnold Press\n10/10\nمن أكمل تمارين الكتف — يشغل الأمامي والجانبي والخلفي بتمرين واحد"
         }
       ]
     },
     {
-      "script_id": "SET-029-V1",
+      "script_id": "SET-050-V1",
       "script_version": "V1",
       "status": "Ready",
       "hook_type": "V1",
-      "format": "Routine / Schedule",
+      "format": "Tier List / Ranking",
       "original_slide_count": 8,
       "final_slide_count": 8,
       "slides": [
@@ -77,7 +77,7 @@
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "تبي تجمع بين الحديد والجري بدون ما تتكسر؟ هذا الجدول"
+          "text": "أغلب الناس تسوي تمارين أكتاف غلط — هذا ترتيبها من الأسوأ للأفضل"
         },
         {
           "slide_number": 2,
@@ -89,46 +89,46 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "٤ أيام رفع مقاومة بالأسبوع\n• دفع\n• سحب\n• كور\n• أرجل"
+          "text": "Lateral Raises 0/10 — شي عادي وفيه تمارين أقوى بكثير"
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "٣ أيام جري بالأسبوع\n• Zone 2\n• إنترفالز\n• تمبو"
+          "text": "Dumbbell Raises 2.5/10 — مقبول، بس مو أفضل خيار"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "الأهم من كذا: سو جدول يتعدل حسب أسبوعك ورياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "استشفاء\n• نوم ٧-٨ ساعات\n• مساج\n• ساونا\n• جاكوزي بارد\n• إطالات بعد كل تمرين"
+          "text": "Military Press 6.7/10 — مدى حركة حلو ويشتغل على الأكتاف مباشرة، بس فيه أقوى منه"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "الأكل\n• بروتين عالي\n• دهون صحية\n• كارب للطاقة\n• قاعدة ٨٠/٢٠"
+          "text": "Venetian Raises 8.5/10 — تمرين مغبون، يحافظ على الشد طول الحركة، بس فيه أفضل"
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "الهدف بسيط\n• اجري أكثر من أهل الحديد\n• ارفع أثقل من أهل الجري"
+          "text": "Arnold Press 10/10 — تمرين خرافي، جرّبه بنفسك وشوف الفرق"
         }
       ]
     },
     {
-      "script_id": "SET-029-V2",
+      "script_id": "SET-050-V2",
       "script_version": "V2",
       "status": "Ready",
       "hook_type": "V2",
-      "format": "Routine / Schedule",
+      "format": "Tier List / Ranking",
       "original_slide_count": 8,
       "final_slide_count": 8,
       "slides": [
@@ -136,7 +136,7 @@
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "إذا تحب الاثنين، الحديد والجري، هذا انت"
+          "text": "وش أفضل تمرين أكتاف من كل زاوية؟ جربت ٥ ورتبتهم بصراحة"
         },
         {
           "slide_number": 2,
@@ -148,37 +148,37 @@
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "٣ أيام جري بالأسبوع\n• Zone 2\n• إنترفالز\n• تمبو"
+          "text": "0/10 لـLateral Raises — تلقى تمارين أقوى منه بسهولة"
         },
         {
           "slide_number": 4,
           "slide_label": "Slide 4",
           "is_metafi_slide": false,
-          "text": "٤ أيام حديد بالأسبوع\n• دفع\n• سحب\n• كور\n• أرجل"
+          "text": "2.5/10 لـDumbbell Raises — مو خيار سيء، بس مو أول اختيار"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
           "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "text": "الأهم من كذا: سو جدول يتعدل حسب أسبوعك ورياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "الأكل\n• بروتين عالي\n• دهون صحية\n• كارب للطاقة\n• توازن ٨٠/٢٠"
+          "text": "6.7/10 لـMilitary Press — يستهدف الأكتاف مباشرة ومدى حركته ممتاز، بس فيه أفضل"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "استشفاء\n• نوم ٧-٨ ساعات\n• جهاز مساج\n• ساونا\n• جاكوزي بارد\n• إطالة بعد كل تمرين"
+          "text": "8.5/10 لـVenetian Raises — من التمارين المظلومة، يخلي العضلة تحت شد طول الوقت"
         },
         {
           "slide_number": 8,
           "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "الهدف بسيط\n• اجري أكثر من اللي يشيلون حديد\n• ارفع أثقل من اللي يجرون"
+          "text": "10/10 لـArnold Press — القمة. جرّبه وتجاهل أي حد يقولك غير كذا"
         }
       ]
     }

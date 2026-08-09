@@ -1,380 +1,184 @@
 {
   "source_set_id": "SET-004",
-  "pillar": "Workout Programming / Exercise Selection",
+  "pillar": "P3",
+  "pillar_name": "Workout Programming / Exercise Selection",
   "subtopic": "Performance & Recovery",
   "topic": "Cortisol-Raising Habits",
   "scripts": [
     {
       "script_id": "SET-004-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Educational",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏عمرك فكرت ليش وزنك ثابت مع إنك قاطع سكر؟ مسببات ارتفاع الكورتيزول لازم تنتبه منها:"
+          "text": "عمرك فكرت ليش وزنك ثابت مع إنك قاطع سكر؟ مسببات ارتفاع الكورتيزول لازم تنتبه منها:"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏ما تنام بشكل كافي يزيد الكورتيزول."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏شرب القهوة يزيد الكورتيزول."
+          "text": "‏ما تنام بشكل كافي يزيد الكورتيزول."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏شرب القهوة يزيد الكورتيزول."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏تصفح وسائل التواصل يزيد الكورتيزول."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الكالم السلبي مع النفس يزيد الكورتيزول."
+          "text": "‏تصفح وسائل التواصل يزيد الكورتيزول."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الاستعجال طوال اليوم يزيد الكورتيزول."
+          "text": "‏الكلام السلبي مع النفس يزيد الكورتيزول."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "‏الاستعجال طولا اليوم يزيد الكورتيزول."
         }
       ]
     },
     {
       "script_id": "SET-004-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Educational",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٥ أخطاء يومية تسويها ترفع هرمون الكورتيزول وتثبت وزنك حتى لو قاطع السكر تمامًا."
+          "text": "٥ عادات ترفع الكورتيزول وتوقف نزول وزنك من غير ما تحس"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول غلط هو السهر وقلة النوم، لأن عدم كفاية النوم ترفع الكورتيزول بالجسم بشكل مباشر وتمنع حرق الدهون."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الغلط الثاني هو الإفراط في شرب القهوة والمنبهات طول اليوم، والثالث هو الاستعجال والركض وراء الالتزامات بتوتر وضغط."
+          "text": "قلة النوم ترفع الكورتيزول."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "القهوة الزايدة ترفع الكورتيزول."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الغلط الرابع هو تصفح وسائل التواصل الاجتماعي قبل النوم وأول ما تصحى، والخامس هو لوم نفسك والكالم السلبي المستمر مع ذاتك."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الزبدة، كل هالممارسات ترفع هرمون القلق (الكورتيزول) وتخرب دايك؛ رتب يومك عشان يبدأ جسمك يستجيب وينزل وزنك."
+          "text": "التصفح الطويل بوسائل التواصل يرفع الكورتيزول."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "الكلام السلبي مع النفس يرفع الكورتيزول."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "الاستعجال طول اليوم يرفع الكورتيزول."
         }
       ]
     },
     {
       "script_id": "SET-004-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Educational",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٥ أشياء غير متوقعة ترفع الكورتيزول بجسمك وتخلي وزنك ثابت ومستحيل ينزل."
+          "text": "قاطع سكر ووزنك ثابت؟ المشكلة مو الأكل"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول شي هو حرمان جسمك من النوم الكافي، هذا لحاله كفيل يخلي هرمون القلق عندك في العاللي ويوقف الحرق."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثاني شي هو كثرة شرب القهوة على جوع، وثالث شي هو الاستعجال والتوتر في كل تفاصيل يومك."
+          "text": "الاستعجال طول اليوم يرفع الكورتيزول."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "الكلام السلبي مع النفس يرفع الكورتيزول."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏رابع شي هو التصفح الالنهائي لوسائل التواصل اللي يشد أعصابك، وخامس شي هو الأفكار والكالم السلبي اللي تقوله لنفسك."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏إذا تبي الكورتيزول يرجع لمستواه الطبيعي ووزنك يتحرك، ابدأ عدل هالعادات الخمسة وخذ يومك بروقان."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-004-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف تنزل هرمون الكورتيزول في جسمك عشان تحرك وزنك الثابت بدون ما تحرم نفسك زيادة؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏البداية تكون بتعديل نومك؛ احرص على ساعات نوم كافية لأنها السالح الأول لخفض الكورتيزول المرتفع."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏بعدها خفف شرب القهوة خاصة الصباح وال تبدأ يومك بالاستعجال والركض والتوتر اللي يرفع ضغطك."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏قلل تصفح وسائل التواصل الاجتماعي اللي تشتتك، ووقف جلد الذات والكالم السلبي مع نفسك لأنه يحفز هرمونات الإجهاد."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏بتطبيق هالتغييرات البسيطة، بتهدي جهازك العصبي وينخفض الكورتيزول، ويبدأ وزنك ينزل بشكل طبيعي."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-004-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا أنت قاطع السكر وملتزم بدايتك بس وزنك لسه ثابت، غالبًا المشكلة هي ارتفاع هرمون الكورتيزول بجسمك."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏ترى مو لازم تحرم نفسك أكثر؛ قلة النوم والتوتر المستمر هم اللي يرفعون الكورتيزول ويخلون جسمك متمسك بالدهون."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏انتبه من كثرة شرب القهوة على الريق، ومن الاستعجال والركض ورا أشغالك طول اليوم بضغط نفسي كبير."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
           "is_metafi_slide": true,
           "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
         },
         {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏حتى تصفحك للجوال ووسائل التواصل والكالم السلبي اللي تردده لنفسك ترى يرفعون الكورتيزول بدون ما تحس."
-        },
-        {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏عدل جودة حياتك ونومك قبل ما تعدل أكلك، وبتشوف كيف وزنك يبدأ ينزل بسهولة وسالسة."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-004-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏قطع السكر مو هو الحل السحري لخسارة الوزن إذا كان هرمون الكورتيزول عندك مرتفع طول الوقت."
+          "text": "قلة النوم ترفع الكورتيزول."
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏أكبر غلطة تسويها هي إنك تهتم باللي بداخل صحنك وتنسى إن قلة النوم ترفع الكورتيزول وتخرب كل تعبك."
+          "text": "التصفح الطويل بوسائل التواصل يرفع الكورتيزول."
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 8,
+          "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏ترى كثرة شرب القهوة والاستعجال والتوتر طول اليوم يخلون جسمك في حالة طوارئ مستمرة ويمنعون الحرق."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏وتصفح وسائل التواصل الاجتماعي والكالم السلبي مع النفس يزيدون الطين بلة ويرفعون الكورتيزول ألرقام فلكية."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏خفف التوتر وخلك رايق عشان يرجع الكورتيزول لمستواه الطبيعي ويبدأ جسمك يستجيب للدايت."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-004-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحرم نفسي وقاطع السكر تمامًا ومستغرب ليش وزني ثابت، لين عرفت إن الكورتيزول المرتفع هو السبب."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏كنت أسهر وما أنام كفاية، وأشرب قهوة بكميات مهولة طول اليوم وأنا مستعجل ومتوتر في كل شي أسويه."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏كنت أقضي ساعات أتصفح وسائل التواصل، وألوم نفسي بكالم سلبي يخليني في ضغط نفسي مستمر."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏كل هالضغط كان يرفع الكورتيزول ويمنع جسمي من حرق أي دهون رغم التزامي بالأكل."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏يوم رتبت نومي، وخففت قهوة وتوتر، وهديت بالي؛ نزل الكورتيزول وبدأ وزني يتحرك وينزل بسرعة."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-004-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏‎POV‎: قاطع السكر وماشي على دايت صارم بس الوزن ثابت، وتكتشف إن هرمون الكورتيزول عندك مرتفع."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏ليش الكورتيزول يرتفع ويثبت وزنك؟ لأنك ببساطة ما تنام بشكل كافي وجسمك مجهد طول الوقت."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ولأنك تبدأ يومك بشرب القهوة على جوع وبحالة استعجال وتوتر ال تنتهي من الصبح للمساء."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد ذكي يتعدل حسب أسبوعك وهدفك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏تزيدها بتصفح وسائل التواصل اللي يرفع توترك، وبجلد الذات والكالم السلبي اللي تقوله لنفسك كل ما شفت الميزان."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏عالج مسببات التوتر هذي ونظم نومك، وبتالحظ كيف الكورتيزول ينزل وجسمك يبدأ يستجيب للنزول."
+          "text": "وشرب القهوة الزايد يرفعه برضو."
         }
       ]
     }

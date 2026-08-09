@@ -1,50 +1,58 @@
 {
   "source_set_id": "SET-020",
-  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
   "subtopic": "Hybrid Athlete",
   "topic": "Hybrid Athlete Strength and Endurance",
   "scripts": [
     {
       "script_id": "SET-020-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Comparison",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏الهدف بسيط، خل اللي يركض يشوف عضالتك وخل اللي يضخم ما يقدر يلحقك 😭"
+          "text": "الهدف بسيط: خل اللي يركض يشوف عضلاتك، وخل اللي يضخم ما يقدر يلحقك 😭"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏تركض ٣ مرات بالأسبوع: جري خفيف، تمارين سرعة، جري طويل"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏تتمرن نادي ٤ مرات بالأسبوع: علوي، سفلي، دفع، سحب"
+          "text": "‏تركض ٣ مرات بالأسبوع: جري خفيف، تمارين سرعة، جري طويل"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏تتمرن نادي ٤ مرات بالأسبوع: علوي، سفلي، دفع، سحب"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏أكلك يكون مرتب: بروتين عالي، دهون كويسة، كارب يعطيك طاقة، وخلك موزون بالأكل"
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
+          "is_metafi_slide": false,
+          "text": "‏أكلك يكون مرتب: بروتين عالي، دهون كويسة، كارب يعطيك طاقة، وخلك موزون بالأكل"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
           "text": "‏اهتم باستشفاءك: نم ٧ إلى ٨ ساعات، ساونا، ثلج، ريكفري بوتس"
         }
@@ -52,287 +60,107 @@
     },
     {
       "script_id": "SET-020-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
-      "format": "Listicle",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Comparison",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أغالط تسويها تمنعك تجمع بين قوة الحديد ولياقة الجري"
+          "text": "تبي جسم يجمع بين السرعة والقوة؟ هذا الجدول"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏الأولى: تهمل ركض المسافات الطويلة والسرعات، وتكتفي بجري خفيف وبس"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الثانية: جدول حديد عشوائي، والمدرب ما رتب لك تقسيم (علوي، سفلي، دفع، سحب) على ٤ أيام"
+          "text": "تجري ٣ مرات بالأسبوع: جري خفيف، تمارين سرعة، جري طويل."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "تتمرن نادي ٤ مرات بالأسبوع: علوي، سفلي، دفع، سحب."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الثالثة: تطنش الاستشفاء وما تنام ٨ ساعات وال تستخدم الساونا أو الثلج لراحة عضالتك"
-        }
-      ]
-    },
-    {
-      "script_id": "SET-020-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏٤ نصايح تخليك تبني جسم معضل وبنفس الوقت لياقتك عالية بالركض"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏. ١ قسم ركضك ٣ مرات بالأسبوع بين جري خفيف، تمارين سرعة، وجري طويل"
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏. ٢ وزع تمرين النادي ٤ أيام بالاسبوع، وركز على تقسيم علوي وسفلي مع دفع وسحب"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
           "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏. ٣ رتب أكلك وخلي بروتينك عالي مع كارب يعطيك طاقة ودهون صحية موزونة"
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏. ٤ عط الاستشفاء حقه بنوم كافي من ٧ إلى ٨ ساعات واستخدم الساونا والثلج"
+          "text": "أكلك يكون مرتب: بروتين عالي، دهون كويسة، كارب للطاقة، وتوازن بالأكل."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "اهتم باستشفاءك: نم ٧ إلى ٨ ساعات، ساونا، ثلج، ريكفري بوتس."
         }
       ]
     },
     {
-      "script_id": "SET-020-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
+      "script_id": "SET-020-V2",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Comparison",
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏كيف ترتب أسبوعك عشان تجمع بين ضخامة العضالت ونفس الركض الطويل؟"
+          "text": "إذا تحس نفسك بين الجري والحديد، هذا انت"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏وزع الجري ٣ مرات بالأسبوع، يوم خفيف ويوم للسرعات ويوم مسافة طويلة"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ادخل صالة الحديد ٤ مرات بالأسبوع، وقسم أيامك لعلوي وسفلي ودفع وسحب"
+          "text": "تتمرن نادي ٤ مرات بالأسبوع: علوي، سفلي، دفع، سحب."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "تجري ٣ مرات بالأسبوع: جري خفيف، تمارين سرعة، جري طويل."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏غذي جسمك ببروتين عالي وكارب يعطيك طاقة، ونظم نومك لـ ٨ ساعات مع جلسات ساونا وثلج"
-        }
-      ]
-    },
-    {
-      "script_id": "SET-020-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا تبي تبني عضالت واضحة وبنفس الوقت تكون سريع بالركض وما يتعبك النفس"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏لازم جدولك يتقسم صح، تتمرن حديد ٤ مرات بالأسبوع (علوي، سفلي، دفع، سحب)"
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏وتركض ٣ مرات بالأسبوع مقسمة بين مسافات طويلة وسرعات وجري خفيف"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
           "is_metafi_slide": true,
           "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
+          "slide_number": 6,
+          "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏وأكيد ضبط أكلك ببروتين عالي واستشفي صح بنوم كافي وثلج وساونا"
-        }
-      ]
-    },
-    {
-      "script_id": "SET-020-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏أكبر غلطة تحسب إنك ما تقدر تجمع بين كتلة العضالت ونفس الركض الطويل"
+          "text": "اهتم باستشفاءك: نم ٧ إلى ٨ ساعات، ساونا، ثلج، ريكفري بوتس."
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏ترى تقدر تخليهم مع بعض لو رتبت ركضك ٣ مرات بالأسبوع وحديدك ٤ مرات"
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏السر في تقسيم الحديد (علوي، سفلي، دفع، سحب)، وتنوع الجري بين سرعات ومسافات"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏وال تنسى توازن أكلك بالبروتين والكارب، وتنام من ٧ إلى ٨ ساعات عشان عضالتك تستشفي"
-        }
-      ]
-    },
-    {
-      "script_id": "SET-020-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحسب إني لو ركضت بتصغر عضالتي، ولو ضخمت بضيع لياقتي ونفسي"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏بس اللي فرق معي هو تقسيم أسبوعي صح بين الحديد والجري"
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏صرت أركض ٣ مرات متنوعة، وأشيل حديد ٤ مرات بتقسيم علوي وسفلي ودفع وسحب"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏مع توازن بالأكل واهتمام كامل بالاستشفاء مثل النوم والساونا والثلج"
-        }
-      ]
-    },
-    {
-      "script_id": "SET-020-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏‎POV‎ تبي جسم رياضي معضل ومرن، وبنفس الوقت تركض مسافات طويلة بدون ما تتعب"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏الحل إنك تدمج ٣ أيام ركض متنوع مع ٤ أيام حديد مقسمة بالتساوي"
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏أكلك لازم يكون مرتب ببروتين عالي وكارب كافي يغذي تمرينك"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏وختمها باستشفاء قوي بنوم ٨ ساعات وساونا وثلج عشان ترجع بكامل قوتك"
+          "text": "أكلك يكون مرتب: بروتين عالي، دهون كويسة، كارب للطاقة، وتوازن بالأكل."
         }
       ]
     }

@@ -1,380 +1,190 @@
 {
   "source_set_id": "SET-015",
-  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
   "subtopic": "Football + Gym",
   "topic": "Combining Football with Gym",
   "scripts": [
     {
       "script_id": "SET-015-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Routine / Schedule",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
+      "original_slide_count": 9,
+      "final_slide_count": 9,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏إذا تلعب كورة وتبي تدخل الحديد، ال تعاملهم كأنهم شيئين منفصلين. الحديد المفروض يخدم لعبك، مو ياخذ من طاقتك\n‏بالملعب."
+          "text": "إذا تلعب كورة وتبي تدخل الحديد، لا تعاملهم كأنهم شيئين منفصلين — غلطة وحدة بس تخليك تدخل الملعب ورجولك مستهلكة"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏تمارين القوة تساعدك في السرعة، التحمل، الثبات، وقوة الالتحامات. يعني مو بس تبني عضل؛ تبني جسم يتحرك أفضل داخل\n‏الملعب."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏لكن المشكلة تبدأ إذا تمرنت بدون خطة. لو حطيت رجل ثقيل قبل مباراة أو تمرين كورة قوي، غالبًا بتدخل الملعب ورجولك\n‏مستهلكة."
+          "text": "‏تمارين القوة تساعدك في السرعة، التحمل، الثبات، وقوة الالتحامات. يعني مو بس تبني عضل؛ تبني جسم يتحرك أفضل داخل\n‏الملعب."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏لكن المشكلة تبدأ إذا تمرنت بدون خطة. لو حطيت رجل ثقيل قبل مباراة أو تمرين كورة قوي، غالبًا بتدخل الملعب ورجولك\n‏مستهلكة."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏خل تمارين الرجل الثقيلة بعيدة عن أيام المباريات أو التمارين القوية. والأيام القريبة من الكورة تكون أخف، تركيزها على\n‏الحركة، الثبات، والتكنيك."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏التمارين الأساسية مثل السكوات والديدلفت ممكن تفيدك كثير، بس مو لازم تكثر منها. الأهم تختار وزن مناسب وتحافظ على\n‏أداء نظيف بدون ما تجهد جسمك زيادة."
+          "text": "لكن المشكلة تبدأ إذا تمرنت بدون خطة.\nلو حطيت رجل ثقيل قبل مباراة أو تمرين كورة قوي، غالبًا بتدخل الملعب ورجولك مستهلكة."
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الهدف إن الحديد يقويك للكورة، مو يخليك أبطأ أو مرهق. إذا رتبت الجدول صح، بتاخذ قوة من النادي وتترجمها سرعة\n‏وثبات داخل الملعب."
+          "text": "خل تمارين الرجل الثقيلة بعيدة عن أيام المباريات. والأيام القريبة من الكورة تكون أخف، تركيزها على الحركة والثبات."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "التمارين الأساسية مثل السكوات والديدلفت تفيدك كثير، بس مو لازم تكثر منها. اختار وزن مناسب وحافظ على أداء نظيف."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "الهدف إن الحديد يقويك للكورة، مو يخليك أبطأ أو مرهق."
         }
       ]
     },
     {
       "script_id": "SET-015-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Routine / Schedule",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أخطاء تدمر مستواك بالملعب كـ ‎Hybrid Athlete.‎"
+          "text": "أغلب اللي يلعب كورة ويشيل حديد يسوي هالغلطة — وتدخل الملعب ورجولك مستهلكة"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏الأول: تلعب تمرين رجل ثقيل قبل المباراة بيوم وتدخل الملعب ورجولك منتهية ومستهلكة."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الثاني: تعامل الحديد والكورة كأنهم شيئين منفصلين وما يخدمون بعض بالجدول."
+          "text": "تمارين القوة تساعدك في السرعة، التحمل، الثبات، وقوة الالتحامات — يعني مو بس تبني عضل، تبني جسم يتحرك أفضل داخل الملعب."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "لكن المشكلة تبدأ لو تمرنت من غير خطة. لو حطيت رجل ثقيل قبل مباراة أو تمرين كورة قوي، غالبًا بتدخل الملعب ورجولك مستهلكة."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الثالث: تكثر سكوات وديدلفت بأوزان عالية تجهد عضالتك بدون فايدة حقيقية لحركتك بالملعب."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏رتب جدولك صح وخلي الحديد يقويك للكورة، مو ياخذ من طاقتك."
+          "text": "خلي تمارين الرجل الثقيلة بعيدة عن أيام المباريات. والأيام القريبة من الكورة خلّها أخف، تركيزها على الحركة والثبات."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "التمارين الأساسية مثل السكوات والديدلفت تفيدك كثير، بس مو لازم تكثر منها — اختار وزن مناسب وحافظ على أداء نظيف."
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "الهدف إن الحديد يقويك للكورة، مو يخليك أبطأ أو مرهق."
         }
       ]
     },
     {
       "script_id": "SET-015-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Routine / Schedule",
+      "original_slide_count": 8,
+      "final_slide_count": 8,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ حاجات بتفرق في لعبك وقوتك لو طبقتها كـ ‎Hybrid Athlete.‎"
+          "text": "تلعب كورة وتبي تدخل النادي؟ هذا انت"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أواًل: افصل أيام الرجل الثقيلة تمامًا عن أيام المباريات أو التمارين القوية للكورة."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثانيًا: بالأيام القريبة من المباراة ركز على الثبات، التكنيك، والحركة السريعة بأوزان خفيفة."
+          "text": "الهدف إن الحديد يقويك للكورة، مو يخليك أبطأ أو مرهق — وهذا يصير بس لو رتبت جدولك صح."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "المشكلة تبدأ لو تمرنت من غير خطة. رجل ثقيل قبل مباراة أو تمرين كورة قوي = تدخل الملعب ورجولك مستهلكة."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ً\n‏ثالثا: قلل من السكوات والديدلفت المجهدة واهتم بجودة الأداء والوزن المناسب لجسمك."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الحديد بالنهاية وسيلة تخليك أسرع وأثبت بالملعب، ال تخليه ينهكك ويهلك عضالتك."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-015-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف ترتب جدول الحديد والكورة كـ ‎Hybrid Athlete‎ بدون ما ترهق جسمك؟"
+          "text": "تمارين القوة تساعدك في السرعة، التحمل، الثبات، وقوة الالتحامات — مو بس تبني عضل."
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏ابدأ بفصل تمارين الرجل الثقيلة وخليها بأيام بعيدة تمامًا عن مبارياتك وتمرين الكورة القوي."
+          "text": "خلي تمارين الرجل الثقيلة بعيدة عن أيام المباريات، والأيام القريبة من الكورة خلّها أخف."
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 8,
+          "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏وقبل أيام الكورة، ركز بنادي الحديد على تمارين الحركة، الثبات، والتكنيك الخفيف."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏مو لازم تبالغ بالسكوات والديدلفت؛ العب بوزن مناسب يحافظ على طاقتك ويخدم حركتك."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏كذا بتضمن إنك تبني قوة وثبات بالملعب، وبنفس الوقت تدخل المباراة بكامل طاقتك ونشاطك."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-015-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا تلعب كورة وتبي ترفع ليفلك كـ ‎Hybrid Athlete‎، ال تضيع طاقتك بالنادي على الفاضي."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏الحديد المفروض يطور سرعتك وثباتك بالملعب، مو يدمر طاقتك قبل ما تبدأ المباراة."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏لو جدولك مليان سكوات ثقيل قبل التمارين القوية، طبيعي تدخل الملعب ورجولك ثقيلة ومستهلكة."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ّ\n‏وزع جهدك صح، وخلي الأيام القريبة من الكورة خفيفة وتركز على الحركة والتكنيك."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏تذكر دائمًا إن هدفك من النادي هو خدمة لعبك بالملعب، مو بس تشيل أوزان وتتعب جسمك."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-015-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏أكبر غلطة تسويها كـ ‎Hybrid Athlete‎ هي إنك تتمرن رجل ثقيل قبل المباراة مباشرة."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏بكذا أنت تستهلك عضالتك وتدخل الملعب وأنت فاقد لسرعتك وثباتك بالالتحامات."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏الحديد لازم يخدم كورتك ويزيد تحملك، مو ياخذ من جهدك وطاقتك الأساسية."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏قلل من السكوات والديدلفت المجهدة بالأيام القريبة، وركز على الحركة الخفيفة والتكنيك النظيف."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏القوة الحقيقية تجي من الترتيب الذكي للجدول اللي يخليك أسرع بالملعب، مو أتعب بالنادي."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-015-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحسب كـ ‎Hybrid Athlete‎ لازم أكسر أوزان بالنادي عشان أصير أقوى وأسرع بالملعب."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏بس اللي صار إني كنت أدخل المباريات ورجولي منتهية تمامًا وحركتي بطيئة ومجهدة."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏عرفت بعدها إن تمارين الرجل الثقيلة مكانها بعيد عن أيام الكورة والتمارين القوية."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏وبديت أركز على الحركة، الثبات، والتكنيك الخفيف في الأيام القريبة من المباريات."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏الحين صرت أدخل الملعب خفيف وسريع، وعرفت كيف أخلي النادي فعلاً يخدم لعبي."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-015-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏‎POV‎ تحاول تلعب كورة وتدخل حديد كـ ‎Hybrid Athlete‎ بس رجولك دايم ثقيلة وتعبانة بالملعب."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏المشكلة مو بالحديد نفسه، المشكلة إنك قاعد تمرن رجل ثقيل في وقت غلط وقريب من المباراة."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏جرب تبعد الحصص الثقيلة عن أيام الكورة، وتخلي التمارين القريبة خفيفة وتركز على الحركة والثبات."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏مو لازم تهلك نفسك بالسكوات والديدلفت؛ جودة الأداء والوزن المناسب هم الأساس لتفادي الإجهاد."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏رتب جدولك صح وبتحس بالفرق في سرعتك وثباتك داخل الملعب وبدون تعب زايد."
+          "text": "السكوات والديدلفت يفيدونك كثير، بس اختار وزن مناسب وحافظ على أداء نظيف بدون مبالغة."
         }
       ]
     }

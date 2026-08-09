@@ -1,332 +1,166 @@
 {
   "source_set_id": "SET-024",
-  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
   "subtopic": "Running + Gym",
   "topic": "Running and Lifting Mistakes",
   "scripts": [
     {
       "script_id": "SET-024-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏3أشياء ال تسويها إذا تتمرن حديد وتركض بنفس الأسبوع"
+          "text": "٣ أشياء لا تسويها إذا تجمع بين الحديد والركض بنفس الأسبوع (وحدة منها توقف تطورك بالكامل)"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏. 1ال تحط الجري القوي جنب تمرين الأرجل خل بين الـ ‎intervals‎ أو الـ ‎sprints‎ وتمرين الأرجل الثقيل يوم على الأقل"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏. 2ال تخلي كل تمارينك قوية خل أغلب جرياتك سهلة وارفع الشدة مرة أو مرتين بالأسبوع فقط"
+          "text": "١- لا تحط الجري القوي جنب تمرين الأرجل خل بين الـ ‎intervals‎ أو الـ ‎sprints‎ وتمرين الأرجل الثقيل يوم على الأقل"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "٢- لا تخلي كل تمارينك قوية خل أغلب جرياتك سهلة وارفع الشدة مرة أو مرتين بالأسبوع فقط"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏. 3ال تتمرن بنفس حجم جدول الحديد القديم إذا زاد ركضك خفف مجموعات الأرجل"
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏رتب أسبوعك على حملك كامل مو على الحديد لحاله"
+          "text": "٣- لا تتمرن بنفس حجم جدول الحديد القديم.\nإذا زاد ركضك، خفف مجموعات الأرجل."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "رتب أسبوعك على حملك كامل، مو على الحديد لحاله."
         }
       ]
     },
     {
       "script_id": "SET-024-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
       "format": "Listicle",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أغالط تدمر ركبتك واستشفائك إذا تجمع بين الجري والحديد"
+          "text": "تجمع بين الحديد والركض بنفس الأسبوع؟ إذا ما رتبته صح راح توقف تطورك"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏الأولى: تلعب سبرنتات أو جري سريع بنفس يوم تمرين الأرجل أو اليوم اللي بعده مباشرة. هذا يجهد مفاصلك وعضالتك\n‏بزيادة وما يعطيها وقت ترتاح."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الثانية: تدرعم بكل جرياتك بأقصى سرعة وتتوقع جسمك بيتحمل. المفروض تخلي أغلب ركضك مريح وبسيط، وتخلي\n‏الجري القوي مرة أو مرتين بالضيق."
+          "text": "١- لا تحط الجري القوي جنب تمرين الأرجل. خلي بينهم يوم راحة على الأقل بين الإنترفالز أو السبرنتس والرجل الثقيل."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "٢- لا تخلي كل جرياتك قوية. خلي أغلبها سهلة، وزود الشدة مرة أو مرتين بالأسبوع بس."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
+          "is_metafi_slide": true,
+          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+        },
+        {
+          "slide_number": 6,
+          "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏الثالثة: تثبت نفس عدد جوالت الأرجل بالحديد بعد ما صرت تركض. طالما زاد جهد الركض، طبيعي تحتاج تقلل جوالت\n‏الحديد شوي عشان توازن الحمل."
+          "text": "٣- لا تكرر نفس حجم جدول الحديد القديم. لما يزيد ركضك، خفف مجموعات الأرجل."
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "رتب أسبوعك على حملك الكامل، مو على الحديد لحاله."
         }
       ]
     },
     {
       "script_id": "SET-024-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
       "format": "Listicle",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
+      "original_slide_count": 7,
+      "final_slide_count": 7,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ قواعد أساسية لازم تطبقها إذا جدولك فيه حديد وجري بنفس الأسبوع"
+          "text": "وش سوّيت هالأسبوع: جري قوي، تمرين أرجل، وتوقعت جسمك يتحمل؟"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏. 1افصل بين الأيام الثقيلة. خل يوم كامل على الأقل يفصل بين ركض المسافات القصيرة السريعة وتمرين الأرجل الثقيل\n‏بالصالة."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ّ. 2\n‏وزع مجهودك بذكاء. مو كل جرياتك تكون سريعة وتعبّس، خل النسبة الأكبر مريحة ورايقة والشدة العالية لمرة أو مرتين\n‏بالأسبوع."
+          "text": "لا تخلي كل جرياتك قوية. أغلبها خليها سهلة، وارفع الشدة مرة أو مرتين بالأسبوع بس."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "لا تحط الجري القوي جنب تمرين الأرجل. خل بينهم يوم راحة، سواء إنترفالز أو سبرنتس."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏. 3عدّل جوالت الحديد. إذا الحظت ركضك زاد، قلل مجموعات تمارين الأرجل عشان تعوض المجهود الإضافي."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-024-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف ترتب أسبوعك وتجمع بين الركض وتمرين الحديد بدون ما تنهار عضالتك؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏أول شيء، وازن بين الأيام القوية. ابعد تمرين الأرجل الثقيل عن أيام السبرنتات والجري السريع بمسافة يوم كامل على الأقل."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ثاني شيءّ،\n‏وزع شدة الجري. خل ركضك السريع محدد بيوم أو يومين بالأسبوع، وباقي الأيام اركض بـ ريتم خفيف وسهل."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏آخر شيء، خفف جوالت تمارين الأرجل بالنادي. طالما الركض قاعد ياخذ من طاقة رجولك، لازم تقلل حجم تمرين الحديد\n‏شوي عشان تواكب المجهود الجديد."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-024-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا أسبوعك فيه جري وتمرين حديد بنفس الوقت.. ترى الموضوع مو خذني جيتك"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏ما ينفع تدخل تمرين أرجل ثقيل وأنت توك مخلص سبرنتات قوية أو ناوي تسويها بكرا. أعط رجولك يوم راحة على الأقل\n‏يفصل بينهم عشان المفاصل ترتاح."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏وال تعامل كل جرياتك كأنها سباق وتضغط على نفسك لآلخر. شيل رجلك عن البنزين وخلي أغلب جرياتك سهلة وبسيطة."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
           "is_metafi_slide": true,
           "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
         },
         {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
+          "slide_number": 6,
+          "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏وتذكر، طالما دخل الركض بجدولك، لازم تنزل من جوالت تمرين الأرجل بالنادي. أنت قاعد تحسب جهد جسمك كامل، مو\n‏بس الحديد."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-024-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏أكبر غلطة تسويها لما تجمع بين الحديد والركض هي إنك تعامل كل واحد بجدول منفصل"
+          "text": "رتب أسبوعك على حملك كامل، مو بس على الحديد."
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏ال تفترض إن جسمك بيتحمل تمرين أرجل طحن وجري سريع بيومين ورى بعض. لازم تخلي بينهم مسافة يوم استشفاء على\n‏الأقل."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏وترى مو كل جرياتك لازم تكون متعبة وتجيب كتمة النفس. الصح إن أغلبها يكون سهل ومريح، والشدة العالية تكون استثناء\n‏مرة أو مرتين بس."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏وإذا زاد مجهودك بالركض، غباء تستمر بنفس مجموعات تمرين الأرجل القديمة بالحديد. احسب حملك كامل ووازن النادي\n‏مع الجري عشان ما تطيح من التعب."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-024-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كثير ناس يقررون يدمجون الحديد والركض، ويتفاجؤون إن استشفائهم صار دمار وعضالتهم تعبانة دايم"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏المشكلة تبدأ لما تحط تمرين أرجل قوي بيوم، وتتمرن سبرنتات قوية باليوم اللي بعده. الصح إنك تفصل بينهم بيوم كامل على\n‏الأقل عشان تعطي رجولك نفس."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ونفس الشيء لما تروح تركض وتخلي كل طلعاتك بأقصى سرعة وقوة. طبيعي تتعب، لأن المفروض النسبة الأكبر من\n‏ركضك تكون خفيفة ومريحة."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الخالصة اللي لازم تستوعبها: إذا زاد ركضك خفف جوالت الأرجل بالنادي. لأن الاستشفاء بالنهاية يعتمد على حمل جسمك\n‏الإجمالي مو بس ساعتك بالنادي."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-024-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 4,
-      "final_slide_count": 5,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏وش يصير لما تحاول تجمع بين الركض والحديد بدون ما ترتب حمل جسمك كامل؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏أول شيء، بتالحظ ألم بمفاصلك لأنك حاط السبرنتات وتمرين الأرجل الثقيل ورا بعض بدون يوم راحة يفصلهم."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏ثاني شيء، بيجيك خمول لأنك تضغط بكل جرياتك وتخليها كلها صعبة ومرهقة بدل ما تخلي أغلبها ريالكس."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الحل ببساطة: إذا زاد جهد ركضك، قلل جوالت الأرجل بالصالةّ.\n‏وزع مجهود أسبوعك كامل عشان تتطور بالاثنين بدون\n‏إصابات."
+          "text": "ولا تسوي نفس حجم جدول الحديد القديم لو زاد ركضك — خفف مجموعات رجلك."
         }
       ]
     }

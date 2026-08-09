@@ -1,380 +1,202 @@
 {
   "source_set_id": "SET-006",
-  "pillar": "Hybrid Athlete / Sport + Gym Balance",
+  "pillar": "P2",
+  "pillar_name": "Hybrid Athlete / Sport + Gym Balance",
   "subtopic": "Running + Gym",
   "topic": "Combining Three Runs with Gym",
   "scripts": [
     {
       "script_id": "SET-006-ORIGINAL",
-      "script_version": "Original",
-      "hook_type": "Original",
+      "script_version": "ORIGINAL",
+      "status": "Ready",
+      "hook_type": "ORIGINAL",
       "format": "Routine / Schedule",
-      "original_slide_count": 6,
-      "final_slide_count": 7,
+      "original_slide_count": 9,
+      "final_slide_count": 9,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏إذا تركض 3مرات بالأسبوع كيف ترتب جدول الحديد؟"
+          "text": "إذا تركض ٣ مرات بالأسبوع، جدول الحديد اللي يخلي رجولك ما تتكسر — وأغلب الناس يرتبونه غلط"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏خل ركضك كذا:\n• Easy Run\n• Speed Run\n• Long Run"
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏أفضل تقسيمة حديد لك:\n• Upper Body\n• Lower Body\n‏• ‎Full Body‎ كذا تمرن جسمك كامل بدون ما تتعب رجولك طول الأسبوع"
+          "text": "‏خل ركضك كذا:\n• Easy Run\n• Speed Run\n• Long Run"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "‏أفضل تقسيمة حديد لك:\n• Upper Body\n• Lower Body\n‏• ‎Full Body‎ كذا تمرن جسمك كامل بدون ما تتعب رجولك طول الأسبوع"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏مثال على الأسبوع:\n‏• السبت ‎Upper Body‎\n‏• الأحد ‎Easy Run‎\n‏• الاثنين ‎Lower Body‎\n‏• الثالثاء راحة\n‏• الأربعاء ‎Speed Run‎\n‏• الخميس ‎Full Body‎\n‏• الجمعة ‎Long Run‎"
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏أهم شيء ال تحط ‎Leg Day‎ قوي قبل ‎Speed Run‎ أو ‎Long Run‎ بيوم"
+          "text": "مثال على الأسبوع:\n• السبت Upper Body\n• الأحد Easy Run\n• الاثنين Lower Body\n• الثلاثاء راحة"
         },
         {
           "slide_number": 7,
           "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏وفي تمارين الرجل ال تكثر تمارين وال توصل للفشل بكل مجموعة، خل عندك طاقة للركض ومناسب ج ًدا للتضخيم"
+          "text": "• الأربعاء Speed Run\n• الخميس Full Body\n• الجمعة Long Run"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "أهم شيء: لا تحط Leg Day قوي قبل Speed Run أو Long Run بيوم."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "وفي تمارين الرجل، لا تكثر تمارين ولا توصل للفشل بكل مجموعة. خل عندك طاقة للركض."
         }
       ]
     },
     {
       "script_id": "SET-006-V1",
-      "script_version": "Variation 1",
-      "hook_type": "Mistakes",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V1",
+      "status": "Ready",
+      "hook_type": "V1",
+      "format": "Routine / Schedule",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ أخطاء في جدول الحديد تدمر ركضك وتخلي رجولك ثقيلة طول الأسبوع."
+          "text": "أغلب اللي يركض ٣ مرات بالأسبوع يرتب جدول الحديد غلط — وهذا يبطّئ تطورهم"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول غلط هو تكرار ‎Leg Day‎ قوي قبل أيام الـ ‎Speed Run‎ أو الـ ‎Long Run‎ بيوم، لأن هذا يخلي عضالتك مجهدة وما تقدر\n‏تجري صح."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏الغلط الثاني هو كثرة التمارين والوصول للفشل العضلي بكل جولة برجلينك، والصح إنك تخلي طاقة بجسمك للركض ومناسب للتضخيم."
+          "text": "رتب جريك كذا:\n• Easy Run\n• Speed Run\n• Long Run"
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "أحسن تقسيمة حديد لك:\n• Upper Body\n• Lower Body\n• Full Body — يشتغل جسمك كامل بدون ما ترهق رجولك طول الأسبوع"
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏الغلط الثالث هو اختيار تقسيمة حديد صعبة تنهك جسمك، والحل تعتمد على ‎Upper, Lower, Full Body‎ عشان توازن مجهودك."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏رتب ركضك بين ‎Easy, Speed, Long Run‎، ووزع حديدك السبت ‎Upper‎، الاثنين ‎Lower‎، والخميس ‎Full Body‎ الفضل\n‏استشفاء."
+          "text": "مثال أسبوع:\n• السبت Upper Body\n• الأحد Easy Run\n• الاثنين Lower Body\n• الثلاثاء راحة"
+        },
+        {
+          "slide_number": 7,
+          "slide_label": "Slide 7",
+          "is_metafi_slide": false,
+          "text": "• الأربعاء Speed Run\n• الخميس Full Body\n• الجمعة Long Run"
+        },
+        {
+          "slide_number": 8,
+          "slide_label": "Slide 8",
+          "is_metafi_slide": false,
+          "text": "أهم نقطة: لا تحط Leg Day ثقيل قبل Speed Run أو Long Run بيوم."
+        },
+        {
+          "slide_number": 9,
+          "slide_label": "Slide 9",
+          "is_metafi_slide": false,
+          "text": "وبتمارين الرجل، لا تكثر ولا توصل للفشل بكل مجموعة — خلي عندك طاقة تكفي للركض."
         }
       ]
     },
     {
       "script_id": "SET-006-V2",
-      "script_version": "Variation 2",
-      "hook_type": "Tips / Things",
-      "format": "Listicle",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
+      "script_version": "V2",
+      "status": "Ready",
+      "hook_type": "V2",
+      "format": "Routine / Schedule",
+      "original_slide_count": 9,
+      "final_slide_count": 9,
       "slides": [
         {
           "slide_number": 1,
           "slide_label": "Slide 1",
           "is_metafi_slide": false,
-          "text": "‏٣ نصايح تمنيت أعرفها تخليني أجمع بين الحديد والركض ٣ مرات بالأسبوع بدون إصابات."
+          "text": "تجري وتشيل حديد بنفس الأسبوع؟ هذا انت"
         },
         {
           "slide_number": 2,
           "slide_label": "Slide 2",
           "is_metafi_slide": false,
-          "text": "‏أول نصيحة هي تقسيم الحديد لثالثة أيام بس: يوم ‎Upper‎، ويوم ‎Lower‎، ويوم ‎Full Body‎ عشان يمدي عضالتك ترتاح وتتطور."
+          "text": "خله محفوظ عندك بترجع له بالنادي"
         },
         {
           "slide_number": 3,
           "slide_label": "Slide 3",
           "is_metafi_slide": false,
-          "text": "‏ثاني نصيحة هي تنظيم ركضك على ٣ أنواع مختلفة: جري خفيف ‎Easy‎، تمرين سرعة ‎Speed‎، وجري مسافات ‎Long Run.‎"
+          "text": "بتمارين الرجل، لا تكثر ولا توصل للفشل بكل مجموعة — خلي طاقتك محفوظة للركض."
         },
         {
           "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "4. برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
+          "slide_label": "Slide 4",
+          "is_metafi_slide": false,
+          "text": "وأهم نقطة: لا تحط Leg Day ثقيل قبل Speed Run أو Long Run بيوم."
         },
         {
           "slide_number": 5,
           "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ثالث نصيحة ال تكسر رجولك في الجيم وال تلعب للفشل العضلي الكامل بكل جلسة، خفف الحجم شوي وخلي عندك طاقة تجري فيها."
+          "is_metafi_slide": true,
+          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا"
         },
         {
           "slide_number": 6,
           "slide_label": "Slide 6",
           "is_metafi_slide": false,
-          "text": "‏المعادلة سهلة، وزع جدولك وخلي يوم الراحة بالنص، وبتشوف كيف هالنظام مناسب ج ًدا للتضخيم وزيادة اللياقة سوا."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-006-V3",
-      "script_version": "Variation 3",
-      "hook_type": "How-to",
-      "format": "How-to / Framework",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف تصمم جدول حديد ذكي يتناسب مع ركضك ٣ مرات بالأسبوع ويضمن لك تضخيم ممتاز؟"
+          "text": "أحسن تقسيمة حديد لك:\n• Upper Body\n• Lower Body\n• Full Body — يشتغل جسمك كامل من غير ما ترهق رجولك"
         },
         {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
+          "slide_number": 7,
+          "slide_label": "Slide 7",
           "is_metafi_slide": false,
-          "text": "‏الحل السحري هو تقسيمة حديد ٣ أيام بالاسبوع: يوم ‎Upper Body‎، يوم ‎Lower Body‎، ويوم ‎Full Body‎ لتمرين الجسم كامل."
+          "text": "رتب جريك كذا:\n• Easy Run\n• Speed Run\n• Long Run"
         },
         {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
+          "slide_number": 8,
+          "slide_label": "Slide 8",
           "is_metafi_slide": false,
-          "text": "‏وزع ركضك بذكاء لثالث حصص ‎Easy Run‎: لالستشفاء ‎Speed Run‎، للياقة، و ‎Long Run‎ لتحسين التحمل."
+          "text": "• الأربعاء Speed Run\n• الخميس Full Body\n• الجمعة Long Run"
         },
         {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
+          "slide_number": 9,
+          "slide_label": "Slide 9",
           "is_metafi_slide": false,
-          "text": "‏احرص إنك ما تلعب رجلين بقوة قبل حصة الجري الطويل أو السرعة بيوم، وخفف الشدة بتمارين الرجل لتوفير طاقتك."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏جرب هالترتيب: السبت علوي، الأحد جري خفيف، الاثنين سفلي، الثالثاء راحة، الأربعاء سرعة، الخميس جسم كامل، والجمعة جري\n‏طويل."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-006-V4",
-      "script_version": "Variation 4",
-      "hook_type": "Identity Callout",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏إذا أنت تركض ٣ مرات بالأسبوع وتلعب حديد بس تحس رجولك دايمًا ميتة، جدولك الحالي هو المشكلة."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏لازم تفهم إن رجولك تحتاج استشفاء؛ عشان كذا أفضل تقسيمة حديد لك هي ‎Upper, Lower, Full Body‎ عشان تعطيها فرصة\n‏ترتاح."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏وزع ركضك على حصص متنوعة بين ‎Easy Run‎ و ‎Speed Run‎ و ‎Long Run‎ عشان تطور لياقتك صح."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏انتبه تلعب ‎Leg Day‎ قاسي وتوصل للفشل العضلي قبل أيام الركض الطويل أو تمرين السرعة بيوم، لأنك كذا تدمر عضالتك."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏النظام هذا مريح، وبيعطيك طاقة تجري وبنفس الوقت مناسب للتضخيم وبناء عضالت قوية."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-006-V5",
-      "script_version": "Variation 5",
-      "hook_type": "Contrarian / Warning",
-      "format": "Myth / Contrarian",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏الجمع بين الحديد والركض ٣ مرات بالأسبوع ما يحتاج تمرين حديد يومي، يحتاج تقسيم ذكي يحمي رجولك."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏وقف تمرين الحديد التقليدي الـ ٥ أيام، واعتمد نظام الـ ٣ أيام، ‎Upper Body‎: ثم ‎Lower Body‎، وأخيرً ا ‎Full Body.‎"
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏السر إنك ما ترهق رجولك في الجيم، ال تلعب تمارين كثيرة للرجل وال توصل للفشل العضلي عشان تخلي طاقة للركض."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏نوع ركضك بين جري خفيف وجري سرعات وجري مسافات، وابعد الـ ‎Leg Day‎ تمامًا عن الأيام القوية للركض."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏بهالطريقة بتضمن إنك تتمرن بذكاء، وتحافظ على طاقتك لركض قوي وبناء عضلي ممتاز للتضخيم."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-006-V6",
-      "script_version": "Variation 6",
-      "hook_type": "Story / Regret / Realization",
-      "format": "Story",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كنت أحاول أركض ٣ مرات بالأسبوع والعب حديد ٥ أيام، لين انعدمت رجولي ووقف تطوري تمامًا."
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏اللي أنقذني هو تغيير تقسيمة الحديد لـ ٣ أيام بس بالأسبوع: يوم علوي، يوم سفلي، ويوم جسم كامل لراحة أكبر."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏وقتها رتبت ركضي ليكون متنوع بين ‎Easy Run‎ وجري سرعة ‎Speed Run‎ وجري مسافات ‎Long Run.‎"
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏تعلمت ما ألعب رجلين للفشل العضلي وال أرهقها قبل تمرين ركض قوي بيوم، وصارت طاقتي دبل في الجري."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏الحين استشفائي صار ممتاز، وصار جسمي يبني عضل بشكل رهيب والنظام طلع مناسب ج ًدا للتضخيم."
-        }
-      ]
-    },
-    {
-      "script_id": "SET-006-V7",
-      "script_version": "Variation 7",
-      "hook_type": "POV / Question",
-      "format": "POV / Relatable Scenario",
-      "original_slide_count": 5,
-      "final_slide_count": 6,
-      "slides": [
-        {
-          "slide_number": 1,
-          "slide_label": "Slide 1",
-          "is_metafi_slide": false,
-          "text": "‏كيف تجمع بين الركض ٣ مرات بالأسبوع والحديد بدون ما تضحي بحجم عضالتك أو لياقتك؟"
-        },
-        {
-          "slide_number": 2,
-          "slide_label": "Slide 2",
-          "is_metafi_slide": false,
-          "text": "‏الجواب في تنظيم أسبوعك بمرونة؛ العب حديد ٣ أيام بس بنظام ‎Upper, Lower, Full Body‎ عشان تتفادى إجهاد رجولك."
-        },
-        {
-          "slide_number": 3,
-          "slide_label": "Slide 3",
-          "is_metafi_slide": false,
-          "text": "‏وخل ركضك متنوع وموزع بذكاء بين الجري الخفيف، وتمرين السرعة، والركض الطويل لتحسين كفاءة قلبك."
-        },
-        {
-          "slide_number": 4,
-          "slide_label": "Slide 4 — Metafi",
-          "is_metafi_slide": true,
-          "text": "برضو سو لك جدول حديد يتعدل حسب رياضاتك\nاستخدم هذا التطبيق"
-        },
-        {
-          "slide_number": 5,
-          "slide_label": "Slide 5",
-          "is_metafi_slide": false,
-          "text": "‏ال تضغط على رجولك في الجيم بتمارين كثيرة، وتجنب الـ ‎Leg Day‎ القوي قبل أيام الركض الأساسية عشان تحافظ على مفاصلك."
-        },
-        {
-          "slide_number": 6,
-          "slide_label": "Slide 6",
-          "is_metafi_slide": false,
-          "text": "‏الترتيب هذا هو أفضل وسيلة تضمن لك تضخيم وبناء عضالت مع لياقة جري خرافية بنفس الوقت."
+          "text": "مثال أسبوع:\n• السبت Upper Body\n• الأحد Easy Run\n• الاثنين Lower Body\n• الثلاثاء راحة"
         }
       ]
     }
