@@ -71,7 +71,7 @@ class SupabaseOperationalRepository {
     const campaign = await this.repository.getCampaign(id); if (!campaign) return null;
     const { data: account, error } = await this.repository.client.from('accounts').select('*').eq('id', campaign.account_id).single();
     if (error) throw new Error(`Unable to load campaign account: ${error.message}`);
-    return { ...campaign, campaign_id: campaign.legacy_campaign_id, account_id: account.legacy_account_id, buffer_channel_id: account.buffer_channel_id,
+    return { ...campaign, campaign_id: campaign.legacy_campaign_id, account_id: account.legacy_account_id, account: { ...account, account_id: account.legacy_account_id }, buffer_channel_id: account.buffer_channel_id,
       account_internal_name: account.internal_name, account_username: account.username, account_language: account.language, account_timezone: account.timezone };
   }
   async saveCampaign(campaign) { return this.repository.upsertCampaign(campaign); }

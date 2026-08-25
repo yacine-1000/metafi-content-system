@@ -44,6 +44,9 @@ function parseArgs(argv) {
     } else if (argv[i] === '--account-id') {
       args.accountId = argv[i + 1];
       i += 1;
+    } else if (argv[i] === '--account-json') {
+      try { args.account = JSON.parse(argv[i + 1]); } catch { throw new Error('--account-json must be valid JSON'); }
+      i += 1;
     }
   }
   return args;
@@ -144,9 +147,9 @@ function assetFolderFor(bank, language, account) {
   return baseFolder;
 }
 
-function visualAccount(accountId) {
+function visualAccount(accountId, resolveAccount = resolveCampaignAccount) {
   if (!accountId) return null;
-  const account = resolveCampaignAccount(accountId);
+  const account = resolveAccount(accountId);
   if (!['male', 'female'].includes(account.gender)) throw new Error(`Account ${account.account_id} is missing a valid gender`);
   return account;
 }
@@ -167,7 +170,7 @@ function emptyBankError(bank, account, folderRelative, language) {
 
 function validateAccountVisualBanks(accountId, language, hookType = '', options = {}) {
   const root = options.root || ROOT;
-  const account = options.account || visualAccount(accountId);
+  const account = options.account || visualAccount(accountId, options.resolveAccount);
   for (const bank of ['visual_hooks', CTA_ASSET_BANK]) {
     const folderRelative = assetFolderFor(bank, language, account);
     const folder = path.join(root, folderRelative);
@@ -308,7 +311,7 @@ function main() {
     return;
   }
 
-  const account = visualAccount(args.accountId);
+  const account = args.account || visualAccount(args.accountId);
   const assetCache = Object.fromEntries(
     Object.entries(ASSET_BANKS).map(([bank, folderRelative]) => {
       const resolvedFolderRelative = assetFolderFor(bank, args.languageLane, account);

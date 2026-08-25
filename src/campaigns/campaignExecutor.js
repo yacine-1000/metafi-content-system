@@ -169,6 +169,7 @@ async function executeCampaignWindow(campaignId, options = {}) {
   const campaign = await readCampaign(campaignId);
   logStage('campaign_load', 'complete', campaignLoadStartedAt);
   if (!campaign) return null;
+  const campaignAccount = campaign.account || null;
 
   const executionWindowDays = options.execution_window_days == null
     ? CAMPAIGN_EXECUTION_CONFIG.execution_window_days
@@ -293,7 +294,7 @@ async function executeCampaignWindow(campaignId, options = {}) {
         started_at: nowFor().toISOString(),
       });
       const accountLookupStartedAt = Date.now();
-      await validateVisualBanks(campaign.account_id, normalizedSlot.language, normalizedSlot.hook_type);
+      await validateVisualBanks(campaign.account_id, normalizedSlot.language, normalizedSlot.hook_type, campaignAccount ? { account: campaignAccount } : {});
       logStage('account_lookup', 'complete', accountLookupStartedAt, `slot_id=${normalizedSlot.slot_id}`);
       const injectionLookupStartedAt = Date.now();
       const pendingInjection = compatibleInjectionRequest(injectionRequestStore, sourceSetFor, campaign, normalizedSlot, nowFor(), root, executionCoolingScriptIds);
@@ -309,6 +310,7 @@ async function executeCampaignWindow(campaignId, options = {}) {
         usedScriptIds: [...usedScriptIds],
         avoidedSourceSetIds: [...batchSourceSetIds],
         accountId: campaign.account_id,
+        account: campaignAccount,
         coolingScriptIds: executionCoolingScriptIds,
         ...(claimedInjection ? { requiredSourceSetId: claimedInjection.source_set_id } : {}),
       });

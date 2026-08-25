@@ -88,6 +88,7 @@ function generateSlideshows({
   requiredSourceSetId = null,
   avoidedSourceSetIds = [],
   accountId = null,
+  account = null,
   coolingScriptIds = null,
 }) {
   if (!pillar) throw new Error('Missing required argument: --pillar p1|p2|p3|p4');
@@ -126,6 +127,7 @@ function generateSlideshows({
       '--language-lane', language,
     ];
     if (accountId) resolverArgs.push('--account-id', accountId);
+    if (account) resolverArgs.push('--account-json', JSON.stringify(account));
     runNode('src/generation/resolvePostAssets.js', resolverArgs, 'asset_resolution', PROCESS_TIMEOUTS_MS.asset_resolution);
 
     pendingRenders.push({ language, selection, postStartedAt });

@@ -12,6 +12,16 @@ function required(name) {
   if (!process.env[name] || !String(process.env[name]).trim()) throw new Error(`${name} is required in .env.supabase.local`);
 }
 
+function validateLocalOperatorEnvironment(env = process.env) {
+  if (env.METAFI_PERSISTENCE_MODE !== 'supabase') throw new Error('METAFI_PERSISTENCE_MODE must be supabase');
+  if (env.METAFI_HOSTED_PORTAL !== 'false') throw new Error('METAFI_HOSTED_PORTAL must be false for the local operator');
+  if (!['true', 'false'].includes(env.BUFFER_ENABLED)) throw new Error('BUFFER_ENABLED must be true or false for the local operator');
+  if (env.BUFFER_ENABLED === 'true' && (!env.BUFFER_API_KEY || !String(env.BUFFER_API_KEY).trim())) {
+    throw new Error('BUFFER_API_KEY is required when BUFFER_ENABLED=true');
+  }
+  return env.BUFFER_ENABLED === 'true';
+}
+
 function ensurePortAvailable(port) {
   return new Promise((resolve, reject) => {
     const probe = net.createServer();
@@ -28,9 +38,7 @@ async function main() {
   for (const [name, value] of Object.entries(localValues)) {
     if (value !== '' || process.env[name] == null) process.env[name] = value;
   }
-  if (process.env.METAFI_PERSISTENCE_MODE !== 'supabase') throw new Error('METAFI_PERSISTENCE_MODE must be supabase');
-  if (process.env.METAFI_HOSTED_PORTAL !== 'false') throw new Error('METAFI_HOSTED_PORTAL must be false for the local operator');
-  if (process.env.BUFFER_ENABLED !== 'false') throw new Error('BUFFER_ENABLED must be false for the local operator');
+  const bufferEnabled = validateLocalOperatorEnvironment(process.env);
   process.env.METAFI_LOCAL_OPERATOR = 'true';
   for (const name of ['SUPABASE_URL', 'SUPABASE_SERVICE_ROLE_KEY', 'SUPABASE_STORAGE_BUCKET']) required(name);
   const port = Number(process.env.PORT || 3333);
@@ -52,11 +60,11 @@ async function main() {
     console.log('Chromium: ready');
     console.log('Local generation: enabled');
     console.log('Hosted worker dispatch: disabled');
-    console.log('Buffer: disabled');
+    console.log(`Buffer: ${bufferEnabled ? 'enabled' : 'disabled'}`);
     console.log(`Portal: http://localhost:${port}`);
   });
 }
 
 if (require.main === module) main().catch((error) => { console.error(`Supabase operator startup failed: ${error.message}`); process.exitCode = 1; });
 
-module.exports = { ensurePortAvailable, main };
+module.exports = { ensurePortAvailable, validateLocalOperatorEnvironment, main };
