@@ -8,7 +8,7 @@ const { generateSlideshows } = require('../generation/generateSlideshows');
 const { uploadPostToR2 } = require('../generation/uploadToR2');
 const { createBufferDraft } = require('../generation/createBufferDraft');
 const { scheduleBufferPost } = require('../generation/scheduleBufferPost');
-const { validateAccountVisualBanks } = require('../generation/resolvePostAssets');
+const { materializeSupabaseAccountAssets, validateAccountVisualBanks } = require('../generation/resolvePostAssets');
 const { createInjectionRequestStore } = require('../injection/injectionRequestStore');
 const { getSourceSet } = require('../scripts/scriptLibrary');
 const { mutatePlan, claimCampaignSlot, completeClaimedSlot } = require('./campaignSlotLockStore');
@@ -170,6 +170,7 @@ async function executeCampaignWindow(campaignId, options = {}) {
   logStage('campaign_load', 'complete', campaignLoadStartedAt);
   if (!campaign) return null;
   const campaignAccount = campaign.account || null;
+  if (campaignAccount?.assets) await materializeSupabaseAccountAssets(campaignAccount, campaignAccount.assets, { root });
 
   const executionWindowDays = options.execution_window_days == null
     ? CAMPAIGN_EXECUTION_CONFIG.execution_window_days

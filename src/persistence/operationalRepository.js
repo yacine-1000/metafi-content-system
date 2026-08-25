@@ -71,7 +71,15 @@ class SupabaseOperationalRepository {
     const campaign = await this.repository.getCampaign(id); if (!campaign) return null;
     const { data: account, error } = await this.repository.client.from('accounts').select('*').eq('id', campaign.account_id).single();
     if (error) throw new Error(`Unable to load campaign account: ${error.message}`);
-    return { ...campaign, campaign_id: campaign.legacy_campaign_id, account_id: account.legacy_account_id, account: { ...account, account_id: account.legacy_account_id }, buffer_channel_id: account.buffer_channel_id,
+    const assets = await this.repository.listAccountAssets(account.legacy_account_id);
+    const signedAssets = await Promise.all(assets.filter((asset) => asset.active && ['hook', 'localized_cta'].includes(asset.asset_type)).map(async (asset) => {
+      if (asset.public_url) return asset;
+      const bucket = asset.storage_bucket || asset.bucket;
+      const { data, error: signedError } = await this.repository.client.storage.from(bucket).createSignedUrl(asset.storage_key, 300);
+      if (signedError) throw new Error(`Unable to sign campaign account asset: ${signedError.message}`);
+      return { ...asset, signed_url: data.signedUrl };
+    }));
+    return { ...campaign, campaign_id: campaign.legacy_campaign_id, account_id: account.legacy_account_id, account: { ...account, account_id: account.legacy_account_id, assets: signedAssets }, buffer_channel_id: account.buffer_channel_id,
       account_internal_name: account.internal_name, account_username: account.username, account_language: account.language, account_timezone: account.timezone };
   }
   async saveCampaign(campaign) { return this.repository.upsertCampaign(campaign); }

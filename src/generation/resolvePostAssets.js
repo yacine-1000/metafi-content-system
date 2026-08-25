@@ -147,6 +147,22 @@ function assetFolderFor(bank, language, account) {
   return baseFolder;
 }
 
+async function materializeSupabaseAccountAssets(account, assets, { root = ROOT, fetchImpl = globalThis.fetch } = {}) {
+  for (const asset of assets || []) {
+    if (!asset.active || !['hook', 'localized_cta'].includes(asset.asset_type)) continue;
+    if (!asset.signed_url && !asset.public_url) throw new Error(`Supabase account asset ${asset.id || asset.storage_key} has no readable URL`);
+    const language = asset.asset_type === 'localized_cta' ? asset.language : null;
+    const destination = asset.asset_type === 'hook'
+      ? path.join(root, 'assets', 'account-hook-images', account.account_id, path.basename(asset.storage_key))
+      : path.join(root, 'assets', 'account-app-cta-images', account.account_id, language, path.basename(asset.storage_key));
+    if (fs.existsSync(destination)) continue;
+    const response = await fetchImpl(asset.signed_url || asset.public_url);
+    if (!response.ok) throw new Error(`Unable to download Supabase account asset ${asset.id || asset.storage_key}`);
+    fs.mkdirSync(path.dirname(destination), { recursive: true });
+    fs.writeFileSync(destination, Buffer.from(await response.arrayBuffer()));
+  }
+}
+
 function visualAccount(accountId, resolveAccount = resolveCampaignAccount) {
   if (!accountId) return null;
   const account = resolveAccount(accountId);
@@ -378,4 +394,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { AccountAssetValidationError, isReadableSupportedImage, validateAccountVisualBanks };
+module.exports = { AccountAssetValidationError, isReadableSupportedImage, materializeSupabaseAccountAssets, validateAccountVisualBanks };
