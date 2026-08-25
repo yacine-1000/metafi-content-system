@@ -832,7 +832,14 @@ app.delete('/api/campaigns/:campaignId', async (req, res) => {
   }
 });
 
-app.get('/posts', (_req, res) => {
+app.get('/posts', async (_req, res) => {
+  if (isSupabaseMode()) {
+    try {
+      return res.json(await portalRepository().contentPosts());
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
   const postsDir = path.join(ROOT, 'outputs', 'posts');
   if (!fs.existsSync(postsDir)) return res.json([]);
   const folders = fs.readdirSync(postsDir)

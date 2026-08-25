@@ -14,6 +14,7 @@ const { getSourceSet } = require('../scripts/scriptLibrary');
 const { mutatePlan, claimCampaignSlot, completeClaimedSlot } = require('./campaignSlotLockStore');
 const { createOperationalRepository } = require('../persistence/operationalRepository');
 const { createRenderedOutputStorage } = require('../generation/renderedOutputStorage');
+const { markUploadFailed } = require('../lib/postMetadata');
 
 const ROOT = path.resolve(__dirname, '../..');
 const CAMPAIGNS_DIR = path.join(ROOT, 'data', 'campaigns');
@@ -406,15 +407,17 @@ async function executeCampaignWindow(campaignId, options = {}) {
   return operationalRepository.getExecutionSummary(campaign.campaign_id);
 }
 
-async function uploadApprovedCampaignPosts(campaignId) {
-  const campaign = getCampaign(campaignId);
+async function uploadApprovedCampaignPosts(campaignId, options = {}) {
+  const campaign = (options.getCampaign || getCampaign)(campaignId);
   if (!campaign) return null;
   if (campaign.publishing_mode === 'team_manual') throw new CampaignExecutionError('Team Portal campaigns use Publish to Team Portal instead of the Buffer upload workflow');
   const uploadedPostIds = [];
   const failedPosts = [];
   let skippedCount = 0;
-  const postFolders = fs.existsSync(POSTS_DIR)
-    ? fs.readdirSync(POSTS_DIR, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => path.join(POSTS_DIR, entry.name))
+  const postsDir = options.postsDir || POSTS_DIR;
+  const upload = options.uploadPostToR2 || uploadPostToR2;
+  const postFolders = fs.existsSync(postsDir)
+    ? fs.readdirSync(postsDir, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => path.join(postsDir, entry.name))
     : [];
 
   for (const postFolder of postFolders) {
@@ -445,7 +448,7 @@ async function uploadApprovedCampaignPosts(campaignId) {
       }
     }
     try {
-      await uploadPostToR2(postFolder);
+      await upload(postFolder);
       metadata.upload_status = 'uploaded';
       metadata.r2_manifest = 'r2-upload.json';
       metadata.statuses = { ...metadata.statuses, upload: 'uploaded' };
@@ -453,10 +456,14 @@ async function uploadApprovedCampaignPosts(campaignId) {
       writeJsonAtomic(metadataPath, metadata);
       uploadedPostIds.push(metadata.post_id || path.basename(postFolder));
     } catch (error) {
+      const errorMessage = error && error.message ? String(error.message) : String(error);
+      metadata = markUploadFailed(metadata, errorMessage);
+      metadata.upload_status = 'failed';
+      writeJsonAtomic(metadataPath, metadata);
       failedPosts.push({
         post_id: metadata.post_id || path.basename(postFolder),
-        stage: 'buffer_notification',
-        error_message: error && error.message ? String(error.message) : String(error),
+        stage: 'upload',
+        error_message: errorMessage,
         failed_at: new Date().toISOString(),
         retryable: true,
       });
@@ -486,20 +493,24 @@ async function ensureBufferDraft(postFolder, account) {
   return createBufferDraft(postFolder, { channelId: account.buffer_channel_id, channelName: account.buffer_channel_name || account.internal_name });
 }
 
-async function sendUploadedCampaignPostsToBuffer(campaignId) {
-  const campaign = getCampaign(campaignId);
+async function sendUploadedCampaignPostsToBuffer(campaignId, options = {}) {
+  const campaign = (options.getCampaign || getCampaign)(campaignId);
   if (!campaign) return null;
   if (campaign.publishing_mode === 'team_manual') throw new CampaignExecutionError('Team Portal campaigns cannot be sent to Buffer');
-  const account = resolveCampaignAccount(campaign.account_id);
+  const account = (options.resolveCampaignAccount || resolveCampaignAccount)(campaign.account_id);
   if (!account.buffer_channel_id) throw new CampaignExecutionError('Campaign account has no Buffer channel configured');
-  const planPath = path.join(CAMPAIGNS_DIR, `${campaign.campaign_id}-plan.json`);
+  const campaignsDir = options.campaignsDir || CAMPAIGNS_DIR;
+  const postsDir = options.postsDir || POSTS_DIR;
+  const schedule = options.scheduleBufferPost || scheduleBufferPost;
+  const ensureDraft = options.ensureBufferDraft || ensureBufferDraft;
+  const planPath = path.join(campaignsDir, `${campaign.campaign_id}-plan.json`);
   const plan = fs.existsSync(planPath) ? readJson(planPath, 'Campaign plan') : { slots: [] };
   const slotsById = new Map((plan.slots || []).map((slot) => [slot.slot_id, slot]));
   const bufferedPostIds = [];
   const failedPosts = [];
   let skippedCount = 0;
-  const postFolders = fs.existsSync(POSTS_DIR)
-    ? fs.readdirSync(POSTS_DIR, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => path.join(POSTS_DIR, entry.name))
+  const postFolders = fs.existsSync(postsDir)
+    ? fs.readdirSync(postsDir, { withFileTypes: true }).filter((entry) => entry.isDirectory()).map((entry) => path.join(postsDir, entry.name))
     : [];
 
   for (const postFolder of postFolders) {
@@ -530,8 +541,8 @@ async function sendUploadedCampaignPostsToBuffer(campaignId) {
       let scheduledAt;
       let schedulingType;
       if (publishingMode === 'automatic') {
-        await ensureBufferDraft(postFolder, account);
-        const scheduled = await scheduleBufferPost(postFolder, {
+        await ensureDraft(postFolder, account);
+        const scheduled = await schedule(postFolder, {
           date: slot.date,
           time: slot.time,
           timezone: campaign.timezone,
@@ -543,7 +554,7 @@ async function sendUploadedCampaignPostsToBuffer(campaignId) {
         scheduledAt = scheduled.scheduled_at;
         schedulingType = 'automatic';
       } else {
-        const scheduled = await scheduleBufferPost(postFolder, {
+        const scheduled = await schedule(postFolder, {
           date: slot.date,
           time: slot.time,
           timezone: campaign.timezone,
@@ -568,11 +579,21 @@ async function sendUploadedCampaignPostsToBuffer(campaignId) {
       writeJsonAtomic(metadataPath, metadata);
       bufferedPostIds.push(metadata.post_id || path.basename(postFolder));
     } catch (error) {
-      failedPosts.push({ post_id: metadata.post_id || path.basename(postFolder), reason: failureReason(error) });
+      const errorMessage = failureReason(error);
+      const failedAt = new Date().toISOString();
+      metadata.buffer_status = 'failed';
+      metadata.statuses = { ...(metadata.statuses || {}), buffer: 'failed' };
+      metadata.errors = [...(metadata.errors || []), { stage: 'buffer', message: errorMessage, at: failedAt }];
+      metadata.updated_at = failedAt;
+      writeJsonAtomic(metadataPath, metadata);
+      failedPosts.push({
+        post_id: metadata.post_id || path.basename(postFolder), stage: 'buffer', reason: errorMessage,
+        error_message: errorMessage, failed_at: failedAt, retryable: true,
+      });
     }
   }
 
-  const executionPath = path.join(CAMPAIGNS_DIR, `${campaign.campaign_id}-execution.json`);
+  const executionPath = path.join(campaignsDir, `${campaign.campaign_id}-execution.json`);
   if (fs.existsSync(executionPath)) {
     const execution = readJson(executionPath, 'Campaign execution summary');
     const confirmedBufferPostIds = new Set();

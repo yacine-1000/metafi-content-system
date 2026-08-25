@@ -64,6 +64,30 @@ test('team account identity normalizes handles, falls back to account name, and 
   assert.deepEqual(requested, ['account-a', 'account-b']);
 });
 
+test('content posts project Supabase rows with the Content-tab campaign and slot keys', async () => {
+  const service = Object.create(PortalSupabaseService.prototype);
+  const campaign = { id: 'campaign-uuid', legacy_campaign_id: 'campaign-test', account_id: 'account-test' };
+  const slot = { id: 'slot-uuid', legacy_slot_id: 'slot-test' };
+  const post = {
+    id: 'post-uuid', legacy_post_id: 'post-test', campaign_id: campaign.id, campaign_slot_id: slot.id,
+    generation_status: 'completed', review_status: 'approved', upload_status: 'uploaded', buffer_status: 'scheduled', publication_status: 'not_published',
+    buffer_post_id: 'buffer-test', buffer_channel_id: 'channel-test', buffer_scheduled_at: '2030-01-01T12:00:00.000Z',
+    created_at: '2030-01-01T10:00:00.000Z', updated_at: '2030-01-01T11:00:00.000Z', caption: 'Caption', language: 'ar', strategy_metadata: { status: 'passed' },
+  };
+  const publication = { post_id: post.id, status: 'published', published_at: '2030-01-01T12:00:00.000Z' };
+  service.repository = {
+    listCampaigns: async () => [campaign], listPosts: async () => [post], listPublicationHistory: async () => [publication],
+    listCampaignSlots: async () => [slot],
+  };
+  const [projected] = await service.contentPosts();
+  assert.deepEqual(projected.statuses, { generation: 'completed', review: 'approved', upload: 'uploaded', buffer: 'scheduled', publish: 'not_published', strategy: 'passed' });
+  assert.equal(projected.post_id, 'post-test');
+  assert.equal(projected.campaign_id, 'campaign-test');
+  assert.equal(projected.slot_id, 'slot-test');
+  assert.equal(projected.buffer_scheduled_post_id, 'buffer-test');
+  assert.equal(projected.publication, publication);
+});
+
 test('team UI falls back to account initials when a profile image is missing or fails', () => {
   const html = fs.readFileSync(path.resolve(__dirname, '../../src/ui/team.html'), 'utf8');
   assert.match(html, /function avatarFallback\(image\)/);

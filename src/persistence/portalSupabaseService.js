@@ -111,6 +111,39 @@ class PortalSupabaseService {
     return legacyCampaign(saved, await this.repository.getAccount(existing.account_id));
   }
   async deleteCampaign(id) { return this.repository.deleteCampaign(id); }
+  async contentPosts() {
+    const [campaigns, posts, publications] = await Promise.all([
+      this.repository.listCampaigns(),
+      this.repository.listPosts(),
+      this.repository.listPublicationHistory(),
+    ]);
+    const campaignById = new Map(campaigns.map((campaign) => [campaign.id, campaign]));
+    const slotsById = new Map();
+    await Promise.all(campaigns.map(async (campaign) => {
+      const slots = await this.repository.listCampaignSlots(campaign.legacy_campaign_id);
+      slots.forEach((slot) => slotsById.set(slot.id, slot));
+    }));
+    const publicationByPostId = new Map(publications.map((publication) => [publication.post_id, publication]));
+    return posts.map((post) => {
+      const campaign = campaignById.get(post.campaign_id);
+      const slot = slotsById.get(post.campaign_slot_id);
+      const statuses = {
+        generation: post.generation_status || 'unknown', review: post.review_status || 'unknown',
+        upload: post.upload_status || 'unknown', buffer: post.buffer_status || 'unknown',
+        publish: post.publication_status || 'unknown', strategy: post.strategy_metadata?.status || 'not_checked',
+      };
+      return {
+        post_id: post.legacy_post_id, campaign_id: campaign?.legacy_campaign_id || null, slot_id: slot?.legacy_slot_id || null,
+        account_id: campaign?.account_id || post.account_id, language: post.language, caption: post.caption || '',
+        created_at: post.created_at || null, updated_at: post.updated_at || null, statuses,
+        generation_status: statuses.generation, review_status: statuses.review, upload_status: statuses.upload,
+        buffer_status: statuses.buffer, publication_status: statuses.publish, buffer_post_id: post.buffer_post_id || null,
+        buffer_scheduled_post_id: post.buffer_scheduled_post_id || post.buffer_post_id || null,
+        buffer_channel_id: post.buffer_channel_id || null, scheduled_at: post.buffer_scheduled_at || null,
+        buffer_scheduled_at: post.buffer_scheduled_at || null, publication: publicationByPostId.get(post.id) || null,
+      };
+    });
+  }
   async health() {
     const database = await this.client.from('accounts').select('id').limit(1); if (database.error) throw new Error(`Unable to verify Supabase database: ${database.error.message}`);
     const bucket = await this.client.storage.getBucket(this.storageBucket);

@@ -6,6 +6,10 @@ const dotenv = require('dotenv');
 
 const ROOT = path.resolve(__dirname, '../..');
 const BUFFER_API_URL = 'https://api.buffer.com';
+const BUFFER_REQUEST_TIMEOUT_MS = 10_000;
+const BUFFER_MAX_RETRIES = 3;
+const BUFFER_RETRY_BACKOFF_MS = 250;
+const BUFFER_RECOVERY_WINDOW_MS = 60_000;
 
 function parseArgs(argv) {
   const args = {};
@@ -108,8 +112,104 @@ function orderedMedia(manifest) {
   return media;
 }
 
-async function createScheduledPost(apiKey, input) {
-  const response = await fetch(BUFFER_API_URL, {
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function writeJson(filePath, value, writeFileSync = fs.writeFileSync) {
+  writeFileSync(filePath, JSON.stringify(value, null, 2), 'utf8');
+}
+
+function persistBufferMetadata(metadataPath, manifest, writeFileSync) {
+  if (!fs.existsSync(metadataPath)) return;
+  const metadata = readJson(metadataPath, 'metadata.json');
+  metadata.buffer_status = manifest.scheduling_type === 'notification' ? 'notification_scheduled' : 'scheduled';
+  metadata.buffer_post_id = manifest.buffer_scheduled_post_id;
+  metadata.scheduled_at = manifest.scheduled_at;
+  metadata.scheduling_type = manifest.scheduling_type;
+  metadata.timezone = manifest.timezone;
+  metadata.buffer_scheduled_post_id = manifest.buffer_scheduled_post_id;
+  writeJson(metadataPath, metadata, writeFileSync);
+}
+
+function isRetryableStatus(status) {
+  return status === 429 || status >= 500;
+}
+
+async function bufferQuery(apiKey, fetchImpl, query, variables = {}) {
+  const response = await fetchImpl(BUFFER_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+    body: JSON.stringify({ query, variables }),
+  });
+  let payload;
+  try {
+    payload = await response.json();
+  } catch {
+    throw new Error(`Buffer recovery lookup returned a non-JSON response with HTTP ${response.status}`);
+  }
+  if (!response.ok || (Array.isArray(payload.errors) && payload.errors.length)) {
+    throw new Error(`Buffer recovery lookup failed${payload.errors?.length ? `: ${payload.errors.map((error) => error.message).join('; ')}` : ` with HTTP ${response.status}`}`);
+  }
+  return payload.data;
+}
+
+function matchesScheduledPost(post, input) {
+  if (post.channelId !== input.channelId || post.dueAt !== input.dueAt || post.text !== input.text) return false;
+  const expectedAssets = (input.assets || []).map((asset) => asset.image?.url || asset.video?.url || asset.document?.url || asset.link?.url);
+  const actualAssets = (post.assets || []).map((asset) => asset.source);
+  return expectedAssets.length === actualAssets.length
+    && expectedAssets.every((url, index) => url === actualAssets[index]);
+}
+
+async function findScheduledPostForRecovery(apiKey, input, { fetchImpl = globalThis.fetch } = {}) {
+  const organizations = (await bufferQuery(apiKey, fetchImpl, `
+    query BufferOrganizations { account { organizations { id } } }
+  `)).account?.organizations || [];
+  const dueAt = new Date(input.dueAt).getTime();
+  const variables = {
+    start: new Date(dueAt - BUFFER_RECOVERY_WINDOW_MS).toISOString(),
+    end: new Date(dueAt + BUFFER_RECOVERY_WINDOW_MS).toISOString(),
+  };
+  const matches = [];
+  for (const organization of organizations) {
+    const data = await bufferQuery(apiKey, fetchImpl, `
+      query ScheduledPostsForRecovery($organizationId: OrganizationId!, $channelId: ChannelId!, $start: DateTime!, $end: DateTime!) {
+        posts(first: 20, input: {
+          organizationId: $organizationId,
+          filter: { status: [scheduled], channelIds: [$channelId], dueAt: { start: $start, end: $end } },
+          sort: [{ field: dueAt, direction: asc }]
+        }) {
+          edges { node { id channelId dueAt text status assets { source } } }
+        }
+      }
+    `, { ...variables, organizationId: organization.id, channelId: input.channelId });
+    matches.push(...(data.posts?.edges || []).map((edge) => edge.node).filter((post) => matchesScheduledPost(post, input)));
+  }
+  if (matches.length > 1) throw new Error('Buffer recovery found multiple matching scheduled posts');
+  return matches[0] || null;
+}
+
+async function createScheduledPost(apiKey, input, {
+  fetchImpl = globalThis.fetch,
+  timeoutMs = BUFFER_REQUEST_TIMEOUT_MS,
+  maxRetries = BUFFER_MAX_RETRIES,
+  backoffMs = BUFFER_RETRY_BACKOFF_MS,
+  findScheduledPost = (request) => findScheduledPostForRecovery(apiKey, request, { fetchImpl }),
+} = {}) {
+  if (typeof fetchImpl !== 'function') throw new Error('fetch implementation is required');
+
+  for (let attempt = 0; attempt <= maxRetries; attempt += 1) {
+    const controller = new AbortController();
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, timeoutMs);
+
+    let response;
+    try {
+      response = await fetchImpl(BUFFER_API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -139,39 +239,68 @@ async function createScheduledPost(apiKey, input) {
       `,
       variables: { input },
     }),
-  });
+        signal: controller.signal,
+      });
+    } catch (error) {
+      clearTimeout(timeout);
+      const requestError = timedOut ? new Error('Buffer API request timed out') : error;
+      const recoveredPost = await findScheduledPost(input);
+      if (recoveredPost) return recoveredPost;
+      if (attempt < maxRetries) {
+        await delay(backoffMs * (2 ** attempt));
+        continue;
+      }
+      throw requestError;
+    }
+    clearTimeout(timeout);
 
-  let payload;
-  try {
-    payload = await response.json();
-  } catch {
-    throw new Error(`Buffer API returned a non-JSON response with HTTP ${response.status}`);
+    if (isRetryableStatus(response.status)) {
+      if (attempt < maxRetries) {
+        await delay(backoffMs * (2 ** attempt));
+        continue;
+      }
+      throw new Error(`Buffer API request failed with HTTP ${response.status}`);
+    }
+
+    let payload;
+    try {
+      payload = await response.json();
+    } catch {
+      throw new Error(`Buffer API returned a non-JSON response with HTTP ${response.status}`);
+    }
+    if (response.status === 401 || response.status === 403) throw new Error('Buffer authentication failed');
+    if (!response.ok) throw new Error(`Buffer API request failed with HTTP ${response.status}`);
+    if (Array.isArray(payload.errors) && payload.errors.length > 0) {
+      throw new Error(`Buffer GraphQL error: ${payload.errors.map((error) => error.message).join('; ')}`);
+    }
+    const result = payload.data?.createPost;
+    if (!result) throw new Error('Buffer createPost returned no result');
+    if (result.__typename !== 'PostActionSuccess') {
+      throw new Error(`Buffer scheduling failed: ${result.message || result.__typename}`);
+    }
+    return result.post;
   }
-  if (response.status === 401 || response.status === 403) throw new Error('Buffer authentication failed');
-  if (!response.ok) throw new Error(`Buffer API request failed with HTTP ${response.status}`);
-  if (Array.isArray(payload.errors) && payload.errors.length > 0) {
-    throw new Error(`Buffer GraphQL error: ${payload.errors.map((error) => error.message).join('; ')}`);
-  }
-  const result = payload.data?.createPost;
-  if (!result) throw new Error('Buffer createPost returned no result');
-  if (result.__typename !== 'PostActionSuccess') {
-    throw new Error(`Buffer scheduling failed: ${result.message || result.__typename}`);
-  }
-  return result.post;
 }
 
-async function scheduleBufferPost(postFolder, { date, time, timezone, channelId = null, channelName = '', schedulingType = 'automatic' }) {
+async function scheduleBufferPost(postFolder, { date, time, timezone, channelId = null, channelName = '', schedulingType = 'automatic' }, {
+  apiKey = null,
+  fetchImpl = globalThis.fetch,
+  writeFileSync = fs.writeFileSync,
+} = {}) {
   if (!fs.existsSync(postFolder) || !fs.statSync(postFolder).isDirectory()) {
     throw new Error(`Post folder does not exist: ${postFolder}`);
   }
 
   const schedulePath = path.join(postFolder, 'buffer-schedule.json');
+  const pendingPath = path.join(postFolder, 'buffer-schedule-pending.json');
   if (fs.existsSync(schedulePath)) {
     const existing = readJson(schedulePath, 'buffer-schedule.json');
     if (existing.buffer_scheduled_post_id) {
       if (channelId && existing.channel_id !== channelId) throw new Error('Existing Buffer schedule belongs to a different account channel');
       const existingSchedulingType = existing.scheduling_type || 'automatic';
       if (existingSchedulingType !== schedulingType) throw new Error(`Existing Buffer schedule uses ${existingSchedulingType} scheduling`);
+      persistBufferMetadata(path.join(postFolder, 'metadata.json'), existing, writeFileSync);
+      if (fs.existsSync(pendingPath)) fs.unlinkSync(pendingPath);
       return { ...existing, already_scheduled: true };
     }
   }
@@ -202,14 +331,26 @@ async function scheduleBufferPost(postFolder, { date, time, timezone, channelId 
   if (!fs.existsSync(captionPath)) throw new Error(`Caption file is missing: ${captionPath}`);
   const caption = fs.readFileSync(captionPath, 'utf8');
 
-  const bufferPost = await createScheduledPost(readApiKey(), {
+  const schedulingInput = {
     channelId: connection.channel_id,
     schedulingType,
     mode: 'customScheduled',
     dueAt,
     text: caption,
     assets: media.map((item) => ({ image: { url: item.publicUrl } })),
-  });
+  };
+  const key = apiKey || readApiKey();
+  let bufferPost = null;
+  if (fs.existsSync(pendingPath)) {
+    bufferPost = await findScheduledPostForRecovery(key, schedulingInput, { fetchImpl });
+  }
+  if (!bufferPost) {
+    writeJson(pendingPath, {
+      provider: 'buffer', post_id: path.basename(postFolder), channel_id: connection.channel_id,
+      due_at: dueAt, text: caption, media_urls: media.map((item) => item.publicUrl), created_at: new Date().toISOString(),
+    }, writeFileSync);
+    bufferPost = await createScheduledPost(key, schedulingInput, { fetchImpl });
+  }
   const returnedUrls = (bufferPost.assets || []).map((asset) => asset.source);
   const requestedUrls = media.map((item) => item.publicUrl);
 
@@ -242,19 +383,10 @@ async function scheduleBufferPost(postFolder, { date, time, timezone, channelId 
     media_count: media.length,
     caption,
   };
-  fs.writeFileSync(schedulePath, JSON.stringify(manifest, null, 2), 'utf8');
+  writeJson(schedulePath, manifest, writeFileSync);
 
-  const metadataPath = path.join(postFolder, 'metadata.json');
-  if (fs.existsSync(metadataPath)) {
-    const metadata = readJson(metadataPath, 'metadata.json');
-    metadata.buffer_status = schedulingType === 'notification' ? 'notification_scheduled' : 'scheduled';
-    metadata.buffer_post_id = bufferPost.id;
-    metadata.scheduled_at = dueAt;
-    metadata.scheduling_type = schedulingType;
-    metadata.timezone = timezone;
-    metadata.buffer_scheduled_post_id = bufferPost.id;
-    fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), 'utf8');
-  }
+  persistBufferMetadata(path.join(postFolder, 'metadata.json'), manifest, writeFileSync);
+  if (fs.existsSync(pendingPath)) fs.unlinkSync(pendingPath);
   return manifest;
 }
 
@@ -280,4 +412,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { scheduleBufferPost, localDateTimeToUtc };
+module.exports = { scheduleBufferPost, createScheduledPost, findScheduledPostForRecovery, localDateTimeToUtc };
